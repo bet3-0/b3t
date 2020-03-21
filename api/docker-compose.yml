@@ -1,0 +1,11 @@
+version: "3.7"
+services:
+  postgres:
+    container_name: postgres-b3t
+    image: postgres:latest
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: b3t
+      POSTGRES_USER: b3t
+      POSTGRES_DB: b3t
