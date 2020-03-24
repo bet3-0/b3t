@@ -1,5 +1,4 @@
 const Sequelize = require('sequelize');
-require('process');
 
 var dbname = process.env.POSTGRESQL_ADDON_DB || "b3t"
 var host = process.env.POSTGRESQL_ADDON_HOST || '127.0.0.1'
