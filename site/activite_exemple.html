@@ -1,0 +1,92 @@
+<head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Caveat+Brush&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Sarabun&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/activite.css">
+
+        <title>BET 2K20</title>
+</head>
+<body onload="updateItineraryColor();">
+        <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+                <a class="navbar-brand text-white" href="/">Bet 2K20</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                                <li class="nav-item active">
+                                        <a class="nav-link text-white" href="#">Parcours</a>
+                                </li>
+                                <li class="nav-item">
+                                        <a class="nav-link text-white" href="#">Progression personelle</a>
+                                </li>
+                                <li class="nav-item">
+                                        <a class="nav-link text-white" href="#">Halte</a>
+                                </li>
+                                <li class="nav-item">
+                                        <a class="nav-link text-white" href="#">Espace écoute</a>
+                                </li>
+                                <li class="nav-item">
+                                        <a class="nav-link text-white" href="#">Progression Générale</a>
+                                </li>
+                                <li class="nav-item">
+                                        <a class="nav-link text-white" href="#">Forum</a>
+                                </li>
+                        </ul>
+                </div>
+                <button class="btn bg-light my-2 my-sm-0"  onclick="window.location.href='login'">Se connecter</button>
+        </nav>
+
+        <div class="progress">
+                <div id="itinerary-bar" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+        </div>
+        <div class="progress">
+                <div id="activity-bar" class="progress-bar bg-secondary progress-bar-striped progress-bar-animated" role="progressbar"  style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+        </div>
+
+        <div class="container" role="main">
+                <div class="activity-container">
+                        <h1 class=activity-title>Titre</h1>
+                        <p>Lorem ipsum dolor sit amet iquam convallis sollicitudin purus. 
+                                Praesent aliquam, enim at fermentum mollis, ligula massa 
+                                adipiscing nisl, ac euismod nibh nisl eu lectus. Fusce 
+                                vulputate sem at sapien. Vivamus leo. Aliquam euismod libero 
+                                nim. Nulla nec felis sed leo placerat imperdiet. Aenean suscipit 
+                                nulla in justo. Suspendisse cursus rutrum augue. Nulla tincidunt 
+                                tincidunt mi. Curabitur iaculis, lorem vel rhoncus faucibus, 
+                                felis magna fermentum augue, et ultricies lacus lorem varius purus. 
+                                Curabitur eu amet.</p>
+                        <div class="submit-container">
+                                <div class="input-group">
+                                        <div class="custom-file">
+                                          <input type="file" class="custom-file-input" id="inputGroupFile04">
+                                          <label class="custom-file-label" for="inputGroupFile04">Choisir un fichier</label>
+                                        </div>
+                                        <div class="input-group-append">
+                                          <button class="btn btn-primary" type="button">Envoyer mon résultat</button>
+                                        </div>
+                                      </div>                          
+                                <button class="btn btn-success" onclick="updateActivitybar();">Valider</button>
+                        </div>
+                        
+                </div>
+                
+        </div>
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <script>
+        function updateActivitybar(){
+                progressbar=document.getElementById('activity-bar')
+                progressbar.setAttribute('style', 'width: 50%;')
+                progressbar.innerHTML = "50%"
+                updateItineraryColor()
+            }
+            function updateItineraryColor(){
+                progressbar=document.getElementById('itinerary-bar')
+                itinerary_class = "bg-bosses-et-bobos"
+                progressbar.classList.add(itinerary_class)
+            }
+        </script>
+</body>

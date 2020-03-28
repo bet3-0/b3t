@@ -27,6 +27,12 @@ app.get("/activites", function(req, res) {
   res.sendFile(path.join(__dirname + "/site/activites.html"));
 });
 
+// for test purposes
+app.get("/activite_exemple", function(req, res) {
+  res.sendFile(path.join(__dirname + "/site/activite_exemple.html"));
+});
+
+
 app.use(favicon(__dirname + "/site/favicon.ico"));
 
 app.listen(8080, function() {
