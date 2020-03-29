@@ -46,17 +46,26 @@
         </div>
 
         <div class="container" role="main">
-                <div class="activity-container">
-                        <h1 class=activity-title>Titre</h1>
-                        <p>Lorem ipsum dolor sit amet iquam convallis sollicitudin purus. 
-                                Praesent aliquam, enim at fermentum mollis, ligula massa 
-                                adipiscing nisl, ac euismod nibh nisl eu lectus. Fusce 
-                                vulputate sem at sapien. Vivamus leo. Aliquam euismod libero 
-                                nim. Nulla nec felis sed leo placerat imperdiet. Aenean suscipit 
-                                nulla in justo. Suspendisse cursus rutrum augue. Nulla tincidunt 
-                                tincidunt mi. Curabitur iaculis, lorem vel rhoncus faucibus, 
-                                felis magna fermentum augue, et ultricies lacus lorem varius purus. 
-                                Curabitur eu amet.</p>
+                <div id="main-container" class="activity-container">
+                        <h1 class=activity-title>{{ nom }}</h1>
+                        <div class="details-container">
+                        <a class="btn btn-secondary" data-toggle="collapse" href="#details" role="button" aria-expanded="false" aria-controls="details">
+                                Details
+                        </a>
+                        <div class="collapse" id="details">
+                                <div class="card card-body">
+                                        <ul>
+                                                <li>Description: {{ description }}</li>
+                                                <li>Matériel: {{ materiel }}</li>
+                                                <li>Durée: {{ duree }}</li>
+                                                <li>Difficulté: {{ difficulte }}</li>
+                                        </ul>
+                                </div>
+                        </div>
+                        </div>
+                        <div class="content-container">
+                                <span v-html="file"></span>
+                        </div>              
                         <div class="submit-container">
                                 <div class="input-group">
                                         <div class="custom-file">
@@ -76,17 +85,8 @@
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-        <script>
-        function updateActivitybar(){
-                progressbar=document.getElementById('activity-bar')
-                progressbar.setAttribute('style', 'width: 50%;')
-                progressbar.innerHTML = "50%"
-                updateItineraryColor()
-            }
-            function updateItineraryColor(){
-                progressbar=document.getElementById('itinerary-bar')
-                itinerary_class = "bg-bosses-et-bobos"
-                progressbar.classList.add(itinerary_class)
-            }
-        </script>
+        <!-- development version, includes helpful console warnings -->
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+        <script src="js/activite.js"></script>
 </body>
