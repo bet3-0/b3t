@@ -1,6 +1,7 @@
 import Vue from 'vue'
-import HomePageComponent from './components/HomePageComponent'
 import VueRouter from 'vue-router'
+import HomePageComponent from './components/HomePageComponent'
+import LoginComponent from "./components/LoginComponent"
 import App from './App.vue'
 
 
@@ -9,10 +10,16 @@ Vue.config.productionTip = false
 
 const router = new VueRouter({
   mode: 'history',
-  routes: [{
-    path: '/',
-    component: HomePageComponent
-  }]
+  routes: [
+      {
+        path: '/',
+        component: HomePageComponent
+      },
+      {
+        path: '/login',
+        component: LoginComponent
+      },
+  ]
 })
 
 new Vue({
