@@ -10,7 +10,7 @@ Vue.config.productionTip = false
 const router = new VueRouter({
   mode: 'history',
   routes: [{
-    path: '/test',
+    path: '/',
     component: HomePageComponent
   }]
 })
