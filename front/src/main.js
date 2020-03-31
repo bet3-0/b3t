@@ -3,8 +3,9 @@ import VueRouter from "vue-router";
 import HomePageComponent from "./components/HomePageComponent";
 import LoginComponent from "./components/LoginComponent";
 import ActivitiesComponent from "./components/ActivitiesComponent";
+import ActivityComponent from "./components/ActivityComponent";
 import App from "./App.vue";
-import '@/assets/css/main.css';
+import "@/assets/css/main.css";
 
 Vue.use(VueRouter);
 Vue.config.productionTip = false;
@@ -38,6 +39,10 @@ const router = new VueRouter({
     {
       path: "/activitees",
       component: ActivitiesComponent
+    },
+    {
+      path: "/activity_sample",
+      component: ActivityComponent
     }
   ]
 });
