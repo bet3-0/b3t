@@ -1,25 +1,19 @@
 <template>
-  <div class="container">
-    <div class="card" style="margin-top: 20%; text-align: center;">
+  <div class="wrap-login">
+    <div class="login-pic" data-tilt>
+					<img src="img/logo-BET-france.png" alt="BET 2k20">
+		</div>
+    <div class="card" style="text-align: center;">
       <div class="card-body">
-        <h5 class="card-title">Connexion</h5>
-        <p class="card-text">Entrez vos informations de connexion</p>
+        <h1 class="card-title">Connexion</h1>
+        <p class="card-text">Entre ton identifiant BET !</p>
         <form action="parcours">
           <div class="form-group">
-            <label for="exampleInputEmail1">Nom d'utilisateur</label>
+            <label for="idUser">Identifiant :</label>
             <input
-              type="email"
+              type="text"
               class="form-control"
-              id="exampleInputEmail1"
-              aria-describedby="emailHelp"
-            />
-          </div>
-          <div class="form-group">
-            <label for="exampleInputPassword1">Mot de passe</label>
-            <input
-              type="password"
-              class="form-control"
-              id="exampleInputPassword1"
+              id="idUser"
             />
           </div>
           <button type="submit" class="btn btn-primary">Se connecter</button>
@@ -35,4 +29,25 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+
+.wrap-login {
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  padding: 2rem 1rem 1rem 1rem;
+}
+
+.login-pic {
+  width: 350px;
+  flex-shrink: 1;
+}
+
+.login-pic img {
+  max-width: 100%;
+}
+
+
+</style>

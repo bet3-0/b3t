@@ -4,6 +4,7 @@ import HomePageComponent from "./components/HomePageComponent";
 import LoginComponent from "./components/LoginComponent";
 import ActivitiesComponent from "./components/ActivitiesComponent";
 import App from "./App.vue";
+import '@/assets/css/main.css';
 
 Vue.use(VueRouter);
 Vue.config.productionTip = false;
