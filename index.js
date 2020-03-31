@@ -1,13 +1,16 @@
 const userController = require("./Controllers/UserController");
+const JeuneController = require("./Controllers/JeuneController");
+
 const path = require("path");
 const Express = require("express");
 const app = new Express();
 var favicon = require('serve-favicon');
 
-const sequelize = require("./config/database");
-
 app.get("/user", userController.list);
 app.get("/user/:id", userController.show);
+
+app.get("/jeunes", JeuneController.list);
+app.get("/jeune/:codeAdherent", JeuneController.show);
 
 app.use(Express.static(__dirname + "/site"));
 

@@ -22,6 +22,8 @@ db.authenticate()
         console.error('Unable to connect to the database:', err);
     });
 
+const Jeune = db.import("../models/Jeune")
+
 db.sync()
     .then()
     .catch((err) => {
