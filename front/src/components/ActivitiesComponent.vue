@@ -4,10 +4,12 @@
       <!-- Sidebar: TODO -->
       <div id="sidebar-wrapper">
         <ul class="sidebar-nav choices">
-          <li class="choice" >Parcours {{ getParcoursName(idParcours) }}</li>
-          <li class="choice" >Classer par durée</li>
-          <li class="choice" >Classer par difficulté</li>
-          <li class="choice" >Activités rouges</li>
+        <!-- <li class="choice" @click.prevent.stop.capture="change('parcours')" :class="parcours">Parcours {{ getParcoursName(idParcours) }}</li> -->
+
+          <li class="choice" @click.prevent.stop.capture="change('parcours')" :class="parcours">Ordre alpabetique</li>
+          <li class="choice" @click.prevent.stop.capture="change('duration')" :class="duration">Classer par durée</li>
+          <li class="choice" @click.prevent.stop.capture="change('difficult')" :class="difficult">Classer par difficulté</li>
+          <li class="choice" @click.prevent.stop.capture="change('red')" :class="red">Activités rouges</li>
         </ul>
       </div>
       <!-- /#sidebar-wrapper -->
@@ -53,11 +55,15 @@ export default {
   props: ["idParcours"],
   data() {
     return {
+      parcours: '',
+      duration: '',
+      difficult: '',
+      red: '',
       currentActivity: {},
       activities: [
-        {id: 0, difficult: 1, idParcours: 0, nom: "Learn JavaScript", description: "c'est bien", duree: 22, materiel: "plein"},
+        {id: 0, difficult: 3, idParcours: 0, nom: "Learn JavaScript", description: "c'est bien", duree: 22, materiel: "plein"},
         { id: 1, difficult: 2, idParcours: 0, nom: "Learn Vue", duree: 25 },
-        { id: 2, difficult: 3, idParcours: 1, nom: "Build something awesome", duree: 20 }
+        { id: 2, difficult: 1, idParcours: 1, nom: "Build something awesome", duree: 27 }
       ],
       displayActivities: []
     };
@@ -70,8 +76,40 @@ export default {
       this.currentActivity = activity;
     },
 
-    orderActivities: function () {
-      return _.orderBy(this.activities, 'duree')
+    change(data){
+      if (data === 'parcours'){
+          this.displayActivities = this.activities
+          this.displayActivities.sort(function (item, other) {
+            if(item.nom < other.nom) { return -1; }
+            if(item.nom > other.nom) { return 1; }
+          })
+        }
+
+
+      if (data === 'difficult') {
+        this.displayActivities = this.activities
+        this.displayActivities.sort(function (item, other) {
+          if (item.difficult < other.difficult) {
+            return -1;
+          }
+          if (item.difficult > other.difficult) {
+            return 1;
+          }
+        })
+      }
+
+      if (data === 'duration'){
+          this.displayActivities = this.activities
+          this.displayActivities.sort(function (item, other) {
+            if(item.duree < other.duree) { return -1; }
+            if(item.duree > other.duree) { return 1; }
+          })
+      }
+
+      data === 'parcours' ? this[data] = this[data] === '' ? 'active' : '' : this.parcours = ''
+      data === 'duration' ? this[data] = this[data] === '' ? 'active' : '' : this.duration = ''
+      data === 'difficult' ? this[data] = this[data] === '' ? 'active' : '' : this.difficult = ''
+      data === 'red' ? this[data] = this[data] === '' ? 'active' : '' : this.red = ''
     },
 
     getParcoursName(idParcours) {
@@ -125,5 +163,20 @@ export default {
   .choice{
     border: solid;
     cursor: pointer;
+    padding: 1em;
+    border-radius: 10px ;
+    transition: background-color 0.3s,color 0.3s, border 0.3s;
+
   }
+
+  .choice:hover{
+    transform: translate(0, -10px);
+  }
+
+  .active{
+    background-color: #0077b3;
+    border: solid #0077b3;
+    color: white;
+  }
+
 </style>
