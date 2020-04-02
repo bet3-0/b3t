@@ -10,7 +10,6 @@ Vue.use(VueRouter);
 Vue.config.productionTip = false;
 
 Vue.filter('difficult', function (value) {
-  console.log(value)
   switch (value) {
     case 0:
       return "Très facile";
