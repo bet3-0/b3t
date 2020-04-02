@@ -15,7 +15,7 @@
     <!-- /#wrapper -->
     <div class="container">
       <ul id="activities" class="list-group">
-        <li class="list-group-item" v-for="activity in orderActivities" :key="activity.id">
+        <li class="list-group-item" v-for="activity in displayActivities" :key="activity.id">
           <a href="#" v-b-modal="'activityModal'" @click="sendInfo(activity)">
             <svg class="bi bi-play-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" style="display: inline">
               <path
@@ -24,10 +24,8 @@
             </svg>
             <p style="display: inline-block">{{ activity.nom }}</p>
             <p style="display: inline-block; margin-left: 3em" >{{getParcoursName(activity.idParcours)}}</p>
-            <p
-              style="display: inline-block; position: absolute; right: 0; margin-right: 5px"
-              class="justify-content-end"
-            >
+            <p style="display: inline-block">{{activity.difficult | difficult}}</p>
+            <p style="display: inline-block; position: absolute; right: 0; margin-right: 5px" class="justify-content-end">
               Durée : {{ activity.duree }} min
             </p>
           </a>
@@ -57,9 +55,9 @@ export default {
     return {
       currentActivity: {},
       activities: [
-        {id: 0, idParcours: 0, nom: "Learn JavaScript", description: "c'est bien", duree: 22, materiel: "plein"},
-        { id: 1, idParcours: 0, nom: "Learn Vue", duree: 25 },
-        { id: 2, idParcours: 1, nom: "Build something awesome", duree: 20 }
+        {id: 0, difficult: 1, idParcours: 0, nom: "Learn JavaScript", description: "c'est bien", duree: 22, materiel: "plein"},
+        { id: 1, difficult: 2, idParcours: 0, nom: "Learn Vue", duree: 25 },
+        { id: 2, difficult: 3, idParcours: 1, nom: "Build something awesome", duree: 20 }
       ],
       displayActivities: []
     };
@@ -108,8 +106,16 @@ export default {
     margin: 0;
   }
 
+  #activities p{
+    width: 20%;
+  }
+
   #activities p:first-of-type{
     width: 45%;
+  }
+
+  #activities p:last-of-type{
+    text-align: right;
   }
 
   .choices li{
