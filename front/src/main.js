@@ -9,6 +9,22 @@ import '@/assets/css/main.css';
 Vue.use(VueRouter);
 Vue.config.productionTip = false;
 
+Vue.filter('difficult', function (value) {
+  console.log(value)
+  switch (value) {
+    case 0:
+      return "Très facile";
+    case 1:
+      return "facile";
+    case 2:
+      return "Moyen";
+    case 3:
+      return "Difficile";
+    default:
+      return "Moyen"; // où mettre la halte ?
+  }
+})
+
 const router = new VueRouter({
   mode: "history",
   routes: [
