@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div id="wrapper" class="toggled choices-container">
-      <!-- Sidebar: TODO -->
+      <!-- Sidebar: TODO mettre en titre le parcours choisi, quand le back sera opérationnel -->
       <div id="sidebar-wrapper">
         <ul class="sidebar-nav choices">
         <!-- <li class="choice" @click.prevent.stop.capture="change('parcours')" :class="parcours">Parcours {{ getParcoursName(idParcours) }}</li> -->
