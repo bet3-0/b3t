@@ -275,10 +275,10 @@ export default {
   border: dashed;
   border-color: var(--default);
   border-width: thick;
-  padding: 2rem 2rem;
+  padding: 1rem 1rem;
   margin-top: 1rem;
   margin-bottom: 2rem;
-  background-color: #e9ecef; /* to be changed ? */
+  background-color:#fafafa; /* light gray */
   border-radius: 0.3rem;
 }
 .details-container {
@@ -287,7 +287,6 @@ export default {
 }
 
 .content-container {
-  margin: 1rem;
   padding: 1rem;
 }
 
@@ -299,13 +298,9 @@ export default {
 .submit-container {
   display: flex;
   flex-wrap: wrap;
+  align-content: space-evenly;
 }
-.next-container {
-  margin: 1rem;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
+
 h1.activity-title {
   color: var(--default);
 }
