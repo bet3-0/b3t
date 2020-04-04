@@ -44,6 +44,10 @@ body {
     margin-left: 0px;
   }
   
+  .list {
+    padding-left: 30%; 
+    padding-right: 5%; 
+  }
   
   /* Sidebar Styles */
   
