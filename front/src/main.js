@@ -41,7 +41,7 @@ const router = new VueRouter({
       component: ActivitiesComponent
     },
     {
-      path: "/activity_sample",
+      path: "/activity/:idActivity",
       component: ActivityComponent
     }
   ]

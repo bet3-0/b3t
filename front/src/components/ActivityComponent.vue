@@ -4,73 +4,67 @@ Base Component for an activity page -->
 <template>
   <div class="container" role="main">
     <ActivityProgressBar :progress="progress" />
-    <div id="main-container" class="activity-container">
-      <h1 class="activity-title" :style="'color:' + changeParcoursColor()">
-        {{ activity.nom }}
-      </h1>
-      <div class="details-container">
-        <a
-          class="btn btn-secondary"
-          data-toggle="collapse"
-          href="#details"
-          role="button"
-          aria-expanded="false"
-          aria-controls="details"
-        >
-          Details
-        </a>
-        <div class="collapse" id="details">
-          <div class="card card-body">
-            <ul>
-              <li>
-                Description:<br />
-                <i>{{ activity.description }}</i>
-              </li>
-              <li>
-                Matériel:
-                <ul>
-                  <li v-for="item in activity.materiel" :key="item">
-                    {{ item }}
-                  </li>
-                </ul>
-              </li>
-              <li>Durée: {{ activity.duree }} minute(s)</li>
-              <li>Difficulté: {{ activity.difficulte }}</li>
-            </ul>
+    <div class="row">
+      <div id="main-container" class="activity-container col-12">
+        <h1 class="activity-title" :style="'color:' + changeParcoursColor()">
+          {{ activity.nom }}
+        </h1>
+        <div class="details-container">
+          <a
+                  class="btn btn-secondary"
+                  data-toggle="collapse"
+                  href="#details"
+                  role="button"
+                  aria-expanded="false"
+                  aria-controls="details"
+          >
+            Details
+          </a>
+          <div class="collapse" id="details">
+            <div class="card card-body">
+              <ul>
+                <li>
+                  Description:<br />
+                  <i>{{ activity.description }}</i>
+                </li>
+                <li>
+                  Matériel:
+                  <ul>
+                    <li v-for="item in activity.materiel" :key="item">
+                      {{ item }}
+                    </li>
+                  </ul>
+                </li>
+                <li>Durée: {{ activity.duree }} minute(s)</li>
+                <li>Difficulté: {{ activity.difficulte }}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <ActivityContent :id="activity.id" />
+        <div class="end-container">
+          <div class="submit-container">
+            <!-- Choisir parmi ces deux rendus en fonction de l'activité -->
+            <div v-for="entry in pageEntries()" :key="entry.id" style="text-align: center; width: 100%">
+              <h3 style="text-align: left">
+                {{ entry.question }}
+              </h3>
+              <UploadFile v-if="entry.typeRendu === 'file'" :activityId="activity.id" :entryId="entry.id" :changeEntryState="changeEntryState"/>
+              <UploadText v-if="entry.typeRendu === 'text'" :activityId="activity.id" :entryId="entry.id" :changeEntryState="changeEntryState"/>
+              <OrderList  v-if="entry.typeRendu === 'orderList'" :activityId="activity.id" :entryId="entry.id" :changeEntryState="changeEntryState" v-bind:list-response="entry.rendu"/>
+            </div>
+          </div>
+          <div class="next-container">
+            <ValidateActivityPage
+                    :activity="activity"
+                    :pageNumber="pageNumber"
+                    :changePage="changePage"
+            />
           </div>
         </div>
       </div>
-      <ActivityContent :id="activity.id" />
-      <div class="end-container">
-        <div class="submit-container">
-          <!-- Choisir parmi ces deux rendus en fonction de l'activité -->
-          <ul>
-            <li v-for="entry in pageEntries()" :key="entry.id">
-              {{ entry.question }}
-              <UploadFile
-                v-if="entry.typeRendu === 'file'"
-                :activityId="activity.id"
-                :entryId="entry.id"
-                :changeEntryState="changeEntryState"
-              />
-              <UploadText
-                v-if="entry.typeRendu === 'text'"
-                :activityId="activity.id"
-                :entryId="entry.id"
-                :changeEntryState="changeEntryState"
-              />
-            </li>
-          </ul>
-        </div>
-        <div class="next-container">
-          <ValidateActivityPage
-            :activity="activity"
-            :pageNumber="pageNumber"
-            :changePage="changePage"
-          />
-        </div>
-      </div>
     </div>
+
   </div>
 </template>
 
@@ -79,6 +73,8 @@ import ActivityContent from "./includes/activityComponents/ActivityContent";
 import ActivityProgressBar from "./includes/activityComponents/ActivityProgressBar";
 import UploadFile from "./includes/activityComponents/UploadFile";
 import UploadText from "./includes/activityComponents/UploadText";
+import OrderList from "./includes/activityComponents/OrderList";
+import activityService from './../service/activity'
 import ValidateActivityPage from "./includes/activityComponents/ValidateActivityPage";
 import $ from "jquery";
 
@@ -131,90 +127,26 @@ export default {
     ValidateActivityPage,
     ActivityContent,
     ActivityProgressBar,
+    OrderList
   },
   //props: { pageNumber: Number }, // current page number
   data() {
     return {
       pageNumber: 1, // number of the visible page. 1 at start
       progress: 0,
-      activity: {
-        id: 0,
-        idParcours: 0,
-        nom: "Fabrication d’un porte savon",
-        description:
-          "Astérix et Obélix  adorent partir en camp... Seulement voilà, il y a une chose qu’ils ne supportent pas, ce sont les feuillées dégoûtantes et mal agencées. Du coup à chaque fois qu’ils partent camper pour repousser les romains, ils prennent le temps  pour construire des feuillées parfaites. Aujourd’hui ils sont pris de court, c’est assez rare qu’ils aient autant d’invités pour fêter leur réussite. Il leur manque encore trois choses : le porte savon, le système de distribution d’eau et le protège papier toilette. Astérix vient alors te chercher pour te demander ton aide. Tu ne fabriqueras qu’un seul de ces éléments à la fois, à toi de choisir le ou lesquels !",
-        duree: 15, // minutes
-        materiel: [
-          "Un collant",
-          "Un savon ou des bouts de savon",
-          "Un cintre",
-          "Des ciseaux",
-          "Un appareil photo ou téléphone",
-        ],
-        difficulte: "facile",
-        pages: 2,
-      },
-      progression: {
-        id: 0, // activity id
-        state: "enum(NOTSTARTED,INPROGRESS,FINISHED, VALIDATED,REFUSED)",
-        duration: 5,
-        startedAt: 5,
-        finishedAt: 0,
-        reviewAt: 0,
-        entries: [
-          {
-            id: 0,
-            question:
-              "Prends une photo de ta réalisation et envoie-la pour validation.",
-            documents: [],
-            typeRendu: "file",
-            rendu: "",
-            state: "notStarted",
-            tracked: true,
-            page: 1, // page where to display the entry
-          },
-          {
-            id: 1,
-            question:
-              "As-tu déjà fait un porte savon autrement ou as-tu une idée pour le faire autrement ?",
-            documents: [],
-            typeRendu: "text",
-            rendu: "",
-            state: "notStarted",
-            tracked: true,
-            page: 2, // page where to display the entry
-          },
-          {
-            id: 2,
-            question:
-              "Quel est l’intérêt selon toi d’avoir de l’eau et du savon à proximité des feuillées?",
-            documents: [],
-            typeRendu: "text",
-            rendu: "",
-            state: "notStarted",
-            tracked: true,
-            page: 2, // page where to display the entry
-          },
-          {
-            id: 3,
-            question: "Quelles sont tes habitudes d'hygiène en camp ?",
-            documents: [],
-            typeRendu: "text",
-            rendu: "",
-            state: "notStarted",
-            tracked: true,
-            page: 2, // page where to display the entry
-          },
-        ],
-      },
+      activity: {},
+      progression: {},
     };
   },
   created() {
-    this.id = this.$route.params.id;
+    this.id = this.$route.params.idActivity;
+    console.log(activityService)
+    this.activity = activityService.getActivity(this.id)
+    this.progression = activityService.getProgression(this.id)
   },
   mounted() {
     for (let i = 0; i < this.activity.pages; i++) {
-      if (i + 1 != this.pageNumber) {
+      if (i + 1 !== this.pageNumber) {
         $(`#page${i + 1}`).hide();
       }
     }
@@ -243,12 +175,11 @@ export default {
       this.getProgress();
     },
     changeParcoursColor() {
-      let color = getParcoursColor(this.activity.idParcours);
-      return color;
+      return getParcoursColor(this.activity.idParcours);
     },
     pageEntries() {
       return this.progression.entries.filter(
-        (entry) => entry.page == this.pageNumber
+        (entry) => entry.page === this.pageNumber
       );
     },
     changePage(pageNumber) {

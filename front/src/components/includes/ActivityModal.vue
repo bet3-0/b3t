@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="container">
         <b-modal
                 class="modal-backdrop"
                 id="activityModal"
@@ -8,8 +8,11 @@
         >
             <div class="modal-body">
                 <p>Description: {{ activity.description }}</p>
-                <p>Durée: {{ activity.duree }}</p>
-                <p>Matériel: {{ activity.materiel }}</p>
+                <p>Durée: {{ activity.duree }} minutes</p>
+                <p>Matériel: </p>
+                <ul>
+                    <li v-for="mat in activity.materiel" v-bind:key="mat">{{ mat }}</li>
+                </ul>
             </div>
             <template v-slot:modal-footer="{ ok, cancel }">
                 <b-button variant="secondary" @click="cancel()">
@@ -33,7 +36,7 @@
       methods: {
           go(activityId) {
             console.log(activityId)
-            this.$router.push('/activitees/' + activityId)
+            this.$router.push('/activity/' + activityId)
           }
       }
     };
