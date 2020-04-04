@@ -23,10 +23,10 @@
 <script>
 export default {
   name: "UploadFile",
-  props: ["activityId"],
+  props: ["activityId", "entryId", "changeEntryState"],
   data() {
     return {
-      file: ""
+      file: "",
     };
   },
   methods: {
@@ -48,17 +48,17 @@ export default {
         }
       });
       */
+      this.changeEntryState(this.entryId, "finished");
     },
 
     /* Handles a change on the file upload */
     handleFileUpload() {
       this.file = this.$refs.file.files[0];
-    }
-  }
+    },
+  },
 };
 </script>
 <style scoped>
-
 .input-group > .custom-file {
   display: flex;
   flex-basis: content;

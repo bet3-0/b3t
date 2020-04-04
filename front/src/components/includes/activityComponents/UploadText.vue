@@ -15,7 +15,7 @@
 <script>
 export default {
   name: "UploadText",
-  props: ["activityId"],
+  props: ["activityId", "entryId", "changeEntryState"],
   data() {
     return {
       text: ""
@@ -26,6 +26,7 @@ export default {
     // TODO
     submitText() {
       console.log("Not Implemented");
+      this.changeEntryState(this.entryId, "finished")
       return {};
     }
   }

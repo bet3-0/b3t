@@ -1,12 +1,21 @@
 <template>
-  <button class="btn btn-success" @click="validate()">
-    {{ hasNext() ? "Page suivante" : "Valider" }}
-  </button>
+  <div class="container">
+    <button
+      v-if="pageNumber > 1"
+      class="btn btn-success"
+      @click="previousPage()"
+    >
+      Précédent
+    </button>
+    <button class="btn btn-success" @click="validate()">
+      {{ hasNext() ? "Page suivante" : "Valider" }}
+    </button>
+  </div>
 </template>
 <script>
 export default {
   name: "ValidateActivityPage",
-  props: ["activity", "pageNumber"],
+  props: ["activity", "pageNumber", "changePage"],
   data() {
     return {};
   },
@@ -14,18 +23,21 @@ export default {
     hasNext() {
       return this.pageNumber < this.activity.pages;
     },
+    previousPage() {
+      return this.changePage(this.pageNumber - 1);
+    },
     nextPage() {
-      return this.pageNumber + 1;
+      return this.changePage(this.pageNumber + 1);
     },
     validate() {
-      //TODO
-      console.log("Not Implemented");
       if (this.hasNext()) {
-        window.location.href = "/";
+        this.nextPage();
       } else {
-        window.location.href = "/login";
+        // TODO
+        console.log("validate");
+        window.location.href = "/activitees"
       }
-    }
-  }
+    },
+  },
 };
 </script>
