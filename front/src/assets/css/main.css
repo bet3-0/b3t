@@ -1,0 +1,90 @@
+/* latin */
+/*
+@font-face {
+  font-family: 'Sarabun';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/sarabun/Sarabun-Regular.ttf"), local('Sarabun-Regular'), url(https://fonts.gstatic.com/s/sarabun/v7/DtVjJx26TKEr37c9aBVJnw.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+*/
+/* latin */
+/*
+@font-face {
+    font-family: 'Caveat Brush';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/fonts/caveat-brush/CaveatBrush-Regular.ttf"), local('CaveatBrush-Regular'), url(https://fonts.gstatic.com/s/caveatbrush/v5/EYq0maZfwr9S9-ETZc3fKXt8XLOS.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+*/
+
+:root {
+  --header: #0077b3;
+  --text: #003a5d;
+  --bosses-et-bobos: #ff8300;
+  --trois-etoiles: #d03f15;
+  --cesart: #6e74aa;
+  --robinson: #007254;
+  --success: #007254;
+  --danger: #d03f15;
+  --default: #003a5d;
+  --primary: #003a5d;
+
+  --font-title: "Caveat Brush", Arial, Helvetica, sans-serif;
+  --font-family-sans-serif: "Sarabun", Arial, Helvetica, sans-serif;
+}
+
+body {
+  font-family: var(--font-family-sans-serif);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--header);
+  text-align: center;
+  padding: 1rem 1rem;
+  font-family: var(--font-title);
+}
+
+/* Override Bootstrap classes */
+/* Buttons */
+.btn-primary {
+  background-color: var(--header);
+  border-color: var(--header);
+}
+.btn-success {
+  background-color: var(--success);
+  border-color: var(--success);
+}
+.btn-danger {
+  background-color: var(--danger);
+  border-color: var(--danger);
+}
+
+.modal-backdrop {
+  opacity: 0.5 !important;
+}
+
+/* Back-ground colors */
+.bg-primary {
+  background-color: var(--header) !important;
+}
+.bg-secondary {
+  background-color: var(--default) !important;
+}
+
+.bg-bosses-et-bobos {
+  background-color: var(--bosses-et-bobos);
+}
+
+/* File upload */
+.custom-file {
+  flex-grow: 0;
+}
