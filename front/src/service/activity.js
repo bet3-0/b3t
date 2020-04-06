@@ -28,6 +28,16 @@ const listActivity = [
         ],
         difficulte: "facile",
         pages: 3,
+    },
+    {
+        id: 2,
+        idParcours: 0,
+        nom: "Les étapes de la préparation d’un plat",
+        description: "Il faut bien se laver les mains",
+        duree: 10, // minutes
+        materiel: ["Aucun"],
+        difficulte: "facile",
+        pages: 2,
     }
 ]
 
@@ -138,6 +148,75 @@ const listProgression = [
                 tracked: true,
                 page: 3, // page where to display the entry
             },
+        ],
+    },
+    {
+        id: 2, // activity id
+        state: "enum(NOTSTARTED,INPROGRESS,FINISHED, VALIDATED,REFUSED)",
+        duration: 10,
+        startedAt: 15,
+        finishedAt: 0,
+        reviewAt: 0,
+        entries: [
+            {
+                id: 0,
+                question:
+                    "Réponds aux questions",
+                documents: [],
+                typeRendu: "qcm",
+                rendu: [
+                    {
+                        question: "Quelle étape permet de gagner du temps pendant la préparation du repas ?",
+                        reponses: [
+                            "Sortir le matériel",
+                            "Maintenir le plat au chaud",
+                            "Nettoyer la vaisselle et le plan de travail",
+                            "Éplucher"
+                        ]
+                    },
+                    {
+                        question: "Quelle étape peut permettre d’éviter des accident lié à la cuisine ?",
+                        reponses: [
+                            "Maintenir le plat au chaud",
+                            "Éplucher",
+                            "Laver les aliments qui le nécessitent",
+                            "Organiser son plan de travail"
+                        ]
+                    },
+                    {
+                        question: "Quelle étape de la préparation du repas permet de respecter les règles d’hygiène ?",
+                        reponses: [
+                            "Découper, râper, rincer",
+                            "Servir",
+                            "Se laver les mains",
+                            "Organiser son plan de travail"
+                        ]
+                    },
+                    {
+                        question: "Quelle",
+                        reponses: [
+                            "Sortir",
+                            "Maintenir",
+                            "Nettoyer",
+                            "Éplucher"
+                        ]
+                    }
+                ],
+                state: "notStarted",
+                tracked: true,
+                page: 1, // page where to display the entry
+            },
+            {
+                id: 1,
+                question:
+                    "quoi utiliser",
+                documents: [],
+                typeRendu: "text",
+                rendu: "",
+                state: "notStarted",
+                tracked: true,
+                page: 2, // page where to display the entry
+            }
         ],
     }
 ]
