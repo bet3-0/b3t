@@ -6,6 +6,7 @@ import ActivitiesComponent from "./components/ActivitiesComponent";
 import ActivityComponent from "./components/ActivityComponent";
 import App from "./App.vue";
 import "@/assets/css/main.css";
+import ParcoursChoiceComponent from "./components/ParcoursChoiceComponent";
 
 Vue.use(VueRouter);
 Vue.config.productionTip = false;
@@ -43,6 +44,10 @@ const router = new VueRouter({
     {
       path: "/activity/:idActivity",
       component: ActivityComponent
+    },
+    {
+      path: "/parcours",
+      component: ParcoursChoiceComponent
     }
   ]
 });
