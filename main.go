@@ -30,6 +30,7 @@ func Authentificator() gin.HandlerFunc {
 
 func main() {
 	connect()
+	connectS3()
 	router := gin.Default()
 	router.Use(static.Serve("/", static.LocalFile("site", false)))
 
@@ -38,12 +39,14 @@ func main() {
 		api.POST("/register", createUser)
 		api.POST("/login", login)
 		api.GET("/users", listUsers)
+		api.POST("/file/site", pushSiteFile)
 		api.Use(authenticate())
 		api.GET("/", func(c *gin.Context) {
 			c.JSON(200, gin.H{
 				"message": "Welcome to the API",
 			})
 		})
+
 	}
 
 	router.Run() // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
