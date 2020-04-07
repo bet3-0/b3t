@@ -54,13 +54,11 @@ Base Component for an activity page -->
               <OrderList  v-if="entry.typeRendu === 'orderList'" :activityId="activity.id" :entryId="entry.id" :changeEntryState="changeEntryState" v-bind:list-response="entry.rendu"/>
             </div>
           </div>
-          <div class="next-container">
             <ValidateActivityPage
                     :activity="activity"
                     :pageNumber="pageNumber"
                     :changePage="changePage"
             />
-          </div>
         </div>
       </div>
     </div>
@@ -209,7 +207,7 @@ export default {
   padding: 2rem 2rem;
   margin-top: 1rem;
   margin-bottom: 2rem;
-  background-color: #e9ecef; /* to be changed ? */
+  background-color: #fafafa;
   border-radius: 0.3rem;
 }
 .details-container {
@@ -230,12 +228,6 @@ export default {
 .submit-container {
   display: flex;
   flex-wrap: wrap;
-}
-.next-container {
-  margin: 1rem;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
 }
 h1.activity-title {
   color: var(--default);
