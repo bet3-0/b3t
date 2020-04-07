@@ -2,11 +2,11 @@
   <div class="container">
     <div class="row">
       <div class="col-12">
-        <div class="form-group" v-for="(question, indexQ) in questions" :key="question">
+        <div class="form-group" v-for="(question, indexQ) in questions" :key="indexQ">
           <div class="form-label">
             <b>Question {{indexQ + 1}} :</b> {{question.question}}
           </div>
-          <div class="form-check" v-for="(proposition, indexP) in question.reponses" :key="proposition">
+          <div class="form-check" v-for="(proposition, indexP) in question.reponses" :key="indexP">
             <input class="form-check-input" type="radio" :name="'q' + indexQ" :id="'q' + indexQ + 'r' + indexP" value="option1" />
             <label class="form-check-label" :for="'q' + indexQ + 'r' + indexP">{{proposition}}</label>
           </div>
