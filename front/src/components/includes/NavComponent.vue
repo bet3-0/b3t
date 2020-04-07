@@ -3,8 +3,8 @@
       <router-link to="/" class="navbar-brand text-white">
         <img
           class="logo"
-          src="img/logo-BET-france.png"
-          alt="Brevet des éclaireurs de Tribu 3 point 0"
+          src="/img/logo-BET-france.png"
+          alt=""
         />
         <span class="logo-title">BET 3.0</span></router-link
       >

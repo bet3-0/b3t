@@ -9,7 +9,7 @@
       aria-valuemax="100"
       color="var(--default)"
     >
-      {{ progress }}%
+      {{ parseInt(progress) }}%
     </div>
   </div>
 </template>
