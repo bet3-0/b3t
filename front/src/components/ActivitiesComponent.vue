@@ -1,6 +1,6 @@
 <template>
     <div class="container mt-4">
-      <h1>Bosses et bobos</h1>
+      <h1>{{ getParcoursName(idParcours) }}</h1>
         <div class="row mb-5 mt-1">
             <div class="col-4" style="text-align: center">
                 <button class="choice" @click.prevent.stop.capture="change('parcours')" :class="parcours">Ordre
@@ -51,7 +51,8 @@
 
 <script>
     import ActivityModal from "./includes/ActivityModal";
-    import activityService from './../service/activity'
+    import activityService from './../service/activity';
+    import itineraryHelpers from './../service/itineraryHelpers';
     import Vue from "vue";
     import BootstrapVue from "bootstrap-vue";
     import VueRouter from "vue-router";
@@ -127,20 +128,7 @@
                 data === 'red' ? this[data] = this[data] === '' ? 'active' : '' : this.red = ''
             },
 
-            getParcoursName(idParcours) {
-                switch (idParcours) {
-                    case 0:
-                        return "Bosses et Bobos";
-                    case 1:
-                        return "Trois étoiles";
-                    case 2:
-                        return "Cés'Art";
-                    case 3:
-                        return "Robinson";
-                    default:
-                        return "La Halte"; // où mettre la halte ?
-                }
-            }
+           getParcoursName: itineraryHelpers.getParcoursName
         }
     };
 </script>

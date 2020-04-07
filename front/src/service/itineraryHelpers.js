@@ -27,4 +27,18 @@ export default class ItineraryHelpers {
         return "default";
     }
   }
+  static getParcoursName(idParcours) {
+    switch (idParcours) {
+      case 0:
+        return "Bosses et Bobos";
+      case 1:
+        return "Trois étoiles";
+      case 2:
+        return "Cés'Art";
+      case 3:
+        return "Robinson";
+      default:
+        return "La Halte"; // où mettre la halte ?
+    }
+  }
 }
