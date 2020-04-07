@@ -2,7 +2,7 @@
   <div id="app">
     <div>
       <NavComponent />
-      <ItineraryProgressBar :progress="getProgression()" :itineraryId="getItinerary()" />
+      <ItineraryProgressBar />
     </div>
     <router-view></router-view>
   </div>
@@ -13,15 +13,6 @@ import NavComponent from "./components/includes/NavComponent";
 import ItineraryProgressBar from "./components/includes/ItineraryProgressBar";
 
 export default {
-  components: { NavComponent, ItineraryProgressBar },
-  methods: {
-    // Use local storage for more reactivity (avoid call to API).
-    getProgression: () => {
-      return localStorage.getItem("progression") || 0;
-    },
-    getItinerary: () => {
-      return localStorage.getItem("itinerary") || 5;
-    },
-  },
+  components: { NavComponent, ItineraryProgressBar }
 };
 </script>
