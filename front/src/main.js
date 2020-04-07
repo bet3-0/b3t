@@ -1,13 +1,16 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import store from './store';
 import HomePageComponent from "./components/HomePageComponent";
 import LoginComponent from "./components/LoginComponent";
 import ActivitiesComponent from "./components/ActivitiesComponent";
 import ActivityComponent from "./components/ActivityComponent";
 import App from "./App.vue";
+import VeeValidate from 'vee-validate';
 import "@/assets/css/main.css";
 import ParcoursChoiceComponent from "./components/ParcoursChoiceComponent";
 
+Vue.use(VeeValidate); // todo: understand this line for login ?
 Vue.use(VueRouter);
 Vue.config.productionTip = false;
 
@@ -53,6 +56,7 @@ const router = new VueRouter({
 });
 
 new Vue({
+  store,
   render: h => h(App),
-  router
+  router,
 }).$mount("#app");
