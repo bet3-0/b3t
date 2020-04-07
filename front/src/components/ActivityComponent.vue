@@ -52,6 +52,7 @@ Base Component for an activity page -->
               <UploadFile v-if="entry.typeRendu === 'file'" :activityId="activity.id" :entryId="entry.id" :changeEntryState="changeEntryState"/>
               <UploadText v-if="entry.typeRendu === 'text'" :activityId="activity.id" :entryId="entry.id" :changeEntryState="changeEntryState"/>
               <OrderList  v-if="entry.typeRendu === 'orderList'" :activityId="activity.id" :entryId="entry.id" :changeEntryState="changeEntryState" v-bind:list-response="entry.rendu"/>
+              <Qcm  v-if="entry.typeRendu === 'qcm'" :activityId="activity.id" :entryId="entry.id" :changeEntryState="changeEntryState" v-bind:questions="entry.rendu"/>
             </div>
           </div>
             <ValidateActivityPage
@@ -72,8 +73,10 @@ import ActivityProgressBar from "./includes/activityComponents/ActivityProgressB
 import UploadFile from "./includes/activityComponents/UploadFile";
 import UploadText from "./includes/activityComponents/UploadText";
 import OrderList from "./includes/activityComponents/OrderList";
+import Qcm from "./includes/activityComponents/Qcm";
 import activityService from './../service/activity';
 import itineraryHelpers from './../service/itineraryHelpers';
+
 import ValidateActivityPage from "./includes/activityComponents/ValidateActivityPage";
 import $ from "jquery";
 
@@ -94,6 +97,7 @@ export default {
   components: {
     UploadFile,
     UploadText,
+    Qcm,
     ValidateActivityPage,
     ActivityContent,
     ActivityProgressBar,
