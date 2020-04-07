@@ -41,3 +41,10 @@ export default {
   },
 };
 </script>
+<style scoped>
+.container {
+  margin: 1rem;
+  display: flex;
+  justify-content: space-evenly;
+}
+</style>

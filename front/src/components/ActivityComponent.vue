@@ -54,13 +54,11 @@ Base Component for an activity page -->
               <OrderList  v-if="entry.typeRendu === 'orderList'" :activityId="activity.id" :entryId="entry.id" :changeEntryState="changeEntryState" v-bind:list-response="entry.rendu"/>
             </div>
           </div>
-          <div class="next-container">
             <ValidateActivityPage
                     :activity="activity"
                     :pageNumber="pageNumber"
                     :changePage="changePage"
             />
-          </div>
         </div>
       </div>
     </div>
@@ -74,46 +72,18 @@ import ActivityProgressBar from "./includes/activityComponents/ActivityProgressB
 import UploadFile from "./includes/activityComponents/UploadFile";
 import UploadText from "./includes/activityComponents/UploadText";
 import OrderList from "./includes/activityComponents/OrderList";
-import activityService from './../service/activity'
+import activityService from './../service/activity';
+import itineraryHelpers from './../service/itineraryHelpers';
 import ValidateActivityPage from "./includes/activityComponents/ValidateActivityPage";
 import $ from "jquery";
-
-function getParcoursColor(idParcours) {
-  switch (idParcours) {
-    case 0:
-      return "var(--bosses-et-bobos)";
-    case 1:
-      return "var(--trois-etoiles)";
-    case 2:
-      return "var(--cesart)";
-    case 3:
-      return "var(--robinson)";
-    default:
-      return "var(--default)";
-  }
-}
-function getParcoursRouteName(idParcours) {
-  switch (idParcours) {
-    case 0:
-      return "bosses_et_bobos";
-    case 1:
-      return "trois_etoiles";
-    case 2:
-      return "cesart";
-    case 3:
-      return "robinson";
-    default:
-      return "default";
-  }
-}
 
 // temporary script
 function getActivityPage(id, idParcours, pageNumber) {
   console.log(
-    `Page asked: id=${id} parcours=${getParcoursRouteName(idParcours)}`
+    `Page asked: id=${id} parcours=${itineraryHelpers.getItineraryRouteName(idParcours)}`
   );
   /*
-  this.activityFile = require(`@/assets/pages/activities/${getParcoursRouteName(
+  this.activityFile = require(`@/assets/pages/activities/${getItineraryRouteName(
     idParcours
   )}/${id}/${id}.html`);
   */
@@ -175,7 +145,7 @@ export default {
       this.getProgress();
     },
     changeParcoursColor() {
-      return getParcoursColor(this.activity.idParcours);
+      return itineraryHelpers.getItineraryColor(this.activity.idParcours);
     },
     pageEntries() {
       return this.progression.entries.filter(
@@ -209,7 +179,7 @@ export default {
   padding: 2rem 2rem;
   margin-top: 1rem;
   margin-bottom: 2rem;
-  background-color: #e9ecef; /* to be changed ? */
+  background-color: #fafafa;
   border-radius: 0.3rem;
 }
 .details-container {
@@ -230,12 +200,6 @@ export default {
 .submit-container {
   display: flex;
   flex-wrap: wrap;
-}
-.next-container {
-  margin: 1rem;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
 }
 h1.activity-title {
   color: var(--default);
