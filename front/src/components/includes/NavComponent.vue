@@ -1,5 +1,4 @@
 <template>
-    <div>
         <nav class="navbar navbar-expand-lg navbar-light bg-primary ">
             <router-link to="/" class="navbar-brand text-white">BET 2k20</router-link>
 
@@ -32,11 +31,6 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
         </nav>
-        <div class="progress">
-            <div class="progress-bar bg-warning progress-bar-striped progress-bar-animated" role="progressbar" v-bind:style="{width: progress + '%'}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{progress}}%</div>
-        </div>
-    </div>
-
 </template>
 
 <script>
