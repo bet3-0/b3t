@@ -39,6 +39,8 @@
 
 body {
   font-family: var(--font-family-sans-serif);
+  height: 100%;
+  margin-bottom: 3.1rem; /* for the footer */
 }
 
 h1,
