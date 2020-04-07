@@ -23,25 +23,28 @@
 
         <!-- /#wrapper -->
         <div class="container">
-            <ul id="activities" class="list-group">
-                <li class="list-group-item" v-for="activity in displayActivities" :key="activity.id">
-                    <a href="#" v-b-modal="'activityModal'" @click="sendInfo(activity)">
-                        <svg class="bi bi-play-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
-                             style="display: inline">
-                            <path
-                                    d="M11.596 8.697l-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 010 1.393z"
-                            />
-                        </svg>
-                        <p style="display: inline-block">{{ activity.nom }}</p>
-                        <p style="display: inline-block; margin-left: 3em">{{getParcoursName(activity.idParcours)}}</p>
-                        <p style="display: inline-block">{{activity.difficult | difficult}}</p>
-                        <p style="display: inline-block; position: absolute; right: 0; margin-right: 5px"
-                           class="justify-content-end">
-                            Durée : {{ activity.duree }} min
-                        </p>
-                    </a>
-                </li>
-            </ul>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Difficulté</th>
+                    <th scope="col">durée</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="activity in displayActivities" :key="activity.id" v-b-modal="'activityModal'" @click="sendInfo(activity)" style="cursor: pointer">
+                        <td>
+                            <svg class="bi bi-play-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" style="display: inline">
+                                <path d="M11.596 8.697l-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 010 1.393z"/>
+                            </svg>
+                        </td>
+                        <td>{{ activity.nom }}</td>
+                        <td>{{ activity.difficult | difficult }}</td>
+                        <td>{{ activity.duree }} min</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
 
         <!-- Modal -->
