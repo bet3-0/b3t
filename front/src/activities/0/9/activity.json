@@ -1,0 +1,10 @@
+{
+    "id": 9,
+    "idParcours": 0,
+    "nom": " A la découverte de la démarche en cas d'accident",
+    "description": "Nous allons te proposer des situations d’urgence. A toi de nous dire dans quel ordre appliquerais tu les étapes de la réaction...",
+    "duree": 10,
+    "materiel": ["Aucun"],
+    "difficulte": "facile",
+    "pages": 6
+  }
