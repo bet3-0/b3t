@@ -19,8 +19,9 @@ const (
 
 type User struct {
 	gorm.Model
-	CodeAdherent string `json:"code_adherent" gorm:"PRIMARY_KEY"`
+	CodeAdherent string `json:"code_adherent" gorm:"primary_key;unique"`
 	Role         role   `sql:"type:role" json:"role"`
+	Progression  []Progression
 }
 
 func authenticate() gin.HandlerFunc {

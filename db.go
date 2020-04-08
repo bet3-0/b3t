@@ -30,10 +30,6 @@ func connect() {
 	if err != nil {
 		fmt.Println(err)
 	}
-	err = db.Exec("CREATE TYPE parcours AS ENUM (0, 1, 2, 3, 4);").Error
-	if err != nil {
-		fmt.Println(err)
-	}
 	err = db.Exec("CREATE TYPE difficulte AS ENUM ('facile', 'moyen', 'difficile');").Error
 	if err != nil {
 		fmt.Println(err)
@@ -43,6 +39,10 @@ func connect() {
 		fmt.Println(err)
 	}
 	err = db.Exec("CREATE TYPE type_rendu AS ENUM ('text', 'file');").Error
+	if err != nil {
+		fmt.Println(err)
+	}
+	err = db.AutoMigrate(&Parcours{}).Error
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -62,11 +62,62 @@ func connect() {
 	if err != nil {
 		fmt.Println(err)
 	}
-	err = db.AutoMigrate(&Document{}).Error
+
+	// Create Parcours
+	BossesEtBobos := Parcours{
+		IDParcours: "0",
+		Nom:        "Bosses et bobos",
+	}
+	TroisEtoiles := Parcours{
+		IDParcours: "1",
+		Nom:        "Trois étoiles",
+	}
+	CesArts := Parcours{
+		IDParcours: "2",
+		Nom:        "Ces'Arts",
+	}
+	Robinson := Parcours{
+		IDParcours: "3",
+		Nom:        "Robinson",
+	}
+	Halte := Parcours{
+		IDParcours: "4",
+		Nom:        "Halte",
+	}
+
+	err = db.Create(&BossesEtBobos).Error
 	if err != nil {
 		fmt.Println(err)
 	}
-	err = db.AutoMigrate(&Materiel{}).Error
+	err = db.Create(&TroisEtoiles).Error
+	if err != nil {
+		fmt.Println(err)
+	}
+	err = db.Create(&CesArts).Error
+	if err != nil {
+		fmt.Println(err)
+	}
+	err = db.Create(&Robinson).Error
+	if err != nil {
+		fmt.Println(err)
+	}
+	err = db.Create(&Halte).Error
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	// Create Activite
+	DummyActivite := Activite{
+		ActiviteCode: "-1",
+		ParcoursCode: "-1",
+		Nom:          "DummyActivite",
+		Description:  "Une activite de test",
+		Duree:        60,
+		Difficulte:   "facile",
+		Pages:        3,
+		Materiel:     []string{"Dummy1", "Dummy2"},
+	}
+	err = db.Create(&DummyActivite).Error
 	if err != nil {
 		fmt.Println(err)
 	}

@@ -41,19 +41,17 @@ func main() {
 		api.GET("/users", listUsers)
 		api.POST("/file", pushFile)
 
-		api.POST("/activite", CreateActivite)
+		api.GET("/parcours", ListParcours)
+
 		api.GET("/activites", ListActivites)
-		api.GET("/activite/:id", GetActivite)
+		api.GET("/activite/:idParcours/:idActivite", GetActivite)
 
 		api.POST("/progression", CreateProgression)
 		api.GET("/progressions", ListProgressions)
 		api.GET("/progression/:id", GetProgression)
 
-		api.PUT("/progression/:id/state", UpdateProgression)
-		api.PUT("/entry/:id/state", UpdateEntry)
-
-		api.PUT("/progression/:id/state", UpdateProgressionState)
-		api.PUT("/entry/:id/state", UpdateEntryState)
+		api.PUT("/progression/:id", UpdateProgression)
+		api.PUT("/entry/:id", UpdateEntry)
 
 		api.Use(authenticate())
 		api.GET("/", func(c *gin.Context) {
