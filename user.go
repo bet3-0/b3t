@@ -19,7 +19,7 @@ const (
 
 type User struct {
 	gorm.Model
-	CodeAdherent string ` json:"code_adherent"`
+	CodeAdherent string `json:"code_adherent" gorm:"PRIMARY_KEY"`
 	Role         role   `sql:"type:role" json:"role"`
 }
 

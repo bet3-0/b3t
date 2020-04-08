@@ -27,7 +27,7 @@ func connectS3() {
 	}
 }
 
-func pushSiteFile(c *gin.Context) {
+func pushFile(c *gin.Context) {
 	var err error
 
 	var fileName uuid.UUID
@@ -47,7 +47,7 @@ func pushSiteFile(c *gin.Context) {
 		c.JSON(500, gin.H{"error": "cannot_upload_file"})
 		return
 	}
-	c.JSON(200, gin.H{"message": "file_uploaded"})
+	c.JSON(200, gin.H{"message": "file_uploaded", "id": fileName.String})
 }
 
 func getFile() {
