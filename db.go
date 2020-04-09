@@ -68,42 +68,12 @@ func connect() {
 		IDParcours: "4",
 		Nom:        "Halte",
 	}
-	DummyParcours := Parcours{
-		IDParcours: "-1",
-		Nom:        "Dummy Parcours",
-	}
 
 	_ = db.Create(&BossesEtBobos).Error
 	_ = db.Create(&TroisEtoiles).Error
 	_ = db.Create(&CesArts).Error
 	_ = db.Create(&Robinson).Error
 	_ = db.Create(&Halte).Error
-	_ = db.Create(&DummyParcours).Error
-
-	// Create Activite
-	DummyActivite := Activite{
-		IDActivite:  "-1",
-		IDParcours:  "-1",
-		Nom:         "DummyActivite",
-		Description: "Une activite de test",
-		Duree:       60,
-		Difficulte:  "facile",
-		Pages:       3,
-		Materiel:    []string{"Dummy1", "Dummy2"},
-	}
-	_ = db.Create(&DummyActivite).Error
-
-	DummyActivite2 := Activite{
-		IDActivite:  "-2",
-		IDParcours:  "-1",
-		Nom:         "DummyActivite 2",
-		Description: "Une deuxieme activite de test",
-		Duree:       120,
-		Difficulte:  "difficile",
-		Pages:       6,
-		Materiel:    []string{"Dummy1", "Dummy2"},
-	}
-	_ = db.Create(&DummyActivite2).Error
 
 	parcours, err := ioutil.ReadDir("front/src/activities")
 	if err != nil {
