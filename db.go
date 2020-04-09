@@ -120,7 +120,7 @@ func connect() {
 		}
 		for _, activite := range activites {
 			activiteCode = activite.Name()
-			jsonContent, err := ioutil.ReadFile("front/src/activities/" + parcoursCode + "/" + activiteCode + "/progression.json")
+			jsonContent, err := ioutil.ReadFile("front/src/activities/" + parcoursCode + "/" + activiteCode + "/activity.json")
 			if err != nil {
 				fmt.Println(err)
 			}
