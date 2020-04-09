@@ -8,6 +8,25 @@
   "entries": [
     {
       "id": 0,
+      "question": "Pour bien commencer",
+      "documents": [],
+      "typeRendu": "qcm",
+      "rendu": [
+        {
+          "question": "À ton avis, à quoi sert le registre de soins ?",
+          "reponses": [
+            "À rien, c'est juste du papier en plus",
+            "À avoir un suivi, une trace des soins effectués",
+            "À compter les blessures de chacun pour faire un concours de celui qui en a eu le plus en fin de camp",
+          ]
+        }
+      ],
+      "state": "notStarted",
+      "tracked": true,
+      "page": 1
+    },
+    {
+      "id": 1,
       "question":
         "Maintenant que tu sais à quoi sert un registre de soin, comment le tiendrais tu si tu étais à la place des chefs ?",
       "documents": [],
@@ -41,7 +60,7 @@
       "page": 2
     },
     {
-      "id": 1,
+      "id": 2,
       "question": "Justifie ta réponse",
       "documents": [],
       "typeRendu": "text",
@@ -51,7 +70,7 @@
       "page": 2
     },
     {
-      "id": 2,
+      "id": 3,
       "question": "Ainsi, qu’as tu retenu sur le registre de soins ? A quoi sert-il ? Quand faut-il que les chefs le remplissent ?",
       "documents": [],
       "typeRendu": "text",
