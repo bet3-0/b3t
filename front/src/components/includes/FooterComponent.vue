@@ -5,7 +5,7 @@
         <img src="/img/SGDF_SCOUTS_GUIDES_blanc.png"
       /></a>
       <img src="/img/Finistere2.9.png" />
-      <img src="/img/logo_on_dark.png" />
+      <img src="/img/clever_cloud_logo_on_dark.png" />
     </div>
     <div class="copyright">
         <span>Conditions d'utilisation</span>
