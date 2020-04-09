@@ -1,0 +1,20 @@
+{
+    "id": 24,
+    "state": "notStarted",
+    "duration": 15,
+    "startedAt": 0,
+    "finishedAt": 0,
+    "reviewAt": 0,
+    "entries": [
+        {
+            "id": 0,
+            "question": "Qu’en as-tu retenu ? ",
+            "documents": [],
+            "typeRendu": "text",
+            "rendu": "",
+            "state": "notStarted",
+            "tracked": true,
+            "page": 1
+        }    
+    ]     
+}
