@@ -3,7 +3,7 @@
     "idActivite": "0",
     "idParcours": "0",
     "state": "INPROGRESS",
-    "duration": 0,
+    "duration": 15,
     "startedAt": 0,
     "finishedAt": 0,
     "reviewAt": 0,
