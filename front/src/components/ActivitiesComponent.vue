@@ -13,7 +13,7 @@
                 </button>
             </div>
             <div class="col-4" style="text-align: center">
-                <button class="choice" @click.prevent.stop.capture="change('difficult')" :class="difficult">Classer par
+                <button class="choice" @click.prevent.stop.capture="change('difficulte')" :class="difficulte">Classer par
                     difficulté
                 </button>
             </div>
@@ -40,7 +40,7 @@
                             </svg>
                         </td>
                         <td>{{ activity.nom }}</td>
-                        <td>{{ activity.difficult | difficult }}</td>
+                        <td>{{ activity.difficulte }}</td>
                         <td>{{ activity.duree }} min</td>
                     </tr>
                 </tbody>
@@ -71,7 +71,7 @@
             return {
                 parcours: '',
                 duration: '',
-                difficult: '',
+                difficulte: '',
                 red: '',
                 currentActivity: {},
                 activities: [],
@@ -101,15 +101,23 @@
                 }
 
 
-                if (data === 'difficult') {
+                if (data === 'difficulte') {
                     this.displayActivities = this.activities
                     this.displayActivities.sort(function (item, other) {
-                        if (item.difficult < other.difficult) {
+
+                        if(item.difficulte === 'facile' && (other.difficulte === 'moyen' || other.difficulte === 'difficile')) {
                             return -1;
                         }
-                        if (item.difficult > other.difficult) {
+                        else if(item.difficulte === 'moyen' && other.difficulte === 'difficile') {
+                            return -1;
+                        }
+                        else if(item.difficulte === 'moyen' && other.difficulte === 'facile') {
                             return 1;
                         }
+                        else if(item.difficulte === 'difficile' && (other.difficulte === 'facile' || other.difficulte === 'moyen')) {
+                            return 1;
+                        }
+                        else return 0;
                     })
                 }
 
@@ -127,7 +135,7 @@
 
                 data === 'parcours' ? this[data] = this[data] === '' ? 'active' : '' : this.parcours = ''
                 data === 'duration' ? this[data] = this[data] === '' ? 'active' : '' : this.duration = ''
-                data === 'difficult' ? this[data] = this[data] === '' ? 'active' : '' : this.difficult = ''
+                data === 'difficulte' ? this[data] = this[data] === '' ? 'active' : '' : this.difficulte = ''
                 data === 'red' ? this[data] = this[data] === '' ? 'active' : '' : this.red = ''
             },
 
