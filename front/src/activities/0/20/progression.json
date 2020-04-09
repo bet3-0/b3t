@@ -1,13 +1,15 @@
 {
-  "id": 20,
-  "state": "enum(NOTSTARTED,INPROGRESS,FINISHED, VALIDATED,REFUSED)",
+  "id": "Server-side generated UUID",
+  "idActivite": "20",
+  "idParcours": "0",
+  "state": "INPROGRESS",
   "duration": 10,
   "startedAt": 5,
   "finishedAt": 0,
   "reviewAt": 0,
   "entries": [
     {
-      "id": 0,
+      "id": "0",
       "question": "Pour bien commencer",
       "documents": [],
       "typeRendu": "qcm",
@@ -21,12 +23,12 @@
           ]
         }
       ],
-      "state": "notStarted",
+      "state": "NOTSTARTED",
       "tracked": true,
       "page": 1
     },
     {
-      "id": 1,
+      "id": "1",
       "question":
         "Maintenant que tu sais à quoi sert un registre de soin, comment le tiendrais tu si tu étais à la place des chefs ?",
       "documents": [],
@@ -55,27 +57,27 @@
           ]
         }
       ],
-      "state": "notStarted",
+      "state": "NOTSTARTED",
       "tracked": true,
       "page": 2
     },
     {
-      "id": 2,
+      "id": "2",
       "question": "Justifie ta réponse",
       "documents": [],
       "typeRendu": "text",
       "rendu": "",
-      "state": "notStarted",
+      "state": "NOTSTARTED",
       "tracked": true,
       "page": 2
     },
     {
-      "id": 3,
+      "id": "3",
       "question": "Ainsi, qu’as tu retenu sur le registre de soins ? A quoi sert-il ? Quand faut-il que les chefs le remplissent ?",
       "documents": [],
       "typeRendu": "text",
       "rendu": "",
-      "state": "notStarted",
+      "state": "NOTSTARTED",
       "tracked": true,
       "page": 4
     },

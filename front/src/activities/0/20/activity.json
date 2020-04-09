@@ -1,6 +1,6 @@
 {
-  "id": 20,
-  "idParcours": 0,
+  "id": "20",
+  "idParcours": "0",
   "nom": "Qu’est ce qu’un registre de soins ?",
   "description": "À quoi sert un registre de soins, que contient-il et qui le remplit ?",
   "duree": 10,
