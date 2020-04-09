@@ -7,7 +7,7 @@ import (
 type Parcours struct {
 	IDParcours string     `gorm:"primary_key" json:"id"`
 	Nom        string     `json:"nom"`
-	Activites  []Activite `gorm:"foreignkey:ParcoursCode"`
+	Activites  []Activite `gorm:"foreignkey:IDParcours"`
 }
 
 func ListParcours(c *gin.Context) {

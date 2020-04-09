@@ -21,7 +21,7 @@ func connect() {
 	_ = db.Exec("CREATE EXTENSION pgcrypto;").Error
 	_ = db.Exec("CREATE TYPE role AS ENUM ('jeune','chef','relecteur', 'admin');").Error
 	_ = db.Exec("CREATE TYPE difficulte AS ENUM ('facile', 'moyen', 'difficile');").Error
-	_ = db.Exec("CREATE TYPE state AS ENUM ('notStarted', 'inProgress', 'finished', 'validated', 'refused');").Error
+	_ = db.Exec("CREATE TYPE state AS ENUM ('NOTSTARTED', 'INPROGRESS', 'FINISHED', 'VALIDATED', 'REFUSED');").Error
 	_ = db.Exec("CREATE TYPE type_rendu AS ENUM ('text', 'file');").Error
 
 	err = db.AutoMigrate(&Parcours{}).Error
@@ -80,26 +80,26 @@ func connect() {
 
 	// Create Activite
 	DummyActivite := Activite{
-		ActiviteCode: "-1",
-		ParcoursCode: "-1",
-		Nom:          "DummyActivite",
-		Description:  "Une activite de test",
-		Duree:        60,
-		Difficulte:   "facile",
-		Pages:        3,
-		Materiel:     []string{"Dummy1", "Dummy2"},
+		IDActivite:  "-1",
+		IDParcours:  "-1",
+		Nom:         "DummyActivite",
+		Description: "Une activite de test",
+		Duree:       60,
+		Difficulte:  "facile",
+		Pages:       3,
+		Materiel:    []string{"Dummy1", "Dummy2"},
 	}
 	_ = db.Create(&DummyActivite).Error
 
 	DummyActivite2 := Activite{
-		ActiviteCode: "-2",
-		ParcoursCode: "-1",
-		Nom:          "DummyActivite 2",
-		Description:  "Une deuxieme activite de test",
-		Duree:        120,
-		Difficulte:   "difficile",
-		Pages:        6,
-		Materiel:     []string{"Dummy1", "Dummy2"},
+		IDActivite:  "-2",
+		IDParcours:  "-1",
+		Nom:         "DummyActivite 2",
+		Description: "Une deuxieme activite de test",
+		Duree:       120,
+		Difficulte:  "difficile",
+		Pages:       6,
+		Materiel:    []string{"Dummy1", "Dummy2"},
 	}
 	_ = db.Create(&DummyActivite2).Error
 }

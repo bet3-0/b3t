@@ -14,14 +14,14 @@ const (
 )
 
 type Activite struct {
-	ActiviteCode string         `gorm:"primary_key" json:"idActivite"`
-	ParcoursCode string         `gorm:"primary_key" json:"idParcours"`
-	Nom          string         `json:"nom"`
-	Description  string         `json:"description"`
-	Duree        int            `json:"duree"`
-	Materiel     pq.StringArray `gorm:"type:varchar(100)[]" json:"materiel"`
-	Difficulte   difficulte     `sql:"type:difficulte" json:"difficulte"`
-	Pages        int            `json:"page"`
+	IDActivite  string         `gorm:"primary_key" json:"id"`
+	IDParcours  string         `gorm:"primary_key" json:"idParcours"`
+	Nom         string         `json:"nom"`
+	Description string         `json:"description"`
+	Duree       int            `json:"duree"`
+	Materiel    pq.StringArray `gorm:"type:varchar(100)[]" json:"materiel"`
+	Difficulte  difficulte     `sql:"type:difficulte" json:"difficulte"`
+	Pages       int            `json:"page"`
 }
 
 func ListActivites(c *gin.Context) {
@@ -42,7 +42,7 @@ func GetActivite(c *gin.Context) {
 	var activite Activite
 	var err error
 
-	activite.ActiviteCode = c.Param("id")
+	activite.IDActivite = c.Param("id")
 	if err != nil {
 		c.JSON(412, gin.H{"error": "wrong_id"})
 		return

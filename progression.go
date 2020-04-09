@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"time"
 
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
@@ -11,11 +12,11 @@ import (
 type state string
 
 const (
-	NotStarted state = "notStarted"
-	InProgress       = "inProgress"
-	Finished         = "finished"
-	Validated        = "validated"
-	Refused          = "refused"
+	NotStarted state = "NOTSTARTED"
+	InProgress       = "INPROGRESS"
+	Finished         = "FINISHED"
+	Validated        = "VALIDATED"
+	Refused          = "REFUSED"
 )
 
 type typeRendu string
@@ -26,28 +27,28 @@ const (
 )
 
 type Entry struct {
-	IDEntry    string         `gorm:"primary_key" json:"id"`
-	Documents  pq.StringArray `gorm:"type:varchar(100)[]" json:"documents"`
-	TypeRendu  typeRendu      `sql:"type:type_rendu" json:"typeRendu"`
-	rendu      string         `json:"rendu"`
-	State      state          `sql:"type:state" json:"state"`
-	Tracked    bool           `json:"tracked"`
-	Page       int            `json:"page"`
-	ParcoursID string
+	ID            string         `gorm:"primary_key" json:"id"`
+	Question      string         `json:"question"`
+	Documents     pq.StringArray `gorm:"type:varchar(100)[]" json:"documents"`
+	TypeRendu     typeRendu      `sql:"type:type_rendu" json:"typeRendu"`
+	rendu         string         `json:"rendu"`
+	State         state          `sql:"type:state" json:"state"`
+	Tracked       bool           `json:"tracked"`
+	Page          int            `json:"page"`
+	IDProgression string
 }
 
 type Progression struct {
-	IDProgression string     `gorm:"primary_key" json:"id"`
-	ActiviteCode  int        `json:"idActivite"`
-	ParcoursCode  int        `json:"idParcours"`
-	State         state      `sql:"type:state" json:"state"`
-	Duration      int        `json:"duration"`
-	StartedAt     int        `json:"startedAt"`
-	FinishedAt    int        `json:"finishedAt"`
-	ReviewdAt     int        `json:"reviewdAt"`
-	Difficulte    difficulte `sql:"type:difficulte" json:"difficulte"`
-	Page          int        `json:"page"`
-	Entries       []Entry    `json:"entries"`
+	ID           string  `gorm:"primary_key" json:"id"`
+	ActiviteCode int     `json:"idActivite"`
+	ParcoursCode int     `json:"idParcours"`
+	State        state   `sql:"type:state" json:"state"`
+	Duration     int     `json:"duration"`
+	StartedAt    int64   `json:"startedAt"`
+	FinishedAt   int64   `json:"finishedAt"`
+	ReviewdAt    int64   `json:"reviewdAt"`
+	Page         int     `json:"page"`
+	Entries      []Entry `gorm:"foreignkey:IDProgression" json:"entries"`
 }
 
 func CreateProgression(c *gin.Context) {
@@ -64,8 +65,15 @@ func CreateProgression(c *gin.Context) {
 
 	var id uuid.UUID
 	id, _ = uuid.NewRandom()
+	progression.ID = id.String()
 
-	progression.IDProgression = id.String()
+	progression.StartedAt = time.Now().UnixNano()
+
+	for i := 0; i < len(progression.Entries); i++ {
+		id, _ = uuid.NewRandom()
+		progression.Entries[i].ID = id.String()
+		progression.Entries[i].IDProgression = progression.ID
+	}
 
 	err = db.Create(&progression).Error
 	if err != nil {
@@ -74,29 +82,30 @@ func CreateProgression(c *gin.Context) {
 	}
 
 	c.JSON(200, gin.H{
-		"message": "created_progressio",
+		"message":     "created_progression",
+		"progression": progression,
 	})
 	return
 }
 
 func ListProgressions(c *gin.Context) {
 
-	var activites []Activite
+	var progressions []Progression
 
-	err := db.Find(&activites).Error
+	err := db.Preload("Entries").Find(&progressions).Error
 	if err != nil {
 		c.JSON(500, gin.H{"error": "internal_server_error"})
 		return
 	}
 
-	c.JSON(200, gin.H{"activites": activites})
+	c.JSON(200, gin.H{"progressions": progressions})
 	return
 }
 
 func GetProgression(c *gin.Context) {
 	var progression Progression
 	var err error
-	progression.IDProgression = c.Param("id")
+	progression.ID = c.Param("id")
 	if err != nil {
 		c.JSON(412, gin.H{"error": "wrong_id"})
 		return
