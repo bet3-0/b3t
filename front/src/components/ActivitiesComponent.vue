@@ -40,7 +40,7 @@
                             </svg>
                         </td>
                         <td>{{ activity.nom }}</td>
-                        <td>{{ activity.difficulte | difficulte }}</td>
+                        <td>{{ activity.difficulte }}</td>
                         <td>{{ activity.duree }} min</td>
                     </tr>
                 </tbody>
@@ -71,7 +71,7 @@
             return {
                 parcours: '',
                 duration: '',
-                difficult: '',
+                difficulte: '',
                 red: '',
                 currentActivity: {},
                 activities: [],
@@ -104,12 +104,20 @@
                 if (data === 'difficulte') {
                     this.displayActivities = this.activities
                     this.displayActivities.sort(function (item, other) {
-                        if (item.difficulte < other.difficulte) {
+
+                        if(item.difficulte === 'facile' && (other.difficulte === 'moyen' || other.difficulte === 'difficile')) {
                             return -1;
                         }
-                        if (item.difficulte > other.difficulte) {
+                        else if(item.difficulte === 'moyen' && other.difficulte === 'difficile') {
+                            return -1;
+                        }
+                        else if(item.difficulte === 'moyen' && other.difficulte === 'facile') {
                             return 1;
                         }
+                        else if(item.difficulte === 'difficile' && (other.difficulte === 'facile' || other.difficulte === 'moyen')) {
+                            return 1;
+                        }
+                        else return 0;
                     })
                 }
 
