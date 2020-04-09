@@ -1,5 +1,5 @@
 {
-    "id": 7,
+    "id": "7",
     "state": "enum(NOTSTARTED,INPROGRESS,FINISHED, VALIDATED,REFUSED)",
     "duration": 20,
     "startedAt": 5,
@@ -13,7 +13,7 @@
             "documents": [],
             "typeRendu": "text",
             "rendu": "",
-            "state": "notStarted",
+            "state": "enum(NOTSTARTED,INPROGRESS,FINISHED, VALIDATED,REFUSED)",
             "tracked": true,
             "page": 1
         },
@@ -24,7 +24,7 @@
             "documents": [],
             "typeRendu": "text",
             "rendu": "",
-            "state": "notStarted",
+            "state": "enum(NOTSTARTED,INPROGRESS,FINISHED, VALIDATED,REFUSED)",
             "tracked": true,
             "page": 2
         },
@@ -34,7 +34,7 @@
             "documents": [],
             "typeRendu": "text",
             "rendu": "",
-            "state": "notStarted",
+            "state": "enum(NOTSTARTED,INPROGRESS,FINISHED, VALIDATED,REFUSED)",
             "tracked": true,
             "page": 3
         },
@@ -44,7 +44,7 @@
             "documents": [],
             "typeRendu": "text",
             "rendu": "",
-            "state": "notStarted",
+            "state": "enum(NOTSTARTED,INPROGRESS,FINISHED, VALIDATED,REFUSED)",
             "tracked": true,
             "page": 3
         },
@@ -54,7 +54,7 @@
             "documents": [],
             "typeRendu": "text",
             "rendu": "",
-            "state": "notStarted",
+            "state": "enum(NOTSTARTED,INPROGRESS,FINISHED, VALIDATED,REFUSED)",
             "tracked": true,
             "page": 4
         },
@@ -64,7 +64,7 @@
             "documents": [],
             "typeRendu": "text",
             "rendu": "",
-            "state": "notStarted",
+            "state": "enum(NOTSTARTED,INPROGRESS,FINISHED, VALIDATED,REFUSED)",
             "tracked": true,
             "page": 5
         }
