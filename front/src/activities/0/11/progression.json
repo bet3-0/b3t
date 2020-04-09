@@ -9,7 +9,7 @@
   {
     "id": 0,
     "question":
-      "", //TODO: c'est quoi la question ?
+      "",
     "documents": [],
     "typeRendu": "qcm",
     "rendu": [
