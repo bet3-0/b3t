@@ -1,6 +1,6 @@
 {
-  "id": 12,
-  "idParcours": 3,
+  "id": "12",
+  "idParcours": "3",
   "nom": "Orientation - Le Savais-tu ?",
   "description": "Il existe de nombreux trucs et astuces pour se repérer… Viens les découvrir dans cet atelier le savais-tu ?",
   "duree": 20,
