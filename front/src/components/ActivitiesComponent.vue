@@ -13,7 +13,7 @@
                 </button>
             </div>
             <div class="col-4" style="text-align: center">
-                <button class="choice" @click.prevent.stop.capture="change('difficult')" :class="difficult">Classer par
+                <button class="choice" @click.prevent.stop.capture="change('difficulte')" :class="difficulte">Classer par
                     difficulté
                 </button>
             </div>
@@ -40,7 +40,7 @@
                             </svg>
                         </td>
                         <td>{{ activity.nom }}</td>
-                        <td>{{ activity.difficult | difficult }}</td>
+                        <td>{{ activity.difficulte | difficulte }}</td>
                         <td>{{ activity.duree }} min</td>
                     </tr>
                 </tbody>
@@ -101,13 +101,13 @@
                 }
 
 
-                if (data === 'difficult') {
+                if (data === 'difficulte') {
                     this.displayActivities = this.activities
                     this.displayActivities.sort(function (item, other) {
-                        if (item.difficult < other.difficult) {
+                        if (item.difficulte < other.difficulte) {
                             return -1;
                         }
-                        if (item.difficult > other.difficult) {
+                        if (item.difficulte > other.difficulte) {
                             return 1;
                         }
                     })
@@ -127,7 +127,7 @@
 
                 data === 'parcours' ? this[data] = this[data] === '' ? 'active' : '' : this.parcours = ''
                 data === 'duration' ? this[data] = this[data] === '' ? 'active' : '' : this.duration = ''
-                data === 'difficult' ? this[data] = this[data] === '' ? 'active' : '' : this.difficult = ''
+                data === 'difficulte' ? this[data] = this[data] === '' ? 'active' : '' : this.difficulte = ''
                 data === 'red' ? this[data] = this[data] === '' ? 'active' : '' : this.red = ''
             },
 
