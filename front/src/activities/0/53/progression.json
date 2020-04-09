@@ -1,0 +1,32 @@
+{
+    "id": 53,
+    "state": "enum(NOTSTARTED,INPROGRESS,FINISHED, VALIDATED,REFUSED)",
+    "duration": 30,
+    "startedAt": 0,
+    "finishedAt": 0,
+    "reviewAt": 0,
+    "entries": [
+        {
+            "id": 0,
+            "question":
+                "Envoie nous ton résultat ici",
+            "documents": [],
+            "typeRendu": "file",
+            "rendu": "",
+            "state": "notStarted",
+            "tracked": true,
+            "page": 1
+        },
+        {
+            "id": 1,
+            "question":
+                "Si tu as un lien à nous envoyer et/ou un commentaire à faire c'est ici",
+            "documents": [],
+            "typeRendu": "text",
+            "rendu": "",
+            "state": "notStarted",
+            "tracked": true,
+            "page": 1
+        }
+    ]
+}
