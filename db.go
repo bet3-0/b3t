@@ -1,7 +1,9 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"os"
 
 	"github.com/jinzhu/gorm"
@@ -102,4 +104,35 @@ func connect() {
 		Materiel:    []string{"Dummy1", "Dummy2"},
 	}
 	_ = db.Create(&DummyActivite2).Error
+
+	parcours, err := ioutil.ReadDir("front/src/activities")
+	if err != nil {
+		fmt.Println(err)
+	}
+	var activiteCode string
+	var parcoursCode string
+
+	for _, parcour := range parcours {
+		parcoursCode = parcour.Name()
+		activites, err := ioutil.ReadDir("front/src/activities/" + parcoursCode)
+		if err != nil {
+			fmt.Println(err)
+		}
+		for _, activite := range activites {
+			activiteCode = activite.Name()
+			jsonContent, err := ioutil.ReadFile("front/src/activities/" + parcoursCode + "/" + activiteCode + "/progression.json")
+			if err != nil {
+				fmt.Println(err)
+			}
+			Activite := Activite{}
+			err = json.Unmarshal([]byte(jsonContent), &Activite)
+			if err != nil {
+				fmt.Println(err)
+			}
+			err = db.Create(&Activite).Error
+			if err != nil {
+				err = db.Save(&Activite).Error
+			}
+		}
+	}
 }
