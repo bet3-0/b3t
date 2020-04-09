@@ -1,7 +1,7 @@
 {
     "id": "Server-side generated UUID",
     "idActivite": "7",
-    "idParcours": "0"
+    "idParcours": "0",
     "state": "enum(NOTSTARTED,INPROGRESS,FINISHED, VALIDATED,REFUSED)",
     "duration": 20,
     "startedAt": 5,
