@@ -124,7 +124,7 @@ func connect() {
 			if err != nil {
 				fmt.Println(err)
 			}
-			Activite := Activite{}
+			Activite := Activite{Difficulte: "moyen"}
 			err = json.Unmarshal([]byte(jsonContent), &Activite)
 			if err != nil {
 				fmt.Println(err)
