@@ -2,7 +2,6 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/jinzhu/gorm"
 	"github.com/lib/pq"
 )
 
@@ -15,9 +14,8 @@ const (
 )
 
 type Activite struct {
-	gorm.Model
-	ActiviteCode string         `gorm:"primary_key; unique_index:idx_parcours_activite" json:"idActivite"`
-	ParcoursCode string         `gorm:"primary_key; unique_index:idx_parcours_activite" json:"idParcours"`
+	ActiviteCode string         `gorm:"primary_key" json:"idActivite"`
+	ParcoursCode string         `gorm:"primary_key" json:"idParcours"`
 	Nom          string         `json:"nom"`
 	Description  string         `json:"description"`
 	Duree        int            `json:"duree"`

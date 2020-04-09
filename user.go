@@ -5,7 +5,6 @@ import (
 	"strings"
 
 	"github.com/gin-gonic/gin"
-	"github.com/jinzhu/gorm"
 )
 
 type role string
@@ -18,7 +17,6 @@ const (
 )
 
 type User struct {
-	gorm.Model
 	CodeAdherent string `json:"code_adherent" gorm:"primary_key;unique"`
 	Role         role   `sql:"type:role" json:"role"`
 	Progression  []Progression

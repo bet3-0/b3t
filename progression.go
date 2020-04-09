@@ -5,7 +5,6 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
-	"github.com/jinzhu/gorm"
 	"github.com/lib/pq"
 )
 
@@ -27,8 +26,7 @@ const (
 )
 
 type Entry struct {
-	gorm.Model
-	IDEntry    int            `gorm:"primary_key;unique" json:"id"`
+	IDEntry    string         `gorm:"primary_key" json:"id"`
 	Documents  pq.StringArray `gorm:"type:varchar(100)[]" json:"documents"`
 	TypeRendu  typeRendu      `sql:"type:type_rendu" json:"typeRendu"`
 	rendu      string         `json:"rendu"`
@@ -39,8 +37,7 @@ type Entry struct {
 }
 
 type Progression struct {
-	gorm.Model
-	IDProgression string     `gorm:"primary_key;unique" json:"id"`
+	IDProgression string     `gorm:"primary_key" json:"id"`
 	ActiviteCode  int        `json:"idActivite"`
 	ParcoursCode  int        `json:"idParcours"`
 	State         state      `sql:"type:state" json:"state"`

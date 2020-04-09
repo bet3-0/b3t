@@ -18,30 +18,12 @@ func connect() {
 		panic("failed to connect database")
 	}
 	// Migrate the schema
-	err = db.Exec("CREATE EXTENSION 'uuid-ossp';").Error
-	if err != nil {
-		fmt.Println(err)
-	}
-	err = db.Exec("CREATE EXTENSION pgcrypto;").Error
-	if err != nil {
-		fmt.Println(err)
-	}
-	err = db.Exec("CREATE TYPE role AS ENUM ('jeune','chef','relecteur', 'admin');").Error
-	if err != nil {
-		fmt.Println(err)
-	}
-	err = db.Exec("CREATE TYPE difficulte AS ENUM ('facile', 'moyen', 'difficile');").Error
-	if err != nil {
-		fmt.Println(err)
-	}
-	err = db.Exec("CREATE TYPE state AS ENUM ('notStarted', 'inProgress', 'finished', 'validated', 'refused');").Error
-	if err != nil {
-		fmt.Println(err)
-	}
-	err = db.Exec("CREATE TYPE type_rendu AS ENUM ('text', 'file');").Error
-	if err != nil {
-		fmt.Println(err)
-	}
+	_ = db.Exec("CREATE EXTENSION pgcrypto;").Error
+	_ = db.Exec("CREATE TYPE role AS ENUM ('jeune','chef','relecteur', 'admin');").Error
+	_ = db.Exec("CREATE TYPE difficulte AS ENUM ('facile', 'moyen', 'difficile');").Error
+	_ = db.Exec("CREATE TYPE state AS ENUM ('notStarted', 'inProgress', 'finished', 'validated', 'refused');").Error
+	_ = db.Exec("CREATE TYPE type_rendu AS ENUM ('text', 'file');").Error
+
 	err = db.AutoMigrate(&Parcours{}).Error
 	if err != nil {
 		fmt.Println(err)
@@ -84,27 +66,17 @@ func connect() {
 		IDParcours: "4",
 		Nom:        "Halte",
 	}
+	DummyParcours := Parcours{
+		IDParcours: "-1",
+		Nom:        "Dummy Parcours",
+	}
 
-	err = db.Create(&BossesEtBobos).Error
-	if err != nil {
-		fmt.Println(err)
-	}
-	err = db.Create(&TroisEtoiles).Error
-	if err != nil {
-		fmt.Println(err)
-	}
-	err = db.Create(&CesArts).Error
-	if err != nil {
-		fmt.Println(err)
-	}
-	err = db.Create(&Robinson).Error
-	if err != nil {
-		fmt.Println(err)
-	}
-	err = db.Create(&Halte).Error
-	if err != nil {
-		fmt.Println(err)
-	}
+	_ = db.Create(&BossesEtBobos).Error
+	_ = db.Create(&TroisEtoiles).Error
+	_ = db.Create(&CesArts).Error
+	_ = db.Create(&Robinson).Error
+	_ = db.Create(&Halte).Error
+	_ = db.Create(&DummyParcours).Error
 
 	// Create Activite
 	DummyActivite := Activite{
@@ -117,8 +89,17 @@ func connect() {
 		Pages:        3,
 		Materiel:     []string{"Dummy1", "Dummy2"},
 	}
-	err = db.Create(&DummyActivite).Error
-	if err != nil {
-		fmt.Println(err)
+	_ = db.Create(&DummyActivite).Error
+
+	DummyActivite2 := Activite{
+		ActiviteCode: "-2",
+		ParcoursCode: "-1",
+		Nom:          "DummyActivite 2",
+		Description:  "Une deuxieme activite de test",
+		Duree:        120,
+		Difficulte:   "difficile",
+		Pages:        6,
+		Materiel:     []string{"Dummy1", "Dummy2"},
 	}
+	_ = db.Create(&DummyActivite2).Error
 }
