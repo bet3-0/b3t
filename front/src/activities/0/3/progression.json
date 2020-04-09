@@ -1,6 +1,7 @@
 {
-    "id": 3,
-    "state": "notStarted",
+    "idActivite": "3",
+    "idParcours":"0",
+    "state": "INPROGRESS",
     "duration": 10,
     "startedAt": 0,
     "finishedAt": 0,
@@ -12,17 +13,17 @@
             "documents": [],
             "typeRendu": "text",
             "rendu": "",
-            "state": "notStarted",
+            "state": "NOTSTARTED",
             "tracked": true,
             "page": 2
         },
         {
             "id": 1,
-            "question": "Que peut-on utiliser pour se laver les mains lorsqu’on n’ a pas accès à un point d’eau?",
+            "question": "Que peut-on utiliser pour se laver les mains lorsqu’on n’ a pas accès à un point d’eau ?",
             "documents": [],
             "typeRendu": "text",
             "rendu": "",
-            "state": "notStarted",
+            "state": "NOTSTARTED",
             "tracked": false,
             "page": 3
         }

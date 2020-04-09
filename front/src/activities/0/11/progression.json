@@ -1,24 +1,22 @@
 {
-  "id": 11,
-  "state": "enum(NOTSTARTED,INPROGRESS,FINISHED, VALIDATED,REFUSED)",
+  "idActivite": "11",
+  "idParcours":"0",
+  "state": "INPROGRESS",
   "duration": 10,
   "startedAt": 5,
   "finishedAt": 0,
   "reviewAt": 0,
-  "entries": [
-  {
+  "entries": [{
     "id": 0,
-    "question":
-      "",
+    "question": "",
     "documents": [],
     "typeRendu": "qcm",
-    "rendu": [
-      {
+    "rendu": [{
         "question": "Assurancetourix chante comme à son habitude autour du feu de bois, quand soudain un guêpe vient lui piquer l’oreille. Son oreille commence à gonfler qui appellerais tu ?",
         "reponses": [
           "Les pompiers, le 18",
           "Le Samu, le 15",
-          "Les policiers, le 17",
+          "Les policiers, le 17"
         ]
       },
       {
@@ -26,7 +24,7 @@
         "reponses": [
           "Les pompiers, le 18",
           "Les policiers, le 17",
-          "Un chef",
+          "Un chef"
         ]
       },
       {
@@ -34,7 +32,7 @@
         "reponses": [
           "Les chefs, au moins ils pârlent la même langue que toi",
           "Le 112, le numéro d’appel d’urgence européen",
-          "Les pompiers, le 18",
+          "Les pompiers, le 18"
         ]
       },
       {
@@ -42,7 +40,7 @@
         "reponses": [
           "Les maîtres nageurs, ils sont sur place",
           "Personne, ça ne te regarde pas",
-          "Les policiers, le 17",
+          "Les policiers, le 17"
         ]
       },
       {
@@ -50,7 +48,7 @@
         "reponses": [
           "Le 18",
           "La capitainerie par radio, ils pourront surement faire quelque chose",
-          "Le 196",
+          "Le 196"
         ]
       },
       {
@@ -58,13 +56,12 @@
         "reponses": [
           "Le 114",
           "Le 18",
-          "Les chefs",
+          "Les chefs"
         ]
-      },
+      }
     ],
-    "state": "notStarted",
+    "state": "NOTSTARTED",
     "tracked": true,
-    "page": 2,
-  },
-  ]
+    "page": 2
+  }]
 }

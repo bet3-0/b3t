@@ -1,6 +1,7 @@
 {
-    "id": 9,
-    "state": "enum(NOTSTARTED,INPROGRESS,FINISHED, VALIDATED,REFUSED)",
+    "idActivite": "9",
+    "idParcours":"0",
+    "state": "INPROGRESS",
     "duration": 10,
     "startedAt": 5,
     "finishedAt": 0,
@@ -17,7 +18,7 @@
                 "Mettre la brûlure sous l’eau tiède/froide jusqu’à ce que la douleur disparaisse",
                 "Prévenir les chefs"
             ],
-            "state": "notStarted",
+            "state": "NOTSTARTED",
             "tracked": true,
             "page": 1
         },
@@ -32,7 +33,7 @@
                 "Je désinfecte la coupure",
                 "Je range la lame de l’opinel et je le met dans ma poche"
             ],
-            "state": "notStarted",
+            "state": "NOTSTARTED",
             "tracked": true,
             "page": 2
         },
@@ -42,7 +43,7 @@
             "documents": [],
             "typeRendu": "text",
             "rendu": "",
-            "state": "notStarted",
+            "state": "NOTSTARTED",
             "tracked": true,
             "page": 3
         },
@@ -56,7 +57,7 @@
                 "Secourir",
                 "Proteger"
             ],
-            "state": "notStarted",
+            "state": "NOTSTARTED",
             "tracked": true,
             "page": 4
         }

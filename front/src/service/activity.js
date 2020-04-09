@@ -71,7 +71,7 @@ const listProgression = [
                 documents: [],
                 typeRendu: "file",
                 rendu: "",
-                state: "notStarted",
+                state: "NOTSTARTED",
                 tracked: true,
                 page: 1, // page where to display the entry
             },
@@ -82,7 +82,7 @@ const listProgression = [
                 documents: [],
                 typeRendu: "text",
                 rendu: "",
-                state: "notStarted",
+                state: "NOTSTARTED",
                 tracked: true,
                 page: 2, // page where to display the entry
             },
@@ -93,7 +93,7 @@ const listProgression = [
                 documents: [],
                 typeRendu: "text",
                 rendu: "",
-                state: "notStarted",
+                state: "NOTSTARTED",
                 tracked: true,
                 page: 2, // page where to display the entry
             },
@@ -103,7 +103,7 @@ const listProgression = [
                 documents: [],
                 typeRendu: "text",
                 rendu: "",
-                state: "notStarted",
+                state: "NOTSTARTED",
                 tracked: true,
                 page: 2, // page where to display the entry
             },
@@ -136,7 +136,7 @@ const listProgression = [
                     'Frotter les ongles et le dos des doigts',
                     'Frotter le dos des mains',
                 ],
-                state: "notStarted",
+                state: "NOTSTARTED",
                 tracked: true,
                 page: 1, // page where to display the entry
             },
@@ -147,7 +147,7 @@ const listProgression = [
                 documents: [],
                 typeRendu: "text",
                 rendu: "",
-                state: "notStarted",
+                state: "NOTSTARTED",
                 tracked: true,
                 page: 2, // page where to display the entry
             },
@@ -158,7 +158,7 @@ const listProgression = [
                 documents: [],
                 typeRendu: "file",
                 rendu: "",
-                state: "notStarted",
+                state: "NOTSTARTED",
                 tracked: true,
                 page: 3, // page where to display the entry
             },
@@ -216,7 +216,7 @@ const listProgression = [
                         ]
                     }
                 ],
-                state: "notStarted",
+                state: "NOTSTARTED",
                 tracked: true,
                 page: 1, // page where to display the entry
             },
@@ -227,7 +227,7 @@ const listProgression = [
                 documents: [],
                 typeRendu: "text",
                 rendu: "",
-                state: "notStarted",
+                state: "NOTSTARTED",
                 tracked: true,
                 page: 2, // page where to display the entry
             }
@@ -247,7 +247,7 @@ const listProgression = [
                 documents: [],
                 typeRendu: "file",
                 rendu: "",
-                state: "notStarted",
+                state: "NOTSTARTED",
                 tracked: true,
                 page: 6, // page where to display the entry
             }

@@ -1,6 +1,7 @@
 {
-    "id": 19,
-    "state": "enum(NOTSTARTED,INPROGRESS,FINISHED, VALIDATED,REFUSED)",
+    "idActivite": "19",
+    "idParcours":"0",
+    "state": "INPROGRESS",
     "duration": 10,
     "startedAt": 5,
     "finishedAt": 0,
@@ -13,7 +14,7 @@
             "documents": [],
             "typeRendu": "text",
             "rendu": "",
-            "state": "notStarted",
+            "state": "NOTSTARTED",
             "tracked": true,
             "page": 2
         },
@@ -23,7 +24,7 @@
             "documents": [],
             "typeRendu": "text",
             "rendu": "",
-            "state": "notStarted",
+            "state": "NOTSTARTED",
             "tracked": true,
             "page": 2
         },
@@ -33,7 +34,7 @@
             "documents": [],
             "typeRendu": "text",
             "rendu": "",
-            "state": "notStarted",
+            "state": "NOTSTARTED",
             "tracked": true,
             "page": 2
         },
@@ -43,7 +44,7 @@
             "documents": [],
             "typeRendu": "text",
             "rendu": "",
-            "state": "notStarted",
+            "state": "NOTSTARTED",
             "tracked": true,
             "page": 2
         },
@@ -53,9 +54,9 @@
             "documents": [],
             "typeRendu": "text",
             "rendu": "",
-            "state": "notStarted",
+            "state": "NOTSTARTED",
             "tracked": true,
             "page": 4
-        },
+        }
     ]
 }

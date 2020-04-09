@@ -1,6 +1,7 @@
 {
-    "id": 10,
-    "state": "enum(NOTSTARTED,INPROGRESS,FINISHED, VALIDATED,REFUSED)",
+    "idActivite": "10",
+    "idParcours": "0",
+    "state": "INPROGRESS",
     "duration": 10,
     "startedAt": 0,
     "finishedAt": 0,
@@ -38,7 +39,7 @@
                     ]
                 }
             ],
-            "state": "notStarted",
+            "state": "NOTSTARTED",
             "tracked": true,
             "page": 1
         },
@@ -74,7 +75,7 @@
                     ]
                 }
             ],
-            "state": "notStarted",
+            "state": "NOTSTARTED",
             "tracked": true,
             "page": 2
         },
@@ -97,7 +98,7 @@
                     ]
                 }
             ],
-            "state": "notStarted",
+            "state": "NOTSTARTED",
             "tracked": true,
             "page": 3
         },
@@ -111,7 +112,7 @@
                 "Secourir",
                 "Proteger"
             ],
-            "state": "notStarted",
+            "state": "NOTSTARTED",
             "tracked": true,
             "page": 4
         }
