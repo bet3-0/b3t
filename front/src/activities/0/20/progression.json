@@ -1,0 +1,64 @@
+{
+  "id": 20,
+  "state": "enum(NOTSTARTED,INPROGRESS,FINISHED, VALIDATED,REFUSED)",
+  "duration": 10,
+  "startedAt": 5,
+  "finishedAt": 0,
+  "reviewAt": 0,
+  "entries": [
+    {
+      "id": 0,
+      "question":
+        "Maintenant que tu sais à quoi sert un registre de soin, comment le tiendrais tu si tu étais à la place des chefs ?",
+      "documents": [],
+      "typeRendu": "qcm",
+      "rendu": [
+        {
+          "question": "Qu’est ce que les chefs doivent inscrire dedans ?",
+          "reponses": [
+            "Le nom de la personne blessée",
+            "Son type de blessure ou ses symptômes",
+            "Le lieu où elle s’est fait cette blessure",
+            "La date",
+            "L’heure des soins",
+            "La personne effectuant les soins",
+            "Le type de soins effectués",
+            "Le matériel utilisé",
+            "Le nombre de compresses utilisées",
+            "L’âge du blessé",
+          ]
+        },
+        {
+          "question": "Selon toi avant de soigner une personne, faut-il regarder sa fiche sanitaire ?",
+          "reponses": [
+            "oui",
+            "non",
+          ]
+        }
+      ],
+      "state": "notStarted",
+      "tracked": true,
+      "page": 2
+    },
+    {
+      "id": 1,
+      "question": "Justifie ta réponse",
+      "documents": [],
+      "typeRendu": "text",
+      "rendu": "",
+      "state": "notStarted",
+      "tracked": true,
+      "page": 2
+    },
+    {
+      "id": 2,
+      "question": "Ainsi, qu’as tu retenu sur le registre de soins ? A quoi sert-il ? Quand faut-il que les chefs le remplissent ?",
+      "documents": [],
+      "typeRendu": "text",
+      "rendu": "",
+      "state": "notStarted",
+      "tracked": true,
+      "page": 4
+    },
+  ]
+}
