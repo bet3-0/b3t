@@ -1,6 +1,6 @@
 {
-  "id": 1,
-  "idParcours": 3,
+  "id": "1",
+  "idParcours": "3",
   "nom": "Atelier Couteau",
   "description": "Réfléchis à tes connaissances et tes pratiques en matière de couteau",
   "duree": 30,
