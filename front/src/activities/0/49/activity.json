@@ -1,0 +1,10 @@
+{
+  "id": "49",
+  "idParcours": "0",
+  "nom": "A la découverte des handicaps",
+  "description": "Decouvrons les formes de handicap. Il n’y a pas de mauvaise réponse, n’aie donc pas peur de répondre aux différentes questions posées.",
+  "duree": 20,
+  "materiel": ["Un ordinateur","Un stylo","Une feuille","Des ciseaux","Des gants de jardinage ou de ski ou du tissu (écharpes"],
+  "difficulte": "moyen",
+  "pages": 3
+}
