@@ -1,31 +1,33 @@
 {
-    "idActivite": "3",
+    "idActivite": "53",
     "idParcours":"0",
     "state": "INPROGRESS",
-    "duration": 10,
+    "duration": 30,
     "startedAt": 0,
     "finishedAt": 0,
     "reviewAt": 0,
     "entries": [
         {
             "id": 0,
-            "question": "Liste les endroits à ne pas oublier lorsqu’on se lave les mains",
+            "question":
+                "Envoie nous ton résultat ici",
+            "documents": [],
+            "typeRendu": "file",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 1
+        },
+        {
+            "id": 1,
+            "question":
+                "Si tu as un lien à nous envoyer et/ou un commentaire à faire c'est ici",
             "documents": [],
             "typeRendu": "text",
             "rendu": "",
             "state": "NOTSTARTED",
             "tracked": true,
-            "page": 2
-        },
-        {
-            "id": 1,
-            "question": "Que peut-on utiliser pour se laver les mains lorsqu’on n’ a pas accès à un point d’eau ?",
-            "documents": [],
-            "typeRendu": "text",
-            "rendu": "",
-            "state": "NOTSTARTED",
-            "tracked": false,
-            "page": 3
+            "page": 1
         }
     ]
 }
