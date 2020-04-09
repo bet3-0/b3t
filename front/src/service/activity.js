@@ -36,8 +36,22 @@ const listActivity = [
         description: "Il faut bien se laver les mains",
         duree: 10, // minutes
         materiel: ["Aucun"],
-        difficulte: "facile",
+        difficulte: "moyen",
         pages: 2,
+    },
+    {
+        id: 3,
+        idParcours: 0,
+        nom: "Code des templiers et code Chinois",
+        description:
+            "Et, gaulois ! Tu connais le code « chinois » ? Et le code des templiers ? Viens les découvrir dans cet atelier !",
+        duree: 40, // minutes
+        materiel: [
+            "Du papier",
+            "Un stylo"
+        ],
+        difficulte: "difficile",
+        pages: 6,
     }
 ]
 
