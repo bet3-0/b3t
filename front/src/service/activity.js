@@ -36,8 +36,22 @@ const listActivity = [
         description: "Il faut bien se laver les mains",
         duree: 10, // minutes
         materiel: ["Aucun"],
-        difficulte: "facile",
+        difficulte: "moyen",
         pages: 2,
+    },
+    {
+        id: 3,
+        idParcours: 0,
+        nom: "Code des templiers et code Chinois",
+        description:
+            "Et, gaulois ! Tu connais le code « chinois » ? Et le code des templiers ? Viens les découvrir dans cet atelier !",
+        duree: 40, // minutes
+        materiel: [
+            "Du papier",
+            "Un stylo"
+        ],
+        difficulte: "difficile",
+        pages: 6,
     }
 ]
 
@@ -216,6 +230,26 @@ const listProgression = [
                 state: "notStarted",
                 tracked: true,
                 page: 2, // page where to display the entry
+            }
+        ],
+    },
+    {
+        id: 3, // activity id
+        state: "enum(NOTSTARTED,INPROGRESS,FINISHED, VALIDATED,REFUSED)",
+        duration: 40,
+        startedAt: 5,
+        finishedAt: 0,
+        reviewAt: 0,
+        entries: [
+            {
+                id: 0,
+                question: "Envoie ta photo ici !",
+                documents: [],
+                typeRendu: "file",
+                rendu: "",
+                state: "notStarted",
+                tracked: true,
+                page: 6, // page where to display the entry
             }
         ],
     }
