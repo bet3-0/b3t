@@ -111,6 +111,8 @@
 <script>
 import ProgressionModal from "./includes/ProgressionModal";
 import itineraryHelpers from "./../service/itineraryHelpers";
+import progressionHelpers from "./../service/progressionHelpers";
+import { VALID_STATES } from "./../service/progressionHelpers";
 import Vue from "vue";
 import BootstrapVue from "bootstrap-vue";
 import VueRouter from "vue-router";
@@ -118,17 +120,6 @@ import VueRouter from "vue-router";
 Vue.use(BootstrapVue);
 Vue.use(VueRouter);
 
-/*
-    valeurs possible de state:
-    notStarted, inProgress, finished, validated, refused
-    */
-const VALID_STATES = [
-  "notStarted",
-  "inProgress",
-  "finished",
-  "validated",
-  "refused"
-];
 
 export default {
   name: "PersonalProgression",
@@ -198,22 +189,7 @@ export default {
     this.countProgressionStates();
   },
   methods: {
-    getStateName(state) {
-      switch (state) {
-        case "notStarted":
-          return "Non commencé";
-        case "inProgress":
-          return "En cours";
-        case "finished":
-          return "En attente de validation";
-        case "validated":
-          return "Validé";
-        case "refused":
-          return "Refusé";
-        default:
-          return "État inconnu";
-      }
-    },
+    getStateName: progressionHelpers.getStateName,
     getActivity(activityId) {
       // TODO: get activity by id
       return { id: activityId, nom: "Nom générique" };
