@@ -4,7 +4,12 @@
       Activitées à valider
     </h1>
     <div>
-      <b-dropdown id="dropdown-parcours" :text="currentParcours" variant="primary" class="m-md-2">
+      <b-dropdown
+        id="dropdown-parcours"
+        :text="currentParcours"
+        variant="primary"
+        class="m-md-2"
+      >
         <b-dropdown-item @click="filter(4)">Tous les parcours</b-dropdown-item>
         <b-dropdown-divider></b-dropdown-divider>
         <b-dropdown-item @click="filter(0)">Bosses et Bobos</b-dropdown-item>
@@ -51,7 +56,7 @@
                 />
               </svg>
             </td>
-            <td>{{ getActivity(progression.id).nom }}</td>
+            <td>{{ getActivity(progression).nom }}</td>
             <td>
               <img
                 :src="`/img/icons/${progression.state}.png`"
@@ -115,8 +120,9 @@ export default {
     // TODO: fetch progressions
     this.progressions = [
       {
-        id: 5, // FOREIGN KEY de activity
-        idParcours: 0,
+        id: 5, // primary key (not used here!)
+        idActivite: "5",
+        idParcours: "0",
         state: "REFUSED", // peut prendre les valeurs enum(notStarted,inProgress,finished, validated, refused)
         duration: 20, // en minutes aussi
         startedAt: 5, // ms
@@ -126,6 +132,7 @@ export default {
       },
       {
         id: 6,
+        idActivite: "6",
         idParcours: "0",
         state: "VALIDATED", // peut prendre les valeurs enum(notStarted,inProgress,finished, validated, refused)
         duration: 20, // en minutes aussi
@@ -136,6 +143,7 @@ export default {
       },
       {
         id: 7,
+        idActivite: "7",
         idParcours: "1",
         state: "FINISHED", // peut prendre les valeurs enum(notStarted,inProgress,finished, validated, refused)
         duration: 20, // en minutes aussi
@@ -153,8 +161,9 @@ export default {
   methods: {
     getStateName: progressionHelpers.getStateName,
 
-    getActivity(activityId) {
+    getActivity(progression) {
       // TODO: get activity by id
+      // fetchActivityFromProgression(progression)
       return { id: activityId, nom: "Nom générique", idParcours: 0 };
     },
     sendInfo(progression) {
