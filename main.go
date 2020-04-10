@@ -16,7 +16,6 @@ func main() {
 		api.POST("/register", createUser)
 		api.POST("/login", login)
 		api.GET("/users", listUsers)
-		api.POST("/file", pushFile)
 
 		api.GET("/parcours", ListParcours)
 
@@ -30,7 +29,11 @@ func main() {
 		api.PUT("/progression", UpdateProgression)
 		api.PUT("/entry", UpdateEntry)
 
+		//Registered users only
 		api.Use(authenticate())
+		api.POST("/file", pushFile)
+		api.GET("/file", getFile)
+
 		api.GET("/", func(c *gin.Context) {
 			c.JSON(200, gin.H{
 				"message": "Welcome to the API",

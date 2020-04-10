@@ -19,7 +19,7 @@ var sess *session.Session
 func connectS3() {
 	var err error
 	sess, err = session.NewSession(&aws.Config{
-		Region:      aws.String("us-west-2"),
+		Region:      aws.String("us-east-1"),
 		Credentials: credentials.NewStaticCredentials(os.Getenv("CELLAR_ADDON_KEY_ID"), os.Getenv("CELLAR_ADDON_KEY_SECRET"), ""),
 		Endpoint:    aws.String(os.Getenv("CELLAR_ADDON_HOST")),
 	})
@@ -47,6 +47,8 @@ func pushFile(c *gin.Context) {
 
 	if err != nil {
 		c.JSON(500, gin.H{"error": "cannot_upload_file"})
+		fmt.Println(err)
+		fmt.Println(codeAdherent)
 		return
 	}
 	url := fmt.Sprintf("https://b3t.cleverapps.io/api/file/%s", fileName.String())
@@ -59,9 +61,6 @@ func createBucket(code_adherent string) error {
 
 	_, err = s3.New(sess).CreateBucket(&s3.CreateBucketInput{
 		Bucket: aws.String(code_adherent),
-		CreateBucketConfiguration: &s3.CreateBucketConfiguration{
-			LocationConstraint: aws.String("US"),
-		},
 	})
 	if err != nil {
 		fmt.Println(err)
@@ -98,10 +97,12 @@ func getUserFile(c *gin.Context) {
 	var err error
 	var objectOutput *s3.GetObjectOutput
 	var object []byte
+
+	codeAdherent := c.GetHeader("code_adherent")
 	id := c.Param("id")
 
 	objectOutput, err = s3.New(sess).GetObject(&s3.GetObjectInput{
-		Bucket: aws.String("userdata"),
+		Bucket: aws.String(codeAdherent),
 		Key:    aws.String(id),
 	})
 
