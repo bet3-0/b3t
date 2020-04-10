@@ -101,7 +101,10 @@
     </div>
 
     <!-- Modal -->
-    <ProgressionModal :activity="currentProgression" />
+    <ProgressionModal
+      :progression="currentProgression"
+      :activity="getCurrentActivity()"
+    />
   </div>
 </template>
 
@@ -124,7 +127,7 @@ const VALID_STATES = [
   "inProgress",
   "finished",
   "validated",
-  "refused",
+  "refused"
 ];
 
 export default {
@@ -140,8 +143,8 @@ export default {
         inProgress: 0,
         finished: 0,
         validated: 0,
-        refused: 0,
-      },
+        refused: 0
+      }
     };
   },
   beforeMount() {
@@ -155,8 +158,9 @@ export default {
         duration: 20, // en minutes aussi
         startedAt: 5, // ms
         finishedAt: 0, // ms
+        evaluation: "refusé",
         reviewAt: 0, // ms
-        entries: [],
+        entries: []
       },
       {
         id: 6,
@@ -165,7 +169,8 @@ export default {
         startedAt: 5, // ms
         finishedAt: 0, // ms
         reviewAt: 0, // ms
-        entries: [],
+        evaluation: "validé",
+        entries: []
       },
       {
         id: 7,
@@ -174,8 +179,19 @@ export default {
         startedAt: 5, // ms
         finishedAt: 0, // ms
         reviewAt: 0, // ms
-        entries: [],
+        evaluation: "",
+        entries: []
       },
+      {
+        id: 7,
+        state: "INPROGRESS", // peut prendre les valeurs enum(notStarted,inProgress,finished, validated, refused)
+        duration: 20, // en minutes aussi
+        startedAt: 5, // ms
+        finishedAt: 0, // ms
+        reviewAt: 0, // ms
+        evaluation: "",
+        entries: []
+      }
     ];
   },
   mounted() {
@@ -202,11 +218,14 @@ export default {
       // TODO: get activity by id
       return { id: activityId, nom: "Nom générique" };
     },
+    getCurrentActivity() {
+      return this.getActivity(this.currentProgression.id);
+    },
     sendInfo(progression) {
       this.currentProgression = progression;
     },
     countProgressionStates() {
-      this.progressions.forEach((progression) => {
+      this.progressions.forEach(progression => {
         if (VALID_STATES.includes(progression.state)) {
           this.counter[progression.state]++;
         }
@@ -217,8 +236,8 @@ export default {
     },
     changeParcoursColor() {
       return itineraryHelpers.getItineraryColor(this.idParcours);
-    },
-  },
+    }
+  }
 };
 </script>
 

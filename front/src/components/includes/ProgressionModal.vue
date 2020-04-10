@@ -9,19 +9,15 @@
                 hide-backdrop
         >
             <div class="modal-body">
-                <p>Description: {{ activity.description }}</p>
-                <p>Durée: {{ activity.duree }} minutes</p>
-                <p>Matériel: </p>
-                <ul>
-                    <li v-for="mat in activity.materiel" v-bind:key="mat">{{ mat }}</li>
-                </ul>
+                <p>{{ getCommentFromState(progression.state) }}</p>
+                <p v-if="progression.evaluation.length">Commentaire: {{ progression.evaluation }}</p>
             </div>
             <template v-slot:modal-footer="{ ok, cancel }">
-                <b-button variant="secondary" @click="cancel()">
-                    Fermer
+                <b-button variant="primary" @click="cancel()">
+                    OK
                 </b-button>
-                <b-button variant="success" @click.prevent.capture="go(activity.id)">
-                    Démarrer l'activité
+                <b-button v-if="progression.state === 'INPROGRESS'" variant="success" @click.prevent.capture="go(activity.id)">
+                    Reprendre l'activité
                 </b-button>
             </template>
         </b-modal>
@@ -34,11 +30,27 @@
   Vue.use(VueRouter)
     export default {
         name: "ProgressionModal",
-        props: ["activity"],
+        props: ["progression", "activity"],
       methods: {
           go(activityId) {
             console.log(activityId)
             this.$router.push('/activity/' + activityId)
+          },
+          getCommentFromState(state){
+              switch (state){
+                  case "NOTSTARTED":
+                      return "Activité non commencée";
+                case "INPROGRESS":
+                    return "Tu n'as pas encore validé cette activité. Tu peux y retourner pour la terminer.";
+                case "FINISHED":
+                     return "Ton activité est en cours de validation par un chef ou une cheftaine";
+                case "VALIDATED":
+                    return "Ton activité a été validée ! Bravo à toi !";
+                case "REFUSED":
+                    return "Ton activité n'a pas été validée mais tu as la possibilité de la refaire !";
+                default:
+                    return "Ton activité est dans un état étrange... Contacte tes responsables, ce n'est pas normal !"
+              }
           }
       }
     };
