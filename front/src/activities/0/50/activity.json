@@ -1,0 +1,10 @@
+{
+  "id": "50",
+  "idParcours": "0",
+  "nom": "Une nouvelle sirène pour les pompiers",
+  "description": "Sais-tu à quoi sert la sirène des pompiers? Quelle est sa signification?",
+  "duree": 10,
+  "materiel": ["Une bonne dose d'imagination","Un appareil pour s'enregistrer ou se filmer"],
+  "difficulte": "facile",
+  "pages": 1
+}
