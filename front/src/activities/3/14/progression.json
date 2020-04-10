@@ -1,5 +1,6 @@
 {
-    "id": "14",
+    "idParcours": "3",
+    "idActivite": "14",
     "state": "INPROGRESS",
     "duration": 45,
     "startedAt": 5,
