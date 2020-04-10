@@ -1,0 +1,20 @@
+{
+    "id": "Server-side generated UUID",
+    "idActivite": "7",
+    "idParcours": "2",
+    "state": "INPROGRESS",
+    "duration": 40,
+    "startedAt": 0,
+    "finishedAt": 0,
+    "reviewAt": 0,
+    "entries": [{
+        "id": 0,
+        "question": "Filme toi en train de raconter une histoire gauloise avec ton théâtre d’ombres.",
+        "documents": [],
+        "typeRendu": "file",
+        "rendu": "",
+        "state": "NOTSTARTED",
+        "tracked": true,
+        "page": 1
+    }]
+}
