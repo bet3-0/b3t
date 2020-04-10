@@ -1,0 +1,22 @@
+{
+    "idParcours": "3",
+    "idActivite": "14",
+    "state": "INPROGRESS",
+    "duration": 45,
+    "startedAt": 5,
+    "finishedAt": 0,
+    "reviewAt": 0,
+    "entries": [
+        {
+            "id": 0,
+            "question":
+                "On a pas mal parlé des arbres, mais les plantes ont un cycle bien particulier, seulement limité à deux possibilités. Mène l'enquête, demande à tes parents ou à tes frères et sœurs de t'en parler et rajoute une petite phrase sur ta feuille avant de nous l'envoyer (photo ou scanner). Indice : l'hiver permet de les distinguer.",
+            "documents": [],
+            "typeRendu": "file",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 4
+        }
+    ]
+}
