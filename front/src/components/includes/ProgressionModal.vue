@@ -19,6 +19,9 @@
                 <b-button v-if="progression.state === 'INPROGRESS'" variant="success" @click.prevent.capture="go(activity.id)">
                     Reprendre l'activité
                 </b-button>
+                <b-button v-if="progression.state === 'REFUSED'" variant="success" @click.prevent.capture="go(activity.id)">
+                    Réessayer l'activité
+                </b-button>
             </template>
         </b-modal>
     </div>
