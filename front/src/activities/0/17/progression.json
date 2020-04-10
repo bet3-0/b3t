@@ -6,8 +6,7 @@
     "startedAt": 0,
     "finishedAt": 0,
     "reviewAt": 0,
-    "entries": [
-        {
+    "entries": [{
             "id": 0,
             "question": "1) Fait nous une liste de ce que tu mettrais dans ta trousse à pharmacie d’équipage",
             "documents": [],
@@ -26,7 +25,7 @@
             "state": "NOTSTARTED",
             "tracked": true,
             "page": 2
-        }, 
+        },
         {
             "id": 2,
             "question": "3) Dans cette liste d’élément, quel est l’élément qui s’y trouve t’as le plus étonné, et pourquoi ?",
@@ -36,7 +35,7 @@
             "state": "NOTSTARTED",
             "tracked": true,
             "page": 2
-        }, 
+        },
         {
             "id": 3,
             "question": "4) Quel(s) élément(s) avais-tu mis dans ta liste initiale qui n’est pas sur celle-ci et as tu compris pourquoi il n’y apparaissait pas ?",
@@ -46,6 +45,6 @@
             "state": "NOTSTARTED",
             "tracked": true,
             "page": 2
-        }    
-    ]     
+        }
+    ]
 }

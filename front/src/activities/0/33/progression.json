@@ -1,0 +1,50 @@
+{
+    "idActivite": "33",
+    "idParcours": "0",
+    "state": "INPROGRESS",
+    "duration": 10,
+    "startedAt": 5,
+    "finishedAt": 0,
+    "reviewAt": 0,
+    "entries": [{
+            "id": 0,
+            "question": "Envoie nous une photo de ton menus pour le petit déjeuner ici:",
+            "documents": [],
+            "typeRendu": "file",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 1
+        },
+        {
+            "id": 1,
+            "question": "Envoie nous une photo de ton menus pour le déjeuner ici:",
+            "documents": [],
+            "typeRendu": "file",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 1
+        },
+        {
+            "id": 2,
+            "question": "Envoie nous une photo de ton menus pour le gouter ici:",
+            "documents": [],
+            "typeRendu": "file",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 1
+        },
+        {
+            "id": 3,
+            "question": "Envoie nous une photo de ton menus pour diner ici:",
+            "documents": [],
+            "typeRendu": "file",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 1
+        }
+    ]
+}
