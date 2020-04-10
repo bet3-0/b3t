@@ -1,6 +1,6 @@
 export default class ItineraryHelpers {
   static getItineraryColor(idParcours) {
-    switch (idParcours) {
+    switch (parseInt(idParcours)) {
       case 0:
         return "var(--bosses-et-bobos)";
       case 1:
@@ -14,7 +14,7 @@ export default class ItineraryHelpers {
     }
   }
   static getItineraryRouteName(idParcours) {
-    switch (idParcours) {
+    switch (parseInt(idParcours)) {
       case 0:
         return "bosses_et_bobos";
       case 1:
@@ -28,7 +28,7 @@ export default class ItineraryHelpers {
     }
   }
   static getParcoursName(idParcours) {
-    switch (idParcours) {
+    switch (parseInt(idParcours)) {
       case 0:
         return "Bosses et Bobos";
       case 1:

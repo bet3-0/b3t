@@ -72,7 +72,6 @@
                 parcours: '',
                 duration: '',
                 difficulte: '',
-                red: '',
                 currentActivity: {},
                 activities: [],
                 displayActivities: []
@@ -134,7 +133,6 @@
                 data === 'parcours' ? this[data] = this[data] === '' ? 'active' : '' : this.parcours = ''
                 data === 'duration' ? this[data] = this[data] === '' ? 'active' : '' : this.duration = ''
                 data === 'difficulte' ? this[data] = this[data] === '' ? 'active' : '' : this.difficulte = ''
-                data === 'red' ? this[data] = this[data] === '' ? 'active' : '' : this.red = ''
             },
 
            getParcoursName: itineraryHelpers.getParcoursName

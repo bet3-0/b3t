@@ -3,6 +3,16 @@
     <h1>
       Activitées à valider
     </h1>
+    <div>
+      <b-dropdown id="dropdown-parcours" :text="currentParcours" variant="primary" class="m-md-2">
+        <b-dropdown-item @click="filter(4)">Tous les parcours</b-dropdown-item>
+        <b-dropdown-divider></b-dropdown-divider>
+        <b-dropdown-item @click="filter(0)">Bosses et Bobos</b-dropdown-item>
+        <b-dropdown-item @click="filter(1)">Trois étoiles</b-dropdown-item>
+        <b-dropdown-item @click="filter(2)">Cés'Arts</b-dropdown-item>
+        <b-dropdown-item @click="filter(3)">Robinson</b-dropdown-item>
+      </b-dropdown>
+    </div>
 
     <!-- /#wrapper -->
     <div class="container">
@@ -11,18 +21,21 @@
           <tr>
             <th scope="col"></th>
             <th scope="col">Activité</th>
-            <th scope="col">Identifiant</th>
-            <th scope="col">Durée</th>
             <th scope="col">État</th>
+            <th scope="col">Nombre de rendus</th>
+            <th scope="col">Durée prise par le jeune</th>
           </tr>
         </thead>
         <tbody>
           <tr
-            v-for="progression in progressions"
+            v-for="progression in displayProgressions"
             :key="progression.id"
             v-b-modal="'validationModal'"
             @click="sendInfo(progression)"
-            :style="'cursor: pointer; color:' + changeParcoursColor(getActivity(progression.id).idParcours)"
+            :style="
+              'cursor: pointer; color:' +
+                changeParcoursColor(progression.idParcours)
+            "
           >
             <td>
               <svg
@@ -39,16 +52,6 @@
               </svg>
             </td>
             <td>{{ getActivity(progression.id).nom }}</td>
-            <td>TODO ?</td>
-            <td>
-              {{
-                (
-                  (progression.finishedAt - progression.startedAt) /
-                  60000
-                ).toFixed(2)
-              }}
-            </td>
-
             <td>
               <img
                 :src="`/img/icons/${progression.state}.png`"
@@ -56,6 +59,15 @@
                 class="icon"
               />
               {{ getStateName(progression.state) }}
+            </td>
+            <td>{{ progression.entries.length }}</td>
+            <td>
+              {{
+                (
+                  (progression.finishedAt - progression.startedAt) /
+                  60000
+                ).toFixed(2)
+              }}
             </td>
           </tr>
         </tbody>
@@ -71,7 +83,7 @@
 import ValidationModal from "./includes/ValidationModal";
 import itineraryHelpers from "./../service/itineraryHelpers";
 import progressionHelpers from "./../service/progressionHelpers";
-import {VALID_STATES} from "./../service/progressionHelpers";
+import { VALID_STATES } from "./../service/progressionHelpers";
 
 import Vue from "vue";
 import BootstrapVue from "bootstrap-vue";
@@ -80,22 +92,23 @@ import VueRouter from "vue-router";
 Vue.use(BootstrapVue);
 Vue.use(VueRouter);
 
-
 export default {
   name: "ActivitiesToValidate",
   components: { ValidationModal },
   data() {
     return {
       idParcours: 4,
+      currentParcours: "Filtrer par parcours",
       currentProgression: {},
       progressions: [],
+      displayProgressions: [],
       counter: {
         notStarted: 0,
         inProgress: 0,
         finished: 0,
         validated: 0,
-        refused: 0,
-      },
+        refused: 0
+      }
     };
   },
   beforeMount() {
@@ -103,48 +116,52 @@ export default {
     this.progressions = [
       {
         id: 5, // FOREIGN KEY de activity
+        idParcours: 0,
         state: "REFUSED", // peut prendre les valeurs enum(notStarted,inProgress,finished, validated, refused)
         duration: 20, // en minutes aussi
         startedAt: 5, // ms
         finishedAt: 152.0, // ms
         reviewAt: 0, // ms
-        entries: [],
+        entries: []
       },
       {
         id: 6,
+        idParcours: "0",
         state: "VALIDATED", // peut prendre les valeurs enum(notStarted,inProgress,finished, validated, refused)
         duration: 20, // en minutes aussi
         startedAt: 5, // ms
         finishedAt: 0, // ms
         reviewAt: 0, // ms
-        entries: [],
+        entries: []
       },
       {
         id: 7,
+        idParcours: "1",
         state: "FINISHED", // peut prendre les valeurs enum(notStarted,inProgress,finished, validated, refused)
         duration: 20, // en minutes aussi
         startedAt: 5, // ms
         finishedAt: 0, // ms
         reviewAt: 0, // ms
-        entries: [],
-      },
+        entries: []
+      }
     ];
   },
   mounted() {
     this.countProgressionStates();
+    this.displayProgressions = this.progressions;
   },
   methods: {
-    getStateName : progressionHelpers.getStateName,
-    
+    getStateName: progressionHelpers.getStateName,
+
     getActivity(activityId) {
       // TODO: get activity by id
-      return { id: activityId, nom: "Nom générique" , idParcours:0 };
+      return { id: activityId, nom: "Nom générique", idParcours: 0 };
     },
     sendInfo(progression) {
       this.currentProgression = progression;
     },
     countProgressionStates() {
-      this.progressions.forEach((progression) => {
+      this.progressions.forEach(progression => {
         if (VALID_STATES.includes(progression.state)) {
           this.counter[progression.state]++;
         }
@@ -156,7 +173,18 @@ export default {
     changeParcoursColor(idParcours) {
       return itineraryHelpers.getItineraryColor(idParcours);
     },
-  },
+    filter(idParcours) {
+      if (idParcours == 4) {
+        this.displayProgressions = this.progressions;
+        this.currentParcours = "Tous les parcours";
+      } else {
+        this.currentParcours = this.getParcoursName(idParcours);
+        this.displayProgressions = this.progressions.filter(progression => {
+          return progression.idParcours == idParcours;
+        });
+      }
+    }
+  }
 };
 </script>
 
