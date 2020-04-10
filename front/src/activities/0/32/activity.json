@@ -1,0 +1,10 @@
+{
+    "id": "32",
+    "idParcours": "0",
+    "nom": "Quel aliment pour quel bienfait?",
+    "description": "Connaître la classe des aliments pour préparer un menu adapté au programme de la journée",
+    "duree": 10,
+    "materiel": ["Un ordinateur"],
+    "difficulte": "",
+    "pages": 2
+}

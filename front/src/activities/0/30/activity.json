@@ -1,0 +1,10 @@
+{
+    "id": "30",
+    "idParcours": "0",
+    "nom": "La pyramide des aliments",
+    "description": "Connaître la classe des aliments pour préparer un menu adapté au programme de la journée",
+    "duree": 10,
+    "materiel": ["Un ordinateur"],
+    "difficulte": "",
+    "pages": 1
+}

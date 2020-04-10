@@ -1,0 +1,19 @@
+{
+    "idActivite": "34",
+    "idParcours": "0",
+    "state": "INPROGRESS",
+    "duration": 10,
+    "startedAt": 5,
+    "finishedAt": 0,
+    "reviewAt": 0,
+    "entries": [{
+        "id": 0,
+        "question": "Envoie nous une photo de ton ton planning de menus pour ton WE d'équipage ici:",
+        "documents": [],
+        "typeRendu": "file",
+        "rendu": "",
+        "state": "NOTSTARTED",
+        "tracked": true,
+        "page": 1
+    }]
+}
