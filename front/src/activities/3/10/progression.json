@@ -1,6 +1,7 @@
 {
-    "id": 3,
-    "state": "enum(NOTSTARTED,INPROGRESS,FINISHED, VALIDATED,REFUSED)",
+    "idActivite": "10",
+    "idParcours":"3",
+    "state": "INPROGRESS",
     "duration": 40,
     "startedAt": 5,
     "finishedAt": 0,
@@ -12,7 +13,7 @@
             "documents": [],
             "typeRendu": "file",
             "rendu": "",
-            "state": "notStarted",
+            "state": "NOTSTARTED",
             "tracked": true,
             "page": 6
         }

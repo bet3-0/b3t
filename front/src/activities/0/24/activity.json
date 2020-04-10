@@ -1,6 +1,6 @@
 {
-    "idActivite": 24,
-    "idParcours": 0,
+    "id": "24",
+    "idParcours": "0",
     "nom": "Brûlure, coupure, comment réagir ? ",
     "description": "Connaître les gestes de 1ers secours pour soigner une coupure ou une brûlure. ",
     "duree": 10,

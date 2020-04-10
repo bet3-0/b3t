@@ -40,8 +40,8 @@ type Entry struct {
 
 type Progression struct {
 	ID           string  `gorm:"primary_key" json:"id"`
-	ActiviteCode int     `json:"idActivite"`
-	ParcoursCode int     `json:"idParcours"`
+	ActiviteCode string  `json:"idActivite"`
+	ParcoursCode string  `json:"idParcours"`
 	State        state   `sql:"type:state" json:"state"`
 	Duration     int     `json:"duration"`
 	StartedAt    int64   `json:"startedAt"`

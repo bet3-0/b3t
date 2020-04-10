@@ -9,6 +9,8 @@ import App from "./App.vue";
 import VeeValidate from 'vee-validate';
 import "@/assets/css/main.css";
 import ParcoursChoiceComponent from "./components/ParcoursChoiceComponent";
+import PersonalProgression from "./components/PersonalProgression";
+import ActivitiesToValidate from "./components/ActivitiesToValidate";
 
 Vue.use(VeeValidate); // todo: understand this line for login ?
 Vue.use(VueRouter);
@@ -51,6 +53,14 @@ const router = new VueRouter({
     {
       path: "/parcours",
       component: ParcoursChoiceComponent
+    },
+    {
+      path: "/progression",
+      component: PersonalProgression
+    },
+    {
+      path: "/validation",
+      component: ActivitiesToValidate
     }
   ]
 });

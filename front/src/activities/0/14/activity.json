@@ -1,6 +1,6 @@
 {
-    "idActivite": 14,
-    "idParcours": 0,
+    "id": "14",
+    "idParcours": "0",
     "nom": "La PLS, Késako?",
     "description": "Savoir ce qu’est la PLS. Savoir quand l’utiliser. Savoir mettre quelqu’un en PLS",
     "duree": 20,

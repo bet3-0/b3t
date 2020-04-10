@@ -34,7 +34,7 @@ export default class ItineraryHelpers {
       case 1:
         return "Trois étoiles";
       case 2:
-        return "Cés'Art";
+        return "Cés'Arts";
       case 3:
         return "Robinson";
       default:

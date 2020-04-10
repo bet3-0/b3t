@@ -1,6 +1,6 @@
 {
-    "idActivite": 4,
-    "idParcours": 0,
+    "id": "4",
+    "idParcours": "0",
     "nom": "Fabrication d’un porte savon",
     "description": "Connaître une technique pour avoir de l’eau et du savon à proximité des feuillées. Repartir avec des idées pour aménager des feuillées",
     "duree": 15,

@@ -1,0 +1,10 @@
+{
+  "id": "51",
+  "idParcours": "0",
+  "nom": "Manger que du sanglier, c’est pas très bon pour la santé, faut l’accompagner!",
+  "description": "On le sait tous, les gaulois adorent manger du sanglier, mais il est peu souvent accompagné. Or, tu as vu, il est important de manger équilibré pour être un bon guerrier gaulois. Il faut donc manger des fruits et des légumes. ",
+  "duree": 10,
+  "materiel": ["Un ordinateur ou du matériel permettant d’avoir accès à la plateforme"],
+  "difficulte": "facile",
+  "pages": 1
+}

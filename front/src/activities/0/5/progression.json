@@ -1,6 +1,7 @@
 {
-    "id": 5,
-    "state": "notStarted",
+    "idActivite": "5",
+    "idParcours":"0",
+    "state": "INPROGRESS",
     "duration": 15,
     "startedAt": 0,
     "finishedAt": 0,
@@ -12,7 +13,7 @@
             "documents": [],
             "typeRendu": "text",
             "rendu": "",
-            "state": "notStarted",
+            "state": "NOTSTARTED",
             "tracked": false,
             "page": 3
         },
@@ -22,7 +23,7 @@
             "documents": [],
             "typeRendu": "text",
             "rendu": "",
-            "state": "notStarted",
+            "state": "NOTSTARTED",
             "tracked": false,
             "page": 3
         },
@@ -32,7 +33,7 @@
             "documents": [],
             "typeRendu": "text",
             "rendu": "",
-            "state": "notStarted",
+            "state": "NOTSTARTED",
             "tracked": true,
             "page": 3
         },
@@ -42,7 +43,7 @@
             "documents": [],
             "typeRendu": "file",
             "rendu": "",
-            "state": "notStarted",
+            "state": "NOTSTARTED",
             "tracked": true,
             "page": 4
         }

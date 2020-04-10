@@ -1,0 +1,23 @@
+{
+    "id": "Server-side generated UUID",
+    "idActivite": "50",
+    "idParcours": "0",
+    "state": "INPROGRESS",
+    "duration": 10,
+    "startedAt": 0,
+    "finishedAt": 0,
+    "reviewAt": 0,
+    "entries": [
+        {
+            "id": 0,
+            "question":
+                "A toi de jouer, envoi nous un extrait de maximum 20 secondes de ta création ensuite!",
+            "documents": [],
+            "typeRendu": "file",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 1
+        }
+    ]
+}
