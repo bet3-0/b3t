@@ -164,7 +164,7 @@ export default {
     getActivity(progression) {
       // TODO: get activity by id
       // fetchActivityFromProgression(progression)
-      return { id: activityId, nom: "Nom générique", idParcours: 0 };
+      return { id: progression.idActivite, nom: "Nom générique", idParcours: 0 };
     },
     sendInfo(progression) {
       this.currentProgression = progression;
