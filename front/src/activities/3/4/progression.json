@@ -1,0 +1,33 @@
+{
+  "idActivite": "4",
+  "idParcours":"3",
+  "state": "INPROGRESS",
+  "duration": 30,
+  "startedAt": 5,
+  "finishedAt": 0,
+  "reviewAt": 0,
+  "entries": [
+    {
+      "id": 0,
+      "question":
+        "Pour valider ton atelier, envoies nous une photo de ton installation",
+      "documents": [],
+      "typeRendu": "file",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 2
+    },
+    {
+      "id": 1,
+      "question":
+        "Écris nous les 3 types de nœuds que tu as utilisé et pourquoi tu t’en es servi(e). Si ton installation est utile en camp, parait solide et réponds aux consignes, ton installation sera validée !",
+      "documents": [],
+      "typeRendu": "text",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 2
+    },
+  ]
+}
