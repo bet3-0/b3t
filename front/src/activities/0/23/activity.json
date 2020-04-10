@@ -1,0 +1,10 @@
+{
+    "id": "23",
+    "idParcours": "0",
+    "nom": "La potion magique ? Connais pas...",
+    "description": "Maintenant que tu sais quoi mettre dans la trousse à pharmacie, sais-tu quoi faire selon le type de blessure? Quel matériel utiliser? ",
+    "duree": 15,
+    "materiel": [""],
+    "difficulte": "facile",
+    "pages": 1
+}

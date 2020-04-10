@@ -1,0 +1,10 @@
+{
+    "id": "22",
+    "idParcours": "0",
+    "nom": "Il me manque quelques ingrédients de la recette",
+    "description": "Maintenant que tu sais quoi mettre dans la trousse à pharmacie, sais-tu quoi faire selon le type de blessure? Quel matériel utiliser ?  Répond aux questions suivantes en choisissant la ou les réponses qui te semble(nt) bonne(s).",
+    "duree": 15,
+    "materiel": [""],
+    "difficulte": "facile",
+    "pages": 2
+}
