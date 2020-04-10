@@ -11,7 +11,11 @@ Requirements
 
 Run
 ```
-source env-sample.sh
+cp env.sh.sample env.sh
+```
+Add correct CELLAR config, ask Lead devs for credentials
+```
+source env.sh
 docker-compose up -d
 go run *.go
 ```
