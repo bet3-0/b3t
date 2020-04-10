@@ -1,0 +1,10 @@
+{
+    "id": "28",
+    "idParcours": "0",
+    "nom": "Fabrique ton dentifrice",
+    "description": "Apprendre à faire son propre dentifrice",
+    "duree": 15,
+    "materiel": ["Un ordinateur", "1 cuillère à soupe de bicarbonate de soude", "4 cuillère à soupe d’Argile blanche (poudre fine)", "½ cuillère à café de sel de table", "2 gouttes d’huiles essentielle de citron ou de menthe", "1 cuillère à soupe", "1 cuillère à café", "1 Récipient que tu peux fermer quand tu aura finis de préparer ton dentifrice"],
+    "difficulte": "",
+    "pages": 1
+}
