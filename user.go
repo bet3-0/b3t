@@ -28,12 +28,13 @@ func authenticate() gin.HandlerFunc {
 		slice := strings.Split(bearerToken, " ")
 		if len(slice) == 2 {
 			token := slice[1]
-			payload, err := verifyToken(token)
+			codeAdherent, role, err := verifyToken(token)
 			if err != nil {
 				c.AbortWithStatusJSON(400, gin.H{"error": "invalid_token"})
 				return
 			}
-			c.Header("payload", payload)
+			c.Header("code_adherent", codeAdherent)
+			c.Header("role", role)
 			c.Next()
 			return
 		} else {
@@ -58,6 +59,12 @@ func createUser(c *gin.Context) {
 	err = db.Create(&user).Error
 	if err != nil {
 		c.JSON(500, gin.H{"error": "internal_server_error"})
+		return
+	}
+
+	err = createBucket(user.CodeAdherent)
+	if err != nil {
+		c.JSON(500, gin.H{"error": "cannot_create_user_file_space"})
 		return
 	}
 

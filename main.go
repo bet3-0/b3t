@@ -1,32 +1,9 @@
 package main
 
 import (
-	"log"
-	"time"
-
 	"github.com/gin-contrib/static"
 	"github.com/gin-gonic/gin"
 )
-
-func Authentificator() gin.HandlerFunc {
-	return func(c *gin.Context) {
-		t := time.Now()
-
-		// Set example variable
-		c.Set("example", "12345")
-
-		// before request
-		c.Next()
-
-		// after request
-		latency := time.Since(t)
-		log.Print(latency)
-
-		// access the status we are sending
-		status := c.Writer.Status()
-		log.Println(status)
-	}
-}
 
 func main() {
 	connect()
@@ -50,8 +27,8 @@ func main() {
 		api.GET("/progressions", ListProgressions)
 		api.GET("/progression/:id", GetProgression)
 
-		api.PUT("/progression/:id", UpdateProgression)
-		api.PUT("/entry/:id", UpdateEntry)
+		api.PUT("/progression", UpdateProgression)
+		api.PUT("/entry", UpdateEntry)
 
 		api.Use(authenticate())
 		api.GET("/", func(c *gin.Context) {
