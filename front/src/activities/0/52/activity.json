@@ -1,0 +1,11 @@
+{
+    "id": "52",
+    "idParcours": 0,
+    "nom": "Le brossage des dents, c’est pas la passion des gaulois",
+    "description": "Les gaulois ont une hygiène parfois un peu approximative, mais toi en bon Guerrier gaulois de 3e année, tu as suivi tous les conseils et tu sais qu’une bonne hygiène est importante même celle des dents! Alors, à toi de créer un clip pour motiver les gaulois et les gauloises à bien se laver les dents! ",
+    "duree": 10,
+    "materiel": ["Dentifrice","Brosse à dent","De quoi se filmer","De quoi diffuser de la musique"],
+    "difficulte": "facile",
+    "pages": 1
+  }
+  

@@ -1,0 +1,33 @@
+{
+    "idActivite": "53",
+    "idParcours":"0",
+    "state": "INPROGRESS",
+    "duration": 30,
+    "startedAt": 0,
+    "finishedAt": 0,
+    "reviewAt": 0,
+    "entries": [
+        {
+            "id": 0,
+            "question":
+                "Envoie nous ton résultat ici",
+            "documents": [],
+            "typeRendu": "file",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 1
+        },
+        {
+            "id": 1,
+            "question":
+                "Si tu as un lien à nous envoyer et/ou un commentaire à faire c'est ici",
+            "documents": [],
+            "typeRendu": "text",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 1
+        }
+    ]
+}

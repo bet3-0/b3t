@@ -1,0 +1,10 @@
+{
+    "id": "14",
+    "idParcours": "0",
+    "nom": "La PLS, Késako?",
+    "description": "Savoir ce qu’est la PLS. Savoir quand l’utiliser. Savoir mettre quelqu’un en PLS",
+    "duree": 20,
+    "materiel": ["Un ordinateur","Une personne qui accepte de te servir de mannequin pour la mettre en PLS","Un appareil photo"],
+    "difficulte": "facile",
+    "pages": 2
+   }   

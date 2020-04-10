@@ -17,7 +17,7 @@
             >
           </li>
           <li class="nav-item">
-            <router-link class="nav-link text-white" to="/"
+            <router-link class="nav-link text-white" to="/progression"
               >Progression personelle</router-link
             >
           </li>
@@ -30,7 +30,7 @@
             >
           </li>
           <li class="nav-item">
-            <router-link class="nav-link text-white" to="/"
+            <router-link class="nav-link text-white" to="/validation"
               >Progression Générale</router-link
             >
           </li>

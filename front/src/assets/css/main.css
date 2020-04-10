@@ -81,6 +81,9 @@ h6 {
 .bg-secondary {
   background-color: var(--default) !important;
 }
+.badge-primary {
+  background-color: var(--header) !important;
+}
 
 .bg-bosses-et-bobos {
   background-color: var(--bosses-et-bobos);
