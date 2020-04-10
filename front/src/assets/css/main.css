@@ -61,6 +61,18 @@ h6 {
   background-color: var(--header);
   border-color: var(--header);
 }
+.btn-primary:hover {
+  background-color: var(--default);
+  border-color: var(--header);
+}
+.btn-primary:focus {
+  background-color: var(--default);
+  border-color: var(--header);
+}
+.show > .btn-primary.dropdown-toggle {
+  background-color: var(--default);
+  border-color: var(--header);
+}
 .btn-success {
   background-color: var(--success);
   border-color: var(--success);
