@@ -1,0 +1,133 @@
+{
+  "id": "Server-side generated UUID",
+  "idActivite": "36",
+  "idParcours": "0",
+  "state": "INPROGRESS",
+  "duration": 15,
+  "startedAt": 5,
+  "finishedAt": 0,
+  "reviewAt": 0,
+  "entries": [
+    {
+      "id": "0",
+      "question": "",
+      "documents": [],
+      "typeRendu": "qcm",
+      "rendu": [
+        {
+          "question": "Quantité de sucre dans 33cL de Coca :",
+          "reponses": [
+            "3,5 morceaux de sucre",
+            "7 morceaux de sucre",
+            "0,5 morceaux de sucre",
+            "1 morceau de sucre"
+          ]
+        },
+        {
+          "question": "Quantité de sucre dans 1 cuillère à soupe de ketchup :",
+          "reponses": [
+            "3,5 morceaux de sucre",
+            "7 morceaux de sucre",
+            "0,5 morceaux de sucre",
+            "1 morceau de sucre"
+          ]
+        },
+        {
+          "question": "Quantité de sucre dans 100mL de lait :",
+          "reponses": [
+            "3,5 morceaux de sucre",
+            "7 morceaux de sucre",
+            "0,5 morceaux de sucre",
+            "1 morceau de sucre"
+          ]
+        },
+        {
+          "question": "Quantité de sucre dans 100g de gâteau granola :",
+          "reponses": [
+            "3,5 morceaux de sucre",
+            "7 morceaux de sucre",
+            "0,5 morceaux de sucre",
+            "1 morceau de sucre"
+          ]
+        },
+        {
+          "question": "Quantité de sucre dans 100g de chocolat en poudre :",
+          "reponses": [
+            "6 morceaux de sucre",
+            "0 morceau de sucre",
+            "13,5 morceaux de sucre",
+            "1,5 morceaux de sucre"
+          ]
+        },
+        {
+          "question": "Quantité de sucre dans 100g de jus d’orange :",
+          "reponses": [
+            "6 morceaux de sucre",
+            "0 morceau de sucre",
+            "13,5 morceaux de sucre",
+            "1,5 morceaux de sucre"
+          ]
+        },
+        {
+          "question": "Quantité de sucre dans 100g de miel pops :",
+          "reponses": [
+            "6 morceaux de sucre",
+            "0 morceau de sucre",
+            "13,5 morceaux de sucre",
+            "1,5 morceaux de sucre"
+          ]
+        },
+        {
+          "question": "Quantité de sucre dans 5 tranches de pain de mie :",
+          "reponses": [
+            "6 morceaux de sucre",
+            "0 morceau de sucre",
+            "13,5 morceaux de sucre",
+            "1,5 morceaux de sucre"
+          ]
+        },
+        {
+          "question": "Parmis les propositions suivantes, quels termes désignent le sucre sur les étiquettes alimentaires (2 bonnes réponses) ?",
+          "reponses": [
+            "Amidon",
+            "Curcumine",
+            "Acide ascorbique",
+            "Sirop de glucose"
+          ]
+        },
+        {
+          "question": "Parmi les propositions suivantes, quels termes désignent le sucre sur les étiquettes alimentaires (2 bonnes réponses) ?",
+          "reponses": [
+            "Malt d’orge",
+            "Sirop de fructose",
+            "Carbonates d’ammonium",
+            "Sulfate de zinc"
+          ]
+        }
+      ],
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 1
+    },
+    {
+      "id": 1,
+      "question": "Envoie nous la photos de l’aliment contenant le plus de sucre que tu es chez toi puis répond à cette petite question !",
+      "documents": [],
+      "typeRendu": "file",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 2
+    },
+    {
+      "id": 2,
+      "question": "Au vu du nombre de sucre dans les aliments que tu a vu plus haut et du nombre d'appellations différentes du sucre sur les étiquettes, donne nous une alternative que tu pourrais mettre en place dans ta vie de tous les jours et/ou ta vie scoute pour réduire ta consommation de sucre.",
+      "documents": [],
+      "typeRendu": "text",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 2
+    }
+  ]
+}
