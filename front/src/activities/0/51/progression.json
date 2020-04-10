@@ -1,21 +1,23 @@
 {
-    "id": "51",
+    "id": "Server-side generated UUID",
+    "idActivite": "51",
+    "idParcours": "0",
     "state": "INPROGRESS",
     "duration": 10,
     "startedAt": 0,
     "finishedAt": 0,
     "reviewAt": 0,
     "entries": [
-            {
-                "id": 0,
-                "question":
-                    "Fais une photo de ta réalisation lorsqu’elle est terminée pour nous la partager!",
-                "documents": [],
-                "typeRendu": "file",
-                "rendu": "",
-                "state": "NOTSTARTED",
-                "tracked": true,
-                "page": 1
-            }
+        {
+            "id": 0,
+            "question":
+                "Fais une photo de ta réalisation lorsqu’elle est terminée pour nous la partager!",
+            "documents": [],
+            "typeRendu": "file",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 1
+        }
     ]
 }
