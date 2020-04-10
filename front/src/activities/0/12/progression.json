@@ -1,0 +1,35 @@
+{
+  "id": 12, // activity id
+  "state": "enum(NOTSTARTED,INPROGRESS,FINISHED, VALIDATED,REFUSED)",
+  "duration": 10,
+  "startedAt": 15,
+  "finishedAt": 0,
+  "reviewAt": 0,
+  "entries": [
+    {
+      "id": 0,
+      "question": "Qu’en as tu retenu ? Que faut-il dire ?",
+      "documents": [],
+      "typeRendu": "text",
+      "rendu": "",
+      "state": "notStarted",
+      "tracked": true,
+      "page": 2 // page where to display the entry
+    },
+    {
+      "id": 1,
+      "question": "Réponds aux questions",
+      "documents": [],
+      "typeRendu": "qcm",
+      "rendu": [
+        {
+          "question": "Sais-tu qui appeler selon la situation ?",
+          "reponses": [18, 17, 15, 112, 114, 196]
+        }
+      ],
+      "state": "notStarted",
+      "tracked": true,
+      "page": 2 // page where to display the entry
+    }
+  ]
+}
