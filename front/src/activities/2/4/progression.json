@@ -1,20 +1,20 @@
 {
     "id": "Server-side generated UUID",
-    "idActivite": "11",
+    "idActivite": "4",
     "idParcours": "2",
     "state": "INPROGRESS",
-    "duration": 15,
-    "startedAt": 5,
+    "duration": 25,
+    "startedAt": 0,
     "finishedAt": 0,
     "reviewAt": 0,
     "entries": [{
-        "id": "0",
-        "question": "Travaille ta pâte à modeler avec tes mains pour créer un village gaulois puis envoie nous ton village en photo",
+        "id": 0,
+        "question": "Filme toi en train de jouer du Djembé.",
         "documents": [],
         "typeRendu": "file",
         "rendu": "",
         "state": "NOTSTARTED",
         "tracked": true,
-        "page": 2
+        "page": 1
     }]
 }

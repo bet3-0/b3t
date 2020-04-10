@@ -1,0 +1,17 @@
+{
+  "id": "9",
+  "idParcours": "2",
+  "nom": "Jonglage",
+  "description": "Exprime ta créativité en fabriquant des balles de jonglage à l’effigie de gaulois célèbres à partir de ballons de baudruche et apprend à jongler.",
+  "duree": 25,
+  "materiel": ["Ballons de baudruche (2 ou 3 par balle)",
+    "pelle ou grande cuillère",
+    "ciseaux",
+    "terre",
+    "entonnoir (ou bouteille plastique découpée)",
+    "feutre ou marqueur pour décorer",
+    "Caméra, appareil photo, smartphone ou ordinateur pour se filmer."
+  ],
+  "difficulte": "facile",
+  "pages": 1
+}
