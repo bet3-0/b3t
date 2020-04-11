@@ -32,7 +32,7 @@ type Entry struct {
 	Question      string         `json:"question"`
 	Documents     pq.StringArray `gorm:"type:varchar(100)[]" json:"documents"`
 	TypeRendu     typeRendu      `sql:"type:type_rendu" json:"typeRendu"`
-	rendu         string         `json:"rendu"`
+	Rendu         string         `json:"rendu"`
 	State         state          `sql:"type:state" json:"state"`
 	Tracked       bool           `json:"tracked"`
 	Page          int            `json:"page"`
