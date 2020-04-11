@@ -75,6 +75,7 @@ func GetGroupe(c *gin.Context) {
 
 	err := db.Where(&groupe).Preload("Users").First(&groupe).Error
 	if err != nil {
+		fmt.Println(err)
 		c.JSON(500, gin.H{"error": "internal_server_error"})
 		return
 	}
