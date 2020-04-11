@@ -30,7 +30,6 @@ func main() {
 
 		api.Use(authenticate())
 		api.POST("/file", pushFile)
-		api.GET("/file/:id", getFile)
 		api.POST("/progression", CreateProgression)
 		api.GET("/progressions", ListMyProgressions)
 		api.PUT("/progression", UpdateProgression)
@@ -51,7 +50,7 @@ func main() {
 		// Accessible by Relecteurs and Admins only
 
 		api.Use(restrictAccess([]role{role("relecteur"), role("admin")}))
-		api.GET("/userfile/:code_adherent/:id", getUserFile)
+		api.GET("/file/:code_adherent/:id", getUserFile)
 		api.GET("/user/progressions", ListFinishedProgressions)
 		api.GET("/user/progression/:id", GetUserProgression)
 

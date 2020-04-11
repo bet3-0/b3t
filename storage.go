@@ -55,7 +55,8 @@ func pushFile(c *gin.Context) {
 		c.JSON(500, gin.H{"error": "cannot_upload_file"})
 		return
 	}
-	url := fmt.Sprintf("https://b3t.cleverapps.io/api/file/%s", fileName.String())
+
+	url := fmt.Sprintf("https://b3t.cleverapps.io/api/file/%s/%s", user.CodeAdherent, fileName.String())
 
 	c.JSON(200, gin.H{"message": "file_uploaded", "url": url})
 }
@@ -71,30 +72,6 @@ func createBucket(codeAdherent string) error {
 		return err
 	}
 	return nil
-}
-
-func getFile(c *gin.Context) {
-	var err error
-
-	user := c.Request.Context().Value("user").(User)
-	id := c.Param("id")
-
-	downloader := s3manager.NewDownloader(sess)
-
-	buffer := &aws.WriteAtBuffer{}
-
-	downloader.Download(buffer, &s3.GetObjectInput{
-		Bucket: aws.String(user.CodeAdherent),
-		Key:    aws.String(id),
-	})
-
-	data := buffer.Bytes()
-
-	if err != nil {
-		c.JSON(500, gin.H{"error": "cannot_get_file"})
-		return
-	}
-	c.Data(200, "application/octet-stream", data)
 }
 
 func getUserFile(c *gin.Context) {
