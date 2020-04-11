@@ -33,6 +33,7 @@ type Entry struct {
 	Documents     pq.StringArray `gorm:"type:varchar(100)[]" json:"documents"`
 	TypeRendu     typeRendu      `sql:"type:type_rendu" json:"typeRendu"`
 	Rendu         string         `json:"rendu"`
+	Position      int            `json:"position"`
 	State         state          `sql:"type:state" json:"state"`
 	Tracked       bool           `json:"tracked"`
 	Page          int            `json:"page"`
