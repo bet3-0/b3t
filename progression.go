@@ -15,6 +15,7 @@ const (
 	NotStarted state = "NOTSTARTED"
 	InProgress       = "INPROGRESS"
 	Finished         = "FINISHED"
+	Reviewing        = "REVIEWING"
 	Validated        = "VALIDATED"
 	Refused          = "REFUSED"
 )
