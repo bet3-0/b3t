@@ -99,24 +99,24 @@ func getFile(c *gin.Context) {
 
 func getUserFile(c *gin.Context) {
 	var err error
-	var objectOutput *s3.GetObjectOutput
-	var object []byte
 
-	codeAdherent := c.GetHeader("code_adherent")
+	codeAdherent := c.Param("code_adherent")
 	id := c.Param("id")
 
-	objectOutput, err = s3.New(sess).GetObject(&s3.GetObjectInput{
+	downloader := s3manager.NewDownloader(sess)
+
+	buffer := &aws.WriteAtBuffer{}
+
+	downloader.Download(buffer, &s3.GetObjectInput{
 		Bucket: aws.String(codeAdherent),
 		Key:    aws.String(id),
 	})
 
-	buf := new(bytes.Buffer)
-	buf.ReadFrom(objectOutput.Body)
-	object = buf.Bytes()
+	data := buffer.Bytes()
 
 	if err != nil {
 		c.JSON(500, gin.H{"error": "cannot_get_file"})
 		return
 	}
-	c.Data(200, "application/octet-stream", object)
+	c.Data(200, "application/octet-stream", data)
 }

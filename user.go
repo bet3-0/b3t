@@ -18,9 +18,9 @@ const (
 )
 
 type User struct {
-	CodeAdherent string `json:"code_adherent" gorm:"primary_key;unique"`
-	Role         role   `sql:"type:role" json:"role"`
-	Progression  []Progression
+	CodeAdherent string        `json:"code_adherent" gorm:"primary_key;unique"`
+	Role         role          `sql:"type:role" json:"role"`
+	Progressions []Progression `gorm:"foreignkey:CodeAdherent" json:"progressions"`
 }
 
 func authenticate() gin.HandlerFunc {
@@ -31,7 +31,7 @@ func authenticate() gin.HandlerFunc {
 			token := slice[1]
 			user, err := verifyToken(token)
 			if err != nil {
-				c.AbortWithStatusJSON(400, gin.H{"error": "invalid_token"})
+				c.AbortWithStatusJSON(401, gin.H{"error": "invalid_token"})
 				return
 			}
 
@@ -42,9 +42,30 @@ func authenticate() gin.HandlerFunc {
 
 			return
 		} else {
-			c.AbortWithStatusJSON(400, gin.H{"error": "invalid_token"})
+			c.AbortWithStatusJSON(401, gin.H{"error": "invalid_token"})
 		}
 	}
+}
+
+func restrictAccess(authorizedRoles []role) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		user := c.Request.Context().Value("user").(User)
+
+		if authorized(authorizedRoles, user.Role) == false {
+			c.AbortWithError(403, fmt.Errorf("Forbidden"))
+		}
+
+		c.Next()
+	}
+}
+
+func authorized(authorizedRoles []role, userRole role) bool {
+	for _, authorizedRole := range authorizedRoles {
+		if authorizedRole == userRole {
+			return true
+		}
+	}
+	return false
 }
 
 func createUser(c *gin.Context) {

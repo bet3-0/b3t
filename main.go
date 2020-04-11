@@ -13,33 +13,41 @@ func main() {
 
 	api := router.Group("/api")
 	{
-		api.POST("/register", createUser)
+		api.GET("/", func(c *gin.Context) {
+			c.JSON(200, gin.H{
+				"message": "Bienvenu sur l'API du BET 3.0",
+			})
+		})
+
 		api.POST("/login", login)
-		api.GET("/users", listUsers)
 
 		api.GET("/parcours", ListParcours)
 
 		api.GET("/activites", ListActivites)
 		api.GET("/activite/:idParcours/:idActivite", GetActivite)
 
-		api.POST("/progression", CreateProgression)
-		api.GET("/progressions", ListProgressions)
-		api.GET("/progression/:id", GetProgression)
+		// Accessible by all users
 
-		api.PUT("/progression", UpdateProgression)
-		api.PUT("/entry", UpdateEntry)
-
-		//Registered users only
 		api.Use(authenticate())
 		api.POST("/file", pushFile)
 		api.GET("/file/:id", getFile)
+		api.POST("/progression", CreateProgression)
+		api.GET("/progression", GetProgression)
+		api.PUT("/progression", UpdateProgression)
+		api.PUT("/entry", UpdateEntry)
 
-		api.GET("/", func(c *gin.Context) {
-			c.JSON(200, gin.H{
-				"message": "Welcome to the API",
-			})
-		})
+		// Accessible by Relecteurs and Admins only
 
+		api.Use(restrictAccess([]role{role("relecteur"), role("admin")}))
+		api.GET("/userfile/:code_adherent/:id", getUserFile)
+		api.GET("/progressions", ListProgressions)
+		api.GET("/userprogression/:id", GetUserProgression)
+
+		// Accessible by Admins only
+
+		api.Use(restrictAccess([]role{role("admin")}))
+		api.POST("/register", createUser)
+		api.GET("/users", listUsers)
 	}
 
 	router.Run() // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
