@@ -139,7 +139,7 @@ func GetUserProgression(c *gin.Context) {
 		return
 	}
 
-	err = db.Where(&progression).First(&progression).Error
+	err = db.Where(&progression).Preload("Entries").First(&progression).Error
 	if err != nil {
 		c.JSON(500, gin.H{"error": "internal_server_error"})
 		return
