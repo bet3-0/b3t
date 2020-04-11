@@ -161,11 +161,9 @@ func UpdateProgression(c *gin.Context) {
 		})
 		return
 	}
+	user := c.Request.Context().Value("user").(User)
 
-	if err != nil {
-		c.JSON(412, gin.H{"error": "wrong_id"})
-		return
-	}
+	progression.CodeAdherent = user.CodeAdherent
 
 	err = db.Save(&progression).Error
 	if err != nil {
