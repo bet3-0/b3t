@@ -1,0 +1,19 @@
+{
+    "idActivite": "29",
+    "idParcours": "0",
+    "state": "INPROGRESS",
+    "duration": 15,
+    "startedAt": 0,
+    "finishedAt": 0,
+    "reviewAt": 0,
+    "entries": [{
+        "id": 0,
+        "question": "Prend des photos lors de la préparation pour nous les envoyer !",
+        "documents": [],
+        "typeRendu": "file",
+        "rendu": "",
+        "state": "NOTSTARTED",
+        "tracked": true,
+        "page": 1
+    }]
+}

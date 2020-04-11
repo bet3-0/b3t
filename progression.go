@@ -49,6 +49,7 @@ type Progression struct {
 	ReviewdAt    int64   `json:"reviewdAt"`
 	Page         int     `json:"page"`
 	Entries      []Entry `gorm:"foreignkey:IDProgression" json:"entries"`
+	CodeAdherent string
 }
 
 func CreateProgression(c *gin.Context) {
@@ -68,6 +69,10 @@ func CreateProgression(c *gin.Context) {
 	progression.ID = id.String()
 
 	progression.StartedAt = time.Now().UnixNano()
+
+	user := c.Request.Context().Value("user").(User)
+
+	progression.CodeAdherent = user.CodeAdherent
 
 	for i := 0; i < len(progression.Entries); i++ {
 		id, _ = uuid.NewRandom()
@@ -103,6 +108,29 @@ func ListProgressions(c *gin.Context) {
 }
 
 func GetProgression(c *gin.Context) {
+	var progression Progression
+	var err error
+
+	user := c.Request.Context().Value("user").(User)
+
+	progression.CodeAdherent = user.CodeAdherent
+
+	if err != nil {
+		c.JSON(412, gin.H{"error": "wrong_id"})
+		return
+	}
+
+	err = db.Where(&progression).First(&progression).Error
+	if err != nil {
+		c.JSON(500, gin.H{"error": "internal_server_error"})
+		return
+	}
+
+	c.JSON(200, gin.H{"progression": progression})
+	return
+}
+
+func GetUserProgression(c *gin.Context) {
 	var progression Progression
 	var err error
 	progression.ID = c.Param("id")

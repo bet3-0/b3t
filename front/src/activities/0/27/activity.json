@@ -1,0 +1,10 @@
+{
+    "id": "27",
+    "idParcours": "0",
+    "nom": "Fabrique un ou plusieurs tawashi",
+    "description": "Fabriquer son tawashi",
+    "duree": 20,
+    "materiel": ["Un ordinateur", "un appareil photo", "une boîte en plastique carré type tupperware", "20 pinces à linge", "une paire de ciseaux", "de vieux vêtements (propres)"],
+    "difficulte": "",
+    "pages": 1
+}

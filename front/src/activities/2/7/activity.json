@@ -1,0 +1,15 @@
+{
+  "id": "7",
+  "idParcours": "2",
+  "nom": "Théâtre d'ombres",
+  "description": " Prépare le matériel que tu as besoin (cf. matériel) et réfléchi aux personnages de ton histoire.",
+  "duree": 40,
+  "materiel": ["Règles", "Carton fort", "Crayons", "Feuilles de papier calque ou drap blanc",
+    "Peinture ou autres éléments de décorations", "Ciseaux", "Baguettes (pics à brochettes, ou pailles, ou stylos)",
+    "Scotch", "Attache parisiennes pour des marionnettes articulées", "Lampe",
+    "cadre en « bois » (4 tasseaux de bois ou boîte à céréales...)",
+    "Caméra, appareil photo, smartphone ou ordinateur pour se filmer."
+  ],
+  "difficulte": "facile",
+  "pages": 1
+}

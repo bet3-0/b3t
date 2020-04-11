@@ -1,0 +1,19 @@
+{
+    "idActivite": "35",
+    "idParcours": "0",
+    "state": "INPROGRESS",
+    "duration": 20,
+    "startedAt": 5,
+    "finishedAt": 0,
+    "reviewAt": 0,
+    "entries": [{
+        "id": 0,
+        "question": "Reproduit le tableau sur papier, rempli le, prend une photo et envoie nous la ici",
+        "documents": [],
+        "typeRendu": "file",
+        "rendu": "",
+        "state": "NOTSTARTED",
+        "tracked": true,
+        "page": 1
+    }]
+}

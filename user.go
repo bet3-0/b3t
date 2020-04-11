@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"strings"
 
@@ -12,14 +13,17 @@ type role string
 const (
 	Jeune     role = "jeune"
 	Chef           = "chef"
+	AP             = "ap"
 	Relecteur      = "relecteur"
 	Admin          = "admin"
 )
 
 type User struct {
-	CodeAdherent string `json:"code_adherent" gorm:"primary_key;unique"`
-	Role         role   `sql:"type:role" json:"role"`
-	Progression  []Progression
+	CodeAdherent            string        `json:"code_adherent" gorm:"primary_key;unique"`
+	Role                    role          `sql:"type:role" json:"role"`
+	Progressions            []Progression `gorm:"foreignkey:CodeAdherent" json:"progressions"`
+	CodeStructureGroupe     string
+	CodeStructureTerritoire string
 }
 
 func authenticate() gin.HandlerFunc {
@@ -28,18 +32,43 @@ func authenticate() gin.HandlerFunc {
 		slice := strings.Split(bearerToken, " ")
 		if len(slice) == 2 {
 			token := slice[1]
-			payload, err := verifyToken(token)
+			user, err := verifyToken(token)
 			if err != nil {
-				c.AbortWithStatusJSON(400, gin.H{"error": "invalid_token"})
+				c.AbortWithStatusJSON(401, gin.H{"error": "invalid_token"})
 				return
 			}
-			c.Header("payload", payload)
+
+			auth := context.WithValue(c, "user", user)
+			r := c.Request.WithContext(auth)
+			c.Request = r
 			c.Next()
+
 			return
 		} else {
-			c.AbortWithStatusJSON(400, gin.H{"error": "invalid_token"})
+			c.AbortWithStatusJSON(401, gin.H{"error": "invalid_token"})
 		}
 	}
+}
+
+func restrictAccess(authorizedRoles []role) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		user := c.Request.Context().Value("user").(User)
+
+		if authorized(authorizedRoles, user.Role) == false {
+			c.AbortWithError(403, fmt.Errorf("Forbidden"))
+		}
+
+		c.Next()
+	}
+}
+
+func authorized(authorizedRoles []role, userRole role) bool {
+	for _, authorizedRole := range authorizedRoles {
+		if authorizedRole == userRole {
+			return true
+		}
+	}
+	return false
 }
 
 func createUser(c *gin.Context) {
@@ -58,6 +87,12 @@ func createUser(c *gin.Context) {
 	err = db.Create(&user).Error
 	if err != nil {
 		c.JSON(500, gin.H{"error": "internal_server_error"})
+		return
+	}
+
+	err = createBucket(user.CodeAdherent)
+	if err != nil {
+		c.JSON(500, gin.H{"error": "cannot_create_user_file_space"})
 		return
 	}
 

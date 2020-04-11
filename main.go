@@ -1,32 +1,9 @@
 package main
 
 import (
-	"log"
-	"time"
-
 	"github.com/gin-contrib/static"
 	"github.com/gin-gonic/gin"
 )
-
-func Authentificator() gin.HandlerFunc {
-	return func(c *gin.Context) {
-		t := time.Now()
-
-		// Set example variable
-		c.Set("example", "12345")
-
-		// before request
-		c.Next()
-
-		// after request
-		latency := time.Since(t)
-		log.Print(latency)
-
-		// access the status we are sending
-		status := c.Writer.Status()
-		log.Println(status)
-	}
-}
 
 func main() {
 	connect()
@@ -36,30 +13,57 @@ func main() {
 
 	api := router.Group("/api")
 	{
-		api.POST("/register", createUser)
+		api.GET("/", func(c *gin.Context) {
+			c.JSON(200, gin.H{
+				"message": "Bienvenu sur l'API du BET 3.0",
+			})
+		})
+
 		api.POST("/login", login)
-		api.GET("/users", listUsers)
-		api.POST("/file", pushFile)
 
 		api.GET("/parcours", ListParcours)
 
 		api.GET("/activites", ListActivites)
 		api.GET("/activite/:idParcours/:idActivite", GetActivite)
 
-		api.POST("/progression", CreateProgression)
-		api.GET("/progressions", ListProgressions)
-		api.GET("/progression/:id", GetProgression)
-
-		api.PUT("/progression/:id", UpdateProgression)
-		api.PUT("/entry/:id", UpdateEntry)
+		// Accessible by all users
 
 		api.Use(authenticate())
-		api.GET("/", func(c *gin.Context) {
-			c.JSON(200, gin.H{
-				"message": "Welcome to the API",
-			})
-		})
+		api.POST("/file", pushFile)
+		api.GET("/file/:id", getFile)
+		api.POST("/progression", CreateProgression)
+		api.GET("/progression", GetProgression)
+		api.PUT("/progression", UpdateProgression)
+		api.PUT("/entry", UpdateEntry)
 
+		// Accessible by Relecteur, AP, Chef and Admin only
+
+		api.Use(restrictAccess([]role{role("relecteur"), role("ap"), role("chef"), role("admin")}))
+		api.GET("/groupe", GetGroupe)
+		api.GET("/groupe/progressions", ListGroupeProgressions)
+		//api.GET("/groupe/userprogression/:id", GetGroupeUserProgression)
+
+		// Accessible by Relecteur, AP and Admin only
+
+		api.Use(restrictAccess([]role{role("relecteur"), role("ap"), role("admin")}))
+		api.GET("/territoire", GetTerritoire)
+		api.GET("/territoire/progressions", ListTerritoireProgressions)
+		//api.GET("/territoire/userprogression/:id", GetTerritoireUserProgression)
+
+		// Accessible by Relecteurs and Admins only
+
+		api.Use(restrictAccess([]role{role("relecteur"), role("admin")}))
+		api.GET("/userfile/:code_adherent/:id", getUserFile)
+		api.GET("/progressions", ListProgressions)
+		api.GET("/userprogression/:id", GetUserProgression)
+
+		// Accessible by Admins only
+
+		api.Use(restrictAccess([]role{role("admin")}))
+		api.POST("/register", createUser)
+		api.GET("/users", listUsers)
+		api.POST("/groupe", CreateGroupe)
+		api.POST("/territoire", CreateTerritoire)
 	}
 
 	router.Run() // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")

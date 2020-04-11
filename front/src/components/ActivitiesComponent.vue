@@ -4,7 +4,7 @@
         <div class="row mb-5 mt-1">
             <div class="col-4" style="text-align: center">
                 <button class="choice" @click.prevent.stop.capture="change('parcours')" :class="parcours">Ordre
-                    alpabetique
+                    alphabétique
                 </button>
             </div>
             <div class="col-4" style="text-align: center">
@@ -29,7 +29,7 @@
                     <th scope="col"></th>
                     <th scope="col">Nom</th>
                     <th scope="col">Difficulté</th>
-                    <th scope="col">durée</th>
+                    <th scope="col">Durée</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -72,7 +72,6 @@
                 parcours: '',
                 duration: '',
                 difficulte: '',
-                red: '',
                 currentActivity: {},
                 activities: [],
                 displayActivities: []
@@ -127,16 +126,13 @@
                         if (item.duree < other.duree) {
                             return -1;
                         }
-                        if (item.duree > other.duree) {
                             return 1;
-                        }
                     })
                 }
 
                 data === 'parcours' ? this[data] = this[data] === '' ? 'active' : '' : this.parcours = ''
                 data === 'duration' ? this[data] = this[data] === '' ? 'active' : '' : this.duration = ''
                 data === 'difficulte' ? this[data] = this[data] === '' ? 'active' : '' : this.difficulte = ''
-                data === 'red' ? this[data] = this[data] === '' ? 'active' : '' : this.red = ''
             },
 
            getParcoursName: itineraryHelpers.getParcoursName

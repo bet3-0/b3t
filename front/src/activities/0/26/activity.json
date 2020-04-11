@@ -1,0 +1,10 @@
+{
+    "id": "26",
+    "idParcours": "0",
+    "nom": "Fabrique ton Gel douche",
+    "description": "Apprendre à faire son gel douche",
+    "duree": 15,
+    "materiel": ["Un ordinateur", "100 g de savon d’Alep ", "25 mL de glycérine", "450 mL d’eau chaude", "10 gouttes d’huiles essentielles de lavande", "une casserole", "une spatule", "une bouilloire", "une rape"],
+    "difficulte": "",
+    "pages": 1
+}

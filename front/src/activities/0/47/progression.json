@@ -1,0 +1,23 @@
+{
+    "id": "Server-side generated UUID",
+    "idActivite": "47",
+    "idParcours": "0",
+    "state": "INPROGRESS",
+    "duration": 15,
+    "startedAt": 0,
+    "finishedAt": 0,
+    "reviewAt": 0,
+    "entries": [
+        {
+            "id": 0,
+            "question":
+                "Envoie nous ton inplantation de camp",
+            "documents": [],
+            "typeRendu": "file",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 1
+        }
+    ]
+}

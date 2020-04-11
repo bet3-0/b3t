@@ -1,0 +1,80 @@
+{
+    "idActivite": "30",
+    "idParcours": "0",
+    "state": "INPROGRESS",
+    "duration": 10,
+    "startedAt": 0,
+    "finishedAt": 0,
+    "reviewAt": 0,
+    "entries": [{
+            "id": 0,
+            "question": "Quel classe d'aliment vas dans le numero 1 de la pyramide?",
+            "documents": [],
+            "typeRendu": "text",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 1
+        },
+        {
+            "id": 1,
+            "question": "Quel classe d'aliment vas dans le numero 2 de la pyramide?",
+            "documents": [],
+            "typeRendu": "text",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 1
+        },
+        {
+            "id": 2,
+            "question": "Quel classe d'aliment vas dans le numero 3 de la pyramide?",
+            "documents": [],
+            "typeRendu": "text",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 1
+        },
+        {
+            "id": 3,
+            "question": "Quel classe d'aliment vas dans le numero 4 de la pyramide?",
+            "documents": [],
+            "typeRendu": "file",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 1
+        },
+        {
+            "id": 4,
+            "question": "Quel classe d'aliment vas dans le numero 5 de la pyramide?",
+            "documents": [],
+            "typeRendu": "text",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 1
+        },
+        {
+            "id": 5,
+            "question": "Quel classe d'aliment vas dans le numero 6 de la pyramide?",
+            "documents": [],
+            "typeRendu": "text",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 1
+        },
+        {
+            "id": 6,
+            "question": "Quelles sont tes habitudes alimentaires? Combien de portions de chaque catégorie d’aliments manges tu par jour en moyenne?",
+            "documents": [],
+            "typeRendu": "text",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 1
+        }
+    ]
+}

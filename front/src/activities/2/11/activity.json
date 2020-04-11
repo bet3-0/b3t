@@ -4,7 +4,7 @@
   "nom": "Poterie en pâte à modeler",
   "description": "Représente un village gaulois avec de la pâte à modeler à l’aide de tes mains",
   "duree": 15,
-  "materiel": ["Pâte à modeler","Prendre une photo"],
+  "materiel": ["Pâte à modeler", "Prendre une photo"],
   "difficulte": "facile",
   "pages": 2
 }
