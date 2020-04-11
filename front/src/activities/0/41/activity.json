@@ -1,0 +1,14 @@
+{
+  "id": "41",
+  "idParcours": "0",
+  "nom": "Réveil au  clairon mais gare à la luxation",
+  "description": "Il existe différents types d’exercice pour préparer ton corps à une nouvelle journée ou à un effort physique. Le programme s’adapte en fonction de s’il s’agit d’un échauffement au réveil après une nuit sous la tente (mieux vaut commencer tout doux) ou avant le plus grand poule-renard-vipère de tous les temps !",
+  "duree": 15,
+  "materiel": [
+    "Moyen d’accès à la plateforme",
+    "Une tenue confortable pour tester des exercices",
+    "Un moyen de prendre des photos (facultatif)"
+  ],
+  "difficulte": "facile",
+  "pages": 2
+}
