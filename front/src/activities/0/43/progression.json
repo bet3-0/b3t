@@ -9,7 +9,7 @@
     "reviewAt": 0,
     "entries": [
         {
-            "id": 0,
+            "position": 0,
             "question":
                 "Te sens-tu relaxé·e, détendu·e ?",
             "documents": [],
@@ -20,7 +20,7 @@
             "page": 2
         },
         {
-            "id": 1,
+            "position": 1,
             "question":
                 "Qu’as-tu ressenti ?",
             "documents": [],
@@ -31,7 +31,7 @@
             "page": 2
         },
         {
-            "id": 2,
+            "position": 2,
             "question":
                 "Pense-tu reprendre un temps comme celui-ci dans le futur ?",
             "documents": [],
@@ -42,7 +42,7 @@
             "page": 2
         },
         {
-            "id": 3,
+            "position": 3,
             "question":
                 "Qu’as-tu observé ?",
             "documents": [],
@@ -53,7 +53,7 @@
             "page": 2
         },
         {
-            "id": 4,
+            "position": 4,
             "question":
                 "As-tu découvert de nouvelles choses sur toi ?",
             "documents": [],

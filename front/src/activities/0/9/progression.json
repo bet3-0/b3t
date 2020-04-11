@@ -8,7 +8,7 @@
     "reviewAt": 0,
     "entries": [
         {
-            "id": 0,
+            "position": 0,
             "question":
                 "Ton meilleur ami à se brûle en mettant la main sur une des pierres tenant la grille de la table à feu. Dans quelle ordre réalise tu les actions suivante ?",
             "documents": [],
@@ -23,7 +23,7 @@
             "page": 1
         },
         {
-            "id": 1,
+            "position": 1,
             "question":
                 "Un ami se coupe en voulant tailler un bout de bois alors que vous êtes en explo. Que fais-tu? Remets dans l’ordre les étapes suivantes.",
             "documents": [],
@@ -38,7 +38,7 @@
             "page": 2
         },
         {
-            "id": 2,
+            "position": 2,
             "question": "Est ce que tu vois des étapes dans la réaction commune aux deux situation? Si oui, lesquelles? ",
             "documents": [],
             "typeRendu": "text",
@@ -48,7 +48,7 @@
             "page": 3
         },
         {
-            "id": 3,
+            "position": 3,
             "question": "Dans quel ordre mettrais tu ces étapes?",
             "documents": [],
             "typeRendu": "orderList",

@@ -8,7 +8,7 @@
     "reviewAt": 0,
     "entries": [
         {
-            "id": 0,
+            "position": 0,
             "question":
                 "Envoie nous ton résultat ici",
             "documents": [],
@@ -19,7 +19,7 @@
             "page": 1
         },
         {
-            "id": 1,
+            "position": 1,
             "question":
                 "Si tu as un lien à nous envoyer et/ou un commentaire à faire c'est ici",
             "documents": [],

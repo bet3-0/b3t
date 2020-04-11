@@ -9,7 +9,7 @@
     "reviewAt": 0,
     "entries": [
         {
-            "id": 0,
+            "position": 0,
             "question":
                 "Selon toi, qu’est-ce que le handicap ? Essaie de donner une définition.",
             "documents": [],
@@ -20,7 +20,7 @@
             "page": 1
         },
         {
-            "id": 1,
+            "position": 1,
             "question":
                 "Est-ce que tous les handicaps se voient ?",
             "documents": [],
@@ -31,7 +31,7 @@
             "page": 1
         },
         {
-            "id": 2,
+            "position": 2,
             "question":
                 "Connais-tu des types de handicap ? ",
             "documents": [],
@@ -42,7 +42,7 @@
             "page": 1
         },
         {
-            "id": 3,
+            "position": 3,
             "question":
                 "A ton avis, peut-on être scout et en situation de handicap ?",
             "documents": [],
@@ -53,7 +53,7 @@
             "page": 1
         },
         {
-            "id": 4,
+            "position": 4,
             "question":
                 "Qu’as-tu ressenti lors de cette activité ?",
             "documents": [],
@@ -64,7 +64,7 @@
             "page": 3
         },
         {
-            "id": 5,
+            "position": 5,
             "question":
                 "As tu des questions ou des remarques sur le contenu de cette activité ?",
             "documents": [],

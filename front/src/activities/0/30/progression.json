@@ -7,7 +7,7 @@
     "finishedAt": 0,
     "reviewAt": 0,
     "entries": [{
-            "id": 0,
+            "position": 0,
             "question": "Quel classe d'aliment vas dans le numero 1 de la pyramide?",
             "documents": [],
             "typeRendu": "text",
@@ -17,7 +17,7 @@
             "page": 1
         },
         {
-            "id": 1,
+            "position": 1,
             "question": "Quel classe d'aliment vas dans le numero 2 de la pyramide?",
             "documents": [],
             "typeRendu": "text",
@@ -27,7 +27,7 @@
             "page": 1
         },
         {
-            "id": 2,
+            "position": 2,
             "question": "Quel classe d'aliment vas dans le numero 3 de la pyramide?",
             "documents": [],
             "typeRendu": "text",
@@ -37,7 +37,7 @@
             "page": 1
         },
         {
-            "id": 3,
+            "position": 3,
             "question": "Quel classe d'aliment vas dans le numero 4 de la pyramide?",
             "documents": [],
             "typeRendu": "file",
@@ -47,7 +47,7 @@
             "page": 1
         },
         {
-            "id": 4,
+            "position": 4,
             "question": "Quel classe d'aliment vas dans le numero 5 de la pyramide?",
             "documents": [],
             "typeRendu": "text",
@@ -57,7 +57,7 @@
             "page": 1
         },
         {
-            "id": 5,
+            "position": 5,
             "question": "Quel classe d'aliment vas dans le numero 6 de la pyramide?",
             "documents": [],
             "typeRendu": "text",
@@ -67,7 +67,7 @@
             "page": 1
         },
         {
-            "id": 6,
+            "position": 6,
             "question": "Quelles sont tes habitudes alimentaires? Combien de portions de chaque catégorie d’aliments manges tu par jour en moyenne?",
             "documents": [],
             "typeRendu": "text",

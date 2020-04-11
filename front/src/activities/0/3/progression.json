@@ -8,7 +8,7 @@
     "reviewAt": 0,
     "entries": [
         {
-            "id": 0,
+            "position": 0,
             "question": "Liste les endroits à ne pas oublier lorsqu’on se lave les mains",
             "documents": [],
             "typeRendu": "text",
@@ -18,7 +18,7 @@
             "page": 2
         },
         {
-            "id": 1,
+            "position": 1,
             "question": "Que peut-on utiliser pour se laver les mains lorsqu’on n’ a pas accès à un point d’eau ?",
             "documents": [],
             "typeRendu": "text",

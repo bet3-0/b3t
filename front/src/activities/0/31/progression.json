@@ -7,7 +7,7 @@
     "finishedAt": 0,
     "reviewAt": 0,
     "entries": [{
-            "id": 0,
+            "position": 0,
             "question": "Quel est la portion idéale pour les protéines animales et végétales?",
             "documents": [],
             "typeRendu": "text",
@@ -17,7 +17,7 @@
             "page": 1
         },
         {
-            "id": 1,
+            "position": 1,
             "question": "Quel est la portion idéale pour les légumes?",
             "documents": [],
             "typeRendu": "text",
@@ -27,7 +27,7 @@
             "page": 1
         },
         {
-            "id": 2,
+            "position": 2,
             "question": "Quel est la portion idéale pour les fruits?",
             "documents": [],
             "typeRendu": "text",
@@ -37,7 +37,7 @@
             "page": 1
         },
         {
-            "id": 3,
+            "position": 3,
             "question": "Quel est la portion idéale pour les céréales?",
             "documents": [],
             "typeRendu": "file",
@@ -47,7 +47,7 @@
             "page": 1
         },
         {
-            "id": 4,
+            "position": 4,
             "question": "Quel est la portion idéale pour les graisse, huiles et sucrés?",
             "documents": [],
             "typeRendu": "text",
@@ -57,7 +57,7 @@
             "page": 1
         },
         {
-            "id": 5,
+            "position": 5,
             "question": "Quel est la portion idéale pour les produits laitiers?",
             "documents": [],
             "typeRendu": "text",
@@ -67,7 +67,7 @@
             "page": 1
         },
         {
-            "id": 6,
+            "position": 6,
             "question": "Quelles sont tes habitudes alimentaires? Combien de portions de chaque catégorie d’aliments manges tu par jour en moyenne?",
             "documents": [],
             "typeRendu": "text",

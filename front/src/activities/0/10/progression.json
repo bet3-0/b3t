@@ -8,7 +8,7 @@
     "reviewAt": 0,
     "entries": [
         {
-            "id": 0,
+            "position": 0,
             "question":
                 "Situation 1 : Ton meilleur ami à se brûle en mettant la main sur une des pierres tenant la grille de la table à feu.",
             "documents": [],
@@ -44,7 +44,7 @@
             "page": 1
         },
         {
-            "id": 1,
+            "position": 1,
             "question":
                 "Situation 2 : Un ami se coupe en voulant tailler un bout de bois alors que vous êtes en explo.",
             "documents": [],
@@ -80,7 +80,7 @@
             "page": 2
         },
         {
-            "id": 2,
+            "position": 2,
             "question": "Question suivante",
             "documents": [],
             "typeRendu": "qcm",
@@ -103,7 +103,7 @@
             "page": 3
         },
         {
-            "id": 3,
+            "position": 3,
             "question": "Dans quel ordre mettrais tu ces étapes? ",
             "documents": [],
             "typeRendu": "orderList",

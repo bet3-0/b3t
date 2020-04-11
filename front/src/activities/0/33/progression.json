@@ -7,7 +7,7 @@
     "finishedAt": 0,
     "reviewAt": 0,
     "entries": [{
-            "id": 0,
+            "position": 0,
             "question": "Envoie nous une photo de ton menus pour le petit déjeuner ici:",
             "documents": [],
             "typeRendu": "file",
@@ -17,7 +17,7 @@
             "page": 1
         },
         {
-            "id": 1,
+            "position": 1,
             "question": "Envoie nous une photo de ton menus pour le déjeuner ici:",
             "documents": [],
             "typeRendu": "file",
@@ -27,7 +27,7 @@
             "page": 1
         },
         {
-            "id": 2,
+            "position": 2,
             "question": "Envoie nous une photo de ton menus pour le gouter ici:",
             "documents": [],
             "typeRendu": "file",
@@ -37,7 +37,7 @@
             "page": 1
         },
         {
-            "id": 3,
+            "position": 3,
             "question": "Envoie nous une photo de ton menus pour diner ici:",
             "documents": [],
             "typeRendu": "file",

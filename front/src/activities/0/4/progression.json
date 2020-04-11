@@ -7,7 +7,7 @@
     "reviewAt": 0,
     "entries": [
         {
-            "id": 0,
+            "position": 0,
             "question": "As tu déjà fait un porte savon autrement ou as tu une idée pour le faire autrement ?",
             "documents": [],
             "typeRendu": "text",
@@ -17,7 +17,7 @@
             "page": 3
         },
         {
-            "id": 1,
+            "position": 1,
             "question": "Quel est l’intérêt selon toi d’avoir de l’eau et du savon à proximité des feuillées? ",
             "documents": [],
             "typeRendu": "text",
@@ -27,7 +27,7 @@
             "page": 3
         },
 		{
-            "id": 2,
+            "position": 2,
             "question": "Quelles sont tes habitudes d’hygiène en camp?",
             "documents": [],
             "typeRendu": "text",
@@ -37,7 +37,7 @@
             "page": 3
         },
 		{
-            "id": 3,
+            "position": 3,
             "question": "Prends une photo de ta réalisation et envoie la pour validation.",
             "documents": [],
             "typeRendu": "file",
