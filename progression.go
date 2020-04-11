@@ -176,6 +176,28 @@ func UpdateProgression(c *gin.Context) {
 	return
 }
 
+func UpdateUserProgression(c *gin.Context) {
+	var progression Progression
+
+	err := c.BindJSON(&progression)
+	if err != nil {
+		fmt.Println(err)
+		c.JSON(400, gin.H{
+			"error": "failed_to_map_progression",
+		})
+		return
+	}
+
+	err = db.Save(&progression).Error
+	if err != nil {
+		c.JSON(500, gin.H{"error": "internal_server_error"})
+		return
+	}
+
+	c.JSON(200, gin.H{"message": "updated_progression"})
+	return
+}
+
 func UpdateEntry(c *gin.Context) {
 	var entry Entry
 

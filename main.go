@@ -53,6 +53,7 @@ func main() {
 		api.GET("/file/:code_adherent/:id", getUserFile)
 		api.GET("/user/progressions", ListFinishedProgressions)
 		api.GET("/user/progression/:id", GetUserProgression)
+		api.PUT("/user/progression", UpdateUserProgression)
 
 		// Accessible by Admins only
 
