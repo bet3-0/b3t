@@ -97,7 +97,7 @@ func ListProgressions(c *gin.Context) {
 
 	var progressions []Progression
 
-	err := db.Preload("Entries").Find(&progressions).Error
+	err := db.Find(&progressions).Error
 	if err != nil {
 		c.JSON(500, gin.H{"error": "internal_server_error"})
 		return
@@ -120,7 +120,7 @@ func GetProgression(c *gin.Context) {
 		return
 	}
 
-	err = db.Where(&progression).First(&progression).Error
+	err = db.Where(&progression).Preload("Entries").First(&progression).Error
 	if err != nil {
 		c.JSON(500, gin.H{"error": "internal_server_error"})
 		return
