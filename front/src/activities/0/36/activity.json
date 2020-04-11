@@ -1,0 +1,10 @@
+{
+  "id": "36",
+  "idParcours": "0",
+  "nom": "Y a-t-il du sucre partout ?",
+  "description": "Prendre conscience de la quantité de sucre se trouvant dans nos aliments.",
+  "duree": 15,
+  "materiel": ["Aucun matériel nécessaire"],
+  "difficulte": "simple",
+  "pages": 2
+}
