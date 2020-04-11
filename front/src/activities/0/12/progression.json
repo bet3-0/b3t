@@ -1,4 +1,5 @@
 {
+  "id": "Server-side generated UUID",
   "idActivite": 12,
   "idParcours": 0,
   "state": "enum(NOTSTARTED,INPROGRESS,FINISHED, VALIDATED,REFUSED)",
