@@ -11,7 +11,7 @@ import (
 func generateToken(user User) string {
 	var claims jwt.Claims
 	claims.Issued = jwt.NewNumericTime(time.Now().Round(time.Second))
-	claims.Set = map[string]interface{}{"code_adherent": user.CodeAdherent, "role": user.Role}
+	claims.Set = map[string]interface{}{"code_adherent": user.CodeAdherent, "role": user.Role, "code_structure_groupe": user.CodeStructureGroupe, "code_structure_territoire": user.CodeStructureTerritoire}
 	// issue a JWT
 	token, err := claims.HMACSign("HS512", []byte(os.Getenv("JWT_SECRET")))
 	if err != nil {
@@ -32,10 +32,14 @@ func verifyToken(token string) (User, error) {
 
 	codeAdherent, _ := claims.String("code_adherent")
 	roleAdherent, _ := claims.String("role")
+	codeStructureGroupe, _ := claims.String("code_structure_groupe")
+	codeStructureTerritoire, _ := claims.String("code_structure_territoire")
 
 	user := User{
-		CodeAdherent: codeAdherent,
-		Role:         role(roleAdherent),
+		CodeAdherent:            codeAdherent,
+		Role:                    role(roleAdherent),
+		CodeStructureGroupe:     codeStructureGroupe,
+		CodeStructureTerritoire: codeStructureTerritoire,
 	}
 	return user, nil
 }

@@ -36,6 +36,20 @@ func main() {
 		api.PUT("/progression", UpdateProgression)
 		api.PUT("/entry", UpdateEntry)
 
+		// Accessible by Relecteur, AP, Chef and Admin only
+
+		api.Use(restrictAccess([]role{role("relecteur"), role("ap"), role("chef"), role("admin")}))
+		api.GET("/groupe", GetGroupe)
+		api.GET("/groupe/progressions", ListGroupeProgressions)
+		//api.GET("/groupe/userprogression/:id", GetGroupeUserProgression)
+
+		// Accessible by Relecteur, AP and Admin only
+
+		api.Use(restrictAccess([]role{role("relecteur"), role("ap"), role("admin")}))
+		api.GET("/territoire", GetTerritoire)
+		api.GET("/territoire/progressions", ListTerritoireProgressions)
+		//api.GET("/territoire/userprogression/:id", GetTerritoireUserProgression)
+
 		// Accessible by Relecteurs and Admins only
 
 		api.Use(restrictAccess([]role{role("relecteur"), role("admin")}))
@@ -48,6 +62,8 @@ func main() {
 		api.Use(restrictAccess([]role{role("admin")}))
 		api.POST("/register", createUser)
 		api.GET("/users", listUsers)
+		api.POST("/groupe", CreateGroupe)
+		api.POST("/territoire", CreateTerritoire)
 	}
 
 	router.Run() // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")

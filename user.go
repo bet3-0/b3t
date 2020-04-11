@@ -13,14 +13,17 @@ type role string
 const (
 	Jeune     role = "jeune"
 	Chef           = "chef"
+	AP             = "ap"
 	Relecteur      = "relecteur"
 	Admin          = "admin"
 )
 
 type User struct {
-	CodeAdherent string        `json:"code_adherent" gorm:"primary_key;unique"`
-	Role         role          `sql:"type:role" json:"role"`
-	Progressions []Progression `gorm:"foreignkey:CodeAdherent" json:"progressions"`
+	CodeAdherent            string        `json:"code_adherent" gorm:"primary_key;unique"`
+	Role                    role          `sql:"type:role" json:"role"`
+	Progressions            []Progression `gorm:"foreignkey:CodeAdherent" json:"progressions"`
+	CodeStructureGroupe     string
+	CodeStructureTerritoire string
 }
 
 func authenticate() gin.HandlerFunc {
