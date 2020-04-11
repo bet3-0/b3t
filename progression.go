@@ -94,11 +94,26 @@ func CreateProgression(c *gin.Context) {
 	return
 }
 
-func ListProgressions(c *gin.Context) {
+func ListMyProgressions(c *gin.Context) {
+	var progressions []Progression
+
+	user := c.Request.Context().Value("user").(User)
+
+	err := db.Where("code_adherent = ?", user.CodeAdherent).Find(&progressions).Error
+	if err != nil {
+		c.JSON(500, gin.H{"error": "internal_server_error"})
+		return
+	}
+
+	c.JSON(200, gin.H{"progressions": progressions})
+	return
+}
+
+func ListFinishedProgressions(c *gin.Context) {
 
 	var progressions []Progression
 
-	err := db.Find(&progressions).Error
+	err := db.Where("state = ?", "FINISHED").Find(&progressions).Error
 	if err != nil {
 		c.JSON(500, gin.H{"error": "internal_server_error"})
 		return

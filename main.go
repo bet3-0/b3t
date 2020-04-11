@@ -41,14 +41,12 @@ func main() {
 		api.Use(restrictAccess([]role{role("relecteur"), role("ap"), role("chef"), role("admin")}))
 		api.GET("/groupe", GetGroupe)
 		api.GET("/groupe/progressions", ListGroupeProgressions)
-		//api.GET("/groupe/userprogression/:id", GetGroupeUserProgression)
 
 		// Accessible by Relecteur, AP and Admin only
 
 		api.Use(restrictAccess([]role{role("relecteur"), role("ap"), role("admin")}))
 		api.GET("/territoire", GetTerritoire)
 		api.GET("/territoire/progressions", ListTerritoireProgressions)
-		//api.GET("/territoire/userprogression/:id", GetTerritoireUserProgression)
 
 		// Accessible by Relecteurs and Admins only
 
