@@ -1,0 +1,40 @@
+{
+    "id": "Server-side generated UUID",
+    "idActivite": "6",
+    "idParcours": "1",
+    "state": "INPROGRESS",
+    "duration": 10,
+    "startedAt": 0,
+    "finishedAt": 0,
+    "reviewAt": 0,
+    "entries": [
+
+        {
+            "id": 0,
+            "question": "Remets dans l'ordre les éléments suivants",
+            "documents": [],
+            "typeRendu": "orderList",
+            "rendu": [
+                "Sortir les ingrédients dans l’ordre de la préparation",
+                "Surveiller la cuisson",
+                "Laver les ingrédients qui le nécessitent",
+                "Sortir le matériel",
+                "Nettoyer la vaisselle et le plan de travail",
+                "Lancer la cuisson",
+                "Servir",
+                "Maintenir au chaud",
+                "Se laver les mains",
+                "Éplucher",
+                "Organiser son plan de travail",
+                "Découper, râper, rincer, …",
+                "Égoutter les ingrédient qui le nécessitent",
+                "Préchauffer le four ou faire le feu"
+
+            ],
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 1
+        }
+
+    ]
+}
