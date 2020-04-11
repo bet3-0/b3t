@@ -1,0 +1,158 @@
+{
+    "id": "Server-side generated UUID",
+    "idActivite": "40",
+    "idParcours": "0",
+    "state": "INPROGRESS",
+    "duration": 20,
+    "startedAt": 0,
+    "finishedAt": 0,
+    "reviewAt": 0,
+    "entries": [
+        {
+            "id": 0,
+            "question": "Qu’est ce que cette image signifie pour toi? ",
+            "documents": [],
+            "typeRendu": "text",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 1
+        },
+        {
+            "id": 1,
+            "question": "Connais tu des gens qui fume?",
+            "documents": [],
+            "typeRendu": "text",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 1
+        },
+        {
+            "id": 2,
+            "question": "Consomme tu de l’alcool et/ou du tabac?",
+            "documents": [],
+            "typeRendu": "text",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 1
+        },
+        {
+            "id": 3,
+            "question": "Savais tu qu’une cigarette contient autant de composants? En connais tu certains?",
+            "documents": [],
+            "typeRendu": "text",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 2
+        },
+        {
+            "id": 4,
+            "question": "ma super question?",
+            "documents": [],
+            "typeRendu": "qcm",
+            "rendu": [{
+                    "question": "L’alcool est responsable de 10 000 décès par ans.",
+                    "reponses": [
+                        "Vrai",
+                        "Faux"
+                    ]
+                },
+                {
+                    "question": "La fumée de cigarette contient ⅔ trucs chimiques.",
+                    "reponses": [
+                        "Vrai",
+                        "Faux"
+                    ]
+                },
+                {
+                    "question": "Que tu commences à fumer à 7 ou 77 ans cela ne fait aucune différence.",
+                    "reponses": [
+                        "Vrai",
+                        "Faux"
+                    ]
+                },
+                {
+                    "question": "Lequel ou lesquels de ces symptômes peut traduire une dépendance à l’alcool?",
+                    "reponses": [
+                        "Le fait de boire toujours plus",
+                        "Le fait d’avoir les mains qui tremblent ",
+                        "Le fait de ne plus éprouver aucun intérêt pour les autres"
+                    ]
+                },
+                {
+                    "question":"L’alcool réchauffe",
+                    "reponses": [
+                        "Vrai",
+                        "Faux"
+                    ]
+                },
+                {
+                    "question": "Tu cours plus de risques en traversant la rue qu’en fumant une cigarette",
+                    "reponses": [
+                        "Vrai",
+                        "Faux"
+                    ]
+                },
+                {
+                    "question": "Les français sont parmi les plus gros consommateurs d’alcool au monde",
+                    "reponses": [
+                        "Vrai",
+                        "Faux"
+                    ]
+                },
+                {
+                    "question": "La chicha? (coche les affirmations correct)",
+                    "reponses": [
+                        "Une séance de chicha = 40 à 200 cigarettes",
+                        "est moins dangereuse que la cigarette ordinaire",
+                        "est responsable de maladies des poumons",
+                        "Sa dangerosité est atténuée par l’eau qui retient les composés toxiques"
+                    ]
+                },
+                {
+                    "question": "Qui supporte le moins bien l’alcool?",
+                    "reponses": [
+                        "les femmes",
+                        "les hommes",
+                        "les licornes"
+                    ]
+                },
+                {
+                    "question": "Est ce qu’éviter d’avaler la fumée de cigarette limite les risques pour la santé?",
+                    "reponses": [
+                        "Vrai",
+                        "Faux"
+                    ]
+                }
+            ],
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 2
+        },
+        {
+            "id": 5,
+            "question":
+                "Est ce que ces informations, te font te poser des questions? SI oui, n’hésites pas à les poser ici, nous essaierons de te répondre. (Ces questions sont anonymes).",
+            "documents": [],
+            "typeRendu": "text",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 4
+        },
+        {
+            "id": 6,
+            "question":
+                "Qu’as tu retenu? Certaines choses t’ont paru étonnantes? Si oui, lesquelles?",
+            "documents": [],
+            "typeRendu": "text",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 4
+        }
+    ]
+}
