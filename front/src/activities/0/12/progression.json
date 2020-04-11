@@ -1,5 +1,6 @@
 {
-  "id": 12, // activity id
+  "idActivite": 12,
+  "idParcours": 0,
   "state": "enum(NOTSTARTED,INPROGRESS,FINISHED, VALIDATED,REFUSED)",
   "duration": 10,
   "startedAt": 15,
@@ -14,7 +15,7 @@
       "rendu": "",
       "state": "notStarted",
       "tracked": true,
-      "page": 2 // page where to display the entry
+      "page": 2
     },
     {
       "id": 1,
@@ -29,7 +30,7 @@
       ],
       "state": "notStarted",
       "tracked": true,
-      "page": 2 // page where to display the entry
+      "page": 2
     }
   ]
 }
