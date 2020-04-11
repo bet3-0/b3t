@@ -1,0 +1,67 @@
+{
+    "id": "Server-side generated UUID",
+    "idActivite": "0",
+    "idParcours": "0",
+    "state": "INPROGRESS",
+    "duration": 0,
+    "startedAt": 0,
+    "finishedAt": 0,
+    "reviewAt": 0,
+    "entries": [
+        {
+            "id": 0,
+            "question":
+                "Te sens-tu relaxé·e, détendu·e ?",
+            "documents": [],
+            "typeRendu": "text",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 2
+        },
+        {
+            "id": 1,
+            "question":
+                "Qu’as-tu ressenti ?",
+            "documents": [],
+            "typeRendu": "text",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 2
+        },
+        {
+            "id": 2,
+            "question":
+                "Pense-tu reprendre un temps comme celui-ci dans le futur ?",
+            "documents": [],
+            "typeRendu": "text",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 2
+        },
+        {
+            "id": 3,
+            "question":
+                "Qu’as-tu observé ?",
+            "documents": [],
+            "typeRendu": "text",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 2
+        },
+        {
+            "id": 4,
+            "question":
+                "As-tu découvert de nouvelles choses sur toi ?",
+            "documents": [],
+            "typeRendu": "text",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 2
+        }
+    ]
+}
