@@ -1,4 +1,5 @@
 {
+  "id": "Server-side generated UUID",
   "idActivite": 12,
   "idParcours": 0,
   "state": "enum(NOTSTARTED,INPROGRESS,FINISHED, VALIDATED,REFUSED)",
@@ -25,7 +26,7 @@
       "rendu": [
         {
           "question": "Sais-tu qui appeler selon la situation ?",
-          "reponses": [18, 17, 15, 112, 114, 196]
+          "reponses": "18;17;15;112;114;196"
         }
       ],
       "state": "notStarted",
