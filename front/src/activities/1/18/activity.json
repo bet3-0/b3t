@@ -1,0 +1,10 @@
+{
+  "id": "18",
+  "idParcours": "1",
+  "nom": "Ca va swinguer !",
+  "description": "",
+  "duree": 20,
+  "materiel": ["Eponge", "eau", "savon", "Bonne humeur"],
+  "difficulte": "facile",
+  "pages": 1
+}
