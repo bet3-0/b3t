@@ -1,0 +1,10 @@
+{
+    "id": "6",
+    "idParcours": "1",
+    "nom": "Je m’organise pour cuisiner",
+    "description": "Panoramix veut montrer à ses amis Astérix et Obélix qu’il est important d’organiser étapes par étapes un repas pour qu’au final la préparation du repas se passe du mieux possible. Pour cela, il leur demande de remettre dans l’ordre un certain nombre d’étapes.",
+    "duree": 10,
+    "materiel": [""],
+    "difficulte": "facile",
+    "pages": 1
+}
