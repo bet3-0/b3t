@@ -22,8 +22,8 @@ type User struct {
 	CodeAdherent            string        `json:"code_adherent" gorm:"primary_key;unique"`
 	Role                    role          `sql:"type:role" json:"role"`
 	Progressions            []Progression `gorm:"foreignkey:CodeAdherent" json:"progressions"`
-	CodeStructureGroupe     string
-	CodeStructureTerritoire string
+	CodeStructureGroupe     string        `json:"code_structure_groupe"`
+	CodeStructureTerritoire string        `json:"code_structure_territoire"`
 }
 
 func authenticate() gin.HandlerFunc {
