@@ -95,17 +95,25 @@ func CreateProgression(c *gin.Context) {
 }
 
 func ListMyProgressions(c *gin.Context) {
-	var progressions []Progression
+	var progression Progression
+	var err error
 
 	user := c.Request.Context().Value("user").(User)
 
-	err := db.Where("code_adherent = ?", user.CodeAdherent).Find(&progressions).Error
+	progression.CodeAdherent = user.CodeAdherent
+
+	if err != nil {
+		c.JSON(412, gin.H{"error": "wrong_id"})
+		return
+	}
+
+	err = db.Where(&progression).Preload("Entries").Find(&progression).Error
 	if err != nil {
 		c.JSON(500, gin.H{"error": "internal_server_error"})
 		return
 	}
 
-	c.JSON(200, gin.H{"progressions": progressions})
+	c.JSON(200, gin.H{"progression": progression})
 	return
 }
 
@@ -120,29 +128,6 @@ func ListFinishedProgressions(c *gin.Context) {
 	}
 
 	c.JSON(200, gin.H{"progressions": progressions})
-	return
-}
-
-func GetProgression(c *gin.Context) {
-	var progression Progression
-	var err error
-
-	user := c.Request.Context().Value("user").(User)
-
-	progression.CodeAdherent = user.CodeAdherent
-
-	if err != nil {
-		c.JSON(412, gin.H{"error": "wrong_id"})
-		return
-	}
-
-	err = db.Where(&progression).Preload("Entries").First(&progression).Error
-	if err != nil {
-		c.JSON(500, gin.H{"error": "internal_server_error"})
-		return
-	}
-
-	c.JSON(200, gin.H{"progression": progression})
 	return
 }
 
