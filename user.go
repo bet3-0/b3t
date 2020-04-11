@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"strings"
 
@@ -28,14 +29,17 @@ func authenticate() gin.HandlerFunc {
 		slice := strings.Split(bearerToken, " ")
 		if len(slice) == 2 {
 			token := slice[1]
-			codeAdherent, role, err := verifyToken(token)
+			user, err := verifyToken(token)
 			if err != nil {
 				c.AbortWithStatusJSON(400, gin.H{"error": "invalid_token"})
 				return
 			}
-			c.Header("code_adherent", codeAdherent)
-			c.Header("role", role)
+
+			auth := context.WithValue(c, "user", user)
+			r := c.Request.WithContext(auth)
+			c.Request = r
 			c.Next()
+
 			return
 		} else {
 			c.AbortWithStatusJSON(400, gin.H{"error": "invalid_token"})

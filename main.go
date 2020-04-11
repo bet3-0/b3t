@@ -32,7 +32,7 @@ func main() {
 		//Registered users only
 		api.Use(authenticate())
 		api.POST("/file", pushFile)
-		api.GET("/file", getFile)
+		api.GET("/file/:id", getFile)
 
 		api.GET("/", func(c *gin.Context) {
 			c.JSON(200, gin.H{

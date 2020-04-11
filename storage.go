@@ -10,6 +10,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws/credentials"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/s3"
+	"github.com/aws/aws-sdk-go/service/s3/s3manager"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 )
@@ -31,15 +32,20 @@ func connectS3() {
 func pushFile(c *gin.Context) {
 	var err error
 	var fileName uuid.UUID
+	var fileBuffer []byte
 
-	codeAdherent := c.GetHeader("code_adherent")
+	user := c.Request.Context().Value("user").(User)
 
 	fileName, err = uuid.NewRandom()
 
-	fileBuffer := make([]byte, 30)
+	fileBuffer, err = c.GetRawData()
+	if err != nil {
+		c.JSON(412, gin.H{"error": "cannot_read_file"})
+		return
+	}
 
 	_, err = s3.New(sess).PutObject(&s3.PutObjectInput{
-		Bucket:      aws.String(codeAdherent),
+		Bucket:      aws.String(user.CodeAdherent),
 		Key:         aws.String(fileName.String()),
 		Body:        bytes.NewReader(fileBuffer),
 		ContentType: aws.String(http.DetectContentType(fileBuffer)),
@@ -47,8 +53,6 @@ func pushFile(c *gin.Context) {
 
 	if err != nil {
 		c.JSON(500, gin.H{"error": "cannot_upload_file"})
-		fmt.Println(err)
-		fmt.Println(codeAdherent)
 		return
 	}
 	url := fmt.Sprintf("https://b3t.cleverapps.io/api/file/%s", fileName.String())
@@ -56,11 +60,11 @@ func pushFile(c *gin.Context) {
 	c.JSON(200, gin.H{"message": "file_uploaded", "url": url})
 }
 
-func createBucket(code_adherent string) error {
+func createBucket(codeAdherent string) error {
 	var err error
 
 	_, err = s3.New(sess).CreateBucket(&s3.CreateBucketInput{
-		Bucket: aws.String(code_adherent),
+		Bucket: aws.String(codeAdherent),
 	})
 	if err != nil {
 		fmt.Println(err)
@@ -71,26 +75,26 @@ func createBucket(code_adherent string) error {
 
 func getFile(c *gin.Context) {
 	var err error
-	var objectOutput *s3.GetObjectOutput
-	var object []byte
 
-	codeAdherent := c.GetHeader("code_adherent")
+	user := c.Request.Context().Value("user").(User)
 	id := c.Param("id")
 
-	objectOutput, err = s3.New(sess).GetObject(&s3.GetObjectInput{
-		Bucket: aws.String(codeAdherent),
+	downloader := s3manager.NewDownloader(sess)
+
+	buffer := &aws.WriteAtBuffer{}
+
+	downloader.Download(buffer, &s3.GetObjectInput{
+		Bucket: aws.String(user.CodeAdherent),
 		Key:    aws.String(id),
 	})
 
-	buf := new(bytes.Buffer)
-	buf.ReadFrom(objectOutput.Body)
-	object = buf.Bytes()
+	data := buffer.Bytes()
 
 	if err != nil {
 		c.JSON(500, gin.H{"error": "cannot_get_file"})
 		return
 	}
-	c.Data(200, "application/octet-stream", object)
+	c.Data(200, "application/octet-stream", data)
 }
 
 func getUserFile(c *gin.Context) {
