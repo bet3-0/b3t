@@ -70,6 +70,10 @@ func CreateProgression(c *gin.Context) {
 
 	progression.StartedAt = time.Now().UnixNano()
 
+	user := c.Request.Context().Value("user").(User)
+
+	progression.CodeAdherent = user.CodeAdherent
+
 	for i := 0; i < len(progression.Entries); i++ {
 		id, _ = uuid.NewRandom()
 		progression.Entries[i].ID = id.String()
