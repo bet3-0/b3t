@@ -1,0 +1,68 @@
+{
+    "id": "Server-side generated UUID",
+    "idActivite": "0",
+    "idParcours": "0",
+    "state": "INPROGRESS",
+    "duration": 0,
+    "startedAt": 0,
+    "finishedAt": 0,
+    "reviewAt": 0,
+    "entries": [
+        {
+            "id": 0,
+            "question":
+                "ma super question?",
+            "documents": [],
+            "typeRendu": "text",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 1
+        },
+        {
+            "id": 0,
+            "question":
+                "Qu’est ce que cette image signifie pour toi? ",
+            "documents": [],
+            "typeRendu": "text",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 1
+        },
+        {
+            "id": 1,
+            "question":
+                "Connais tu des gens qui fume?",
+            "documents": [],
+            "typeRendu": "text",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 1
+        },
+        {
+            "id": 2,
+            "question":
+                "Consomme tu de l’alcool et/ou du tabac?",
+            "documents": [],
+            "typeRendu": "text",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 1
+        },
+        {
+            "id": 3,
+            "question":
+                "Savais tu qu’une cigarette contient autant de composants? En connais tu certains?",
+            "documents": [],
+            "typeRendu": "text",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 2
+        }
+    
+    ]
+}
