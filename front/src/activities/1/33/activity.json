@@ -1,0 +1,10 @@
+{
+    "id": "33",
+    "idParcours": "1",
+    "nom": "Vrai ou faux ? Quiz nutrition",
+    "description": "Apprendre des éléments clefs sur la nutrition",
+    "duree": 10,
+    "materiel": ["Un ordinateur"],
+    "difficulte": "",
+    "pages": 13
+   }   

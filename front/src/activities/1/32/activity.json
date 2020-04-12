@@ -1,0 +1,10 @@
+{
+    "id": "32",
+    "idParcours": "1",
+    "nom": "Fabrique ton four",
+    "description": "Cuisiner sans table à feu",
+    "duree": 30,
+    "materiel": ["Un ordinateur","Pâte à modeler","Matériaux divers (papiers, bois, …)","Appareil photo","Feuilles et crayons"],
+    "difficulte": "",
+    "pages": 1
+   }   
