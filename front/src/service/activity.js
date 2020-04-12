@@ -178,44 +178,7 @@ const listProgression = [
                     "Réponds aux questions",
                 documents: [],
                 typeRendu: "qcm",
-                rendu: [
-                    {
-                        question: "Quelle étape permet de gagner du temps pendant la préparation du repas ?",
-                        reponses: [
-                            "Sortir le matériel",
-                            "Maintenir le plat au chaud",
-                            "Nettoyer la vaisselle et le plan de travail",
-                            "Éplucher"
-                        ]
-                    },
-                    {
-                        question: "Quelle étape peut permettre d’éviter des accident lié à la cuisine ?",
-                        reponses: [
-                            "Maintenir le plat au chaud",
-                            "Éplucher",
-                            "Laver les aliments qui le nécessitent",
-                            "Organiser son plan de travail"
-                        ]
-                    },
-                    {
-                        question: "Quelle étape de la préparation du repas permet de respecter les règles d’hygiène ?",
-                        reponses: [
-                            "Découper, râper, rincer",
-                            "Servir",
-                            "Se laver les mains",
-                            "Organiser son plan de travail"
-                        ]
-                    },
-                    {
-                        question: "Quelle",
-                        reponses: [
-                            "Sortir",
-                            "Maintenir",
-                            "Nettoyer",
-                            "Éplucher"
-                        ]
-                    }
-                ],
+                rendu: '[{"question":"Quelle étape permet de gagner du temps pendant la préparation du repas ?","reponses":["Sortir le matériel","Maintenir le plat au chaud","Nettoyer la vaisselle et le plan de travail","Éplucher"]},{"question":"Quelle étape peut permettre d’éviter des accident lié à la cuisine ?","reponses":["Maintenir le plat au chaud","Éplucher","Laver les aliments qui le nécessitent","Organiser son plan de travail"]},{"question":"Quelle étape de la préparation du repas permet de respecter les règles d’hygiène ?","reponses":["Découper, râper, rincer","Servir","Se laver les mains","Organiser son plan de travail"]},{"question":"Quelle","reponses":["Sortir","Maintenir","Nettoyer","Éplucher"]}]',
                 state: "NOTSTARTED",
                 tracked: true,
                 page: 1, // page where to display the entry
