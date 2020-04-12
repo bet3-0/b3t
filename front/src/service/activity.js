@@ -229,6 +229,6 @@ export default class activityService {
     }
 
     static getAllActivity(){
-       return listActivity
+      return fetch('http://bet3-0.sgdf.fr/api/activites')
     }
 }

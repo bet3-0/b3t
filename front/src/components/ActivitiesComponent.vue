@@ -78,7 +78,8 @@
             };
         },
         mounted() {
-            this.activities = activityService.getAllActivity()
+            this.activities = activityService.getAllActivity().json
+            console.log(this.activities)
             this.displayActivities = this.activities
         },
         methods: {
