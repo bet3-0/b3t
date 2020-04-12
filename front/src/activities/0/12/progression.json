@@ -20,15 +20,11 @@
     },
     {
       "id": 1,
-      "question": "Réponds aux questions",
+      "position": 1,
+      "question": "Sais-tu qui appeler selon la situation ?",
       "documents": [],
       "typeRendu": "qcm",
-      "rendu": [
-        {
-          "question": "Sais-tu qui appeler selon la situation ?",
-          "reponses": "18;17;15;112;114;196"
-        }
-      ],
+      "rendu": "18;17;15;112;114;196",
       "state": "NOTSTARTED",
       "tracked": true,
       "page": 2
