@@ -36,28 +36,27 @@ export default {
   props: ["activityId", "entryId", "changeEntryState", "questions"],
   data() {
     return {
-      text: "",
-      q2: 'init',
       tabQuestions: []
     };
   },
   created() {
-    for(var i = 0; i < this.questions.length; i++) {
+    var initQuestions = JSON.parse(this.questions);
+    
+    for(var i = 0; i < initQuestions.length; i++) {
       this.tabQuestions.push({
-        text: this.questions[i].question,
+        text: initQuestions[i].question,
         reponses: []
       })
 
-      for(var j = 0; j < this.questions[i].reponses.length; j++) {
+      for(var j = 0; j < initQuestions[i].reponses.length; j++) {
         this.tabQuestions[i].reponses.push({
-          text: this.questions[i].reponses[j],
+          text: initQuestions[i].reponses[j],
           value: false
         })
       }
     }
 
-    console.log(this.questions);
-    console.log(this.q2);
+    console.log(initQuestions);
   },
   methods: {
     /* Submits the text to the server */
@@ -79,6 +78,7 @@ export default {
         
       }
 
+      reponse = JSON.stringify(reponse);
 
       console.log(reponse);
       this.changeEntryState(this.entryId, "finished");
