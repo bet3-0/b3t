@@ -2,14 +2,14 @@
   "id": "Server-side generated UUID",
   "idActivite": 12,
   "idParcours": 0,
-  "state": "enum(NOTSTARTED,INPROGRESS,FINISHED, VALIDATED,REFUSED)",
+  "state": "INPROGRESS",
   "duration": 10,
   "startedAt": 15,
   "finishedAt": 0,
   "reviewAt": 0,
   "entries": [
     {
-      "id": 0,
+      "position": 0,
       "question": "Qu’en as tu retenu ? Que faut-il dire ?",
       "documents": [],
       "typeRendu": "text",
@@ -19,7 +19,6 @@
       "page": 2
     },
     {
-      "id": 1,
       "position": 1,
       "question": "Sais-tu qui appeler selon la situation ?",
       "documents": [],
