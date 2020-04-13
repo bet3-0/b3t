@@ -1,0 +1,10 @@
+{
+  "id": "4",
+  "idParcours": "1",
+  "nom": "Entretenir son opinel, ça sécurise.",
+  "description": "Sécuriser son Opinel en le nettoyant et en l’entretenant.",
+  "duree": 15,
+  "materiel": ["Un opinel", "Un oignon cru", "Du sucre en poudre", "Du Coca Cola", "Une éponge", "Du vinaigre", "De l'huile", "De la cendre fine de bois"],
+  "difficulte": "moyen",
+  "pages": 1
+}
