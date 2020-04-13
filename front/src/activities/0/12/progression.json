@@ -20,10 +20,10 @@
     },
     {
       "position": 1,
-      "question": "Sais-tu qui appeler selon la situation ?",
+      "question": "",
       "documents": [],
       "typeRendu": "qcm",
-      "rendu": "18;17;15;112;114;196",
+      "rendu": "[{'question':'Sais-tu qui appeler selon la situation ?','reponses':['18','17','15','112','114','196']}]",
       "state": "NOTSTARTED",
       "tracked": true,
       "page": 2
