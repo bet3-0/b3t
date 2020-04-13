@@ -80,7 +80,9 @@
         async mounted() {
             console.log('begin')
             let response = await activityService.getAllActivity();
-            this.activities = await response.json().activites
+            let essai = await response.json()
+            console.log(essai)
+            this.activities = essai.activites
             this.displayActivities = this.activities
             console.log('finidhed')
             console.log(this.displayActivities)
