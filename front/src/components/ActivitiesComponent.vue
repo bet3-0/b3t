@@ -78,10 +78,12 @@
             };
         },
         async mounted() {
+            console.log('begin')
             let response = await activityService.getAllActivity();
             this.activities = await response.json()
             this.displayActivities = this.activities
-
+            console.log('finidhed')
+            console.log(this.displayActivities)
         },
         methods: {
             sendInfo(activity) {
