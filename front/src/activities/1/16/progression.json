@@ -10,7 +10,7 @@
     "entries": [
 
         {
-            "id": 0,
+            "position": 0,
             "question": "Envoie-nous la photo de ton plat",
             "documents": [],
             "typeRendu": "file",
@@ -20,7 +20,7 @@
             "page": 1
         },
         {
-            "id": 1,
+            "position": 1,
             "question": "Ecris ici ta recette !",
             "documents": [],
             "typeRendu": "text",
