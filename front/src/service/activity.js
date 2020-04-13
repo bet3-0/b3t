@@ -217,6 +217,12 @@ const listProgression = [
         ],
     }
 ]
+
+const baseUrl = "http://b3t-dev.cleverapps.io/api";
+const init = {
+    mode: "cors",
+}
+
 export default class activityService {
 
 
@@ -228,14 +234,8 @@ export default class activityService {
         return listProgression[id]
     }
 
-   static getAllActivity(){
-       console.log("test")
-      fetch('http://b3t-dev.cleverapps.io/api/activites').then(function (res) {
-          console.log('res')
-          console.log(res)
-      }).then(function (res) {
-          console.log(res.json())
-          return res.json()
-      })
-    }
+   static async getAllActivity(){
+       return await fetch(`${baseUrl}/activites`, init);
+
+   }
 }

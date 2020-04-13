@@ -54,7 +54,7 @@
 
 <script>
     import ActivityModal from "./includes/ActivityModal";
-  //  import activityService from './../service/activity';
+    import activityService from './../service/activity';
     import itineraryHelpers from './../service/itineraryHelpers';
     import Vue from "vue";
     import BootstrapVue from "bootstrap-vue";
@@ -78,12 +78,10 @@
             };
         },
         async mounted() {
-            fetch('http://b3t-dev.cleverapps.io/api/activites')
-                .then(response => response.json())
-                .then(function (json) {
-                    this.activities = json
-                    this.displayActivities = this.activities
-                })
+            let response = await activityService.getAllActivity();
+            this.activities = await response.json()
+            this.displayActivities = this.activities
+
         },
         methods: {
             sendInfo(activity) {
