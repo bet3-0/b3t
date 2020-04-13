@@ -230,12 +230,12 @@ export default class activityService {
 
    static getAllActivity(){
        console.log("test")
-      /*let response = fetch('http://bet3-0.sgdf.fr/api/activites', {Auth}).then(function (res) {
+      let response = fetch('http://bet3-0.sgdf.fr/api/activites', {Auth}).then(function (res) {
           console.log('res')
           console.log(res)
-      })*/
+      })
        console.log('response')
-
+       console.log(response)
        return ''
     }
 }
