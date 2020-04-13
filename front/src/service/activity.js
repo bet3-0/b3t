@@ -449,7 +449,9 @@ const listProgression = [
                     "Situation 1 : Ton meilleur ami à se brûle en mettant la main sur une des pierres tenant la grille de la table à feu.",
                 "documents": [],
                 "typeRendu": "qcm",
-                "rendu": "[{'question':'Que ferais tu en premier ? ','reponses':['Je regarde ça coupure sans rien faire','Je ferme son couteau et le met en lieu sûr','Je cri car ça saigne beaucoup']},{'question':'Et ensuite ?','reponses':['Je préviens les chefs','Je désinfecte','Je mets sous l’eau']},{'question':'Et enfin ?','reponses':['Je lui met de la crème hydratante','Je désinfecte','Je mets un pansement']}]",
+                "rendu": 
+                "[{'question':'L’étoile du Berger','reponses':['Est l’étoile la moins brillante','Apparaît souvent en première','Est au-dessus de la Grande Ourse']},{'question':'Hors forêt, la mousse sur les arbres','reponses':['Est plus souvent placée au Nord','Est plus souvent placée au Sud','Recouvre tout l’arbre']},{'question':'L’eau est importante pour les scouts car le corps humain est composé de','reponses':['20% d’eau','50% d’eau','70% d’eau']},{'question':'Quand tu vois une mouche dans la nature, l’eau est souvent','reponses':['Très proche','À moins de 90 m','À moins de 5 km']}]"
+                ,
                 "state": "NOTSTARTED",
                 "tracked": true,
                 "page": 1
@@ -460,32 +462,7 @@ const listProgression = [
                     "Situation 2 : Un ami se coupe en voulant tailler un bout de bois alors que vous êtes en explo.",
                 "documents": [],
                 "typeRendu": "qcm",
-                "rendu": [
-                    {
-                        "question": "Que ferais tu en premier ? ",
-                        "reponses": [
-                            "Je regarde ça coupure sans rien faire",
-                            "Je ferme son couteau et le met en lieu sûr",
-                            "Je cri car ça saigne beaucoup"
-                        ]
-                    },
-                    {
-                        "question": "Et ensuite ?",
-                        "reponses": [
-                            "Je préviens les chefs",
-                            "Je désinfecte",
-                            "Je mets sous l’eau"
-                        ]
-                    },
-                    {
-                        "question": "Et enfin ?",
-                        "reponses": [
-                            "Je lui met de la crème hydratante",
-                            "Je désinfecte",
-                            "Je mets un pansement"
-                        ]
-                    }
-                ],
+                "rendu": "[{'question':'Que ferais tu en premier ? ','reponses':['Je regarde ça coupure sans rien faire','Je ferme son couteau et le met en lieu sûr','Je cri car ça saigne beaucoup']},{'question':'Et ensuite ?','reponses':['Je préviens les chefs','Je désinfecte','Je mets sous l’eau']},{'question':'Et enfin ?','reponses':['Je lui met de la crème hydratante','Je désinfecte','Je mets un pansement']}]",
                 "state": "NOTSTARTED",
                 "tracked": true,
                 "page": 2
@@ -495,20 +472,7 @@ const listProgression = [
                 "question": "Question suivante",
                 "documents": [],
                 "typeRendu": "qcm",
-                "rendu": [
-                    {
-                        "question" : "Est ce que tu vois des étapes dans la réaction commune aux deux situation? Si oui, lesquelles?",
-                        "reponse" : [
-                            "Prévenir",
-                            "Proteger",
-                            "Crier",
-                            "Soigner",
-                            "Secourir",
-                            "Alerter",
-                            "Désinfecter"
-                        ]
-                    }
-                ],
+                "rendu": "[{'question':'Est ce que tu vois des étapes dans la réaction commune aux deux situation? Si oui, lesquelles?','reponse':['Prévenir','Proteger','Crier','Soigner','Secourir','Alerter','Désinfecter']}]",
                 "state": "NOTSTARTED",
                 "tracked": true,
                 "page": 3
