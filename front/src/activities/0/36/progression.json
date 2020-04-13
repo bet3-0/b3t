@@ -9,8 +9,7 @@
   "reviewAt": 0,
   "entries": [
     {
-      "id": 0,
-      "position": 1,
+      "position": 0,
       "question": "Quantité de sucre dans 33cL de Coca :",
       "documents": [],
       "typeRendu": "qcm",
@@ -20,8 +19,7 @@
       "page": 1
     },
     {
-      "id": 1,
-      "position": 2,
+      "position": 1,
       "question": "Quantité de sucre dans 1 cuillère à soupe de ketchup :",
       "documents": [],
       "typeRendu": "qcm",
@@ -31,8 +29,7 @@
       "page": 1
     },
     {
-      "id": 2,
-      "position": 3,
+      "position": 2,
       "question": "Quantité de sucre dans 100mL de lait :",
       "documents": [],
       "typeRendu": "qcm",
@@ -42,8 +39,7 @@
       "page": 1
     },
     {
-      "id": 3,
-      "position": 4,
+      "position": 3,
       "question": "Quantité de sucre dans 100g de gâteau granola :",
       "documents": [],
       "typeRendu": "qcm",
@@ -53,8 +49,7 @@
       "page": 1
     },
     {
-      "id": 4,
-      "position": 5,
+      "position": 4,
       "question": "Quantité de sucre dans 100g de chocolat en poudre :",
       "documents": [],
       "typeRendu": "qcm",
@@ -64,8 +59,7 @@
       "page": 1
     },
     {
-      "id": 5,
-      "position": 6,
+      "position": 5,
       "question": "Quantité de sucre dans 100g de jus d’orange :",
       "documents": [],
       "typeRendu": "qcm",
@@ -75,8 +69,7 @@
       "page": 1
     },
     {
-      "id": 6,
-      "position": 7,
+      "position": 6,
       "question": "Quantité de sucre dans 100g de miel pops :",
       "documents": [],
       "typeRendu": "qcm",
@@ -86,8 +79,7 @@
       "page": 1
     },
     {
-      "id": 7,
-      "position": 8,
+      "position": 7,
       "question": "Quantité de sucre dans 5 tranches de pain de mie :",
       "documents": [],
       "typeRendu": "qcm",
@@ -97,8 +89,7 @@
       "page": 1
     },
     {
-      "id": 8,
-      "position": 9,
+      "position": 8,
       "question": "Parmi les propositions suivantes, quels termes désignent le sucre sur les étiquettes alimentaires (2 bonnes réponses) ?",
       "documents": [],
       "typeRendu": "qcm",
@@ -108,8 +99,7 @@
       "page": 1
     },
     {
-      "id": 9,
-      "position": 10,
+      "position": 9,
       "question": "Parmi les propositions suivantes, quels termes désignent le sucre sur les étiquettes alimentaires (2 bonnes réponses) ?",
       "documents": [],
       "typeRendu": "qcm",
@@ -119,7 +109,7 @@
       "page": 1
     },
     {
-      "id": 10,
+      "position": 10,
       "question": "Envoie nous la photos de l’aliment contenant le plus de sucre que tu es chez toi puis répond à cette petite question !",
       "documents": [],
       "typeRendu": "file",
@@ -129,7 +119,7 @@
       "page": 2
     },
     {
-      "id": 11,
+      "position": 11,
       "question": "Au vu du nombre de sucre dans les aliments que tu a vu plus haut et du nombre d'appellations différentes du sucre sur les étiquettes, donne nous une alternative que tu pourrais mettre en place dans ta vie de tous les jours et/ou ta vie scoute pour réduire ta consommation de sucre.",
       "documents": [],
       "typeRendu": "text",
