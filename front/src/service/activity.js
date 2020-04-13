@@ -218,7 +218,7 @@ const listProgression = [
     }
 ]
 
-const baseUrl = "http://b3t-dev.cleverapps.io/api";
+const baseUrl = "https://b3t-dev.cleverapps.io/api";
 const init = {
     mode: "cors",
 }
