@@ -7,7 +7,7 @@
   "finishedAt": 0,
   "reviewAt": 0,
   "entries": [{
-    "id": 0,
+    "position": 0,
     "question": "",
     "documents": [],
     "typeRendu": "qcm",

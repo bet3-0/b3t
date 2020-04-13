@@ -10,7 +10,7 @@
     "entries": [
 
         {
-            "id": 0,
+            "position": 0,
             "question": "Explique les différences avec pour appui des photos",
             "documents": [],
             "typeRendu": "text",
@@ -20,7 +20,7 @@
             "page": 1
         },
         {
-            "id": 1,
+            "position": 1,
             "question": "Envoie tes photos ici",
             "documents": [],
             "typeRendu": "file",

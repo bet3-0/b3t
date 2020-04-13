@@ -7,7 +7,7 @@
     "finishedAt": 0,
     "reviewAt": 0,
     "entries": [{
-        "id": 0,
+        "position": 0,
         "question": "Reproduit le tableau sur papier, rempli le, prend une photo et envoie nous la ici",
         "documents": [],
         "typeRendu": "file",

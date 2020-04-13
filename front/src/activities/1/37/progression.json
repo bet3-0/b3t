@@ -9,7 +9,7 @@
     "entries": 
     [
         {
-            "id": 0,
+            "position": 0,
             "question": "",
             "documents": [],
             "typeRendu": "qcm",
@@ -19,7 +19,7 @@
             "page": 1
         },
         {
-            "id": 2,
+            "position": 2,
             "question": "Quelles sont tes habitudes alimentaires? Combien de portions de chaque catégorie d’aliments manges tu par jour en moyenne?",
             "documents": [],
             "typeRendu": "text",
