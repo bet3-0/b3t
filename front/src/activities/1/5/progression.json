@@ -10,7 +10,7 @@
     "entries": [
 
         {
-            "id": 0,
+            "position": 0,
             "question": "Donne les risques pendant la cuisine en camp pour un DANGER DE BRULURE (feu et/ou réchaud)",
             "documents": [],
             "typeRendu": "text",
@@ -20,7 +20,7 @@
             "page": 1
         },
         {
-            "id": 1,
+            "position": 1,
             "question": "Donne les risques pendant la cuisine en camp pour un DANGER DE BRULURE (eau chaude)",
             "documents": [],
             "typeRendu": "text",
@@ -30,7 +30,7 @@
             "page": 1
         },
         {
-            "id": 2,
+            "position": 2,
             "question": "Donne les risques pendant la cuisine en camp pour un RISQUE DE COUPURE",
             "documents": [],
             "typeRendu": "text",
@@ -40,7 +40,7 @@
             "page": 1
         },
         {
-            "id": 3,
+            "position": 3,
             "question": "Donne les risques pendant la cuisine en camp pour un RISQUE D'INTOXICATION (ex: Chaîne du froid rompue)",
             "documents": [],
             "typeRendu": "text",
