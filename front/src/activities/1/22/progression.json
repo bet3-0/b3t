@@ -10,7 +10,7 @@
     "entries": [
 
         {
-            "id": 0,
+            "position": 0,
             "question": "Prend une belle photo de ton gâteau avec les personnes avec qui tu l’a partagé ! ",
             "documents": [],
             "typeRendu": "file",

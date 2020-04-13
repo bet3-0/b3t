@@ -9,7 +9,7 @@
     "reviewAt": 0,
     "entries": [
         {
-            "id": 0,
+            "position": 0,
             "question": "Qu’est ce que cette image signifie pour toi? ",
             "documents": [],
             "typeRendu": "text",
@@ -19,7 +19,7 @@
             "page": 1
         },
         {
-            "id": 1,
+            "position": 1,
             "question": "Connais tu des gens qui fume?",
             "documents": [],
             "typeRendu": "text",
@@ -29,7 +29,7 @@
             "page": 1
         },
         {
-            "id": 2,
+            "position": 2,
             "question": "Consomme tu de l’alcool et/ou du tabac?",
             "documents": [],
             "typeRendu": "text",
@@ -39,7 +39,7 @@
             "page": 1
         },
         {
-            "id": 3,
+            "position": 3,
             "question": "Savais tu qu’une cigarette contient autant de composants? En connais tu certains?",
             "documents": [],
             "typeRendu": "text",
@@ -49,7 +49,7 @@
             "page": 2
         },
         {
-            "id": 4,
+            "position": 4,
             "question": "ma super question?",
             "documents": [],
             "typeRendu": "qcm",
@@ -133,7 +133,7 @@
             "page": 2
         },
         {
-            "id": 5,
+            "position": 5,
             "question":
                 "Est ce que ces informations, te font te poser des questions? SI oui, n’hésites pas à les poser ici, nous essaierons de te répondre. (Ces questions sont anonymes).",
             "documents": [],
@@ -144,7 +144,7 @@
             "page": 4
         },
         {
-            "id": 6,
+            "position": 6,
             "question":
                 "Qu’as tu retenu? Certaines choses t’ont paru étonnantes? Si oui, lesquelles?",
             "documents": [],

@@ -9,7 +9,7 @@
     "entries": 
     [
         {
-            "id": 0,
+            "position": 0,
             "question": "Question 1 : Qu’est-ce qui donne de l’énergie à notre corps?",
             "documents": [],
             "typeRendu": "qcm",
@@ -159,7 +159,7 @@
             "page": 1
         },
         {
-            "id": 15,
+            "position": 15,
             "question": "Quelles sont tes habitudes alimentaires? Combien de portions de chaque catégorie d’aliments manges tu par jour en moyenne?",
             "documents": [],
             "typeRendu": "text",

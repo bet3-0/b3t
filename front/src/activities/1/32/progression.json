@@ -9,7 +9,7 @@
     "entries": 
     [
         {
-            "id": 0,
+            "position": 0,
             "question": "Charge une photo de ta maquette sur la plateforme. Il sera validé au plus vite par des chefs et cheftaines !",
             "documents": [],
             "typeRendu": "file",
