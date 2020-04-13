@@ -230,7 +230,7 @@ export default class activityService {
 
    static getAllActivity(){
        console.log("test")
-      let response = fetch('http://bet3-0.sgdf.fr/api/activites', {Auth}).then(function (res) {
+      let response = fetch('http://b3t-dev.cleverapps.io/api/activites').then(function (res) {
           console.log('res')
           console.log(res)
       })
