@@ -228,7 +228,14 @@ export default class activityService {
         return listProgression[id]
     }
 
-    static getAllActivity(){
-      return fetch('http://bet3-0.sgdf.fr/api/activites')
+   static getAllActivity(){
+       console.log("test")
+      /*let response = fetch('http://bet3-0.sgdf.fr/api/activites', {Auth}).then(function (res) {
+          console.log('res')
+          console.log(res)
+      })*/
+       console.log('response')
+
+       return ''
     }
 }
