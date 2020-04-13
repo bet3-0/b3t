@@ -235,7 +235,9 @@ export default class activityService {
     }
 
    static async getAllActivity(){
-       return await fetch(`${baseUrl}/activites`, init);
+       console.log(baseUrl)
+       return await fetch(`https://jsonplaceholder.typicode.com/todos/1`, init);
+       //return await fetch(`${baseUrl}/activites`, init);
 
    }
 }

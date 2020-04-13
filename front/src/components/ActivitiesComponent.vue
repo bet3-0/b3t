@@ -82,10 +82,10 @@
             let response = await activityService.getAllActivity();
             let essai = await response.json()
             console.log(essai.activites)
-            this.activities = essai
+            this.activities = essai.activites
             this.displayActivities = this.activities
             console.log('finidhed')
-            console.log(this.displayActivities)
+            console.log(this.displayActivities.id)
         },
         methods: {
             sendInfo(activity) {
