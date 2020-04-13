@@ -7,7 +7,7 @@
     "finishedAt": 0,
     "reviewAt": 0,
     "entries": [{
-        "id": 0,
+        "position": 0,
         "question": "Prend des photos lors de la réalisation du gel douche pour nous les envoyer !",
         "documents": [],
         "typeRendu": "file",
