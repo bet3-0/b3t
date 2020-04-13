@@ -9,7 +9,7 @@
   "reviewAt": 0,
   "entries": [
     {
-      "id": 0,
+      "position": 0,
       "question": "Ecris ta proposition ici ",
       "documents": [],
       "typeRendu": "text",
@@ -19,7 +19,7 @@
       "page": 2
     },
     {
-      "id": 1,
+      "position": 1,
       "question": " ou envoie nous la photo des dessins ou de toi en action. ",
       "documents": [],
       "typeRendu": "file",
