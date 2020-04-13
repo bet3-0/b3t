@@ -7,7 +7,7 @@
     "finishedAt": 0,
     "reviewAt": 0,
     "entries": [{
-        "id": 0,
+        "position": 0,
         "question": "Envoie nous une photo de ton ton planning de menus pour ton WE d'équipage ici:",
         "documents": [],
         "typeRendu": "file",
