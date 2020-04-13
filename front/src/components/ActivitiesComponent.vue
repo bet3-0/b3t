@@ -81,8 +81,8 @@
             console.log('begin')
             let response = await activityService.getAllActivity();
             let essai = await response.json()
-            console.log(essai)
-            this.activities = essai.activites
+            console.log(essai.activite0)
+            this.activities = essai
             this.displayActivities = this.activities
             console.log('finidhed')
             console.log(this.displayActivities)
