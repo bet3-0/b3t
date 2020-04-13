@@ -54,7 +54,7 @@
 
 <script>
     import ActivityModal from "./includes/ActivityModal";
-    //import activityService from './../service/activity';
+    import activityService from './../service/activity';
     import itineraryHelpers from './../service/itineraryHelpers';
     import Axios from 'axios'
     import Vue from "vue";
@@ -79,8 +79,8 @@
             };
         },
         async mounted() {
-//            this.activities = activityService.getAllActivity()
-  //          console.log(this.activities)
+            this.activities = activityService.getAllActivity()
+            console.log(this.activities)
     //        this.displayActivities = this.activities
             let test = await Axios.get('http://bet3-0.sgdf.fr/api/activites', { A: true }).then(function (res) {
                 console.log(res)

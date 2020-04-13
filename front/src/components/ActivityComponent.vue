@@ -87,7 +87,7 @@ function getActivityPage(id, idParcours, pageNumber) {
   );
   /*
   this.activityFile = require(`@/assets/pages/activities/${getItineraryRouteName(
-    idParcours
+    idParcoursactivitees
   )}/${id}/${id}.html`);
   */
   return `<b>Mon activité trop stylée en <i>HTML</i> page ${pageNumber}!</b>`;
