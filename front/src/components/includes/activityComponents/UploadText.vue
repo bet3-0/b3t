@@ -26,7 +26,6 @@ export default {
   props: ["entry", "updateEntry"],
   methods: {
     /* Submits the text to the server */
-    // TODO
     async submitText() {
       this.entry.state = "FINISHED";
       try{

@@ -1,33 +1,37 @@
 <template>
-<div>
-
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text">Télécharger</span>
-    </div>
-    <div class="custom-file">
-      <input type="file" class="custom-file-input" id="inputGroupFile01" v-on:change="loadFilename()">
-      <label class="custom-file-label" for="inputGroupFile01" id="labelInput">Choisi un fichier</label>
+  <div>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Télécharger</span>
+      </div>
+      <div class="custom-file">
+        <input
+          type="file"
+          class="custom-file-input"
+          id="inputGroupFile01"
+          v-on:change="loadFilename()"
+        />
+        <label class="custom-file-label" for="inputGroupFile01" id="labelInput"
+          >Choisi un fichier</label
+        >
+      </div>
     </div>
   </div>
-
-</div>
 </template>
 
 <script>
 export default {
   name: "UploadFile",
-  props: ["activityId", "entryId", "changeEntryState"],
+  props: ["entry", "updateEntry"],
   data() {
     return {
-      file: "",
+      file: ""
     };
   },
   methods: {
-
-    loadFilename(){
-      let fileName = document.getElementById('inputGroupFile01').files[0].name
-      document.getElementById('labelInput').innerText = fileName
+    loadFilename() {
+      let fileName = document.getElementById("inputGroupFile01").files[0].name;
+      document.getElementById("labelInput").innerText = fileName;
     },
     /* Submits the file to the server */
     submitFile() {
@@ -47,14 +51,14 @@ export default {
         }
       });
       */
-      this.changeEntryState(this.entryId, "finished");
-    },
-
-  },
+      let url = "url_to_my_file"; //todo
+      this.entry.rendu = url;
+      this.updateEntry(this.entry);
+    }
+  }
 };
 </script>
 <style scoped>
-
 .btn {
   word-wrap: break-word;
 }

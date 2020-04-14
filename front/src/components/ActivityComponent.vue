@@ -55,9 +55,8 @@ Base Component for an activity page -->
               </h3>
               <UploadFile
                 v-if="entry.typeRendu === 'file'"
-                :activityId="activity.id"
-                :entryId="entry.id"
-                :changeEntryState="changeEntryState"
+                :entry="entry"
+                :updateEntry="updateEntry"
               />
               <UploadText
                 v-if="entry.typeRendu === 'text'"
@@ -66,17 +65,13 @@ Base Component for an activity page -->
               />
               <OrderList
                 v-if="entry.typeRendu === 'orderList'"
-                :activityId="activity.id"
-                :entryId="entry.id"
-                :changeEntryState="changeEntryState"
-                v-bind:list-response="entry.rendu"
+                :entry="entry"
+                :updateEntry="updateEntry"
               />
               <Qcm
                 v-if="entry.typeRendu === 'qcm'"
-                :activityId="activity.id"
-                :entryId="entry.id"
-                :changeEntryState="changeEntryState"
-                v-bind:questions="entry.rendu"
+                :entry="entry"
+                :updateEntry="updateEntry"
               />
             </div>
           </div>
