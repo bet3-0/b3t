@@ -78,10 +78,9 @@
             };
         },
         async mounted() {
-           /* let response = await activityService.getAllActivity();
-            let essai = await response.json()
-            this.activities = essai.activites*/
-            this.activities = activityService.listActi()
+           let response = await activityService.getAllActivity();
+            let data = await response.json()
+            this.activities = data.activites
             this.displayActivities = this.activities
         },
         methods: {
