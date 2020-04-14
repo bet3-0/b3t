@@ -50,7 +50,7 @@ func main() {
 		// Accessible by Relecteurs and Admins only
 
 		api.Use(restrictAccess([]role{role("relecteur"), role("admin")}))
-		api.GET("/file/:code_adherent/:id", getUserFile)
+		api.GET("/file/:code_structure_groupe/:code_adherent/:id", getUserFile)
 		api.GET("/user/progressions", ListFinishedProgressions)
 		api.GET("/user/progression/:id", GetUserProgression)
 		api.PUT("/user/progression", UpdateUserProgression)

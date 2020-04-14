@@ -6,6 +6,7 @@ import (
 	"strings"
 
 	"github.com/gin-gonic/gin"
+	"github.com/lib/pq"
 )
 
 type role string
@@ -86,13 +87,11 @@ func createUser(c *gin.Context) {
 
 	err = db.Create(&user).Error
 	if err != nil {
+		if err.(*pq.Error).Code == "23505" {
+			c.JSON(409, gin.H{"error": "user_already_exists"})
+			return
+		}
 		c.JSON(500, gin.H{"error": "internal_server_error"})
-		return
-	}
-
-	err = createBucket(user.CodeAdherent)
-	if err != nil {
-		c.JSON(500, gin.H{"error": "cannot_create_user_file_space"})
 		return
 	}
 

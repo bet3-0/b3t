@@ -49,6 +49,7 @@ type Progression struct {
 	StartedAt    int64   `json:"startedAt"`
 	FinishedAt   int64   `json:"finishedAt"`
 	ReviewdAt    int64   `json:"reviewdAt"`
+	Commentaire  string  `json:"commentaire"`
 	Page         int     `json:"page"`
 	Entries      []Entry `gorm:"foreignkey:IDProgression" json:"entries"`
 	CodeAdherent string
@@ -96,25 +97,23 @@ func CreateProgression(c *gin.Context) {
 }
 
 func ListMyProgressions(c *gin.Context) {
-	var progression Progression
+	var progressions []Progression
 	var err error
 
 	user := c.Request.Context().Value("user").(User)
-
-	progression.CodeAdherent = user.CodeAdherent
 
 	if err != nil {
 		c.JSON(412, gin.H{"error": "wrong_id"})
 		return
 	}
 
-	err = db.Where(&progression).Preload("Entries").Find(&progression).Error
+	err = db.Where("code_adherent = ?", user.CodeAdherent).Preload("Entries").Find(&progressions).Error
 	if err != nil {
 		c.JSON(500, gin.H{"error": "internal_server_error"})
 		return
 	}
 
-	c.JSON(200, gin.H{"progression": progression})
+	c.JSON(200, gin.H{"progressions": progressions})
 	return
 }
 
@@ -166,6 +165,10 @@ func UpdateProgression(c *gin.Context) {
 
 	progression.CodeAdherent = user.CodeAdherent
 
+	if progression.State == state("FINISHED") {
+		progression.FinishedAt = time.Now().UnixNano()
+	}
+
 	err = db.Save(&progression).Error
 	if err != nil {
 		c.JSON(500, gin.H{"error": "internal_server_error"})
@@ -186,6 +189,10 @@ func UpdateUserProgression(c *gin.Context) {
 			"error": "failed_to_map_progression",
 		})
 		return
+	}
+
+	if progression.State == state("VALIDATED") || progression.State == state("REFUSED") {
+		progression.ReviewdAt = time.Now().UnixNano()
 	}
 
 	err = db.Save(&progression).Error
