@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://bet3-0.sgdf.fr/api/";
+const API_URL = "https://b3t-dev-guillaume.cleverapps.io/api/";
 
 class AuthService {
   login(user) {
