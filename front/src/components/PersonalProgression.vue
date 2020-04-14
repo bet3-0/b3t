@@ -143,7 +143,9 @@ export default {
     this.idParcours = parseInt(localStorage.getItem("parcours")) || 5;
     // TODO: test it !
     try {
-      this.progressions = await ProgressionService.getProgressions();
+      let response = await ProgressionService.getProgressions();
+      let data = await response.json();
+      this.progressions = data.progressions;
     } catch (error) {
       console.error(error)
       this.progressions = [

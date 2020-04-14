@@ -10,7 +10,7 @@ export default class ProgressionService {
       headers: Object.assign(authHeader(), {
         "Content-Type": "application/json"
       }),
-      body: data
+      body: JSON.stringify(data)
     });
   }
 
@@ -21,7 +21,7 @@ export default class ProgressionService {
       headers: Object.assign(authHeader(), {
         "Content-Type": "application/json"
       }),
-      body: data
+      body: JSON.stringify(data)
     });
   }
 
