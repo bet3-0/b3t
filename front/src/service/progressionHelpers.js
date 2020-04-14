@@ -7,6 +7,8 @@ export default class ProgressionHelpers {
         return "En cours";
       case "FINISHED":
         return "En attente de validation";
+      case "INREVIEW":
+        return "En cours de validation";
       case "VALIDATED":
         return "Validé";
       case "REFUSED":
@@ -21,6 +23,7 @@ export const VALID_STATES = [
   "NOTSTARTED",
   "INPROGRESS",
   "FINISHED",
+  "INREVIEW",
   "VALIDATED",
-  "REFUSED",
+  "REFUSED"
 ];
