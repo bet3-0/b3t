@@ -1,6 +1,6 @@
 <template>
     <div class="container mt-4">
-      <h1>{{ getParcoursName(idParcours) }}</h1>
+      <h1 :style="'color:' + getParcoursColor(idParcours) + ' !important'">{{ getParcoursName(idParcours) }}</h1>
         <div class="row mb-5 mt-1">
             <div class="col-4" style="text-align: center">
                 <button class="choice" @click.prevent.stop.capture="change('parcours')" :class="parcours">Ordre
@@ -66,9 +66,9 @@
     export default {
         name: "ActivitiesComponent",
         components: {ActivityModal},
-        props: ["idParcours"],
         data() {
             return {
+                idParcours: this.$store.state.parcours.parcours,
                 parcours: '',
                 duration: '',
                 difficulte: '',
@@ -76,6 +76,11 @@
                 activities: [],
                 displayActivities: []
             };
+        },
+        created(){
+            if (this.idParcours >= 4){
+                this.$router.push('/parcours');
+            }
         },
         async mounted() {
            let response = await activityService.getAllActivity();
@@ -137,7 +142,8 @@
                 data === 'difficulte' ? this[data] = this[data] === '' ? 'active' : '' : this.difficulte = ''
             },
 
-           getParcoursName: itineraryHelpers.getParcoursName
+           getParcoursName: itineraryHelpers.getParcoursName,
+           getParcoursColor: itineraryHelpers.getItineraryColor,
         }
     };
 </script>
