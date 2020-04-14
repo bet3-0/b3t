@@ -40,7 +40,7 @@ export default {
   },
   created() {
     const regex = /'/gm;
-    var initQuestions = JSON.parse(this.entry.questions.replace(regex, '"'));
+    var initQuestions = JSON.parse(this.entry.rendu.replace(regex, '"'));
     
     for(var i = 0; i < initQuestions.length; i++) {
       this.tabQuestions.push({
