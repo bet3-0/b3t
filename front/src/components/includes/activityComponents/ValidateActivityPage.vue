@@ -15,7 +15,7 @@
 <script>
 export default {
   name: "ValidateActivityPage",
-  props: ["activity", "pageNumber", "changePage"],
+  props: ["activity", "progression", "pageNumber", "changePage"],
   data() {
     return {};
   },
@@ -33,12 +33,38 @@ export default {
       if (this.hasNext()) {
         this.nextPage();
       } else {
-        // TODO
-        console.log("validate");
-        window.location.href = "/activitees"
+        this.checkValidation();
       }
     },
-  },
+    checkValidation() {
+      // Check entries are filled
+      let incompleteEntries = this.progression.entries.filter(entry => entry.state != "FINISHED")
+      if (incompleteEntries.length > 0){
+        console.log("Some entries where not sent!")
+        alert("Certains rendus n'ont pas été envoyés !") // todo: faire une modale
+        return;
+      }
+
+      //Change state
+      this.progression.state = "FINISHED";
+
+      // Update progression
+      ProgressionService.updateProgression(this.progression)
+        .then(() => {
+          console.log("Progression sent: " + this.progression);
+          this.updateEntry(this.progression); // update the primary progression object
+          // Redirect
+          window.location.href = "/activitees";
+        })
+        .catch(() => {
+          console.log("Error while sending text entry: " + this.progression);
+          this.progression.state = "INPROGRESS";
+          alert(
+            "Impossible d'envoyer ta progression ! Vérifie ta connexion et réessaye !"
+          );
+        });
+    }
+  }
 };
 </script>
 <style scoped>

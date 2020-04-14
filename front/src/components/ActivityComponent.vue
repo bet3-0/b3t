@@ -84,6 +84,7 @@ Base Component for an activity page -->
             :activity="activity"
             :pageNumber="pageNumber"
             :changePage="changePage"
+            :progression="progression"
           />
         </div>
       </div>
