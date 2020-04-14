@@ -1,0 +1,21 @@
+{
+    "idActivite": "24",
+    "idParcours":"0",
+    "state": "INPROGRESS",
+    "duration": 15,
+    "startedAt": 0,
+    "finishedAt": 0,
+    "reviewAt": 0,
+    "entries": [
+        {
+            "id": 0,
+            "question": "Qu’en as-tu retenu ? ",
+            "documents": [],
+            "typeRendu": "text",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 1
+        }    
+    ]     
+}

@@ -1,0 +1,10 @@
+{
+  "idActivite": 8,
+  "idParcours": 0,
+  "nom": "La démarche en cas d’accident",
+  "description": "Nous allons te proposer des situations d’urgence. A toi de nous dire ce que tu ferais dans ces cas là. L’objectif est de te faire comprendre comment réagir et quoi faire dans ce type de situation.",
+  "duree": 12,
+  "materiel": ["Aucun"],
+  "difficulte": "moyen",
+  "pages": 2
+}
