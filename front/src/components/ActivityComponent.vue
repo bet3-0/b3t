@@ -11,12 +11,12 @@ Base Component for an activity page -->
         </h1>
         <div class="details-container">
           <a
-                  class="btn btn-secondary"
-                  data-toggle="collapse"
-                  href="#details"
-                  role="button"
-                  aria-expanded="false"
-                  aria-controls="details"
+            class="btn btn-secondary"
+            data-toggle="collapse"
+            href="#details"
+            role="button"
+            aria-expanded="false"
+            aria-controls="details"
           >
             Details
           </a>
@@ -45,25 +45,49 @@ Base Component for an activity page -->
         <div class="end-container">
           <div class="submit-container">
             <!-- Choisir parmi ces deux rendus en fonction de l'activité -->
-            <div v-for="entry in pageEntries()" :key="entry.id" style="text-align: center; width: 100%">
+            <div
+              v-for="entry in pageEntries()"
+              :key="entry.id"
+              style="text-align: center; width: 100%"
+            >
               <h3 style="text-align: left">
                 {{ entry.question }}
               </h3>
-              <UploadFile v-if="entry.typeRendu === 'file'" :activityId="activity.id" :entryId="entry.id" :changeEntryState="changeEntryState"/>
-              <UploadText v-if="entry.typeRendu === 'text'" :activityId="activity.id" :entryId="entry.id" :changeEntryState="changeEntryState"/>
-              <OrderList  v-if="entry.typeRendu === 'orderList'" :activityId="activity.id" :entryId="entry.id" :changeEntryState="changeEntryState" v-bind:list-response="entry.rendu"/>
-              <Qcm  v-if="entry.typeRendu === 'qcm'" :activityId="activity.id" :entryId="entry.id" :changeEntryState="changeEntryState" v-bind:questions="entry.rendu"/>
+              <UploadFile
+                v-if="entry.typeRendu === 'file'"
+                :activityId="activity.id"
+                :entryId="entry.id"
+                :changeEntryState="changeEntryState"
+              />
+              <UploadText
+                v-if="entry.typeRendu === 'text'"
+                :entry="entry"
+                :updateEntry="updateEntry"
+              />
+              <OrderList
+                v-if="entry.typeRendu === 'orderList'"
+                :activityId="activity.id"
+                :entryId="entry.id"
+                :changeEntryState="changeEntryState"
+                v-bind:list-response="entry.rendu"
+              />
+              <Qcm
+                v-if="entry.typeRendu === 'qcm'"
+                :activityId="activity.id"
+                :entryId="entry.id"
+                :changeEntryState="changeEntryState"
+                v-bind:questions="entry.rendu"
+              />
             </div>
           </div>
-            <ValidateActivityPage
-                    :activity="activity"
-                    :pageNumber="pageNumber"
-                    :changePage="changePage"
-            />
+          <ValidateActivityPage
+            :activity="activity"
+            :pageNumber="pageNumber"
+            :changePage="changePage"
+          />
         </div>
       </div>
     </div>
-
   </div>
 </template>
 
@@ -74,16 +98,19 @@ import UploadFile from "./includes/activityComponents/UploadFile";
 import UploadText from "./includes/activityComponents/UploadText";
 import OrderList from "./includes/activityComponents/OrderList";
 import Qcm from "./includes/activityComponents/Qcm";
-import activityService from './../service/activity';
-import itineraryHelpers from './../service/itineraryHelpers';
+import activityService from "./../service/activity";
+import itineraryHelpers from "./../service/itineraryHelpers";
 
 import ValidateActivityPage from "./includes/activityComponents/ValidateActivityPage";
 import $ from "jquery";
+import progressionService from "../service/progression.service";
 
 // temporary script
 function getActivityPage(id, idParcours, pageNumber) {
   console.log(
-    `Page asked: id=${id} parcours=${itineraryHelpers.getItineraryRouteName(idParcours)}`
+    `Page asked: id=${id} parcours=${itineraryHelpers.getItineraryRouteName(
+      idParcours
+    )}`
   );
   /*
   this.activityFile = require(`@/assets/pages/activities/${getItineraryRouteName(
@@ -109,7 +136,7 @@ export default {
       pageNumber: 1, // number of the visible page. 1 at start
       progress: 0,
       activity: {},
-      progression: {},
+      progression: {}
     };
   },
   created() {
@@ -118,7 +145,19 @@ export default {
    // this.activity = activityService.getActivity(this.id)
     console.log(this.$store.state.activity.activity)
     this.activity = this.$store.state.activity.activity
-    this.progression = activityService.getProgression(this.id)
+
+    this.progression = activityService.getProgression(this.id);
+
+    // Post the new progression
+    progressionService
+      .createProgression(this.progression)
+      .then(response => {
+        this.progression = response.progression;
+        console.log("Progression created!");
+      })
+      .catch(() => {
+        console.warn("Impossible to create a progression!");
+      });
   },
   mounted() {
     for (let i = 0; i < this.activity.pages; i++) {
@@ -132,10 +171,10 @@ export default {
     getProgress() {
       let counter = 0;
       let total = 0;
-      for (let entry in this.progression.entries) {
-        if (this.progression.entries[entry].tracked) {
+      for (let entryIndex in this.progression.entries) {
+        if (this.progression.entries[entryIndex].tracked) {
           total += 1;
-          if (this.progression.entries[entry].state === "finished") {
+          if (this.progression.entries[entryIndex].state === "FINISHED") {
             counter += 1;
           }
         }
@@ -146,16 +185,24 @@ export default {
       }
       this.progress = (100 * counter) / total;
     },
-    changeEntryState(entryId, state) {
-      this.progression.entries[entryId].state = state;
+    updateEntry(newEntry) {
+      for (var i in this.progression.entries) {
+        if (this.progression.entries[i].id == newEntry.id) {
+          this.progression.entries[i] = newEntry;
+          break;
+        }
+      }
       this.getProgress();
+    },
+    changeEntryState(entryId, state) {
+      console.warn("DEPRECATED: changeEntryState" + entryId + state);
     },
     changeParcoursColor() {
       return itineraryHelpers.getItineraryColor(this.activity.idParcours);
     },
     pageEntries() {
       return this.progression.entries.filter(
-        (entry) => entry.page === this.pageNumber
+        entry => entry.page === this.pageNumber
       );
     },
     changePage(pageNumber) {
@@ -170,8 +217,8 @@ export default {
         this.activity.idParcours,
         this.pageNumber
       );
-    },
-  },
+    }
+  }
 };
 </script>
 
