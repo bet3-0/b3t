@@ -41,7 +41,7 @@ Base Component for an activity page -->
             </div>
           </div>
         </div>
-        <ActivityContent :id="activity.id" />
+        <ActivityContent :idActivite="activity.id" :idParcours="activity.idParcours"/>
         <div class="end-container">
           <div class="submit-container">
             <!-- Choisir parmi ces deux rendus en fonction de l'activité -->
@@ -142,18 +142,20 @@ export default {
   },
   created() {
     this.id = this.$route.params.idActivity;
-    console.log(activityService)
-   // this.activity = activityService.getActivity(this.id)
-    console.log(this.$store.state.activity.activity)
-    this.activity = this.$store.state.activity.activity
+    // this.activity = activityService.getActivity(this.id)
+    console.log(this.$store.state.activity.activity);
+    this.activity = this.$store.state.activity.activity;
 
-    this.progression = activityService.getProgression(this.id);
+    this.progression = activityService.getProgression(
+      this.$store.state.parcours.parcours,
+      this.id
+    );
 
     // Post the new progression
     progressionService
       .createProgression(this.progression)
       .then(response => {
-        this.progression = response.progression;
+        this.progression = response.json().progression;
         console.log("Progression created!");
       })
       .catch(() => {

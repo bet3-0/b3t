@@ -5,13 +5,13 @@ import { API_URL } from "./config";
 
 export default class ProgressionService {
   static async createProgression(data) {
-    return await fetch(API_URL + "progression", {
+    return await fetch(API_URL + "progression", JSON.stringify({
       method: "POST",
       headers: Object.assign(authHeader(), {
         "Content-Type": "application/json"
       }),
       body: JSON.stringify(data)
-    });
+    }));
   }
 
   static async updateProgression(data) {

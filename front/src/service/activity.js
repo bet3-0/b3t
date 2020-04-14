@@ -326,6 +326,7 @@ const listActivity = [{
     "page": 0
 }]
 
+/*
 const listProgression = [
     {
         id: 0, // activity id
@@ -464,10 +465,8 @@ const listProgression = [
                     "Situation 2 : Un ami se coupe en voulant tailler un bout de bois alors que vous êtes en explo.",
                 "documents": [],
                 "typeRendu": "qcm",
-                "rendu": "[{'question':'Que ferais tu en premier ? ','reponses':['Je regarde ça coupure sans rien faire','Je ferme son couteau et le met en lieu sûr','Je cri car ça saigne beaucoup']},{'question':'Et ensuite ?','reponses':['Je préviens les chefs','Je désinfecte','Je mets sous l’eau']},{'question':'Et enfin ?','reponses':['Je lui met de la crème hydratante','Je désinfecte','Je mets un pansement']}]",
-                "state": "NOTSTARTED",
-                "tracked": true,
-                "page": 2
+                "rendu": "[{'question':'Que fer        console.log(listProgression);
+
             },
             {
                 "position": 2,
@@ -516,6 +515,7 @@ const listProgression = [
         ],
     }
 ]
+*/
 
 const init = {
     mode: "cors",
@@ -530,12 +530,14 @@ export default class activityService {
     }
     */
 
-    static getProgression(id) {
-        return listProgression[id];
+    static getProgression(idParcours, idActivite) {
+        const progression = require('./../activities/' + idParcours + '/' + idActivite +'/progression.json');
+        console.log(progression); // todo: remove
+        return progression;
     }
 
     static listActi() {
-        return listActivity
+        return listActivity;
     }
 
     static async getAllActivity() {
