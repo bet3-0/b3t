@@ -78,7 +78,8 @@
             };
         },
         created(){
-            if (this.idParcours >= 4){
+            // Check if parcours is defined. If not, redirect to /parcours
+            if (isNaN(this.idParcours) | this.idParcours > 3){
                 this.$router.push('/parcours');
             }
         },

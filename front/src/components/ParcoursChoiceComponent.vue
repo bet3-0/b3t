@@ -10,18 +10,10 @@
         />
       </div>
       <div class="col-md-3">
-        <img
-          @click="selectChoice(3)"
-          src="@/assets/img/robinson.png"
-          alt=""
-        />
+        <img @click="selectChoice(3)" src="@/assets/img/robinson.png" alt="" />
       </div>
       <div class="col-md-3">
-        <img
-          @click="selectChoice(2)"
-          src="@/assets/img/cesArt.png"
-          alt=""
-        />
+        <img @click="selectChoice(2)" src="@/assets/img/cesArt.png" alt="" />
       </div>
       <div class="col-md-3">
         <img
@@ -51,10 +43,10 @@ export default {
   methods: {
     selectChoice(selected) {
       console.log(selected);
-      this.$store.state.parcours.parcours = selected;
+      this.$store.dispatch("parcours/setParcours", selected);
       this.$router.push("/activitees");
-    },
-  },
+    }
+  }
 };
 </script>
 
