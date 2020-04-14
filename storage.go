@@ -31,12 +31,14 @@ func connectS3() {
 
 func pushFile(c *gin.Context) {
 	var err error
-	var fileName uuid.UUID
+	var fileID uuid.UUID
 	var fileBuffer []byte
 
 	user := c.Request.Context().Value("user").(User)
 
-	fileName, err = uuid.NewRandom()
+	fileID, err = uuid.NewRandom()
+
+	fileName := fmt.Sprintf("%s/%s", user.CodeAdherent, fileID.String())
 
 	fileBuffer, err = c.GetRawData()
 	if err != nil {
@@ -45,8 +47,8 @@ func pushFile(c *gin.Context) {
 	}
 
 	_, err = s3.New(sess).PutObject(&s3.PutObjectInput{
-		Bucket:      aws.String(user.CodeAdherent),
-		Key:         aws.String(fileName.String()),
+		Bucket:      aws.String(user.CodeStructureGroupe),
+		Key:         aws.String(fileName),
 		Body:        bytes.NewReader(fileBuffer),
 		ContentType: aws.String(http.DetectContentType(fileBuffer)),
 	})
@@ -56,7 +58,7 @@ func pushFile(c *gin.Context) {
 		return
 	}
 
-	url := fmt.Sprintf("https://b3t.cleverapps.io/api/file/%s/%s", user.CodeAdherent, fileName.String())
+	url := fmt.Sprintf("https://b3t.cleverapps.io/api/file/%s/%s", user.CodeStructureGroupe, fileName)
 
 	c.JSON(200, gin.H{"message": "file_uploaded", "url": url})
 }
@@ -77,16 +79,19 @@ func createBucket(codeAdherent string) error {
 func getUserFile(c *gin.Context) {
 	var err error
 
+	codeStructureGroupe := c.Param("code_structure_groupe")
 	codeAdherent := c.Param("code_adherent")
 	id := c.Param("id")
+
+	fileName := fmt.Sprintf("%s/%s", codeAdherent, id)
 
 	downloader := s3manager.NewDownloader(sess)
 
 	buffer := &aws.WriteAtBuffer{}
 
 	downloader.Download(buffer, &s3.GetObjectInput{
-		Bucket: aws.String(codeAdherent),
-		Key:    aws.String(id),
+		Bucket: aws.String(codeStructureGroupe),
+		Key:    aws.String(fileName),
 	})
 
 	data := buffer.Bytes()
