@@ -1,0 +1,22 @@
+{
+    "idActivite": "42",
+    "idParcours":"1",
+    "state": "INPROGRESS",
+    "duration": 20,
+    "startedAt": 5,
+    "finishedAt": 0,
+    "reviewAt": 0,
+    "entries": 
+    [
+        {
+            "position": 0,
+            "question": "Recopie la grille, remplie la et envoie la nous:",
+            "documents": [],
+            "typeRendu": "file",
+            "rendu":"",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 1
+        }
+    ]
+  }

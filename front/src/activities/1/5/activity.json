@@ -1,0 +1,10 @@
+{
+    "id": "5",
+    "idParcours": "1",
+    "nom": "Solutions pour un camp plus sûr",
+    "description": "Panoramix, en prévision de l’organisation d’un camp avec son village, demande à ses amis de réfléchir au moyen qui peut-être mis en oeuvre lors de ce camp pour que la cuisine se fasse de manière plus sûre",
+    "duree": 15,
+    "materiel": [""],
+    "difficulte": "facile",
+    "pages": 1
+}

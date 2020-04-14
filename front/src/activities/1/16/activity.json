@@ -1,0 +1,10 @@
+{
+  "id": "16",
+  "idParcours": "1",
+  "nom": "A vos fourneaux : plat monochrome !",
+  "description": "Pour faire plaisir à sa reine des reines, Cléopâtre, et pour lui faire découvrir de nouvelles choses, son goûteur vient demander de l’aide à ses amis gaulois. Il leur demande donc de l’aider à réaliser un plat pour la reine.",
+  "duree": 45,
+  "materiel": ["Cuisine", "Esprit créatif", "De quoi prendre une photo"],
+  "difficulte": "facile",
+  "pages": 2
+}

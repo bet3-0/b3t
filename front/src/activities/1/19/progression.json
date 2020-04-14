@@ -1,0 +1,24 @@
+{
+    "id": "Server-side generated UUID",
+    "idActivite": "19",
+    "idParcours": "1",
+    "state": "INPROGRESS",
+    "duration": 30,
+    "startedAt": 0,
+    "finishedAt": 0,
+    "reviewAt": 0,
+    "entries": [
+
+        {
+            "position": 0,
+            "question": "Envoie ta vidéo ici !",
+            "documents": [],
+            "typeRendu": "file",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 1
+        }
+
+    ]
+}

@@ -1,0 +1,34 @@
+{
+    "id": "Server-side generated UUID",
+    "idActivite": "17",
+    "idParcours": "1",
+    "state": "INPROGRESS",
+    "duration": 30,
+    "startedAt": 0,
+    "finishedAt": 0,
+    "reviewAt": 0,
+    "entries": [
+
+        {
+            "position": 0,
+            "question": "Envoie-nous le dessin de ton plat",
+            "documents": [],
+            "typeRendu": "file",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 1
+        },
+        {
+            "position": 1,
+            "question": "Ecris ici ta recette !",
+            "documents": [],
+            "typeRendu": "text",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 1
+        }
+
+    ]
+}

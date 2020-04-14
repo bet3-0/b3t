@@ -1,0 +1,34 @@
+{
+    "id": "Server-side generated UUID",
+    "idActivite": "1",
+    "idParcours": "1",
+    "state": "INPROGRESS",
+    "duration": 15,
+    "startedAt": 0,
+    "finishedAt": 0,
+    "reviewAt": 0,
+    "entries": [
+
+        {
+            "position": 0,
+            "question": "Explique les différences avec pour appui des photos",
+            "documents": [],
+            "typeRendu": "text",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 1
+        },
+        {
+            "position": 1,
+            "question": "Envoie tes photos ici",
+            "documents": [],
+            "typeRendu": "file",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 1
+        }
+
+    ]
+}

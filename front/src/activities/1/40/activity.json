@@ -1,0 +1,10 @@
+{
+    "id": "40",
+    "idParcours": "1",
+    "nom": "Petit chef: Mots fléchés culinaires",
+    "description": "Compléter la grille de mots fléchés",
+    "duree": 15,
+    "materiel": ["Un ordinateur","papier","crayon","appareil photo"],
+    "difficulte": "",
+    "pages": 2
+   }   
