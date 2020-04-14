@@ -31,14 +31,14 @@ export default {
     nextPage() {
       return this.changePage(this.pageNumber + 1);
     },
-    validate() {
+    async validate() {
       if (this.hasNext()) {
         this.nextPage();
       } else {
-        this.checkValidation();
+        await this.checkValidation();
       }
     },
-    checkValidation() {
+    async checkValidation() {
       // Check entries are filled
       let incompleteEntries = this.progression.entries.filter(entry => entry.state != "FINISHED")
       if (incompleteEntries.length > 0){
@@ -51,20 +51,19 @@ export default {
       this.progression.state = "FINISHED";
 
       // Update progression
-      ProgressionService.updateProgression(this.progression)
-        .then(() => {
+      try{
+      await ProgressionService.updateProgression(this.progression);
           console.log("Progression sent: " + this.progression);
           this.updateEntry(this.progression); // update the primary progression object
           // Redirect
           window.location.href = "/activitees";
-        })
-        .catch(() => {
+        }catch(error){
           console.log("Error while sending text entry: " + this.progression);
           this.progression.state = "INPROGRESS";
           alert(
             "Impossible d'envoyer ta progression ! Vérifie ta connexion et réessaye !"
           );
-        });
+        }
     }
   }
 };

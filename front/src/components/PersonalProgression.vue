@@ -138,23 +138,22 @@ export default {
       }
     };
   },
-  beforeMount() {
+  async beforeMount() {
     // TODO: use store instead of localStorage (more "VueJS"-practice)
     this.idParcours = parseInt(localStorage.getItem("parcours")) || 5;
     // TODO: test it !
-    ProgressionService.getProgressions()
-      .then(response => {
-        this.progressions = response;
-      })
-      .catch(() => {
-        this.progressions = [
-          {
-            id: "error_fetch",
-            state: "UNKNOWN", // error
-            evaluation: "Une erreur inconnue est survenue ! Recharge la page !",
-          }
-        ];
-      });
+    try {
+      this.progressions = await ProgressionService.getProgressions();
+    } catch (error) {
+      console.error(error)
+      this.progressions = [
+        {
+          id: "error_fetch",
+          state: "UNKNOWN", // error
+          evaluation: "Une erreur inconnue est survenue ! Recharge la page !"
+        }
+      ];
+    }
   },
   mounted() {
     this.countProgressionStates();
