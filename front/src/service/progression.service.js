@@ -41,14 +41,14 @@ class ProgressionService {
     );
   }
 
-  getProgressionsAxios() {
+  getProgressions() {
     return axios.get(
       API_URL + "progressions",
       JSON.stringify({ headers: authHeader() })
     );
   }
 
-  getProgressions() {
+  getProgressionsFetch() { // DEPRECATED
     return fetch(
       API_URL + "progressions",
       JSON.stringify({ method: "GET", headers: authHeader() })
