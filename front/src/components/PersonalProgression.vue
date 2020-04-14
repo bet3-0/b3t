@@ -116,10 +116,10 @@ import { VALID_STATES } from "./../service/progressionHelpers";
 import Vue from "vue";
 import BootstrapVue from "bootstrap-vue";
 import VueRouter from "vue-router";
+import ProgressionService from "./../service/progression.service";
 
 Vue.use(BootstrapVue);
 Vue.use(VueRouter);
-
 
 export default {
   name: "PersonalProgression",
@@ -141,49 +141,20 @@ export default {
   beforeMount() {
     // TODO: use store instead of localStorage (more "VueJS"-practice)
     this.idParcours = parseInt(localStorage.getItem("parcours")) || 5;
-    // TODO: fetch progressions
-    this.progressions = [
-      {
-        id: 5, // FOREIGN KEY de activity
-        state: "refused", // peut prendre les valeurs enum(notStarted,inProgress,finished, validated, refused)
-        duration: 20, // en minutes aussi
-        startedAt: 5, // ms
-        finishedAt: 0, // ms
-        evaluation: "refusé",
-        reviewAt: 0, // ms
-        entries: []
-      },
-      {
-        id: 6,
-        state: "validated", // peut prendre les valeurs enum(notStarted,inProgress,finished, validated, refused)
-        duration: 20, // en minutes aussi
-        startedAt: 5, // ms
-        finishedAt: 0, // ms
-        reviewAt: 0, // ms
-        evaluation: "validé",
-        entries: []
-      },
-      {
-        id: 7,
-        state: "finished", // peut prendre les valeurs enum(notStarted,inProgress,finished, validated, refused)
-        duration: 20, // en minutes aussi
-        startedAt: 5, // ms
-        finishedAt: 0, // ms
-        reviewAt: 0, // ms
-        evaluation: "",
-        entries: []
-      },
-      {
-        id: 7,
-        state: "INPROGRESS", // peut prendre les valeurs enum(notStarted,inProgress,finished, validated, refused)
-        duration: 20, // en minutes aussi
-        startedAt: 5, // ms
-        finishedAt: 0, // ms
-        reviewAt: 0, // ms
-        evaluation: "",
-        entries: []
-      }
-    ];
+    // TODO: test it !
+    ProgressionService.getProgressions()
+      .then(response => {
+        this.progressions = response;
+      })
+      .catch(() => {
+        this.progressions = [
+          {
+            id: "error_fetch",
+            state: "UNKNOWN", // error
+            evaluation: "Une erreur inconnue est survenue ! Recharge la page !",
+          }
+        ];
+      });
   },
   mounted() {
     this.countProgressionStates();
