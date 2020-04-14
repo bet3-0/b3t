@@ -1,3 +1,5 @@
+import {API_URL} from './config';
+
 const listActivity = [{
     "id": "47",
     "idParcours": "0",
@@ -515,20 +517,21 @@ const listProgression = [
     }
 ]
 
-const baseUrl = "https://b3t-dev.cleverapps.io/api";
 const init = {
     mode: "cors",
-}
+};
 
 export default class activityService {
 
-
+    // DEPRECATED
+    /*
     static async getActivity(id) {
-        return await fetch(`${baseUrl}/activites`, init);
+        return await fetch(`${API_URL}activity/id`, init);
     }
+    */
 
     static getProgression(id) {
-        return listProgression[id]
+        return listProgression[id];
     }
 
     static listActi() {
@@ -536,7 +539,7 @@ export default class activityService {
     }
 
     static async getAllActivity() {
-        return await fetch(`${baseUrl}/activites`, init);
+        return await fetch(`${API_URL}activites`, init);
 
     }
 }
