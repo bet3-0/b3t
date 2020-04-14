@@ -33,7 +33,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="activity in displayActivities" :key="activity.id" v-b-modal="'activityModal'" @click="sendInfo(activity)" style="cursor: pointer">
+                    <tr v-for="activity in displayActivities" v-bind:key="activity.id + activity.idParcours" v-b-modal="'activityModal'" @click="sendInfo(activity)" style="cursor: pointer">
                         <td>
                             <svg class="bi bi-play-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" style="display: inline">
                                 <path d="M11.596 8.697l-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 010 1.393z"/>
@@ -78,14 +78,11 @@
             };
         },
         async mounted() {
-            console.log('begin')
-            let response = await activityService.getAllActivity();
+           /* let response = await activityService.getAllActivity();
             let essai = await response.json()
-            console.log(essai.activites)
-            this.activities = essai.activites
+            this.activities = essai.activites*/
+            this.activities = activityService.listActi()
             this.displayActivities = this.activities
-            console.log('finidhed')
-            console.log(this.displayActivities.id)
         },
         methods: {
             sendInfo(activity) {

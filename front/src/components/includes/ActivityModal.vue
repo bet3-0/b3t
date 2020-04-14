@@ -18,7 +18,7 @@
                 <b-button variant="secondary" @click="cancel()">
                     Fermer
                 </b-button>
-                <b-button variant="success" @click.prevent.capture="go(activity.id)">
+                <b-button variant="success" @click.prevent.capture="go(activity)">
                     Démarrer l'activité
                 </b-button>
             </template>
@@ -29,14 +29,16 @@
 <script>
   import Vue from 'vue'
   import VueRouter from 'vue-router'
+
   Vue.use(VueRouter)
     export default {
         name: "ActivityModal",
         props: ["activity"],
       methods: {
-          go(activityId) {
-            console.log(activityId)
-            this.$router.push('/activity/' + activityId)
+          go(activity) {
+            console.log(activity)
+            this.$store.commit('set', activity)
+            this.$router.push('/activity/' + activity.id)
           }
       }
     };

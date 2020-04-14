@@ -115,7 +115,9 @@ export default {
   created() {
     this.id = this.$route.params.idActivity;
     console.log(activityService)
-    this.activity = activityService.getActivity(this.id)
+   // this.activity = activityService.getActivity(this.id)
+    console.log(this.$store.state.activity.activity)
+    this.activity = this.$store.state.activity.activity
     this.progression = activityService.getProgression(this.id)
   },
   mounted() {
