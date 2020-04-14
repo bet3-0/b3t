@@ -13,6 +13,8 @@
   </div>
 </template>
 <script>
+import ProgressionService from "./../../../service/progression.service";
+
 export default {
   name: "ValidateActivityPage",
   props: ["activity", "progression", "pageNumber", "changePage"],
@@ -41,7 +43,7 @@ export default {
       let incompleteEntries = this.progression.entries.filter(entry => entry.state != "FINISHED")
       if (incompleteEntries.length > 0){
         console.log("Some entries where not sent!")
-        alert("Certains rendus n'ont pas été envoyés !") // todo: faire une modale
+        alert(`Certains rendus (${incompleteEntries.length}) n'ont pas été envoyés !`) // todo: faire une modale
         return;
       }
 
