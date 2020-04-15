@@ -158,7 +158,7 @@ export default {
   methods: {
     async retrieveProgression(idParcours, idActivity) {
       // faire un truc plus clean mais tout aussi persistant.
-      const activities = JSON.parse(localStorage["activities"]) || {};
+      const activities = JSON.parse(localStorage.getItem("activities")) || {};
       if (!(idParcours in activities)) {
         activities[idParcours] = {};
       }
