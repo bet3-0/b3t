@@ -9,7 +9,7 @@
   "reviewAt": 0,
   "entries": [
     {
-      "id": "0",
+      "position": 0,
       "question": "Pour bien commencer",
       "documents": [],
       "typeRendu": "qcm",
@@ -28,7 +28,7 @@
       "page": 1
     },
     {
-      "id": "1",
+      "position": 1,
       "question":
         "Maintenant que tu sais à quoi sert un registre de soin, comment le tiendrais tu si tu étais à la place des chefs ?",
       "documents": [],
@@ -62,7 +62,7 @@
       "page": 2
     },
     {
-      "id": "2",
+      "position": 2,
       "question": "Justifie ta réponse",
       "documents": [],
       "typeRendu": "text",
@@ -72,7 +72,7 @@
       "page": 2
     },
     {
-      "id": "3",
+      "position": 3,
       "question": "Ainsi, qu’as tu retenu sur le registre de soins ? A quoi sert-il ? Quand faut-il que les chefs le remplissent ?",
       "documents": [],
       "typeRendu": "text",
