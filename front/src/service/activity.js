@@ -541,7 +541,14 @@ export default class activityService {
     }
 
     static async getAllActivity() {
-        return await fetch(`${API_URL}activites`, init);
+        console.log("to avoid never used error:" + API_URL + init);
+        return listActivity;
+        // TODO: comment previous lines, uncomment following ones
+        /*
+        let response = await fetch(`${API_URL}activites`, init);
+        let data = await response.json()
+        return data.activites
+        */
 
     }
 }

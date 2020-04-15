@@ -40,6 +40,9 @@ export default {
     },
     async checkValidation() {
       // Check entries are filled
+      if (!this.progression.entries){
+        this.progression.entries = [];
+      }
       let incompleteEntries = this.progression.entries.filter(entry => entry.state != "FINISHED")
       if (incompleteEntries.length > 0){
         console.log("Some entries where not sent!")

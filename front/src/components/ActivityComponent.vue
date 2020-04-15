@@ -41,7 +41,10 @@ Base Component for an activity page -->
             </div>
           </div>
         </div>
-        <ActivityContent :idActivite="activity.id" :idParcours="activity.idParcours"/>
+        <ActivityContent
+          :idActivite="activity.id"
+          :idParcours="activity.idParcours"
+        />
         <div class="end-container">
           <div class="submit-container">
             <!-- Choisir parmi ces deux rendus en fonction de l'activité -->
@@ -129,33 +132,20 @@ export default {
   //props: { pageNumber: Number }, // current page number
   data() {
     return {
+      idParcours: NaN,
       pageNumber: 1, // number of the visible page. 1 at start
       progress: 0,
       activity: {},
       progression: {}
     };
   },
-  created() {
+  async created() {
     this.id = this.$route.params.idActivity;
-    // this.activity = activityService.getActivity(this.id)
+    this.idParcours = this.$store.state.parcours.parcours;
     console.log(this.$store.state.activity.activity);
     this.activity = this.$store.state.activity.activity;
 
-    this.progression = activityService.getProgression(
-      this.$store.state.parcours.parcours,
-      this.id
-    );
-
-    // Post the new progression
-    progressionService
-      .createProgression(this.progression)
-      .then(response => {
-        this.progression = response.json().progression;
-        console.log("Progression created!");
-      })
-      .catch(() => {
-        console.warn("Impossible to create a progression!");
-      });
+    await this.retrieveProgression(this.idParcours, this.id);
   },
   mounted() {
     for (let i = 0; i < this.activity.pages; i++) {
@@ -166,6 +156,34 @@ export default {
     $(".content-container").removeAttr("hidden");
   },
   methods: {
+    async retrieveProgression(idParcours, idActivity) {
+      // faire un truc plus clean mais tout aussi persistant.
+      const activities = JSON.parse(localStorage["activities"]) || {};
+      if (!(idParcours in activities)) {
+        activities[idParcours] = {};
+      }
+      if (idActivity in activities[idParcours]) {
+        this.progression = activities[idParcours][idActivity].progression; // retrieve the previous progression created.
+        return;
+      }
+
+      // Retrieve the default progression linked to the activity
+      let progression = activityService.getProgression(idParcours, idActivity);
+
+      // Post the new progression
+      try {
+        let response = await progressionService.createProgression(progression);
+        this.progression = response.json().progression;
+        this.activity["progression"] = this.progression;
+        activities[idParcours][idActivity] = this.activity;
+        console.log("Progression created!");
+      } catch (error) {
+        console.warn("Impossible to create a progression!");
+        alert("Impossible de démarrer l'activité ! Recharge la page !");
+        // return;
+      }
+      localStorage["activities"] = JSON.stringify(activities);
+    },
     getProgress() {
       let counter = 0;
       let total = 0;
@@ -184,6 +202,9 @@ export default {
       this.progress = (100 * counter) / total;
     },
     updateEntry(newEntry) {
+      if (!this.progression.entries) {
+        this.progression.entries = [];
+      }
       for (var i in this.progression.entries) {
         if (this.progression.entries[i].id == newEntry.id) {
           this.progression.entries[i] = newEntry;
@@ -192,13 +213,13 @@ export default {
       }
       this.getProgress();
     },
-    changeEntryState(entryId, state) {
-      console.warn("DEPRECATED: changeEntryState" + entryId + state);
-    },
     changeParcoursColor() {
       return itineraryHelpers.getItineraryColor(this.activity.idParcours);
     },
     pageEntries() {
+      if (!this.progression.entries) {
+        return [];
+      }
       return this.progression.entries.filter(
         entry => entry.page === this.pageNumber
       );

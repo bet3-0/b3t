@@ -1,5 +1,3 @@
-// TO BE REPLACED BY WHAT VICTOR HAS DONE!
-
 <template>
   <div class="container">
     <b-modal
@@ -10,8 +8,8 @@
     >
       <div class="modal-body">
         <p>{{ getCommentFromState(progression.state) }}</p>
-        <p v-if="progression.evaluation.length">
-          Commentaire: {{ progression.evaluation }}
+        <p v-if="progression.commentaire && progression.commentaire.length">
+          Commentaire: {{ progression.commentaire }}
         </p>
       </div>
       <template v-slot:modal-footer="{ ok, cancel }">
@@ -46,7 +44,7 @@ export default {
   props: ["progression", "activity"],
   methods: {
     go(activity) {
-      this.$router.push(`/activity/${activity.idParcours}/${activity.id}`);
+      this.$router.push(`/activity/${activity.id}`);
     },
     getCommentFromState(state) {
       switch (state) {

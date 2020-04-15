@@ -112,14 +112,15 @@ export default {
   },
   async mounted() {
     try {
-      let response = await activityService.getAllActivity();
-      let data = await response.json();
-      this.activities = data.activites;
+      this.activities = await activityService.getAllActivity();
     } catch (error) {
       console.error(error);
       this.activities = activityService.listActi(); // for debug : TODO: remove
     }
-    this.displayActivities = this.activities;
+    // Filter in case API does not
+    this.displayActivities = this.activities.filter(
+      activity => activity.idParcours == this.idParcours
+    );
   },
   methods: {
     sendInfo(activity) {

@@ -126,7 +126,7 @@ export default {
   components: { ProgressionModal },
   data() {
     return {
-      idParcours: 4,
+      idParcours: this.$store.state.parcours.parcours,
       currentProgression: {},
       progressions: [],
       counter: {
@@ -138,16 +138,19 @@ export default {
       }
     };
   },
+  created() {
+    // Check if parcours is defined. If not, redirect to /parcours
+    if (isNaN(this.idParcours) | (this.idParcours > 3)) {
+      this.$router.push("/parcours");
+    }
+  },
   async beforeMount() {
-    // TODO: use store instead of localStorage (more "VueJS"-practice)
-    this.idParcours = parseInt(localStorage.getItem("parcours")) || 5;
-    // TODO: test it !
     try {
       let response = await ProgressionService.getProgressions();
       let data = await response.json();
       this.progressions = data.progressions;
     } catch (error) {
-      console.error(error)
+      console.error(error);
       this.progressions = [
         {
           id: "error_fetch",

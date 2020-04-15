@@ -1,7 +1,5 @@
 <template>
   <div hidden class="content-container">
-    <!-- Placeholder content -->
-    <ActivityContentSample />
     <!-- Activité -->
     <span v-html="activityContent"></span>
   </div>
