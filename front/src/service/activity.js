@@ -465,8 +465,10 @@ const listProgression = [
                     "Situation 2 : Un ami se coupe en voulant tailler un bout de bois alors que vous êtes en explo.",
                 "documents": [],
                 "typeRendu": "qcm",
-                "rendu": "[{'question':'Que fer        console.log(listProgression);
-
+                "rendu": "[{'question':'Que ferais tu en premier ? ','reponses':['Je regarde ça coupure sans rien faire','Je ferme son couteau et le met en lieu sûr','Je cri car ça saigne beaucoup']},{'question':'Et ensuite ?','reponses':['Je préviens les chefs','Je désinfecte','Je mets sous l’eau']},{'question':'Et enfin ?','reponses':['Je lui met de la crème hydratante','Je désinfecte','Je mets un pansement']}]",
+                "state": "NOTSTARTED",
+                "tracked": true,
+                "page": 2
             },
             {
                 "position": 2,

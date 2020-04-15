@@ -10,103 +10,13 @@
     [
         {
             "position": 0,
-            "question": "Quel mois peut on manger des abricots?:",
+            "question": "",
             "documents": [],
             "typeRendu": "qcm",
             "rendu": "[{'question':'Quel mois peut on manger des abricots?','reponses':['Mai','Juillet','Septembre']},{'question':'Quel mois peut on manger des fraises?','reponses':['mars','Juillet','novembre']},{'question':'Quel mois peut on manger des aubergines?','reponses':['janvier','mai','octobre']},{'question':'Quel mois peut on manger des aubergines?','reponses':['janvier','mai','octobre']},{'question':'Quel mois peut on manger des raisins?','reponses':['mars','juillet','novembre']},{'question':'Quel mois peut on manger des pommes?','reponses':['mai','juillet','decembre']},{'question':'Quel mois peut on manger des carottes?','reponses':['février','juillet','septembre']},{'question':'Quel mois peut on manger des kiwis?','reponses':['mars','avril','septembre']},{'question':'Quel mois peut on manger des pommes de terre?','reponses':['mai','juillet','septembre']},{'question':'Quel mois peut on manger des tomates?','reponses':['juin','juillet','octobre']},{'question':'Quel mois peut on manger des poireaux?','reponses':['mai','juillet','septembre']}]",
             "state": "NOTSTARTED",
             "tracked": true,
             "page": 2
-        },
-        {
-            "position": 0,
-            "question": "Quel mois peut on manger des fraises?:",
-            "documents": [],
-            "typeRendu": "qcm",
-            "rendu": "mars; juillet; novembre",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 3
-        },
-        {
-            "position": 0,
-            "question": "Quel mois peut on manger des aubergines?:",
-            "documents": [],
-            "typeRendu": "qcm",
-            "rendu": "janvier; mai; octobre",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 4
-        },
-        {
-            "position": 0,
-            "question": "Quel mois peut on manger des raisins?:",
-            "documents": [],
-            "typeRendu": "qcm",
-            "rendu": "mars; juillet; novembre",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 5
-        },
-        {
-            "position": 0,
-            "question": "Quel mois peut on manger des pommes?:",
-            "documents": [],
-            "typeRendu": "qcm",
-            "rendu": "mai; juillet; decembre",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 6
-        },
-        {
-            "position": 0,
-            "question": "Quel mois peut on manger des carottes?:",
-            "documents": [],
-            "typeRendu": "qcm",
-            "rendu": "février; juillet; septembre",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 7
-        },
-        {
-            "position": 0,
-            "question": "Quel mois peut on manger des kiwis?:",
-            "documents": [],
-            "typeRendu": "qcm",
-            "rendu": "mars; avril; septembre",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 8
-        },
-        {
-            "position": 0,
-            "question": "Quel mois peut on manger des pommes de terre?:",
-            "documents": [],
-            "typeRendu": "qcm",
-            "rendu": "mai; juillet; septembre",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 9
-        },
-        {
-            "position": 0,
-            "question": "Quel mois peut on manger des tomates?:",
-            "documents": [],
-            "typeRendu": "qcm",
-            "rendu": "juin; juillet; octobre",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 10
-        },
-        {
-            "position": 0,
-            "question": "Quel mois peut on manger des poireaux?:",
-            "documents": [],
-            "typeRendu": "qcm",
-            "rendu": "mai; juillet; septembre",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 11
         }
     ]
   }
