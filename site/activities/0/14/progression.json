@@ -1,0 +1,41 @@
+{
+    "idActivite": "14",
+    "idParcours":"0",
+    "state": "INPROGRESS",
+    "duration": 20,
+    "startedAt": 0,
+    "finishedAt": 0,
+    "reviewAt": 0,
+    "entries": [
+        {
+            "id": 0,
+            "question": "2) Sais tu ce que veux dire PLS? Si oui, dis le nous, sinon tu le découvriras bientôt.",
+            "documents": [],
+            "typeRendu": "text",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 1
+        },
+        {
+            "id": 1,
+            "question": "3) Quand faut il mettre quelqu’un en PLS ?",
+            "documents": [],
+            "typeRendu": "text",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 1
+        }, 
+        {
+            "id": 2,
+            "question": "4) Quand faut il mettre quelqu’un en PLS ?",
+            "documents": [],
+            "typeRendu": "file",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 1
+        }     
+    ]     
+}

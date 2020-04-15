@@ -4,28 +4,20 @@
     <div class="row">
       <div class="col-md-3">
         <img
-          @click="selectChoice('bosse et bobos')"
+          @click="selectChoice(0)"
           src="@/assets/img/bosseEtBobo.png"
           alt=""
         />
       </div>
       <div class="col-md-3">
-        <img
-          @click="selectChoice('robinson')"
-          src="@/assets/img/robinson.png"
-          alt=""
-        />
+        <img @click="selectChoice(3)" src="@/assets/img/robinson.png" alt="" />
+      </div>
+      <div class="col-md-3">
+        <img @click="selectChoice(2)" src="@/assets/img/cesArt.png" alt="" />
       </div>
       <div class="col-md-3">
         <img
-          @click="selectChoice('cesarts')"
-          src="@/assets/img/cesArt.png"
-          alt=""
-        />
-      </div>
-      <div class="col-md-3">
-        <img
-          @click="selectChoice('trois étoiles')"
+          @click="selectChoice(1)"
           src="@/assets/img/troisEtoiles.png"
           alt=""
         />
@@ -44,16 +36,17 @@ export default {
   name: "ParcoursChoiceComponent",
   created() {
     // if a parcours has been chosen, redirect to /activitees
-    if (localStorage.getItem("parcours")) {
+    if (this.$store.state.parcours.parcours < 4) {
       this.$router.push("/activitees");
     }
   },
   methods: {
     selectChoice(selected) {
       console.log(selected);
+      this.$store.dispatch("parcours/setParcours", selected);
       this.$router.push("/activitees");
-    },
-  },
+    }
+  }
 };
 </script>
 

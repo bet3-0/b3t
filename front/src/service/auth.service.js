@@ -1,16 +1,19 @@
 import axios from "axios";
-
-const API_URL = "http://bet3-0.sgdf.fr/api/";
+import {API_URL} from "./config";
 
 class AuthService {
   login(user) {
     return axios
-      .post(API_URL + "login", JSON.stringify({
-        data: {
-          code_adherent: user.code_adherent,
-        },
-      }))
-      .then((response) => {
+      .post(
+        API_URL + "login",
+        JSON.stringify({
+          data: {
+            code_adherent: user.code_adherent
+          },
+          headers: { "Content-Type": "application/json" }
+        })
+      )
+      .then(response => {
         if (response.data.token) {
           localStorage.setItem("user", JSON.stringify(response.data));
         }
@@ -27,7 +30,7 @@ class AuthService {
   register(user) {
     return axios.post(API_URL + "register", {
       code_adherent: user.code_adherent,
-      role: user.role,
+      role: user.role
     });
   }
 }

@@ -20,9 +20,6 @@
           </div>
         </div>
       </div>
-
-      
-
       <br />
 
       <button class="btn btn-primary" type="button" v-on:click="submitQcm()">Envoyer mes réponses</button>
@@ -31,9 +28,11 @@
 </template>
 
 <script>
+import ProgressionService from "./../../../service/progression.service";
+
 export default {
   name: "Qcm",
-  props: ["activityId", "entryId", "changeEntryState", "questions"],
+  props: ["entry", "updateEntry"],
   data() {
     return {
       tabQuestions: []
@@ -41,7 +40,7 @@ export default {
   },
   created() {
     const regex = /'/gm;
-    var initQuestions = JSON.parse(this.questions.replace(regex, '"'));
+    var initQuestions = JSON.parse(this.entry.rendu.replace(regex, '"'));
     
     for(var i = 0; i < initQuestions.length; i++) {
       this.tabQuestions.push({
@@ -60,9 +59,8 @@ export default {
     console.log(initQuestions);
   },
   methods: {
-    /* Submits the text to the server */
-    // TODO
-    submitQcm() {
+    /* Formats and Submits the text to the server */
+    async submitQcm() {
       var reponse = [];
 
       for (let i = 0; i < this.tabQuestions.length; i++) {
@@ -78,12 +76,24 @@ export default {
         }
         
       }
-
       reponse = JSON.stringify(reponse);
-
-      console.log(reponse);
-      //this.changeEntryState(this.entryId, "finished");
-      return {};
+      this.entry.rendu = reponse;
+      await this.submitText();      
+    },
+    async submitText() {
+      this.entry.state = "FINISHED";
+      try{
+          await ProgressionService.updateProgression(this.entry);
+          console.log("Answer sent: " + this.entry.rendu);
+          this.updateEntry(this.entry); // update the primary progression object
+        }
+        catch(error){
+          console.log("Error while sending text entry: "+ this.entry.rendu);
+          this.entry.state = "INPROGRESS";
+          alert(
+            "Impossible d'envoyer ta progression ! Vérifie ta connexion et réessaye !"
+          );
+        }
     }
   }
 };

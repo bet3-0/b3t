@@ -13,9 +13,11 @@
   </div>
 </template>
 <script>
+import ProgressionService from "./../../../service/progression.service";
+
 export default {
   name: "ValidateActivityPage",
-  props: ["activity", "pageNumber", "changePage"],
+  props: ["activity", "progression", "pageNumber", "changePage"],
   data() {
     return {};
   },
@@ -29,16 +31,44 @@ export default {
     nextPage() {
       return this.changePage(this.pageNumber + 1);
     },
-    validate() {
+    async validate() {
       if (this.hasNext()) {
         this.nextPage();
       } else {
-        // TODO
-        console.log("validate");
-        window.location.href = "/activitees"
+        await this.checkValidation();
       }
     },
-  },
+    async checkValidation() {
+      // Check entries are filled
+      if (!this.progression.entries){
+        this.progression.entries = [];
+      }
+      let incompleteEntries = this.progression.entries.filter(entry => entry.state != "FINISHED")
+      if (incompleteEntries.length > 0){
+        console.log("Some entries where not sent!")
+        alert(`Certains rendus (${incompleteEntries.length}) n'ont pas été envoyés !`) // todo: faire une modale
+        return;
+      }
+
+      //Change state
+      this.progression.state = "FINISHED";
+
+      // Update progression
+      try{
+      await ProgressionService.updateProgression(this.progression);
+          console.log("Progression sent: " + this.progression);
+          this.updateEntry(this.progression); // update the primary progression object
+          // Redirect
+          window.location.href = "/activitees";
+        }catch(error){
+          console.log("Error while sending text entry: " + this.progression);
+          this.progression.state = "INPROGRESS";
+          alert(
+            "Impossible d'envoyer ta progression ! Vérifie ta connexion et réessaye !"
+          );
+        }
+    }
+  }
 };
 </script>
 <style scoped>

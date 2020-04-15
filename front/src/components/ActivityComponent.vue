@@ -11,12 +11,12 @@ Base Component for an activity page -->
         </h1>
         <div class="details-container">
           <a
-                  class="btn btn-secondary"
-                  data-toggle="collapse"
-                  href="#details"
-                  role="button"
-                  aria-expanded="false"
-                  aria-controls="details"
+            class="btn btn-secondary"
+            data-toggle="collapse"
+            href="#details"
+            role="button"
+            aria-expanded="false"
+            aria-controls="details"
           >
             Details
           </a>
@@ -41,29 +41,52 @@ Base Component for an activity page -->
             </div>
           </div>
         </div>
-        <ActivityContent :id="activity.id" />
+        <ActivityContent
+          :idActivite="activity.id"
+          :idParcours="activity.idParcours"
+        />
         <div class="end-container">
           <div class="submit-container">
             <!-- Choisir parmi ces deux rendus en fonction de l'activité -->
-            <div v-for="entry in pageEntries()" :key="entry.id" style="text-align: center; width: 100%">
+            <div
+              v-for="entry in pageEntries()"
+              :key="entry.id"
+              style="text-align: center; width: 100%"
+            >
               <h3 style="text-align: left">
                 {{ entry.question }}
               </h3>
-              <UploadFile v-if="entry.typeRendu === 'file'" :activityId="activity.id" :entryId="entry.id" :changeEntryState="changeEntryState"/>
-              <UploadText v-if="entry.typeRendu === 'text'" :activityId="activity.id" :entryId="entry.id" :changeEntryState="changeEntryState"/>
-              <OrderList  v-if="entry.typeRendu === 'orderList'" :activityId="activity.id" :entryId="entry.id" :changeEntryState="changeEntryState" v-bind:list-response="entry.rendu"/>
-              <Qcm  v-if="entry.typeRendu === 'qcm'" :activityId="activity.id" :entryId="entry.id" :changeEntryState="changeEntryState" v-bind:questions="entry.rendu"/>
+              <UploadFile
+                v-if="entry.typeRendu === 'file'"
+                :entry="entry"
+                :updateEntry="updateEntry"
+              />
+              <UploadText
+                v-if="entry.typeRendu === 'text'"
+                :entry="entry"
+                :updateEntry="updateEntry"
+              />
+              <OrderList
+                v-if="entry.typeRendu === 'orderList'"
+                :entry="entry"
+                :updateEntry="updateEntry"
+              />
+              <Qcm
+                v-if="entry.typeRendu === 'qcm'"
+                :entry="entry"
+                :updateEntry="updateEntry"
+              />
             </div>
           </div>
-            <ValidateActivityPage
-                    :activity="activity"
-                    :pageNumber="pageNumber"
-                    :changePage="changePage"
-            />
+          <ValidateActivityPage
+            :activity="activity"
+            :pageNumber="pageNumber"
+            :changePage="changePage"
+            :progression="progression"
+          />
         </div>
       </div>
     </div>
-
   </div>
 </template>
 
@@ -74,20 +97,23 @@ import UploadFile from "./includes/activityComponents/UploadFile";
 import UploadText from "./includes/activityComponents/UploadText";
 import OrderList from "./includes/activityComponents/OrderList";
 import Qcm from "./includes/activityComponents/Qcm";
-import activityService from './../service/activity';
-import itineraryHelpers from './../service/itineraryHelpers';
+import activityService from "./../service/activity";
+import itineraryHelpers from "./../service/itineraryHelpers";
 
 import ValidateActivityPage from "./includes/activityComponents/ValidateActivityPage";
 import $ from "jquery";
+import progressionService from "../service/progression.service";
 
 // temporary script
 function getActivityPage(id, idParcours, pageNumber) {
   console.log(
-    `Page asked: id=${id} parcours=${itineraryHelpers.getItineraryRouteName(idParcours)}`
+    `Page asked: id=${id} parcours=${itineraryHelpers.getItineraryRouteName(
+      idParcours
+    )}`
   );
   /*
   this.activityFile = require(`@/assets/pages/activities/${getItineraryRouteName(
-    idParcours
+    idParcoursactivitees
   )}/${id}/${id}.html`);
   */
   return `<b>Mon activité trop stylée en <i>HTML</i> page ${pageNumber}!</b>`;
@@ -106,17 +132,20 @@ export default {
   //props: { pageNumber: Number }, // current page number
   data() {
     return {
+      idParcours: NaN,
       pageNumber: 1, // number of the visible page. 1 at start
       progress: 0,
       activity: {},
-      progression: {},
+      progression: {}
     };
   },
-  created() {
+  async created() {
     this.id = this.$route.params.idActivity;
-    console.log(activityService)
-    this.activity = activityService.getActivity(this.id)
-    this.progression = activityService.getProgression(this.id)
+    this.idParcours = this.$store.state.parcours.parcours;
+    console.log(this.$store.state.activity.activity);
+    this.activity = this.$store.state.activity.activity;
+
+    await this.retrieveProgression(this.idParcours, this.id);
   },
   mounted() {
     for (let i = 0; i < this.activity.pages; i++) {
@@ -127,13 +156,41 @@ export default {
     $(".content-container").removeAttr("hidden");
   },
   methods: {
+    async retrieveProgression(idParcours, idActivity) {
+      // faire un truc plus clean mais tout aussi persistant.
+      const activities = JSON.parse(localStorage.getItem("activities")) || {};
+      if (!(idParcours in activities)) {
+        activities[idParcours] = {};
+      }
+      if (idActivity in activities[idParcours]) {
+        this.progression = activities[idParcours][idActivity].progression; // retrieve the previous progression created.
+        return;
+      }
+
+      // Retrieve the default progression linked to the activity
+      let progression = activityService.getProgression(idParcours, idActivity);
+
+      // Post the new progression
+      try {
+        let response = await progressionService.createProgression(progression);
+        this.progression = response.json().progression;
+        this.activity["progression"] = this.progression;
+        activities[idParcours][idActivity] = this.activity;
+        console.log("Progression created!");
+      } catch (error) {
+        console.warn("Impossible to create a progression!");
+        alert("Impossible de démarrer l'activité ! Recharge la page !");
+        // return;
+      }
+      localStorage["activities"] = JSON.stringify(activities);
+    },
     getProgress() {
       let counter = 0;
       let total = 0;
-      for (let entry in this.progression.entries) {
-        if (this.progression.entries[entry].tracked) {
+      for (let entryIndex in this.progression.entries) {
+        if (this.progression.entries[entryIndex].tracked) {
           total += 1;
-          if (this.progression.entries[entry].state === "finished") {
+          if (this.progression.entries[entryIndex].state === "FINISHED") {
             counter += 1;
           }
         }
@@ -144,16 +201,27 @@ export default {
       }
       this.progress = (100 * counter) / total;
     },
-    changeEntryState(entryId, state) {
-      this.progression.entries[entryId].state = state;
+    updateEntry(newEntry) {
+      if (!this.progression.entries) {
+        this.progression.entries = [];
+      }
+      for (var i in this.progression.entries) {
+        if (this.progression.entries[i].id == newEntry.id) {
+          this.progression.entries[i] = newEntry;
+          break;
+        }
+      }
       this.getProgress();
     },
     changeParcoursColor() {
       return itineraryHelpers.getItineraryColor(this.activity.idParcours);
     },
     pageEntries() {
+      if (!this.progression.entries) {
+        return [];
+      }
       return this.progression.entries.filter(
-        (entry) => entry.page === this.pageNumber
+        entry => entry.page === this.pageNumber
       );
     },
     changePage(pageNumber) {
@@ -168,8 +236,8 @@ export default {
         this.activity.idParcours,
         this.pageNumber
       );
-    },
-  },
+    }
+  }
 };
 </script>
 

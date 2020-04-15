@@ -1,0 +1,51 @@
+{
+    "idActivite": "17",
+    "idParcours":"0",
+    "state": "INPROGRESS",
+    "duration": 15,
+    "startedAt": 0,
+    "finishedAt": 0,
+    "reviewAt": 0,
+    "entries": [
+        {
+            "id": 0,
+            "question": "1) Fait nous une liste de ce que tu mettrais dans ta trousse à pharmacie d’équipage",
+            "documents": [],
+            "typeRendu": "text",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 1
+        },
+        {
+            "id": 1,
+            "question": "2) Pour tous les éléments écrits en rouge sur cette liste, écris à quoi sert cet élément ou donne un exemple d’utilisation de celui-ci.",
+            "documents": [],
+            "typeRendu": "text",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 2
+        }, 
+        {
+            "id": 2,
+            "question": "3) Dans cette liste d’élément, quel est l’élément qui s’y trouve t’as le plus étonné, et pourquoi ?",
+            "documents": [],
+            "typeRendu": "text",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 2
+        }, 
+        {
+            "id": 3,
+            "question": "4) Quel(s) élément(s) avais-tu mis dans ta liste initiale qui n’est pas sur celle-ci et as tu compris pourquoi il n’y apparaissait pas ?",
+            "documents": [],
+            "typeRendu": "text",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 2
+        }    
+    ]     
+}

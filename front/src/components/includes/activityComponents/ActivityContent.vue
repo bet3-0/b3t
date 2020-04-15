@@ -1,30 +1,35 @@
 <template>
   <div hidden class="content-container">
-    <!-- Placeholder content -->
-    <ActivityContentSample />
     <!-- Activité -->
     <span v-html="activityContent"></span>
   </div>
 </template>
 
 <script>
-// TODO: to be removed
-import ActivityContentSample from "../placeholders/0";
-
 export default {
   name: "ActivityContent",
-  components: { ActivityContentSample }, // TODO: to be removed
-  props: ["id"],
+  props: ["idParcours", "idActivite"],
   data() {
     return {
-      activityContent: "",
+      activityContent: ""
     };
   },
-  created() {
-    // TODO: fetch HTML content
-    this.activityContent = "";
+  mounted() {
+    // retrieve HTML content
+    this.activityContent = require("@/activities/" +
+      this.idParcours +
+      "/" +
+      this.idActivite +
+      "/content.html");
   },
-  methods: {},
+  methods: {}
 };
 </script>
-<style scoped></style>
+<style scoped>
+.img-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 80%;
+}
+</style>

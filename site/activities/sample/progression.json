@@ -1,0 +1,72 @@
+{
+    "id": 7,
+    "state": "enum(NOTSTARTED,INPROGRESS,FINISHED, VALIDATED,REFUSED)",
+    "duration": 20,
+    "startedAt": 5,
+    "finishedAt": 0,
+    "reviewAt": 0,
+    "entries": [
+        {
+            "id": 0,
+            "question":
+                "Tu es ultra pressé(e) d’aller aux toilettes. Tu t’es retenu(e) toute la matinée pendant la visite du village gaulois. Arrivé(e) au camp, tu fonces aux feuillées et repars sans te laver les mains  puis tu t’essuies les mains sur ton pantalon en criant à table, c’est l’heure du goûter. Est ce une bonne habitude? Explique ta réponse ou ce qu’il faudrait faire si c’est une mauvaise habitude.",
+            "documents": [],
+            "typeRendu": "text",
+            "rendu": "",
+            "state": "notStarted",
+            "tracked": true,
+            "page": 1
+        },
+        {
+            "id": 1,
+            "question":
+                "Vous rentrez d’explo avec ton équipage tellement sales que vous foncez tous sous la douche en maillot de bain. Du coup, vu que les douches du camp ne sont pas top, vous vous savonnez partout sauf bien sûr sous le maillot de bain. Est-ce une bonne habitude? Explique ta réponse ou ce qu’il faudrait faire si c’est une mauvaise habitude.",
+            "documents": [],
+            "typeRendu": "text",
+            "rendu": "",
+            "state": "notStarted",
+            "tracked": true,
+            "page": 2
+        },
+        {
+            "id": 2,
+            "question": "C’est le jour où ton équipage est chargé de la préparation du repas. Avec ton meilleur ami, tu dresses la table pour ton équipage qui est parti chercher les vivres : tu nettoies avec du produit le plan de travail et la nappe, tu vérifies que les torchons sont propres et tu demandes à tous les convives s’ils se sont lavés les mains. Est-ce une bonne habitude? Explique ta réponse ou ce qu’il faudrait faire si c’est une mauvaise habitude.",
+            "documents": [],
+            "typeRendu": "text",
+            "rendu": "",
+            "state": "notStarted",
+            "tracked": true,
+            "page": 3
+        },
+        {
+            "id": 3,
+            "question": "Il est l’heure de se lever, tu regardes ton voisin de tente qui est encore bien dans son duvet, c’est à peine si son bout du nez ressort. C’est vrai qu’il fait particulièrement froid dans les Alpes au mois de février... Quelle idée d’avoir demandé à faire un camp d’hiver ! Bref, tu grelottes mais il va falloir se lever tout de même. Heureusement, hier en te couchant, tu avais pensé qu’il serait dur de s’habiller par ce temps, tu n’as donc que ton pantalon à enfiler. Est-ce une bonne habitude? Explique ta réponse ou ce qu’il faudrait faire si c’est une mauvaise habitude.",
+            "documents": [],
+            "typeRendu": "text",
+            "rendu": "",
+            "state": "notStarted",
+            "tracked": true,
+            "page": 3
+        },
+        {
+            "id": 4,
+            "question": "Tu as un rhume depuis 2 jours... C’est l’angoisse, ton nez n’arrête pas de couler et tu te mouches sans arrêt. D’ailleurs ça se voit au nombre de mouchoirs que tu prends le temps d’aller jeter à la poubelle régulièrement. Est-ce une bonne habitude? Explique ta réponse ou ce qu’il faudrait faire si c’est une mauvaise habitude.",
+            "documents": [],
+            "typeRendu": "text",
+            "rendu": "",
+            "state": "notStarted",
+            "tracked": true,
+            "page": 4
+        },
+        {
+            "id": 5,
+            "question": "Ton équipage est de vaisselle, tu en as ras-le-bol, tu as l’impression que c’est toujours toi. Jean te passe la glacière pour la laver. Tu décides, en y jetant un coup d’oeil, qu’elle est bien assez propre ou tout au moins qu’elle était dans le même état quand tu l’as prise pour l’intendance hier... Tu la poses de côté, attrapes toutes les gamelles encore mouillées et ranges tout ça sous la tente intendance. Est-ce une bonne habitude? Explique ta réponse ou ce qu’il faudrait faire si c’est une mauvaise habitude.",
+            "documents": [],
+            "typeRendu": "text",
+            "rendu": "",
+            "state": "notStarted",
+            "tracked": true,
+            "page": 5
+        }
+    ]
+}
