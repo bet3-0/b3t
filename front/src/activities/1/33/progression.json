@@ -10,123 +10,13 @@
     [
         {
             "position": 0,
-            "question": "Le pain fait grossir?",
+            "question": "",
             "documents": [],
             "typeRendu": "qcm",
-            "rendu": "VRAI;FAUX",
+            "rendu": "[{'question':'Le pain fait grossir ?','reponses':['Vrai','Faux']},{'question':'Les fruits secs sont riches en magnésium ?','reponses':['Vrai','Faux']},{'question':'Le petit déjeuner doit apporter le quart des besoins quotidiens de notre corps?','reponses':['Vrai','Faux']},{'question':'Pour être sûr de garder la ligne, deux repas par jour suffisent?','reponses':['Vrai','Faux']},{'question':'Pendant l’adolescence, on conserve les règles alimentaires apprise dans la famille pendant l’enfance?','reponses':['Vrai','Faux']},{'question':'Les produits laitiers sont la meilleure source de calcium?','reponses':['Vrai','Faux']},{'question':'Manger un fruit et légume par jour couvre les besoins en vitamines du corps?','reponses':['Vrai','Faux']},{'question':'On ne doit pas manger de viande et de fromage au même repas?','reponses':['Vrai','Faux']},{'question':'Le poisson apporte moins de protéines que la viande?','reponses':['Vrai','Faux']},{'question':'La mention sans *sucre ajouté* signifie qu’il n’y a pas de sucre du tout dans le produit?','reponses':['Vrai','Faux']},{'question':'Les biscottes apportent moins de calories que le pain?','reponses':['Vrai','Faux']},{'question':'Boire de l’eau fait maigrir?','reponses':['Vrai','Faux']}]",
             "state": "NOTSTARTED",
             "tracked": true,
             "page": 1
-        },
-        {
-            "position": 1,
-            "question": "Les fruits secs sont riches en magnésium?",
-            "documents": [],
-            "typeRendu": "qcm",
-            "rendu": "VRAI;FAUX",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 2
-        },
-        {
-            "position": 2,
-            "question": "Le petit déjeuner doit apporter le quart des besoins quotidiens de notre corps?",
-            "documents": [],
-            "typeRendu": "qcm",
-            "rendu":"VRAI;FAUX",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 3
-        },
-        {
-            "position": 3,
-            "question": "Pour être sûr de garder la ligne, deux repas par jour suffisent?",
-            "documents": [],
-            "typeRendu": "qcm",
-            "rendu": "VRAI;FAUX",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 4
-        },
-        {
-            "position": 4,
-            "question": "Pendant l’adolescence, on conserve les règles alimentaires apprise dans la famille pendant l’enfance?",
-            "documents": [],
-            "typeRendu": "qcm",
-            "rendu": "VRAI;FAUX",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 5
-        },
-        {
-            "position": 5,
-            "question": "Les produits laitiers sont la meilleure source de calcium?",
-            "documents": [],
-            "typeRendu": "qcm",
-            "rendu": "VRAI;FAUX",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 6
-        },
-        {
-            "position": 6,
-            "question": "Manger un fruit et légume par jour couvre les besoins en vitamines du corps?",
-            "documents": [],
-            "typeRendu": "qcm",
-            "rendu": "VRAI;FAUX",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 7
-        },
-        {
-            "position": 7,
-            "question": "On ne doit pas manger de viande et de fromage au même repas?",
-            "documents": [],
-            "typeRendu": "qcm",
-            "rendu": "VRAI;FAUX",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 8
-        },
-        {
-            "position": 8,
-            "question": "Le poisson apporte moins de protéines que la viande?",
-            "documents": [],
-            "typeRendu": "qcm",
-            "rendu": "VRAI;FAUX",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 9
-        },
-        {
-            "position": 9,
-            "question": "La mention *sans sucre ajouté* signifie qu'il n'y a pas de sucre du tout dans le produit?",
-            "documents": [],
-            "typeRendu": "qcm",
-            "rendu": "VRAI;FAUX",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 10
-        },
-        {
-            "position": 10,
-            "question": "Les biscottes apportent moins de calories que le pain?",
-            "documents": [],
-            "typeRendu": "qcm",
-            "rendu":"VRAI;FAUX",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 11
-        },
-        {
-            "position": 11,
-            "question": "Boire de l'eau fait maigrir?",
-            "documents": [],
-            "typeRendu": "qcm",
-            "rendu":"VRAI;FAUX",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 12
         }
     ]
   }

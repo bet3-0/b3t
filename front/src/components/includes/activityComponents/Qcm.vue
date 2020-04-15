@@ -40,7 +40,8 @@ export default {
     };
   },
   created() {
-    var initQuestions = JSON.parse(this.questions);
+    const regex = /'/gm;
+    var initQuestions = JSON.parse(this.questions.replace(regex, '"'));
     
     for(var i = 0; i < initQuestions.length; i++) {
       this.tabQuestions.push({
@@ -81,7 +82,7 @@ export default {
       reponse = JSON.stringify(reponse);
 
       console.log(reponse);
-      this.changeEntryState(this.entryId, "finished");
+      //this.changeEntryState(this.entryId, "finished");
       return {};
     }
   }
