@@ -179,10 +179,7 @@ func connect() {
 			if err != nil {
 				fmt.Println(err)
 			}
-			err = db.Create(&Activite).Error
-			if err != nil {
-				err = db.Save(&Activite).Error
-			}
+			err = db.Save(&Activite).Error
 		}
 	}
 }
