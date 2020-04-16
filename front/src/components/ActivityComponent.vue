@@ -133,7 +133,7 @@ export default {
 
     await this.retrieveProgression(this.idParcours, this.id);
   },
-  mount() {
+  mounted() {
     for (let i = 0; i < this.activity.page; i++) {
       if (i + 1 !== this.pageNumber) {
         $(`#page${i + 1}`).hide();
