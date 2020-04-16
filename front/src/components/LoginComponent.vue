@@ -48,6 +48,7 @@
 
 <script>
 import User from "../models/user";
+import ProgressionService from "../service/progression.service";
 
 export default {
   name: "LoginComponent",
@@ -69,7 +70,38 @@ export default {
     }
   },
   methods: {
-    handleLogin() {
+    async onLoggin() {
+      let pastProgressions = await ProgressionService.getProgressions();
+      let gloabalProgression = 0;
+      if (pastProgressions) {
+        let activities = {};
+        pastProgressions.forEach((prog) => {
+          if (
+            ["FINISHED", "INREVIEW", "VALIDATED", "REFUSED"].includes(
+              prog.state
+            )
+          ) {
+            gloabalProgression += parseInt(prog.duration);
+          }
+          if (!(prog.idParcours in activities)) {
+            activities[prog.idParcours] = {};
+          }
+          if (!(prog.idActvite in activities[prog.idParcours])) {
+            activities[prog.idParcours][prog.idActivite] = {};
+          }
+          activities[prog.idParcours][prog.idActivite] = {
+            idParcours: prog.idParcours,
+            id: prog.idActvite,
+            nom: "Activité",
+            progression: prog,
+          };
+        });
+        localStorage.setItem("activities", JSON.stringify(activities));
+        localStorage.setItem("progression", gloabalProgression);
+      }
+      this.$router.push("/parcours");
+    },
+    async handleLogin() {
       this.loading = true;
       this.$validator.validateAll().then((isValid) => {
         if (!isValid) {
@@ -79,9 +111,9 @@ export default {
 
         if (this.user.code_adherent) {
           this.$store.dispatch("auth/login", this.user).then(
-            () => {
+            async () => {
               if (this.loggedIn) {
-                this.$router.push("/parcours");
+                await this.onLoggin();
               }
             },
             (error) => {

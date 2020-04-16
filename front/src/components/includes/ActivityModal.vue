@@ -9,8 +9,16 @@
             <div class="modal-body">
                 <p>Description: {{ activity.description }}</p>
                 <p>Durée: {{ activity.duree }} minutes</p>
-                <p>Matériel: </p>
-                <ul>
+                <p v-if="
+                    activity.materiel &&
+                      activity.materiel.length &&
+                      activity.materiel[0].length
+                  ">Matériel: </p>
+                <ul v-if="
+                    activity.materiel &&
+                      activity.materiel.length &&
+                      activity.materiel[0].length
+                  ">
                     <li v-for="mat in activity.materiel" v-bind:key="mat">{{ mat }}</li>
                 </ul>
             </div>

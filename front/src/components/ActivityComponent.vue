@@ -42,7 +42,7 @@ Base Component for an activity page -->
                     </li>
                   </ul>
                 </li>
-                <li>Durée: {{ activity.duree }} minute(s)</li>
+                <li>Durée: {{ activity.duree }} minutes</li>
                 <li>Difficulté: {{ activity.difficulte }}</li>
               </ul>
             </div>
@@ -151,7 +151,6 @@ export default {
       }
     }
     $(".content-container").removeAttr("hidden");
-    window.scrollTo(0,0);
   },
   mounted() {
     for (let i = 0; i < this.activity.page; i++) {
@@ -272,15 +271,16 @@ export default {
       if (!this.progression.entries) {
         return [];
       }
-      return this.progression.entries.filter(
-        (entry) => entry.page === this.pageNumber
-      );
+      return this.progression.entries
+        .filter((entry) => entry.page === this.pageNumber)
+        .sort((a, b) => a.position - b.position);
     },
     changePage(pageNumber) {
       $(`#page${this.pageNumber}`).hide();
       this.pageNumber = pageNumber;
       $(`#page${this.pageNumber}`).show();
       console.log(`Current page number: ${this.pageNumber}`);
+      window.scrollTo(0, 0);
     },
   },
 };
