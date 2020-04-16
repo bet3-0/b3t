@@ -42,7 +42,7 @@ Base Component for an activity page -->
                     </li>
                   </ul>
                 </li>
-                <li>Durée: {{ activity.duree }} minute(s)</li>
+                <li>Durée: {{ activity.duree }} minutes</li>
                 <li>Difficulté: {{ activity.difficulte }}</li>
               </ul>
             </div>
