@@ -8,7 +8,7 @@
     "finishedAt": 0,
     "reviewAt": 0,
     "entries": [{
-            "id": 0,
+            "position": 0,
             "question": "Qu'as tu ressenti lors de ce voyage intérieur ?",
             "documents": [],
             "typeRendu": "text",
@@ -18,7 +18,7 @@
             "page": 2
         },
         {
-            "id": 1,
+            "position": 1,
             "question": "Qu'est-ce qui as été important pour toi au cours des années chez les Scouts-Guides ?",
             "documents": [],
             "typeRendu": "text",
@@ -28,7 +28,7 @@
             "page": 2
         },
         {
-            "id": 2,
+            "position": 2,
             "question": "Qu'as tu envie de transmettre aux 1ères et 2èmes années de ta Tribu ?",
             "documents": [],
             "typeRendu": "text",
@@ -38,7 +38,7 @@
             "page": 3
         },
         {
-            "id": 3,
+            "position": 3,
             "question": "Qu'est ce qui te fait envie ?",
             "documents": [],
             "typeRendu": "text",
@@ -48,7 +48,7 @@
             "page": 6
         },
         {
-            "id": 4,
+            "position": 4,
             "question": "Qu'est ce qui te motive ?",
             "documents": [],
             "typeRendu": "text",
@@ -58,7 +58,7 @@
             "page": 6
         },
         {
-            "id": 5,
+            "position": 5,
             "question": "Quelles sont tes appréhensions ?",
             "documents": [],
             "typeRendu": "text",
