@@ -1,248 +1,241 @@
 {
-    "id": "Server-side generated UUID",
-    "idActivite": "5",
-    "idParcours": "2",
-    "state": "INPROGRESS",
-    "duration": 45,
-    "startedAt": 0,
-    "finishedAt": 0,
-    "reviewAt": 0,
-    "entries": [
-
-        {
-            "position": 0,
-            "question": "Pour me montrer que tu as bien compris, trouve trois choses / objets qui symbolisent le triangle du feu, pose les par terre et fais une belle photo. On doit pouvoir comprendre sans explications, c'est plus drôle ",
-            "documents": [],
-            "typeRendu": "file",
-            "rendu": "",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 2
-        },
-
-        {
-            "position": 1,
-            "question": "Mets un coussin au milieu de ta chambre, ou ton salon, ou ta salle de jeu, ou dans le jardin s'il fait beau. Demande à quelqu'un de te filmer pendant que tu expliques quelles règles tu dois respecter pour faire ton feu à cet endroit (on imagine qu'on est sur le campement scout bien sûr). Ce n'est pas grave si tu en oublies, dis nous l'essentiel par Toutatis ! ",
-            "documents": [],
-            "typeRendu": "file",
-            "rendu": "",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 4
-        },
-
-        {
-            "position": 2,
-            "question": "Réunis avec la permission, tous les objets qui ressemblent à des bâtons (stylos, crayons, bâtons de glaces, cure-dents... vieux spaghettis périmés ?) et filme toi en train de monter un type de feu en commentant ce que tu fais et pourquoi tu le fais (parle fort, on a des vieux druides tout usés). ",
-            "documents": [],
-            "typeRendu": "file",
-            "rendu": "",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 6
-        },
-
-
-        {
-            "position": 3,
-            "question": "Peux-tu me donner les 3 astuces de base pour cuire un chamallow sur le feu ? ",
-            "documents": [],
-            "typeRendu": "text",
-            "rendu": "",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 8
-        },
-        {
-            "position": 4,
-            "question": "Combien de litres d'eau doit-on mettre sur un feu pour l'éteindre (c'est précis) ?",
-            "documents": [],
-            "typeRendu": "text",
-            "rendu": "",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 8
-        },
-        {
-            "position": 5,
-            "question": "On recommande de nettoyer les alentours du foyer (le feu) pour le sécuriser, sur quelle distance environ ?",
-            "documents": [],
-            "typeRendu": "text",
-            "rendu": "",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 8
-        },
-        {
-            "position": 6,
-            "question": "Question à choix multiples : que peut-on mettre sous une popote avant de la mettre au feu ? A- Du journal, ça brûlera plus vite et ça détruit les déchets, à bas la pub ! B- De la colle, pour éviter que la popote ne tombe du feu. C- Du savon blanc, comme ça après le savon sera déjà là pour la vaisselle D- Du savon noir, pour éviter que la suie ne colle sur le métal. ",
-            "documents": [],
-            "typeRendu": "text",
-            "rendu": "",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 8
-        },
-        {
-            "position": 7,
-            "question": "Quelle est la grosse différence entre le feu par friction et le feu par percussion ? ",
-            "documents": [],
-            "typeRendu": "text",
-            "rendu": "",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 8
-        },
-        {
-            "position": 8,
-            "question": "Vrai ou faux, si je marche en plein soleil et que j'ai des lunettes, je peux me brûler ?",
-            "documents": [],
-            "typeRendu": "text",
-            "rendu": "",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 8
-        },
-        {
-            "position": 9,
-            "question": "Si personne ne me voit (gendarmes, voisins, propriétaire), je peux allumer un feu si je l'éteins rapidement après ? ",
-            "documents": [],
-            "typeRendu": "text",
-            "rendu": "",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 8
-        },
-        {
-            "position": 10,
-            "question": "Le feu en pyramide est un feu où le bois est posé verticalement ou horizontalement ? ",
-            "documents": [],
-            "typeRendu": "text",
-            "rendu": "",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 8
-        },
-        {
-            "position": 11,
-            "question": "Connaissez-vous les arbres du CHEF, ces quatre arbres qui brûlent super bien et qu'on trouve un peu partout ?",
-            "documents": [],
-            "typeRendu": "text",
-            "rendu": "",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 8
-        },
-        {
-            "position": 12,
-            "question": "Que se passera-t-il si j'utilise du bois vert dans mon feu (deux choses) ? ",
-            "documents": [],
-            "typeRendu": "text",
-            "rendu": "",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 8
-        },
-        {
-            "position": 13,
-            "question": "Redis moi, c'est quoi déjà un amadou ? ",
-            "documents": [],
-            "typeRendu": "text",
-            "rendu": "",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 8
-        },
-        {
-            "position": 14,
-            "question": "Raconte moi en quelques mots le triangle du feu ? ",
-            "documents": [],
-            "typeRendu": "text",
-            "rendu": "",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 8
-        },
-        {
-            "position": 15,
-            "question": "Vrai ou faux, il faut souffler sur un feu pour qu'il démarre ?",
-            "documents": [],
-            "typeRendu": "text",
-            "rendu": "",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 8
-        },
-        {
-            "position": 16,
-            "question": "Explique moi ce qu'est une veille de feu (techniquement et symboliquement) ? Tu en as déjà fait une ?",
-            "documents": [],
-            "typeRendu": "text",
-            "rendu": "",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 8
-        },
-        {
-            "position": 17,
-            "question": "Quand Johnnyx chante « allumer le feu », est-ce un message secret scout pour dire qu'il a faim ?",
-            "documents": [],
-            "typeRendu": "text",
-            "rendu": "",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 8
-        },
-        {
-            "position": 18,
-            "question": "Vrai ou faux, pour réduire nos déchets, on peut brûler plein de choses dans le feu ? ",
-            "documents": [],
-            "typeRendu": "text",
-            "rendu": "",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 8
-        },
-        {
-            "position": 19,
-            "question": "Donne moi 4 bonnes raisons d'allumer un feu ? Il en existe une dizaine, tu le savais ? ",
-            "documents": [],
-            "typeRendu": "text",
-            "rendu": "",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 8
-        },
-        {
-            "position": 20,
-            "question": "Cite moi les dangers que peuvent provoquer le feu ? Pas grave si tu en oublies.",
-            "documents": [],
-            "typeRendu": "text",
-            "rendu": "",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 8
-        },
-        {
-            "position": 21,
-            "question": "Vrai ou faux, le feu peut rester allumé sous-terre même si on l'a bien enterré ? ",
-            "documents": [],
-            "typeRendu": "text",
-            "rendu": "",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 8
-        },
-        {
-            "position": 22,
-            "question": "Il paraît que la pierre-à-feu fait apparaître une flamme qui chauffe directement à 2000 degrés, qu'en dis-tu ?",
-            "documents": [],
-            "typeRendu": "text",
-            "rendu": "",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 8
-        }
-
-    ]
+  "idActivite": "5",
+  "idParcours": "2",
+  "state": "INPROGRESS",
+  "duration": 45,
+  "startedAt": 0,
+  "finishedAt": 0,
+  "reviewAt": 0,
+  "entries": [
+    {
+      "position": 0,
+      "question": "Pour me montrer que tu as bien compris, trouve trois choses / objets qui symbolisent le triangle du feu, pose les par terre et fais une belle photo. On doit pouvoir comprendre sans explications, c'est plus drôle ",
+      "documents": [],
+      "typeRendu": "file",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 2
+    },
+    {
+      "position": 1,
+      "question": "Mets un coussin au milieu de ta chambre, ou ton salon, ou ta salle de jeu, ou dans le jardin s'il fait beau. Demande à quelqu'un de te filmer pendant que tu expliques quelles règles tu dois respecter pour faire ton feu à cet endroit (on imagine qu'on est sur le campement scout bien sûr). Ce n'est pas grave si tu en oublies, dis nous l'essentiel par Toutatis ! ",
+      "documents": [],
+      "typeRendu": "file",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 4
+    },
+    {
+      "position": 2,
+      "question": "Réunis avec la permission, tous les objets qui ressemblent à des bâtons (stylos, crayons, bâtons de glaces, cure-dents... vieux spaghettis périmés ?) et filme toi en train de monter un type de feu en commentant ce que tu fais et pourquoi tu le fais (parle fort, on a des vieux druides tout usés). ",
+      "documents": [],
+      "typeRendu": "file",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 6
+    },
+    {
+      "position": 3,
+      "question": "Peux-tu me donner les 3 astuces de base pour cuire un chamallow sur le feu ? ",
+      "documents": [],
+      "typeRendu": "text",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 8
+    },
+    {
+      "position": 4,
+      "question": "Combien de litres d'eau doit-on mettre sur un feu pour l'éteindre (c'est précis) ?",
+      "documents": [],
+      "typeRendu": "text",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 8
+    },
+    {
+      "position": 5,
+      "question": "On recommande de nettoyer les alentours du foyer (le feu) pour le sécuriser, sur quelle distance environ ?",
+      "documents": [],
+      "typeRendu": "text",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 8
+    },
+    {
+      "position": 6,
+      "question": "Question à choix multiples : que peut-on mettre sous une popote avant de la mettre au feu ? A- Du journal, ça brûlera plus vite et ça détruit les déchets, à bas la pub ! B- De la colle, pour éviter que la popote ne tombe du feu. C- Du savon blanc, comme ça après le savon sera déjà là pour la vaisselle D- Du savon noir, pour éviter que la suie ne colle sur le métal. ",
+      "documents": [],
+      "typeRendu": "text",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 8
+    },
+    {
+      "position": 7,
+      "question": "Quelle est la grosse différence entre le feu par friction et le feu par percussion ? ",
+      "documents": [],
+      "typeRendu": "text",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 8
+    },
+    {
+      "position": 8,
+      "question": "Vrai ou faux, si je marche en plein soleil et que j'ai des lunettes, je peux me brûler ?",
+      "documents": [],
+      "typeRendu": "text",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 8
+    },
+    {
+      "position": 9,
+      "question": "Si personne ne me voit (gendarmes, voisins, propriétaire), je peux allumer un feu si je l'éteins rapidement après ? ",
+      "documents": [],
+      "typeRendu": "text",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 8
+    },
+    {
+      "position": 10,
+      "question": "Le feu en pyramide est un feu où le bois est posé verticalement ou horizontalement ? ",
+      "documents": [],
+      "typeRendu": "text",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 8
+    },
+    {
+      "position": 11,
+      "question": "Connaissez-vous les arbres du CHEF, ces quatre arbres qui brûlent super bien et qu'on trouve un peu partout ?",
+      "documents": [],
+      "typeRendu": "text",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 8
+    },
+    {
+      "position": 12,
+      "question": "Que se passera-t-il si j'utilise du bois vert dans mon feu (deux choses) ? ",
+      "documents": [],
+      "typeRendu": "text",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 8
+    },
+    {
+      "position": 13,
+      "question": "Redis moi, c'est quoi déjà un amadou ? ",
+      "documents": [],
+      "typeRendu": "text",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 8
+    },
+    {
+      "position": 14,
+      "question": "Raconte moi en quelques mots le triangle du feu ? ",
+      "documents": [],
+      "typeRendu": "text",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 8
+    },
+    {
+      "position": 15,
+      "question": "Vrai ou faux, il faut souffler sur un feu pour qu'il démarre ?",
+      "documents": [],
+      "typeRendu": "text",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 8
+    },
+    {
+      "position": 16,
+      "question": "Explique moi ce qu'est une veille de feu (techniquement et symboliquement) ? Tu en as déjà fait une ?",
+      "documents": [],
+      "typeRendu": "text",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 8
+    },
+    {
+      "position": 17,
+      "question": "Quand Johnnyx chante « allumer le feu », est-ce un message secret scout pour dire qu'il a faim ?",
+      "documents": [],
+      "typeRendu": "text",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 8
+    },
+    {
+      "position": 18,
+      "question": "Vrai ou faux, pour réduire nos déchets, on peut brûler plein de choses dans le feu ? ",
+      "documents": [],
+      "typeRendu": "text",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 8
+    },
+    {
+      "position": 19,
+      "question": "Donne moi 4 bonnes raisons d'allumer un feu ? Il en existe une dizaine, tu le savais ? ",
+      "documents": [],
+      "typeRendu": "text",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 8
+    },
+    {
+      "position": 20,
+      "question": "Cite moi les dangers que peuvent provoquer le feu ? Pas grave si tu en oublies.",
+      "documents": [],
+      "typeRendu": "text",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 8
+    },
+    {
+      "position": 21,
+      "question": "Vrai ou faux, le feu peut rester allumé sous-terre même si on l'a bien enterré ? ",
+      "documents": [],
+      "typeRendu": "text",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 8
+    },
+    {
+      "position": 22,
+      "question": "Il paraît que la pierre-à-feu fait apparaître une flamme qui chauffe directement à 2000 degrés, qu'en dis-tu ?",
+      "documents": [],
+      "typeRendu": "text",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 8
+    }
+  ]
 }

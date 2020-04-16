@@ -1,10 +1,9 @@
 {
-  "id": "Server-side generated UUID",
   "idActivite": "20",
   "idParcours": "0",
   "state": "INPROGRESS",
   "duration": 10,
-  "startedAt": 5,
+  "startedAt": 0,
   "finishedAt": 0,
   "reviewAt": 0,
   "entries": [
@@ -19,7 +18,7 @@
           "reponses": [
             "À rien, c'est juste du papier en plus",
             "À avoir un suivi, une trace des soins effectués",
-            "À compter les blessures de chacun pour faire un concours de celui qui en a eu le plus en fin de camp",
+            "À compter les blessures de chacun pour faire un concours de celui qui en a eu le plus en fin de camp"
           ]
         }
       ],
@@ -29,8 +28,7 @@
     },
     {
       "position": 1,
-      "question":
-        "Maintenant que tu sais à quoi sert un registre de soin, comment le tiendrais tu si tu étais à la place des chefs ?",
+      "question": "Maintenant que tu sais à quoi sert un registre de soin, comment le tiendrais tu si tu étais à la place des chefs ?",
       "documents": [],
       "typeRendu": "qcm",
       "rendu": [
@@ -46,14 +44,14 @@
             "Le type de soins effectués",
             "Le matériel utilisé",
             "Le nombre de compresses utilisées",
-            "L’âge du blessé",
+            "L’âge du blessé"
           ]
         },
         {
           "question": "Selon toi avant de soigner une personne, faut-il regarder sa fiche sanitaire ?",
           "reponses": [
             "oui",
-            "non",
+            "non"
           ]
         }
       ],
@@ -80,6 +78,6 @@
       "state": "NOTSTARTED",
       "tracked": true,
       "page": 4
-    },
+    }
   ]
 }
