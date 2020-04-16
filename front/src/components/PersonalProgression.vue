@@ -149,12 +149,10 @@ export default {
     }
   },
   async beforeMount() {
-    try {
-      let response = await ProgressionService.getProgressions();
-      let data = await response.json();
-      this.progressions = data.progressions;
-    } catch (error) {
-      console.error(error);
+    let progressions = await ProgressionService.getProgressions();
+    if (progressions) {
+      this.progressions = progressions;
+    } else {
       this.progressions = [
         {
           id: "error_fetch",

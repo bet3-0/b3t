@@ -18,9 +18,9 @@ export default class ProgressionService {
     return jsonResponse.progression;
   }
 
-  static async updateProgression(data) {
+  static async updateProgression(data, route="entry") {
     console.log("Updating progression...");
-    return await fetch(API_URL + "progression", {
+    return await fetch(API_URL + route, {
       method: "PUT",
       headers: Object.assign(authHeader(), {
         "Content-Type": "application/json",
@@ -52,9 +52,16 @@ export default class ProgressionService {
 
   static async getProgressions() {
     console.log("Fetching progressions...");
-    return await fetch(API_URL + "progressions", {
-      method: "GET",
-      headers: authHeader(),
-    });
+    try {
+      let response = await fetch(API_URL + "progressions", {
+        method: "GET",
+        headers: authHeader(),
+      });
+      let data = await response.json();
+      return data.progressions;
+    } catch (error) {
+      console.error(error);
+      return undefined;
+    }
   }
 }

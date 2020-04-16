@@ -58,7 +58,7 @@ export default {
     async submitText() {
       this.entry.state = "FINISHED";
       try {
-        await ProgressionService.updateProgression(this.entry);
+        await ProgressionService.updateProgression(this.entry, "entry");
         console.log("Answer sent: " + this.entry.rendu);
         this.updateEntry(this.entry); // update the primary progression object
       } catch (error) {

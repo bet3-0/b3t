@@ -23,7 +23,7 @@ export default {
   },
   methods: {
     hasNext() {
-      console.log("nb pages: "+ this.activity.page)
+      console.log("nb pages: " + this.activity.page);
       return this.pageNumber < this.activity.page;
     },
     previousPage() {
@@ -41,13 +41,17 @@ export default {
     },
     async checkValidation() {
       // Check entries are filled
-      if (!this.progression.entries){
+      if (!this.progression.entries) {
         this.progression.entries = [];
       }
-      let incompleteEntries = this.progression.entries.filter(entry => entry.state != "FINISHED")
-      if (incompleteEntries.length > 0){
-        console.log("Some entries where not sent!")
-        alert(`Certains rendus (${incompleteEntries.length}) n'ont pas été envoyés !`) // todo: faire une modale
+      let incompleteEntries = this.progression.entries.filter(
+        (entry) => entry.state != "FINISHED"
+      );
+      if (incompleteEntries.length > 0) {
+        console.log("Some entries where not sent!");
+        alert(
+          `Certains rendus (${incompleteEntries.length}) n'ont pas été envoyés !`
+        ); // todo: faire une modale
         return;
       }
 
@@ -55,20 +59,24 @@ export default {
       this.progression.state = "FINISHED";
 
       // Update progression
-      try{
-      await ProgressionService.updateProgression(this.progression);
-          console.log("Progression sent: " + this.progression);
-          // Redirect
-          window.location.href = "/activitees";
-        }catch(error){
-          console.log("Error while sending text entry: " + this.progression);
-          this.progression.state = "INPROGRESS";
-          alert(
-            "Impossible d'envoyer ta progression ! Vérifie ta connexion et réessaye !"
-          );
-        }
-    }
-  }
+      try {
+        await ProgressionService.updateProgression(
+          this.progression,
+          "progression"
+        );
+        console.log("Progression sent: " + this.progression);
+        // Redirect
+        alert("Ton activité a bien été envoyée !")
+        window.location.href = "/activitees";
+      } catch (error) {
+        console.log("Error while sending text entry: " + this.progression);
+        this.progression.state = "INPROGRESS";
+        alert(
+          "Impossible d'envoyer ta progression ! Vérifie ta connexion et réessaye !"
+        );
+      }
+    },
+  },
 };
 </script>
 <style scoped>

@@ -80,13 +80,14 @@ export default {
         if (this.user.code_adherent) {
           this.$store.dispatch("auth/login", this.user).then(
             () => {
-              if (this.$store.state.auth.loggedIn){
-              this.$router.push("/parcours");}
+              if (this.loggedIn) {
+                this.$router.push("/parcours");
+              }
             },
             (error) => {
               this.loading = false;
-              console.error(error)
-              this.message = "Identifiant incorrect !"
+              console.error(error);
+              this.message = "Identifiant incorrect !";
             }
           );
         }

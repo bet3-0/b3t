@@ -102,7 +102,7 @@ import itineraryHelpers from "./../service/itineraryHelpers";
 
 import ValidateActivityPage from "./includes/activityComponents/ValidateActivityPage";
 import $ from "jquery";
-import progressionService from "../service/progression.service";
+import ProgressionService from "../service/progression.service";
 
 export default {
   name: "ActivityComponent",
@@ -142,35 +142,66 @@ export default {
     $(".content-container").removeAttr("hidden");
   },
   methods: {
+    async findProgression(progressionId) {
+      let progressions = await ProgressionService.getProgressions();
+      if (!progressions) {
+        console.log("failed to retrieve progressions");
+        return false; // do not create a new progression and raises an error
+      }
+      let existingProgression = progressions.find(
+        (prog) => prog.id == progressionId
+      );
+      if (!existingProgression) {
+        console.log("Existing progression id is incorrect!");
+        return "TOCREATE"; // do create a new progression
+      }
+      if (["FINISHED", "INREVIEW"].includes(existingProgression.state)) {
+        console.log("Existing progression is in a non editable state");
+        return false; // do not create a new progression and raises an error
+      }
+      return existingProgression;
+    },
     async retrieveProgression(idParcours, idActivity) {
+      // FIRST OPTION: progression comes from PersonalProgression page: up to date
       if (this.$store.state.activity.progression) {
-        // load from PersonalProgression vue
+        // loaded from PersonalProgression vue
         this.progression = this.$store.state.activity.progression;
         this.$store.state.activity.progression = undefined;
         return;
       }
 
-      // faire un truc plus clean mais tout aussi persistant.
       const activities = JSON.parse(localStorage.getItem("activities")) || {};
       if (!(idParcours in activities)) {
         activities[idParcours] = {};
       }
-      /*
       if (idActivity in activities[idParcours]) {
-        this.progression = activities[idParcours][idActivity].progression; // retrieve the previous progression created.
-        return;
+        let savedProgression = activities[idParcours][idActivity].progression; // retrieve the previous progression created.
+        // SECOND OPTION: a progression previously started. Its id is store in localStorage.
+        if (savedProgression) {
+          let progression = await this.findProgression(savedProgression.id);
+          if (progression == "TOCREATE") {
+            console.log("Creating a new progression");
+          } else if (progression) {
+            this.progression = progression;
+            return;
+          } else {
+            alert(
+              "Tu as déjà fait cette activité ! Elle est sûrement en train d'être relue, tu peux le voir sur la page Progression Personnelle !"
+            );
+          }
+        }
       }
-      */
 
+      // THIRD OPTION: No progression exists: retrieve a new one and post it to backend
       // Retrieve the default progression linked to the activity
       let progression = activityService.getProgression(idParcours, idActivity);
 
       // Post the new progression
       try {
-        this.progression = await progressionService.createProgression(
+        this.progression = await ProgressionService.createProgression(
           progression
         );
-        this.activity["progression"] = this.progression;
+        this.activity.progressionId = this.progression; // store the progression for future reconnexion
         activities[idParcours][idActivity] = this.activity;
         console.log("Progression created!");
       } catch (error) {
@@ -179,7 +210,7 @@ export default {
         this.progression = progression;
         // return;
       }
-      localStorage["activities"] = JSON.stringify(activities);
+      localStorage.activities = JSON.stringify(activities);
     },
     getProgress() {
       let counter = 0;
