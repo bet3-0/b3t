@@ -54,6 +54,12 @@
       </ul>
     </div>
 
+    <img
+      v-if="!progressions || !progressions.length"
+      class="img-spinner"
+      src="/img/icons/spinner.svg"
+      alt="Chargement en cours..."
+    />
     <!-- /#wrapper -->
     <div class="container">
       <table class="table">
@@ -148,7 +154,7 @@ export default {
       this.$router.push("/parcours");
     }
   },
-  async beforeMount() {
+  async mounted() {
     let progressions = await ProgressionService.getProgressions();
     if (progressions) {
       this.progressions = progressions;
@@ -161,10 +167,9 @@ export default {
         },
       ];
     }
-  },
-  mounted() {
     this.countProgressionStates();
   },
+
   methods: {
     getStateName: progressionHelpers.getStateName,
     getActivity(idParcours, idActivite) {

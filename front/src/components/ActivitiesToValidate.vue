@@ -18,7 +18,12 @@
         <b-dropdown-item @click="filter(3)">Robinson</b-dropdown-item>
       </b-dropdown>
     </div>
-
+    <img
+      v-if="!progressions || !progressions.length"
+      class="img-spinner"
+      src="/img/icons/spinner.svg"
+      alt="Chargement en cours..."
+    />
     <!-- /#wrapper -->
     <div class="container">
       <table class="table">

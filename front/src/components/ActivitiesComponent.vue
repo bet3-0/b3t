@@ -33,6 +33,13 @@
       </div>
     </div>
 
+    <img
+      v-if="!activities || !activities.length"
+      class="img-spinner"
+      src="/img/icons/spinner.svg"
+      alt="Chargement en cours..."
+    />
+
     <!-- /#wrapper -->
     <div class="container">
       <table class="table">
@@ -101,7 +108,7 @@ export default {
       difficulte: "",
       currentActivity: {},
       activities: [],
-      displayActivities: []
+      displayActivities: [],
     };
   },
   created() {
@@ -118,13 +125,16 @@ export default {
       this.activities = activityService.listActi(); // for debug : TODO: remove
     }
     // Filter in case API does not
-    let startedActivities = JSON.parse(localStorage.getItem("activities")) || {}
+    let startedActivities =
+      JSON.parse(localStorage.getItem("activities")) || {};
     let startedIds = [];
-    if (startedActivities[this.idParcours]){
-      startedIds = Object.keys(startedActivities[this.idParcours])
+    if (startedActivities[this.idParcours]) {
+      startedIds = Object.keys(startedActivities[this.idParcours]);
     }
     this.displayActivities = this.activities.filter(
-      activity => ((activity.idParcours == this.idParcours) && (!startedIds.includes(activity.id)))
+      (activity) =>
+        activity.idParcours == this.idParcours &&
+        !startedIds.includes(activity.id)
     );
   },
   methods: {
@@ -194,8 +204,8 @@ export default {
     },
 
     getParcoursName: itineraryHelpers.getParcoursName,
-    getParcoursColor: itineraryHelpers.getItineraryColor
-  }
+    getParcoursColor: itineraryHelpers.getItineraryColor,
+  },
 };
 </script>
 

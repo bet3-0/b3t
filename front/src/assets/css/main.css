@@ -105,3 +105,11 @@ h6 {
 .custom-file {
   flex-grow: 0;
 }
+
+/* Loader */
+.img-spinner {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}

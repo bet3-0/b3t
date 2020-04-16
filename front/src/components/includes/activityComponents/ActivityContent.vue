@@ -1,5 +1,11 @@
 <template>
   <div hidden class="content-container">
+    <img
+    v-if="!activityContent"
+      class="img-spinner"
+      src="/img/icons/spinner.svg"
+      alt="Chargement en cours..."
+    />
     <!-- Activité -->
     <span v-html="activityContent"></span>
   </div>
@@ -11,7 +17,7 @@ export default {
   props: ["idParcours", "idActivite"],
   data() {
     return {
-      activityContent: ""
+      activityContent: "",
     };
   },
   mounted() {
@@ -22,7 +28,7 @@ export default {
       this.idActivite +
       "/content.html");
   },
-  methods: {}
+  methods: {},
 };
 </script>
 <style scoped>
