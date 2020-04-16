@@ -6,13 +6,12 @@ class AuthService {
     return axios
       .post(
         API_URL + "login",
-        JSON.stringify({
-          data: {
+        {
+          data: JSON.stringify({
             code_adherent: user.code_adherent
-          },
+          }),
           headers: { "Content-Type": "application/json" }
         })
-      )
       .then(response => {
         if (response.data.token) {
           localStorage.setItem("user", JSON.stringify(response.data));
