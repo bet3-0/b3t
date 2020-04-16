@@ -67,11 +67,12 @@ def check_progression(file, dico):
             for key in entry:
                 if key not in entry_keys:
                     if key == "id":
-                        to_update.append({"position": entry['id']})
+                        to_update.append({"position": int(entry['id'])})
                     value = entry.get(key)
                     to_pop.append(key)
                     print(f"Found invalid key {key} with value {value} in entry of '{file}'")
             entry["state"] = "NOTSTARTED"
+            entry["position"] = int(entry["position"])
             if not entry["typeRendu"] in type_rendus:
                 print(f"typeRendu {entry['typeRendu']} incorrect for file '{file}'!")
             for key in to_pop:
