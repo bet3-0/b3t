@@ -34,7 +34,7 @@ export default {
   methods: {
     loadFilename() {
       this.file = this.$refs.file.files[0];
-      document.getElementById("labelInput").innerText = this.file;
+      document.getElementById("labelInput").innerText = this.file.name;
     },
     /* Submits the file to the server */
     async submitFile() {

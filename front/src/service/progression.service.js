@@ -35,7 +35,7 @@ export default class ProgressionService {
       let response = await fetch(API_URL + "file", {
         method: "POST",
         headers: Object.assign(authHeader(), {
-          "Content-Type": "multipart/form-data",
+          "Content-Type": "application/octet-stream",
         }),
         body: data,
       });
