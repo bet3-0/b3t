@@ -65,6 +65,9 @@ def check_progression(file, dico):
         to_update = []
         for entry in dico["entries"]:
             for key in entry:
+                if key == "rendu":
+                    entry[key] = str(entry[key])
+                    print(f"Rendu must be str in file '{file}'")
                 if key not in entry_keys:
                     if key == "id":
                         to_update.append({"position": int(entry['id'])})
