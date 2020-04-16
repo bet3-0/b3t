@@ -42,7 +42,7 @@
       "question": "Dans quel ordre mettrais tu ces étapes? ",
       "documents": [],
       "typeRendu": "orderList",
-      "rendu": "['Alerter', 'Secourir', 'Proteger']",
+      "rendu": "[\"Alerter\", \"Secourir\", \"Proteger\"]",
       "state": "NOTSTARTED",
       "tracked": true,
       "page": 4
