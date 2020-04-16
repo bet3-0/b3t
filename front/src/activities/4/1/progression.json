@@ -1,0 +1,72 @@
+{
+    "id": "Server-side generated UUID",
+    "idActivite": "1",
+    "idParcours": "4",
+    "state": "INPROGRESS",
+    "duration": 60,
+    "startedAt": 0,
+    "finishedAt": 0,
+    "reviewAt": 0,
+    "entries": [{
+            "position": 0,
+            "question": "Qu'as tu ressenti lors de ce voyage intérieur ?",
+            "documents": [],
+            "typeRendu": "text",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 2
+        },
+        {
+            "position": 1,
+            "question": "Qu'est-ce qui as été important pour toi au cours des années chez les Scouts-Guides ?",
+            "documents": [],
+            "typeRendu": "text",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 2
+        },
+        {
+            "position": 2,
+            "question": "Qu'as tu envie de transmettre aux 1ères et 2èmes années de ta Tribu ?",
+            "documents": [],
+            "typeRendu": "text",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 3
+        },
+        {
+            "position": 3,
+            "question": "Qu'est ce qui te fait envie ?",
+            "documents": [],
+            "typeRendu": "text",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 6
+        },
+        {
+            "position": 4,
+            "question": "Qu'est ce qui te motive ?",
+            "documents": [],
+            "typeRendu": "text",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 6
+        },
+        {
+            "position": 5,
+            "question": "Quelles sont tes appréhensions ?",
+            "documents": [],
+            "typeRendu": "text",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 6
+        }
+
+    ]
+}
