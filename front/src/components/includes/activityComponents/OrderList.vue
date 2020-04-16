@@ -1,12 +1,6 @@
 <template>
   <div class="container">
     <div class="row">
-      <div
-        class="col-md-6"
-        style="display: flex; flex-direction: column; justify-content: center"
-      >
-        <h3>Remets dans l’ordre les étapes du lavage des mains</h3>
-      </div>
       <div class="col-md-6" style="border-left: solid 1px lightgray">
         <draggable v-model="list" class="mb-5" ghost-class="ghost" :sort="true">
           <transition-group>
@@ -36,27 +30,35 @@ import ProgressionService from "./../../../service/progression.service";
 export default {
   name: "OrderList",
   components: {
-    draggable
+    draggable,
   },
   data() {
     return {
-      list: []
+      list: [],
     };
   },
   props: {
     updateEntry: {
-      type: Function
+      type: Function,
     },
     entry: {
-      type: Object
-    }
+      type: Object,
+    },
   },
   mounted() {
-    this.list = this.entry.rendu;
+    const regex = /'/gm;
+    var initQuestions = [];
+    try {
+      initQuestions = JSON.parse(this.entry.rendu);
+    } catch (error) {
+      initQuestions = JSON.parse(this.entry.rendu.replace(regex, '"'));
+    }
+    this.list = initQuestions;
   },
   methods: {
     async submitText() {
       this.entry.state = "FINISHED";
+      this.entry.rendu = JSON.stringify(this.list);
       try {
         await ProgressionService.updateProgression(this.entry, "entry");
         console.log("Answer sent: " + this.entry.rendu);
@@ -68,8 +70,8 @@ export default {
           "Impossible d'envoyer ta progression ! Vérifie ta connexion et réessaye !"
         );
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
