@@ -1,11 +1,10 @@
 /* This is an example file */
-import axios from "axios";
 import authHeader from "./auth-header";
 import { API_URL } from "./config";
 
 export default class ProgressionService {
   static async createProgression(data) {
-    console.log("Creating progression...")
+    console.log("Creating progression...");
     let response = await fetch(API_URL + "progression", {
       method: "POST",
       headers: Object.assign(authHeader(), {
@@ -32,21 +31,23 @@ export default class ProgressionService {
 
   static async pushFile(data) {
     console.log("Pushing file...");
-    return await fetch(API_URL + "file", {
-      method: "POST",
-      headers: Object.assign(authHeader(), {
-        "Content-Type": "application/octet-stream",
-      }),
-      body: data,
-    });
-  }
-
-  // DEPRECATED
-  static getProgressionsAxios() {
-    return axios.get(
-      API_URL + "progressions",
-      JSON.stringify({ headers: authHeader() })
-    );
+    try {
+      let response = await fetch(API_URL + "file", {
+        method: "POST",
+        headers: Object.assign(authHeader(), {
+          "Content-Type": "multipart/form-data",
+        }),
+        body: data,
+      });
+      console.log(response);
+      let jsonResponse = await response.json();
+      console.log(jsonResponse);
+      return jsonResponse.url;
+    } catch (error) {
+      console.log("Error while sending file!");
+      console.error(error);
+      return undefined;
+    }
   }
 
   static async getProgressions() {
