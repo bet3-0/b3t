@@ -5,13 +5,18 @@ import { API_URL } from "./config";
 
 export default class ProgressionService {
   static async createProgression(data) {
-    return await fetch(API_URL + "progression", JSON.stringify({
+    console.log("Creating progression...")
+    let response = await fetch(API_URL + "progression", {
       method: "POST",
       headers: Object.assign(authHeader(), {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       }),
-      body: JSON.stringify(data)
-    }));
+      body: JSON.stringify(data),
+    });
+    console.log(response);
+    let jsonResponse = await response.json();
+    console.log(jsonResponse);
+    return jsonResponse.progression;
   }
 
   static async updateProgression(data) {
@@ -19,9 +24,9 @@ export default class ProgressionService {
     return await fetch(API_URL + "progression", {
       method: "PUT",
       headers: Object.assign(authHeader(), {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       }),
-      body: JSON.stringify(data)
+      body: JSON.stringify(data),
     });
   }
 
@@ -30,9 +35,9 @@ export default class ProgressionService {
     return await fetch(API_URL + "file", {
       method: "POST",
       headers: Object.assign(authHeader(), {
-        "Content-Type": "application/octet-stream"
+        "Content-Type": "application/octet-stream",
       }),
-      body: data
+      body: data,
     });
   }
 
@@ -48,7 +53,7 @@ export default class ProgressionService {
     console.log("Fetching progressions...");
     return await fetch(API_URL + "progressions", {
       method: "GET",
-      headers: authHeader()
+      headers: authHeader(),
     });
   }
 }

@@ -172,8 +172,7 @@ export default {
 
       // Post the new progression
       try {
-        let response = await progressionService.createProgression(progression);
-        this.progression = response.json().progression;
+        this.progression = await progressionService.createProgression(progression);
         this.activity["progression"] = this.progression;
         activities[idParcours][idActivity] = this.activity;
         console.log("Progression created!");
