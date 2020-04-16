@@ -4,7 +4,9 @@
   "nom": "Les étapes de la préparation d’un plat",
   "description": "Panoramix veut montrer à ses amis Astérix et Obélix qu’il est important d’organiser étapes par étapes un repas pour qu’au final la préparation du repas se passe du mieux possible. Pour cela, il leur pose une petite série de questions.",
   "duree": 10,
-  "materiel": [""],
+  "materiel": [
+    ""
+  ],
   "difficulte": "facile",
-  "pages": 2
+  "page": 2
 }

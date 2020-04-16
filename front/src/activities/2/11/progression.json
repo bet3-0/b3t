@@ -1,20 +1,21 @@
 {
-    "id": "Server-side generated UUID",
-    "idActivite": "11",
-    "idParcours": "2",
-    "state": "INPROGRESS",
-    "duration": 15,
-    "startedAt": 5,
-    "finishedAt": 0,
-    "reviewAt": 0,
-    "entries": [{
-        "position": "0",
-        "question": "Travaille ta pâte à modeler avec tes mains pour créer un village gaulois puis envoie nous ton village en photo",
-        "documents": [],
-        "typeRendu": "file",
-        "rendu": "",
-        "state": "NOTSTARTED",
-        "tracked": true,
-        "page": 2
-    }]
+  "idActivite": "11",
+  "idParcours": "2",
+  "state": "INPROGRESS",
+  "duration": 15,
+  "startedAt": 0,
+  "finishedAt": 0,
+  "reviewAt": 0,
+  "entries": [
+    {
+      "position": 0,
+      "question": "Travaille ta pâte à modeler avec tes mains pour créer un village gaulois puis envoie nous ton village en photo",
+      "documents": [],
+      "typeRendu": "file",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 2
+    }
+  ]
 }

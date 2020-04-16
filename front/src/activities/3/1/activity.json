@@ -4,7 +4,10 @@
   "nom": "Atelier Couteau",
   "description": "Réfléchis à tes connaissances et tes pratiques en matière de couteau",
   "duree": 30,
-  "materiel": ["Un couteau de Poche","Un bâton"],
+  "materiel": [
+    "Un couteau de Poche",
+    "Un bâton"
+  ],
   "difficulte": "facile",
-  "pages": 2
+  "page": 2
 }

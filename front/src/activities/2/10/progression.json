@@ -1,20 +1,21 @@
 {
-    "id": "Server-side generated UUID",
-    "idActivite": "´10",
-    "idParcours": "2",
-    "state": "INPROGRESS",
-    "duration": 30,
-    "startedAt": 0,
-    "finishedAt": 0,
-    "reviewAt": 0,
-    "entries": [{
-        "position": 0,
-        "question": "Prend en photo ta ou tes créations et envoie la/les nous.",
-        "documents": [],
-        "typeRendu": "file",
-        "rendu": "",
-        "state": "NOTSTARTED",
-        "tracked": true,
-        "page": 1
-    }]
+  "idActivite": "´10",
+  "idParcours": "2",
+  "state": "INPROGRESS",
+  "duration": 30,
+  "startedAt": 0,
+  "finishedAt": 0,
+  "reviewAt": 0,
+  "entries": [
+    {
+      "position": 0,
+      "question": "Prend en photo ta ou tes créations et envoie la/les nous.",
+      "documents": [],
+      "typeRendu": "file",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 1
+    }
+  ]
 }

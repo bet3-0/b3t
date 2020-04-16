@@ -86,7 +86,11 @@
                 />
               </svg>
             </td>
-            <td>{{ getActivity(progression.id).nom }}</td>
+            <td>
+              {{
+                getActivityName(progression.idParcours, progression.idActivite)
+              }}
+            </td>
             <td>
               <img
                 :src="`/img/icons/${progression.state}.png`"
@@ -134,8 +138,8 @@ export default {
         inProgress: 0,
         finished: 0,
         validated: 0,
-        refused: 0
-      }
+        refused: 0,
+      },
     };
   },
   created() {
@@ -155,8 +159,8 @@ export default {
         {
           id: "error_fetch",
           state: "UNKNOWN", // error
-          evaluation: "Une erreur inconnue est survenue ! Recharge la page !"
-        }
+          evaluation: "Une erreur inconnue est survenue ! Recharge la page !",
+        },
       ];
     }
   },
@@ -165,18 +169,35 @@ export default {
   },
   methods: {
     getStateName: progressionHelpers.getStateName,
-    getActivity(activityId) {
-      // TODO: get activity by id
-      return { id: activityId, nom: "Nom générique" };
+    getActivity(idParcours, idActivite) {
+      try {
+        let activities = JSON.parse(localStorage.getItem("activities"));
+        return activities[idParcours][idActivite];
+      } catch (error) {
+        console.error(
+          `Activity ${idParcours}/${idActivite} not found in localStorage.`
+        );
+        return { id: idActivite, idParcours: idParcours, nom: "Nom inconnu" };
+      }
+    },
+    getActivityName(idParcours, idActivite) {
+      try {
+        return this.getActivity(idParcours, idActivite).nom;
+      } catch (error) {
+        return "Nom inconnu";
+      }
     },
     getCurrentActivity() {
-      return this.getActivity(this.currentProgression.id);
+      return this.getActivity(
+        this.currentProgression.idParcours,
+        this.currentProgression.idActivite
+      );
     },
     sendInfo(progression) {
       this.currentProgression = progression;
     },
     countProgressionStates() {
-      this.progressions.forEach(progression => {
+      this.progressions.forEach((progression) => {
         if (VALID_STATES.includes(progression.state)) {
           this.counter[progression.state]++;
         }
@@ -187,8 +208,8 @@ export default {
     },
     changeParcoursColor() {
       return itineraryHelpers.getItineraryColor(this.idParcours);
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -1,11 +1,12 @@
 {
-    "id": "53",
-    "idParcours": 0,
-    "nom": "Es-tu un vrai druide? ",
-    "description": "Maintenant que tu as traversé toutes les aventures destinées aux gaulois pour devenir Druide, tu dois être capable d’avoir une bonne hygiène de vie, tu dois savoir comment appeler les secours, ce qu’il y a dans une trousse de secours et comment utiliser ce matériel. Tu as également appris à prendre soin de toi et des autres, à faire attention à ton alimentation….",
-    "duree": 30,
-    "materiel": ["A toi de choisir :)"],
-    "difficulte": "facile",
-    "pages": 1
-  }
-  
+  "id": "53",
+  "idParcours": 0,
+  "nom": "Es-tu un vrai druide? ",
+  "description": "Maintenant que tu as traversé toutes les aventures destinées aux gaulois pour devenir Druide, tu dois être capable d’avoir une bonne hygiène de vie, tu dois savoir comment appeler les secours, ce qu’il y a dans une trousse de secours et comment utiliser ce matériel. Tu as également appris à prendre soin de toi et des autres, à faire attention à ton alimentation….",
+  "duree": 30,
+  "materiel": [
+    "A toi de choisir :)"
+  ],
+  "difficulte": "facile",
+  "page": 1
+}

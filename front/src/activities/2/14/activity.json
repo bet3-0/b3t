@@ -4,7 +4,9 @@
   "nom": "L’improvisation",
   "description": "Toute cette activité est basé sur ta capacité à improviser",
   "duree": 10,
-  "materiel": ["Prendre une video"],
+  "materiel": [
+    "Prendre une video"
+  ],
   "difficulte": "facile",
-  "pages": 2
+  "page": 2
 }

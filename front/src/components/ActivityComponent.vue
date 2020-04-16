@@ -50,7 +50,7 @@ Base Component for an activity page -->
             <!-- Choisir parmi ces deux rendus en fonction de l'activité -->
             <div
               v-for="entry in pageEntries()"
-              :key="entry.id"
+              :key="entry.position"
               style="text-align: center; width: 100%"
             >
               <h3 style="text-align: left">
@@ -104,20 +104,6 @@ import ValidateActivityPage from "./includes/activityComponents/ValidateActivity
 import $ from "jquery";
 import progressionService from "../service/progression.service";
 
-// temporary script
-function getActivityPage(id, idParcours, pageNumber) {
-  console.log(
-    `Page asked: id=${id} parcours=${itineraryHelpers.getItineraryRouteName(
-      idParcours
-    )}`
-  );
-  /*
-  this.activityFile = require(`@/assets/pages/activities/${getItineraryRouteName(
-    idParcoursactivitees
-  )}/${id}/${id}.html`);
-  */
-  return `<b>Mon activité trop stylée en <i>HTML</i> page ${pageNumber}!</b>`;
-}
 export default {
   name: "ActivityComponent",
   components: {
@@ -127,16 +113,16 @@ export default {
     ValidateActivityPage,
     ActivityContent,
     ActivityProgressBar,
-    OrderList
+    OrderList,
   },
-  //props: { pageNumber: Number }, // current page number
+  props: ["pastProgression"],
   data() {
     return {
       idParcours: NaN,
       pageNumber: 1, // number of the visible page. 1 at start
       progress: 0,
       activity: {},
-      progression: {}
+      progression: {},
     };
   },
   async created() {
@@ -148,7 +134,7 @@ export default {
     await this.retrieveProgression(this.idParcours, this.id);
   },
   mounted() {
-    for (let i = 0; i < this.activity.pages; i++) {
+    for (let i = 0; i < this.activity.page; i++) {
       if (i + 1 !== this.pageNumber) {
         $(`#page${i + 1}`).hide();
       }
@@ -157,29 +143,40 @@ export default {
   },
   methods: {
     async retrieveProgression(idParcours, idActivity) {
+      if (this.$store.state.activity.progression) {
+        // load from PersonalProgression vue
+        this.progression = this.$store.state.activity.progression;
+        this.$store.state.activity.progression = undefined;
+        return;
+      }
+
       // faire un truc plus clean mais tout aussi persistant.
       const activities = JSON.parse(localStorage.getItem("activities")) || {};
       if (!(idParcours in activities)) {
         activities[idParcours] = {};
       }
+      /*
       if (idActivity in activities[idParcours]) {
         this.progression = activities[idParcours][idActivity].progression; // retrieve the previous progression created.
         return;
       }
+      */
 
       // Retrieve the default progression linked to the activity
       let progression = activityService.getProgression(idParcours, idActivity);
 
       // Post the new progression
       try {
-        let response = await progressionService.createProgression(progression);
-        this.progression = response.json().progression;
+        this.progression = await progressionService.createProgression(
+          progression
+        );
         this.activity["progression"] = this.progression;
         activities[idParcours][idActivity] = this.activity;
         console.log("Progression created!");
       } catch (error) {
         console.warn("Impossible to create a progression!");
         alert("Impossible de démarrer l'activité ! Recharge la page !");
+        this.progression = progression;
         // return;
       }
       localStorage["activities"] = JSON.stringify(activities);
@@ -221,7 +218,7 @@ export default {
         return [];
       }
       return this.progression.entries.filter(
-        entry => entry.page === this.pageNumber
+        (entry) => entry.page === this.pageNumber
       );
     },
     changePage(pageNumber) {
@@ -230,14 +227,7 @@ export default {
       $(`#page${this.pageNumber}`).show();
       console.log(`Current page number: ${this.pageNumber}`);
     },
-    activityFile() {
-      return getActivityPage(
-        this.activity.id,
-        this.activity.idParcours,
-        this.pageNumber
-      );
-    }
-  }
+  },
 };
 </script>
 

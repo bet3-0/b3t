@@ -1,78 +1,71 @@
 {
-    "id": "Server-side generated UUID",
-    "idActivite": "49",
-    "idParcours": "0",
-    "state": "INPROGRESS",
-    "duration": 20,
-    "startedAt": 0,
-    "finishedAt": 0,
-    "reviewAt": 0,
-    "entries": [
-        {
-            "position": 0,
-            "question":
-                "Selon toi, qu’est-ce que le handicap ? Essaie de donner une définition.",
-            "documents": [],
-            "typeRendu": "text",
-            "rendu": "",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 1
-        },
-        {
-            "position": 1,
-            "question":
-                "Est-ce que tous les handicaps se voient ?",
-            "documents": [],
-            "typeRendu": "text",
-            "rendu": "",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 1
-        },
-        {
-            "position": 2,
-            "question":
-                "Connais-tu des types de handicap ? ",
-            "documents": [],
-            "typeRendu": "text",
-            "rendu": "",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 1
-        },
-        {
-            "position": 3,
-            "question":
-                "A ton avis, peut-on être scout et en situation de handicap ?",
-            "documents": [],
-            "typeRendu": "text",
-            "rendu": "",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 1
-        },
-        {
-            "position": 4,
-            "question":
-                "Qu’as-tu ressenti lors de cette activité ?",
-            "documents": [],
-            "typeRendu": "text",
-            "rendu": "",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 3
-        },
-        {
-            "position": 5,
-            "question":
-                "As tu des questions ou des remarques sur le contenu de cette activité ?",
-            "documents": [],
-            "typeRendu": "text",
-            "rendu": "",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 3
-        }
-    ]
+  "idActivite": "49",
+  "idParcours": "0",
+  "state": "INPROGRESS",
+  "duration": 20,
+  "startedAt": 0,
+  "finishedAt": 0,
+  "reviewAt": 0,
+  "entries": [
+    {
+      "position": 0,
+      "question": "Selon toi, qu’est-ce que le handicap ? Essaie de donner une définition.",
+      "documents": [],
+      "typeRendu": "text",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 1
+    },
+    {
+      "position": 1,
+      "question": "Est-ce que tous les handicaps se voient ?",
+      "documents": [],
+      "typeRendu": "text",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 1
+    },
+    {
+      "position": 2,
+      "question": "Connais-tu des types de handicap ? ",
+      "documents": [],
+      "typeRendu": "text",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 1
+    },
+    {
+      "position": 3,
+      "question": "A ton avis, peut-on être scout et en situation de handicap ?",
+      "documents": [],
+      "typeRendu": "text",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 1
+    },
+    {
+      "position": 4,
+      "question": "Qu’as-tu ressenti lors de cette activité ?",
+      "documents": [],
+      "typeRendu": "text",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 3
+    },
+    {
+      "position": 5,
+      "question": "As tu des questions ou des remarques sur le contenu de cette activité ?",
+      "documents": [],
+      "typeRendu": "text",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 3
+    }
+  ]
 }

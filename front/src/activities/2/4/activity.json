@@ -4,7 +4,17 @@
   "nom": "Djembe",
   "description": "Exprime ta créativité en fabriquant un djembé avec des éléments de récupération. Une fois réalisé amuse toi à jouer de la musique. Sauras-tu être meilleur qu’Assurancetourix avec sa Lyre ?",
   "duree": 25,
-  "materiel": ["Goulot de bouteille plastique", "tube cartonné", "papier épais (Kraft)", "de la colle chaude", "colle à papier peint", "des ciseaux", "crayons", "peinture, pinceaux", "Caméra, appareil photo, smartphone ou ordinateur pour se filmer"],
+  "materiel": [
+    "Goulot de bouteille plastique",
+    "tube cartonné",
+    "papier épais (Kraft)",
+    "de la colle chaude",
+    "colle à papier peint",
+    "des ciseaux",
+    "crayons",
+    "peinture, pinceaux",
+    "Caméra, appareil photo, smartphone ou ordinateur pour se filmer"
+  ],
   "difficulte": "facile",
-  "pages": 1
+  "page": 1
 }

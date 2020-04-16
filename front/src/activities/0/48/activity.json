@@ -4,7 +4,13 @@
   "nom": "Mon plan d’implantation d’un camp romain",
   "description": "Un lieu de camp romain scout, ça comprend quoi?",
   "duree": 15,
-  "materiel": ["2 feuilles de papier","Une paire de ciseaux","Un stylo","Des crayons de couleurs","Un appreil photo ou un téléphone pouvant prendre des photos"],
+  "materiel": [
+    "2 feuilles de papier",
+    "Une paire de ciseaux",
+    "Un stylo",
+    "Des crayons de couleurs",
+    "Un appreil photo ou un téléphone pouvant prendre des photos"
+  ],
   "difficulte": "facile",
-  "pages": 3
+  "page": 3
 }

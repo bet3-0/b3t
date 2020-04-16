@@ -4,9 +4,12 @@
   "nom": "Ombres chinoises",
   "description": "Exprime ta créativité en te mettant en scène en ombres chinoise derrière un drap blanc et raconte nous une histoire gauloise. Si tu as des frères et soeurs n’hésite pas à les solliciter pour faire le show.",
   "duree": 20,
-  "materiel": ["Drap", "Lampe", "déguisements et accessoires choisis par rapport à l’histoire",
+  "materiel": [
+    "Drap",
+    "Lampe",
+    "déguisements et accessoires choisis par rapport à l’histoire",
     "Caméra, appareil photo, smartphone ou ordinateur pour se filmer."
   ],
   "difficulte": "facile",
-  "pages": 1
+  "page": 1
 }

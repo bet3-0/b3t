@@ -1,65 +1,61 @@
 {
-    "id": "Server-side generated UUID",
-    "idActivite": "21",
-    "idParcours": "0",
-    "state": "INPROGRESS",
-    "duration": 20,
-    "startedAt": 0,
-    "finishedAt": 0,
-    "reviewAt": 0,
-    "entries": [
-
-        {
-            "position": 0,
-            "question": "Durant le banquet, Obélix fait tomber son sanglier, le récupère dans les braises, se brûle, recule et bouscule Ordralfabétix qui se brûle à son tour. Comment soigner les brûlures ?",
-            "documents": [],
-            "typeRendu": "text",
-            "rendu": "",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 1
-        },
-        {
-            "position": 1,
-            "question": "Jour de soleil, bataille entre romain et gaulois dans un champ, tout se passe bien, aucun blessé chez les gaulois. Mais le soir venu, Agecanonix (qui d’ailleurs s’est donné à fond) souffre de brûlures et a très chaud, alors que le soleil s’est couché et que la température a bien baissé.",
-            "documents": [],
-            "typeRendu": "text",
-            "rendu": "",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 2
-        },
-        {
-            "position": 2,
-            "question": "Randonnée en équipe. Après quelques heures de marche, Assurancetourix a très mal aux pieds. L’assistant sanitaire le prend en charge et découvre une énorme ampoule percée !",
-            "documents": [],
-            "typeRendu": "text",
-            "rendu": "",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 3
-        },
-        {
-            "position": 3,
-            "question": "En explo, 2e jour. Abraracourcix s’est levée du mauvais pied, il a assez mal dormi et a un sacré mal de tête. Il a si mal qu’il n’avale rien au petit déjeuner et n’a qu’une envie, se recoucher.",
-            "documents": [],
-            "typeRendu": "text",
-            "rendu": "",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 4
-        },
-        {
-            "position": 0,
-            "question": "Eponine prépare le repas pour son équipage. Elle ouvre une boîte de maïs, l’ouvre-boîte dérape, elle s’entaille avec le couvercle en métal.",
-            "documents": [],
-            "typeRendu": "text",
-            "rendu": "",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 5
-        }
-
-
-    ]
+  "idActivite": "21",
+  "idParcours": "0",
+  "state": "INPROGRESS",
+  "duration": 20,
+  "startedAt": 0,
+  "finishedAt": 0,
+  "reviewAt": 0,
+  "entries": [
+    {
+      "position": 0,
+      "question": "Durant le banquet, Obélix fait tomber son sanglier, le récupère dans les braises, se brûle, recule et bouscule Ordralfabétix qui se brûle à son tour. Comment soigner les brûlures ?",
+      "documents": [],
+      "typeRendu": "text",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 1
+    },
+    {
+      "position": 1,
+      "question": "Jour de soleil, bataille entre romain et gaulois dans un champ, tout se passe bien, aucun blessé chez les gaulois. Mais le soir venu, Agecanonix (qui d’ailleurs s’est donné à fond) souffre de brûlures et a très chaud, alors que le soleil s’est couché et que la température a bien baissé.",
+      "documents": [],
+      "typeRendu": "text",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 2
+    },
+    {
+      "position": 2,
+      "question": "Randonnée en équipe. Après quelques heures de marche, Assurancetourix a très mal aux pieds. L’assistant sanitaire le prend en charge et découvre une énorme ampoule percée !",
+      "documents": [],
+      "typeRendu": "text",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 3
+    },
+    {
+      "position": 3,
+      "question": "En explo, 2e jour. Abraracourcix s’est levée du mauvais pied, il a assez mal dormi et a un sacré mal de tête. Il a si mal qu’il n’avale rien au petit déjeuner et n’a qu’une envie, se recoucher.",
+      "documents": [],
+      "typeRendu": "text",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 4
+    },
+    {
+      "position": 0,
+      "question": "Eponine prépare le repas pour son équipage. Elle ouvre une boîte de maïs, l’ouvre-boîte dérape, elle s’entaille avec le couvercle en métal.",
+      "documents": [],
+      "typeRendu": "text",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 5
+    }
+  ]
 }

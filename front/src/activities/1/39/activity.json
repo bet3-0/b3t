@@ -1,10 +1,12 @@
 {
-    "id": "39",
-    "idParcours": "1",
-    "nom": "Quels fruits et légumes avec quel mois ?",
-    "description": "Apprendre quand acheter et manger les fruits et légumes en fonction de la saison",
-    "duree": 20,
-    "materiel": ["Un ordinateur"],
-    "difficulte": "",
-    "pages": 12
-   }   
+  "id": "39",
+  "idParcours": "1",
+  "nom": "Quels fruits et légumes avec quel mois ?",
+  "description": "Apprendre quand acheter et manger les fruits et légumes en fonction de la saison",
+  "duree": 20,
+  "materiel": [
+    "Un ordinateur"
+  ],
+  "difficulte": "",
+  "page": 12
+}

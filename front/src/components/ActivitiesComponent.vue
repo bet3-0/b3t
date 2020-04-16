@@ -112,7 +112,7 @@ export default {
   },
   async mounted() {
     try {
-      this.activities = await activityService.getAllActivity();
+      this.activities = await activityService.getAllActivity(this.idParcours);
     } catch (error) {
       console.error(error);
       this.activities = activityService.listActi(); // for debug : TODO: remove

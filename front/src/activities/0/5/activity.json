@@ -1,11 +1,17 @@
 {
-    "id": "5",
-    "idParcours": "0",
-    "nom": "Fabrication d’un système de distribution d’eau",
-    "description": "Connaître une technique pour avoir de l’eau et du savon à proximité des feuillées. Repartir avec des idées pour aménager des feuillées",
-    "duree": 20,
-    "materiel": ["un ordinateur","une bouteille en plastique et son bouchon","de la ficelle","un tire-bouchon","un appareil photo","une bassine"],
-    "difficulte": "facile",
-    "pages": 6
-   }
-   
+  "id": "5",
+  "idParcours": "0",
+  "nom": "Fabrication d’un système de distribution d’eau",
+  "description": "Connaître une technique pour avoir de l’eau et du savon à proximité des feuillées. Repartir avec des idées pour aménager des feuillées",
+  "duree": 20,
+  "materiel": [
+    "un ordinateur",
+    "une bouteille en plastique et son bouchon",
+    "de la ficelle",
+    "un tire-bouchon",
+    "un appareil photo",
+    "une bassine"
+  ],
+  "difficulte": "facile",
+  "page": 6
+}

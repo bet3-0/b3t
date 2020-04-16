@@ -4,7 +4,8 @@
   "nom": "Poterie en pâte à sel",
   "description": "Modélise un objet ou symbole gaulois à l’aide de tes mains et d’une pâte à sel. Voici quelques idées : menhir, sanglier, maison gauloise, glaive, casque gaulois, moustache, l’arbre maison d’Assurancetourix, le poisson d’Ordralphabétix...",
   "duree": 30,
-  "materiel": ["eau tiède",
+  "materiel": [
+    "eau tiède",
     "sel fin",
     "farine",
     "(optionnel : colorants alimentaires, épices, graines, pâtes….)",
@@ -16,5 +17,5 @@
     "Appareil photo, smartphone ou ordinateur pour prendre en photo ta création."
   ],
   "difficulte": "facile",
-  "pages": 1
+  "page": 1
 }

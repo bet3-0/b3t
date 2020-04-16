@@ -4,7 +4,19 @@
   "nom": "Étape la galerie",
   "description": "Réaliser un fondant au chocolat sur un feu de bois",
   "duree": 45,
-  "materiel": ["Barbecue", "Charbon de bois ou bois", "Casserolle pouvant aller sur le feu", "Sable", "Moule à tarte", "4 oeufs", "125g de beurre", "40g de Farine", "200g de chocolat", "130g de sucre", "1cc de vanille"],
+  "materiel": [
+    "Barbecue",
+    "Charbon de bois ou bois",
+    "Casserolle pouvant aller sur le feu",
+    "Sable",
+    "Moule à tarte",
+    "4 oeufs",
+    "125g de beurre",
+    "40g de Farine",
+    "200g de chocolat",
+    "130g de sucre",
+    "1cc de vanille"
+  ],
   "difficulte": "moyen",
-  "pages": 1
+  "page": 1
 }

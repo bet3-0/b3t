@@ -4,7 +4,9 @@
   "nom": "J’appelle les secours mais je dis quoi ?",
   "description": "Tu es inquiet(e), tu as peur de devoir appeler les secours et ne pas savoir quoi leur dire? Ne t’inquiète pas, nous allons te donner toutes les clefs pour que si tu as besoin de passer ce type d’appel, tu saches quoi dire. Même si tu oublies des choses, les secours, au bout de la ligne, te poseront les questions qui leur sont utiles pour évaluer la situation. Ne parle pas trop vite et articule.",
   "duree": 10,
-  "materiel": ["Aucun"],
+  "materiel": [
+    "Aucun"
+  ],
   "difficulte": "simple",
-  "pages": 3
+  "page": 3
 }

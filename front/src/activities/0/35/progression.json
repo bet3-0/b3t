@@ -1,19 +1,21 @@
 {
-    "idActivite": "35",
-    "idParcours": "0",
-    "state": "INPROGRESS",
-    "duration": 20,
-    "startedAt": 5,
-    "finishedAt": 0,
-    "reviewAt": 0,
-    "entries": [{
-        "position": 0,
-        "question": "Reproduit le tableau sur papier, rempli le, prend une photo et envoie nous la ici",
-        "documents": [],
-        "typeRendu": "file",
-        "rendu": "",
-        "state": "NOTSTARTED",
-        "tracked": true,
-        "page": 1
-    }]
+  "idActivite": "35",
+  "idParcours": "0",
+  "state": "INPROGRESS",
+  "duration": 20,
+  "startedAt": 0,
+  "finishedAt": 0,
+  "reviewAt": 0,
+  "entries": [
+    {
+      "position": 0,
+      "question": "Reproduit le tableau sur papier, rempli le, prend une photo et envoie nous la ici",
+      "documents": [],
+      "typeRendu": "file",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 1
+    }
+  ]
 }

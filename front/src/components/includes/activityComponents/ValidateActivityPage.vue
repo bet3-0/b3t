@@ -23,7 +23,8 @@ export default {
   },
   methods: {
     hasNext() {
-      return this.pageNumber < this.activity.pages;
+      console.log("nb pages: "+ this.activity.page)
+      return this.pageNumber < this.activity.page;
     },
     previousPage() {
       return this.changePage(this.pageNumber - 1);
@@ -57,7 +58,6 @@ export default {
       try{
       await ProgressionService.updateProgression(this.progression);
           console.log("Progression sent: " + this.progression);
-          this.updateEntry(this.progression); // update the primary progression object
           // Redirect
           window.location.href = "/activitees";
         }catch(error){

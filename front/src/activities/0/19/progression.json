@@ -1,62 +1,61 @@
 {
-    "idActivite": "19",
-    "idParcours":"0",
-    "state": "INPROGRESS",
-    "duration": 10,
-    "startedAt": 5,
-    "finishedAt": 0,
-    "reviewAt": 0,
-    "entries": [
-        {
-            "position": 0,
-            "question":
-                "Maintenant que tu sais à quoi sert un registre de soin, comment le tiendrais tu si tu étais à la place des chefs ?",
-            "documents": [],
-            "typeRendu": "text",
-            "rendu": "",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 2
-        },
-        {
-            "position": 1,
-            "question": "Qu’est ce que les chefs doivent inscrire dedans ?",
-            "documents": [],
-            "typeRendu": "text",
-            "rendu": "",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 2
-        },
-        {
-            "position": 2,
-            "question": "En as tu déjà vu un? Si oui décris le.",
-            "documents": [],
-            "typeRendu": "text",
-            "rendu": "",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 2
-        },
-        {
-            "position": 3,
-            "question": "Selon toi avant de soigner une personne, faut-il regarder sa fiche sanitaire ? Justifie ta réponse",
-            "documents": [],
-            "typeRendu": "text",
-            "rendu": "",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 2
-        },
-        {
-            "position": 4,
-            "question": "Ainsi, qu’as tu retenu sur le registre de soins ? A quoi sert-il ? Quand faut-il que les chefs le remplissent ?",
-            "documents": [],
-            "typeRendu": "text",
-            "rendu": "",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 4
-        }
-    ]
+  "idActivite": "19",
+  "idParcours": "0",
+  "state": "INPROGRESS",
+  "duration": 10,
+  "startedAt": 0,
+  "finishedAt": 0,
+  "reviewAt": 0,
+  "entries": [
+    {
+      "position": 0,
+      "question": "Maintenant que tu sais à quoi sert un registre de soin, comment le tiendrais tu si tu étais à la place des chefs ?",
+      "documents": [],
+      "typeRendu": "text",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 2
+    },
+    {
+      "position": 1,
+      "question": "Qu’est ce que les chefs doivent inscrire dedans ?",
+      "documents": [],
+      "typeRendu": "text",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 2
+    },
+    {
+      "position": 2,
+      "question": "En as tu déjà vu un? Si oui décris le.",
+      "documents": [],
+      "typeRendu": "text",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 2
+    },
+    {
+      "position": 3,
+      "question": "Selon toi avant de soigner une personne, faut-il regarder sa fiche sanitaire ? Justifie ta réponse",
+      "documents": [],
+      "typeRendu": "text",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 2
+    },
+    {
+      "position": 4,
+      "question": "Ainsi, qu’as tu retenu sur le registre de soins ? A quoi sert-il ? Quand faut-il que les chefs le remplissent ?",
+      "documents": [],
+      "typeRendu": "text",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 4
+    }
+  ]
 }

@@ -4,7 +4,10 @@
   "nom": "Relaxation - Concentration avant l’action",
   "description": "Le balayage corporel consiste à se concentrer sur son corps et à le passer en revue zone par après zone dans un ordre précis et de manière progressive (de bas en haut ou de haut en bas, en position assise ou couchée).",
   "duree": 25,
-  "materiel": ["De quoi écouter la vidéo","Couverture et coussins si tu le souhaites"],
+  "materiel": [
+    "De quoi écouter la vidéo",
+    "Couverture et coussins si tu le souhaites"
+  ],
   "difficulte": "facile",
-  "pages": 2
+  "page": 2
 }

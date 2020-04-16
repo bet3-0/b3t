@@ -4,7 +4,12 @@
   "nom": "Découverte de l’implantation d’un camp romain",
   "description": "Un lieu de camp romain ou scout, ça comprend quoi? Lorsqu’on réfléchit à l’implantation du lieu de camp, il faut d’abord connaître son lieu, savoir s’il y a des arbres, où est le point d’eau, s’il y a des ronces quelque part…",
   "duree": 15,
-  "materiel": ["2 feuilles de papier","des ciseaux","un stylo","Un appareil photo ou un téléphone pouvant prendre des photos"],
+  "materiel": [
+    "2 feuilles de papier",
+    "des ciseaux",
+    "un stylo",
+    "Un appareil photo ou un téléphone pouvant prendre des photos"
+  ],
   "difficulte": "facile",
-  "pages": 1
+  "page": 1
 }

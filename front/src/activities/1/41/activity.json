@@ -1,10 +1,15 @@
 {
-    "id": "41",
-    "idParcours": "1",
-    "nom": "Moyen chef : Mots fléchés culinaires",
-    "description": "Compléter la grille de mots fléchés",
-    "duree": 15,
-    "materiel": ["Un ordinateur","papier","crayon","appareil photo"],
-    "difficulte": "",
-    "pages": 2
-   }   
+  "id": "41",
+  "idParcours": "1",
+  "nom": "Moyen chef : Mots fléchés culinaires",
+  "description": "Compléter la grille de mots fléchés",
+  "duree": 15,
+  "materiel": [
+    "Un ordinateur",
+    "papier",
+    "crayon",
+    "appareil photo"
+  ],
+  "difficulte": "",
+  "page": 2
+}

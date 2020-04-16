@@ -2,10 +2,11 @@
   "id": "21",
   "idParcours": "0",
   "nom": "Je connais le secret de la potion magique",
-  "description": 
-  "Maintenant que tu sais quoi mettre dans la trousse à pharmacie, sais-tu quoi faire selon le type de blessure? Quel matériel utiliser? Lis bien chaque situation et explique nous les étapes d’interventions que tu ferais et le matériel dont tu aurais besoin.",
+  "description": "Maintenant que tu sais quoi mettre dans la trousse à pharmacie, sais-tu quoi faire selon le type de blessure? Quel matériel utiliser? Lis bien chaque situation et explique nous les étapes d’interventions que tu ferais et le matériel dont tu aurais besoin.",
   "duree": 20,
-  "materiel": ["Pas de matériel nécessaire"],
+  "materiel": [
+    "Pas de matériel nécessaire"
+  ],
   "difficulte": "moyen",
-  "pages": 6
+  "page": 6
 }
