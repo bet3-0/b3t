@@ -44,6 +44,7 @@ export default {
   props: ["progression", "activity"],
   methods: {
     go(activity) {
+      this.$store.state.activity.progression = this.progression;
       this.$router.push(`/activity/${activity.id}`);
     },
     getCommentFromState(state) {

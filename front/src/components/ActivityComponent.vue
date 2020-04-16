@@ -115,7 +115,7 @@ export default {
     ActivityProgressBar,
     OrderList,
   },
-  //props: { pageNumber: Number }, // current page number
+  props: ["pastProgression"],
   data() {
     return {
       idParcours: NaN,
@@ -133,8 +133,8 @@ export default {
 
     await this.retrieveProgression(this.idParcours, this.id);
   },
-  mounted() {
-    for (let i = 0; i < this.activity.pages; i++) {
+  mount() {
+    for (let i = 0; i < this.activity.page; i++) {
       if (i + 1 !== this.pageNumber) {
         $(`#page${i + 1}`).hide();
       }
@@ -143,15 +143,24 @@ export default {
   },
   methods: {
     async retrieveProgression(idParcours, idActivity) {
+      if (this.$store.state.activity.progression) {
+        // load from PersonalProgression vue
+        this.progression = this.$store.state.activity.progression;
+        this.$store.state.activity.progression = undefined;
+        return;
+      }
+
       // faire un truc plus clean mais tout aussi persistant.
       const activities = JSON.parse(localStorage.getItem("activities")) || {};
       if (!(idParcours in activities)) {
         activities[idParcours] = {};
       }
+      /*
       if (idActivity in activities[idParcours]) {
         this.progression = activities[idParcours][idActivity].progression; // retrieve the previous progression created.
         return;
       }
+      */
 
       // Retrieve the default progression linked to the activity
       let progression = activityService.getProgression(idParcours, idActivity);
