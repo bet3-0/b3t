@@ -151,7 +151,6 @@ export default {
       }
     }
     $(".content-container").removeAttr("hidden");
-    window.scrollTo(0,0);
   },
   mounted() {
     for (let i = 0; i < this.activity.page; i++) {
@@ -281,6 +280,7 @@ export default {
       this.pageNumber = pageNumber;
       $(`#page${this.pageNumber}`).show();
       console.log(`Current page number: ${this.pageNumber}`);
+      window.scrollTo(0, 0);
     },
   },
 };
