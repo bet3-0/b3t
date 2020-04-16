@@ -1,10 +1,12 @@
 {
-    "id": "36",
-    "idParcours": "1",
-    "nom": "Quelles portions par jour ?",
-    "description": "Connaître la classe des aliments pour préparer un menu adapté au programme de la journée",
-    "duree": 10,
-    "materiel": ["Un ordinateur"],
-    "difficulte": "",
-    "pages": 1
-   }   
+  "id": "36",
+  "idParcours": "1",
+  "nom": "Quelles portions par jour ?",
+  "description": "Connaître la classe des aliments pour préparer un menu adapté au programme de la journée",
+  "duree": 10,
+  "materiel": [
+    "Un ordinateur"
+  ],
+  "difficulte": "",
+  "page": 1
+}

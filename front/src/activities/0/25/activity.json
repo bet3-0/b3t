@@ -1,10 +1,19 @@
 {
-    "id": "25",
-    "idParcours": "0",
-    "nom": "Fabrique ta lessive",
-    "description": "Apprendre à faire de la lessive",
-    "duree": 15,
-    "materiel": ["Un ordinateur", "50g de savon de Marseille", "1 cuillère à soupe de bicarbonate de soude", "1L d’eau", "10 gouttes d’huile essentielle de ton choix (facultatif)", "une casserole", "une plaque chauffante", "une spatule en bois ou autre pour mélanger"],
-    "difficulte": "",
-    "pages": 1
+  "id": "25",
+  "idParcours": "0",
+  "nom": "Fabrique ta lessive",
+  "description": "Apprendre à faire de la lessive",
+  "duree": 15,
+  "materiel": [
+    "Un ordinateur",
+    "50g de savon de Marseille",
+    "1 cuillère à soupe de bicarbonate de soude",
+    "1L d’eau",
+    "10 gouttes d’huile essentielle de ton choix (facultatif)",
+    "une casserole",
+    "une plaque chauffante",
+    "une spatule en bois ou autre pour mélanger"
+  ],
+  "difficulte": "",
+  "page": 1
 }

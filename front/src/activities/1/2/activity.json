@@ -4,7 +4,11 @@
   "nom": "Hygiène : et si le poivre était des bactéries ?",
   "description": "Astérix veut montrer à Obélix qu’il est important de se laver les mains au quotidien, lors de la préparation des repas et avant qu’il ne mange son sanglier",
   "duree": 10,
-  "materiel": ["Poivre", "Bassine d'eau", "Savons"],
+  "materiel": [
+    "Poivre",
+    "Bassine d'eau",
+    "Savons"
+  ],
   "difficulte": "facile",
-  "pages": 1
+  "page": 1
 }

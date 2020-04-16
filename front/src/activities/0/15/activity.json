@@ -1,10 +1,12 @@
 {
-    "id": "15",
-    "idParcours": "0",
-    "nom": "Quoi mettre dans la trousse à pharmacie d’unité? Je sais! ",
-    "description": "Etre capable de préparer une trousse à pharmacie d’unité",
-    "duree": 15,
-    "materiel": ["Un ordinateur"],
-    "difficulte": "moyen",
-    "pages": 2
+  "id": "15",
+  "idParcours": "0",
+  "nom": "Quoi mettre dans la trousse à pharmacie d’unité? Je sais! ",
+  "description": "Etre capable de préparer une trousse à pharmacie d’unité",
+  "duree": 15,
+  "materiel": [
+    "Un ordinateur"
+  ],
+  "difficulte": "moyen",
+  "page": 2
 }

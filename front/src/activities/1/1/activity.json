@@ -1,10 +1,14 @@
 {
-    "id": "1",
-    "idParcours": "1",
-    "nom": "Hygiène",
-    "description": "Astérix veut montrer à Obélix qu’il est important de se laver les mains au quotidien, lors de la préparation des repas et avant qu’il ne mange son sanglier",
-    "duree": 15,
-    "materiel": ["Pot de paillettes", "bassine d'eau ou évier", "savon"],
-    "difficulte": "facile",
-    "pages": 1
+  "id": "1",
+  "idParcours": "1",
+  "nom": "Hygiène",
+  "description": "Astérix veut montrer à Obélix qu’il est important de se laver les mains au quotidien, lors de la préparation des repas et avant qu’il ne mange son sanglier",
+  "duree": 15,
+  "materiel": [
+    "Pot de paillettes",
+    "bassine d'eau ou évier",
+    "savon"
+  ],
+  "difficulte": "facile",
+  "page": 1
 }

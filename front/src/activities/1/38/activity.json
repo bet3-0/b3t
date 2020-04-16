@@ -1,10 +1,12 @@
 {
-    "id": "38",
-    "idParcours": "1",
-    "nom": "Fruits et légumes de saison",
-    "description": "Apprendre quand acheter et manger les fruits et légumes en fonction de la saison",
-    "duree": 20,
-    "materiel": ["Un ordinateur"],
-    "difficulte": "",
-    "pages": 3
-   }   
+  "id": "38",
+  "idParcours": "1",
+  "nom": "Fruits et légumes de saison",
+  "description": "Apprendre quand acheter et manger les fruits et légumes en fonction de la saison",
+  "duree": 20,
+  "materiel": [
+    "Un ordinateur"
+  ],
+  "difficulte": "",
+  "page": 3
+}

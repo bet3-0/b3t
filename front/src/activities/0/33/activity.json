@@ -1,10 +1,15 @@
 {
-    "id": "33",
-    "idParcours": "0",
-    "nom": "Faire un banquet équilibré",
-    "description": "Savoir élaborer un menu équilibré - Connaître l’intérêt de manger équilibrer - Faire vivre son rôle d’éclaireur en confectionnant des menus pour la tribu",
-    "duree": 10,
-    "materiel": ["Un ordinateur", "du papier", "Un crayon", "Un appareil photo"],
-    "difficulte": "",
-    "pages": 1
+  "id": "33",
+  "idParcours": "0",
+  "nom": "Faire un banquet équilibré",
+  "description": "Savoir élaborer un menu équilibré - Connaître l’intérêt de manger équilibrer - Faire vivre son rôle d’éclaireur en confectionnant des menus pour la tribu",
+  "duree": 10,
+  "materiel": [
+    "Un ordinateur",
+    "du papier",
+    "Un crayon",
+    "Un appareil photo"
+  ],
+  "difficulte": "",
+  "page": 1
 }

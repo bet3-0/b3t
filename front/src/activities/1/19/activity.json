@@ -4,7 +4,12 @@
   "nom": "Lavons en chanson !",
   "description": "Pour faire prendre goût à la vaisselle à son mari, Abraracourcix, Bonemine lui propose une petite idée bien sympathique : écrire une chanson pour faire la vaisselle dans la joie et la bonne humeur",
   "duree": 30,
-  "materiel": ["Eponge", "eau", "savon", "Bonne humeur"],
+  "materiel": [
+    "Eponge",
+    "eau",
+    "savon",
+    "Bonne humeur"
+  ],
   "difficulte": "facile",
-  "pages": 1
+  "page": 1
 }

@@ -1,10 +1,15 @@
 {
-    "id": "42",
-    "idParcours": "1",
-    "nom": "Grand chef: Mots fléchés culinaires",
-    "description": "Compléter la grille de mots fléchés",
-    "duree": 20,
-    "materiel": ["Un ordinateur","papier","crayon","appareil photo"],
-    "difficulte": "",
-    "pages": 1
-   }   
+  "id": "42",
+  "idParcours": "1",
+  "nom": "Grand chef: Mots fléchés culinaires",
+  "description": "Compléter la grille de mots fléchés",
+  "duree": 20,
+  "materiel": [
+    "Un ordinateur",
+    "papier",
+    "crayon",
+    "appareil photo"
+  ],
+  "difficulte": "",
+  "page": 1
+}

@@ -4,7 +4,9 @@
   "nom": "Alcool, tabac, que sais tu sur eux?",
   "description": "Sache que les réponses que tu donnes ici sont anonymes, il n’y a aucun jugement. L’objectif est seulement de te sensibiliser à ces sujets et à ce type de consommation. ",
   "duree": 20,
-  "materiel": ["Aucun"],
+  "materiel": [
+    "Aucun"
+  ],
   "difficulte": "facile",
-  "pages": 4
+  "page": 4
 }

@@ -1,10 +1,20 @@
-   {
-      "id": "29",
-      "idParcours": "0",
-      "nom": "Fabrique du Liquide vaisselle",
-      "description": "Apprendre à faire son propre liquide vaisselle",
-      "duree": 15,
-      "materiel": ["Un ordinateur", "0,8 L d’eau bouillante", "4 cuillère à soupe de savon noir ménager", "3 cuillère à soupe de cristaux de soude", "3 cuillère à soupe de vinaigre blanc", "20 gouttes d’huiles essentielle sans furocoumarines", "Un saladier", "Un entonnoir", "Un contenant avec bouchon (bouteille, flacon, etc…)"],
-      "difficulte": "",
-      "pages": 1
-   }
+{
+  "id": "29",
+  "idParcours": "0",
+  "nom": "Fabrique du Liquide vaisselle",
+  "description": "Apprendre à faire son propre liquide vaisselle",
+  "duree": 15,
+  "materiel": [
+    "Un ordinateur",
+    "0,8 L d’eau bouillante",
+    "4 cuillère à soupe de savon noir ménager",
+    "3 cuillère à soupe de cristaux de soude",
+    "3 cuillère à soupe de vinaigre blanc",
+    "20 gouttes d’huiles essentielle sans furocoumarines",
+    "Un saladier",
+    "Un entonnoir",
+    "Un contenant avec bouchon (bouteille, flacon, etc…)"
+  ],
+  "difficulte": "",
+  "page": 1
+}

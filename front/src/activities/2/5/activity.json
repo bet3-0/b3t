@@ -4,7 +4,13 @@
   "nom": "Les Maracas",
   "description": "Exprime ta créativité en fabriquant des maracas avec des éléments de récupération. Une fois réalisé amuse toi à jouer de la musique. Sauras-tu être meilleur qu’Assurancetourix avec sa Lyre ?",
   "duree": 20,
-  "materiel": ["Récipients (boîtes d’allumettes, pots de yaourt, bouteilles en plastique, boîtes en métal…)", "petits cailloux, sable, graines...", "papiers à motif, papiers de soie, gommettes ou autres éléments décoratifs", "colle, ciseaux", "Caméra, appareil photo, smartphone ou ordinateur pour se filmer"],
+  "materiel": [
+    "Récipients (boîtes d’allumettes, pots de yaourt, bouteilles en plastique, boîtes en métal…)",
+    "petits cailloux, sable, graines...",
+    "papiers à motif, papiers de soie, gommettes ou autres éléments décoratifs",
+    "colle, ciseaux",
+    "Caméra, appareil photo, smartphone ou ordinateur pour se filmer"
+  ],
   "difficulte": "facile",
-  "pages": 1
+  "page": 1
 }

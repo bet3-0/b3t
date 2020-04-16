@@ -1,10 +1,20 @@
 {
-    "id": "31",
-    "idParcours": "1",
-    "nom": "Création d’une toque",
-    "description": "Fabriquer une vraie toque de cuisinier avec les moyens du bord",
-    "duree": 15,
-    "materiel": ["Un ordinateur","papier","agrafes","papier crépon","tissus","colles","peinture","feutres","et tout ce qui tu peux trouver"],
-    "difficulte": "",
-    "pages": 1
-   }   
+  "id": "31",
+  "idParcours": "1",
+  "nom": "Création d’une toque",
+  "description": "Fabriquer une vraie toque de cuisinier avec les moyens du bord",
+  "duree": 15,
+  "materiel": [
+    "Un ordinateur",
+    "papier",
+    "agrafes",
+    "papier crépon",
+    "tissus",
+    "colles",
+    "peinture",
+    "feutres",
+    "et tout ce qui tu peux trouver"
+  ],
+  "difficulte": "",
+  "page": 1
+}
