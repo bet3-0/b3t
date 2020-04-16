@@ -1,0 +1,10 @@
+{
+  "id": "2",
+  "idParcours": "3",
+  "nom": "Connais-tu vraiment les outils",
+  "description": "Salut jeune gaulois ! Grâce à cet atelier tu découvriras les outils utilisés pour les installations. A quoi ressemblent-il ? Comment les utiliser en en prenant soin et en toute sécurité ? ",
+  "duree": 45,
+  "materiel": [""],
+  "difficulte": "facile",
+  "page": 1
+}

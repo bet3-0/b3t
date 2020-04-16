@@ -1,0 +1,122 @@
+{
+    "idActivite": "2",
+    "idParcours": "3",
+    "state": "INPROGRESS",
+    "duration": 45,
+    "startedAt": 0,
+    "finishedAt": 0,
+    "reviewAt": 0,
+    "entries": [
+
+        {
+            "position": 0,
+            "question": "Remets dans le champs texte, quelle image correspond à quel outil. (Image 1 : ....., Image 2 : ....)",
+            "documents": [],
+            "typeRendu": "text",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 1
+        },
+        {
+            "position": 1,
+            "question": "Remets dans le champs texte, quelle définition correspond à quel outil. (Définition 1 : ....., Définition 2 : ....)",
+            "documents": [],
+            "typeRendu": "text",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 2
+        },
+
+        {
+            "position": 3,
+            "question": "ma super question?",
+            "documents": [],
+            "typeRendu": "qcm",
+            "rendu": [{
+                    "question": "La lame d’un ciseau à bois, pour qu’on puisse l’utiliser en toute sécurité doit être : ",
+                    "reponses": [
+                        "Droite",
+                        "Tordue",
+                        "Ondulée"
+                    ]
+                },
+                {
+                    "question": "Pour garantir la solidité d’un assemblage, il faut que le diamètre de la tarière soit : ",
+                    "reponses": [
+                        "Supérieur (d’au moins un tiers) au diamètre du bois à percer",
+                        "Égal au diamètre du bois à percer",
+                        "Inférieur au (tiers) du diamètre du bois à percer"
+                    ]
+                },
+                {
+                    "question": "Pour faire un trou avec une tarière, il faut la tourner : ",
+                    "reponses": [
+                        " Dans le sens des aiguilles d’une montre",
+                        "Dans le sens inverse des aiguilles d’une montre"
+                    ]
+                },
+                {
+                    "question": "Quelle scie n’est pas à utiliser pour couper du bois vert ? ",
+                    "reponses": [
+                        " La scie à bûche",
+                        "La scie égoïne"
+                    ]
+                },
+                {
+                    "question": "Lorsqu’on utilise une plane, il faut : ",
+                    "reponses": [
+                        "Tenir la lame de biais pour que le tranchant attaque plus aisément le bois",
+                        "Enfoncer le tranchant dans la masse du bois (perpendiculairement à la longueur du bois)",
+                        "Ne pas trancher dans le sens des veines"
+
+                    ]
+                },
+                {
+                    "question": "Une fois utilisé, on :",
+                    "reponses": [
+                        " Met l’outil par terre, de toute façon on va s’en resservir",
+                        "Pose n’importe comment l’outil dans la malle : si en forçant elle ferme, tout va bien.",
+                        "Range l’outil dans la malle, à sa place, pour qu’il reste en l’état."
+
+                    ]
+                },
+                {
+                    "question": " Laquelle de ces affirmations est fausse :",
+                    "reponses": [
+                        "A cause du contact d’un outil avec la terre, le tranchant coupe moins bien",
+                        "Les outils traînant dehors peuvent rouiller",
+                        "La meilleure manière de nettoyer un outil est de le laver à l’eau",
+                        "Pour enlever de la sève d’un outil on peut utiliser de l’huile de tournesol"
+
+                    ]
+                },
+                {
+                    "question": "Si la lame d’une hachette n’est plus parfaitement fixée, on :",
+                    "reponses": [
+                        "L’utilise comme ça",
+                        "Change de hachette",
+                        " Répare la hachette en calant la lame avec un morceau de bois"
+
+                    ]
+                },
+                {
+                    "question": "Laquelle de ces affirmations est fausse ? Pour utiliser un outil",
+                    "reponses": [
+                        "Il faut juste prendre l’outil dans la malle, l’utiliser et le ranger directement.",
+                        "Il faut utiliser des gants pour protéger ses mains.",
+                        "Il faut vérifier qu’il n’y ait personne autour qui puisse être en danger pendant qu’on utilise l’outil."
+
+                    ]
+                }
+            ],
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 4
+        }
+
+
+
+    ]
+}
