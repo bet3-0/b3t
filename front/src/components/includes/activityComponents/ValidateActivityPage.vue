@@ -23,7 +23,7 @@ export default {
   },
   methods: {
     hasNext() {
-      return this.pageNumber < this.activity.pages;
+      return this.pageNumber < this.activity.page;
     },
     previousPage() {
       return this.changePage(this.pageNumber - 1);
