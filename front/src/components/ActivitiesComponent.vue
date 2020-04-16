@@ -118,8 +118,13 @@ export default {
       this.activities = activityService.listActi(); // for debug : TODO: remove
     }
     // Filter in case API does not
+    let startedActivities = JSON.parse(localStorage.getItem("activities")) || {}
+    let startedIds = [];
+    if (startedActivities[this.idParcours]){
+      startedIds = Object.keys(startedActivities[this.idParcours])
+    }
     this.displayActivities = this.activities.filter(
-      activity => activity.idParcours == this.idParcours
+      activity => ((activity.idParcours == this.idParcours) && (!startedIds.includes(activity.id)))
     );
   },
   methods: {

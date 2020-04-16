@@ -3,6 +3,7 @@ Base Component for an activity page -->
 
 <template>
   <div class="container" role="main">
+    <Alert :show="showDismissibleAlert" :text="textAlert" />
     <ActivityProgressBar :progress="progress" />
     <div class="row">
       <div id="main-container" class="activity-container col-12">
@@ -27,7 +28,13 @@ Base Component for an activity page -->
                   Description:<br />
                   <i>{{ activity.description }}</i>
                 </li>
-                <li>
+                <li
+                  v-if="
+                    activity.materiel &&
+                      activity.materiel.length &&
+                      activity.materiel[0].length
+                  "
+                >
                   Matériel:
                   <ul>
                     <li v-for="item in activity.materiel" :key="item">
@@ -91,6 +98,7 @@ Base Component for an activity page -->
 </template>
 
 <script>
+import Alert from "./includes/Alert";
 import ActivityContent from "./includes/activityComponents/ActivityContent";
 import ActivityProgressBar from "./includes/activityComponents/ActivityProgressBar";
 import UploadFile from "./includes/activityComponents/UploadFile";
@@ -114,10 +122,13 @@ export default {
     ActivityContent,
     ActivityProgressBar,
     OrderList,
+    Alert,
   },
   props: ["pastProgression"],
   data() {
     return {
+      showDismissibleAlert: false,
+      textAlert: false,
       idParcours: NaN,
       pageNumber: 1, // number of the visible page. 1 at start
       progress: 0,
@@ -132,6 +143,15 @@ export default {
     this.activity = this.$store.state.activity.activity;
 
     await this.retrieveProgression(this.idParcours, this.id);
+  },
+  updated() {
+    for (let i = 0; i < this.activity.page; i++) {
+      if (i + 1 !== this.pageNumber) {
+        $(`#page${i + 1}`).hide();
+      }
+    }
+    $(".content-container").removeAttr("hidden");
+    window.scrollTo(0,0);
   },
   mounted() {
     for (let i = 0; i < this.activity.page; i++) {
@@ -185,9 +205,10 @@ export default {
             this.progression = progression;
             return;
           } else {
-            alert(
-              "Tu as déjà fait cette activité ! Elle est sûrement en train d'être relue, tu peux le voir sur la page Progression Personnelle !"
-            );
+            this.textAlert =
+              "Tu as déjà fait cette activité ! Elle est sûrement en train d'être relue, tu peux le voir sur la page Progression Personnelle !";
+            this.showDismissibleAlert = true;
+            //alert("Tu as déjà fait cette activité ! Elle est sûrement en train d'être relue, tu peux le voir sur la page Progression Personnelle !");
           }
         }
       }
@@ -206,7 +227,10 @@ export default {
         console.log("Progression created!");
       } catch (error) {
         console.warn("Impossible to create a progression!");
-        alert("Impossible de démarrer l'activité ! Recharge la page !");
+        this.textAlert =
+          "Impossible de démarrer l'activité ! Recharge la page !";
+        this.showDismissibleAlert = true;
+        // alert("Impossible de démarrer l'activité ! Recharge la page !");
         this.progression = progression;
         // return;
       }

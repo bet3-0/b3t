@@ -67,7 +67,7 @@ export default {
         console.log("Progression sent: " + this.progression);
         // Redirect
         alert("Ton activité a bien été envoyée !")
-        window.location.href = "/activitees";
+        this.$router.push("/activitees");
       } catch (error) {
         console.log("Error while sending text entry: " + this.progression);
         this.progression.state = "INPROGRESS";
