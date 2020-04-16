@@ -1,120 +1,118 @@
 {
-    "id": "Server-side generated UUID",
-    "idActivite": "22",
-    "idParcours": "0",
-    "state": "INPROGRESS",
-    "duration": 15,
-    "startedAt": 0,
-    "finishedAt": 0,
-    "reviewAt": 0,
-    "entries": [
-
+  "idActivite": "22",
+  "idParcours": "0",
+  "state": "INPROGRESS",
+  "duration": 15,
+  "startedAt": 0,
+  "finishedAt": 0,
+  "reviewAt": 0,
+  "entries": [
+    {
+      "position": 0,
+      "question": "Répond aux questions suivantes en choisissant la ou les réponses qui te semble(nt) bonne(s).",
+      "documents": [],
+      "typeRendu": "orderList",
+      "rendu": [
         {
-            "position": 0,
-            "question": "Répond aux questions suivantes en choisissant la ou les réponses qui te semble(nt) bonne(s).",
-            "documents": [],
-            "typeRendu": "orderList",
-            "rendu": [{
-                    "question": "En cas de brûlure simple, pendant combien de temps arroser la brûlure ?",
-                    "reponses": [
-                        "5 minutes",
-                        "10 minutes",
-                        "15 minutes",
-                        "Jusqu'à ce que la douleur se calme"
-                    ]
-                },
-                {
-                    "question": "Quelle est la position de repos ?",
-                    "reponses": [
-                        "Assise",
-                        "1/2 assise",
-                        "Allongée"
-                    ]
-                },
-                {
-                    "question": "Si la victime à des gènes respiratoires ?",
-                    "reponses": [
-                        "Assise",
-                        "1/2 assise",
-                        "Allongée"
-                    ]
-                },
-                {
-                    "question": "Une plaie guérit plus rapidement si elle est exposée à l’air.",
-                    "reponses": [
-                        "Vrai",
-                        "Faux"
-                    ]
-                },
-                {
-                    "question": "Si une croûte se forme, cela signifie que le plaie cicatrise correctement.",
-                    "reponses": [
-                        "Vrai",
-                        "Faux"
-                    ]
-                },
-                {
-                    "question": "Une plaie humide, ce n’est pas une bonne chose.",
-                    "reponses": [
-                        "Vrai",
-                        "Faux"
-                    ]
-                },
-                {
-                    "question": "La zone autour d’une brûlure doit être placée sous une eau",
-                    "reponses": [
-                        "Très froide voir glacée",
-                        "Tiède"
-                    ]
-                },
-                {
-                    "question": "Une peau bronzée n’a pas besoin d’être protégée du soleil",
-                    "reponses": [
-                        "Vrai",
-                        "Faux"
-                    ]
-                },
-                {
-                    "question": "Une plaie qui démangent annoncent la guérison",
-                    "reponses": [
-                        "Vrai",
-                        "Faux"
-                    ]
-                },
-                {
-                    "question": "A quelle occasion doit-on prévenir les chefs",
-                    "reponses": [
-                        "Brûlure",
-                        "Coup de soleil",
-                        "Ampoule",
-                        "Mal de tête",
-                        "Petite plaie"
-                    ]
-                },
-                {
-                    "question": "A quelle occasion doit-on remplir le cahier sanitaire",
-                    "reponses": [
-                        "Brûlure",
-                        "Coup de soleil",
-                        "Ampoule",
-                        "Mal de tête",
-                        "Petite plaie"
-                    ]
-                },
-                {
-                    "question": "De quel matériel ai je besoin pour soigner une coupure",
-                    "reponses": [
-                        "De coton et d'eau",
-                        "De savon, d'une serviette et d'un pansement",
-                        "De désinfectant et de compresse",
-                        "D'un pansement"
-                    ]
-                }
-            ],
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 1
+          "question": "En cas de brûlure simple, pendant combien de temps arroser la brûlure ?",
+          "reponses": [
+            "5 minutes",
+            "10 minutes",
+            "15 minutes",
+            "Jusqu'à ce que la douleur se calme"
+          ]
+        },
+        {
+          "question": "Quelle est la position de repos ?",
+          "reponses": [
+            "Assise",
+            "1/2 assise",
+            "Allongée"
+          ]
+        },
+        {
+          "question": "Si la victime à des gènes respiratoires ?",
+          "reponses": [
+            "Assise",
+            "1/2 assise",
+            "Allongée"
+          ]
+        },
+        {
+          "question": "Une plaie guérit plus rapidement si elle est exposée à l’air.",
+          "reponses": [
+            "Vrai",
+            "Faux"
+          ]
+        },
+        {
+          "question": "Si une croûte se forme, cela signifie que le plaie cicatrise correctement.",
+          "reponses": [
+            "Vrai",
+            "Faux"
+          ]
+        },
+        {
+          "question": "Une plaie humide, ce n’est pas une bonne chose.",
+          "reponses": [
+            "Vrai",
+            "Faux"
+          ]
+        },
+        {
+          "question": "La zone autour d’une brûlure doit être placée sous une eau",
+          "reponses": [
+            "Très froide voir glacée",
+            "Tiède"
+          ]
+        },
+        {
+          "question": "Une peau bronzée n’a pas besoin d’être protégée du soleil",
+          "reponses": [
+            "Vrai",
+            "Faux"
+          ]
+        },
+        {
+          "question": "Une plaie qui démangent annoncent la guérison",
+          "reponses": [
+            "Vrai",
+            "Faux"
+          ]
+        },
+        {
+          "question": "A quelle occasion doit-on prévenir les chefs",
+          "reponses": [
+            "Brûlure",
+            "Coup de soleil",
+            "Ampoule",
+            "Mal de tête",
+            "Petite plaie"
+          ]
+        },
+        {
+          "question": "A quelle occasion doit-on remplir le cahier sanitaire",
+          "reponses": [
+            "Brûlure",
+            "Coup de soleil",
+            "Ampoule",
+            "Mal de tête",
+            "Petite plaie"
+          ]
+        },
+        {
+          "question": "De quel matériel ai je besoin pour soigner une coupure",
+          "reponses": [
+            "De coton et d'eau",
+            "De savon, d'une serviette et d'un pansement",
+            "De désinfectant et de compresse",
+            "D'un pansement"
+          ]
         }
-
-    ]
+      ],
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 1
+    }
+  ]
 }

@@ -1,57 +1,55 @@
 {
-    "idActivite": "10",
-    "idParcours": "0",
-    "state": "INPROGRESS",
-    "duration": 10,
-    "startedAt": 0,
-    "finishedAt": 0,
-    "reviewAt": 0,
-    "entries": [
-        {
-            "position": 0,
-            "question":
-                "Situation 1 : Ton meilleur ami à se brûle en mettant la main sur une des pierres tenant la grille de la table à feu.",
-            "documents": [],
-            "typeRendu": "qcm",
-            "rendu": "[{'question':'Que ferais tu en premier ? ','reponses':['Je lui demande si ça fait mal','Je l’éloigne du feu ','Je vais chercher les chefs']},{'question':'Et ensuite ?','reponses':['Je cri car sa brûlure est importante','Je lui mets de la crème hydratante','J’appelle les chefs']},{'question':'Et enfin ?','reponses':['Je lui mets la main sous l’eau tiède/ froide','Je désinfecte','Je mets un pansement ']}]",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 1
-        },
-        {
-            "position": 1,
-            "question":
-                "Situation 2 : Un ami se coupe en voulant tailler un bout de bois alors que vous êtes en explo.",
-            "documents": [],
-            "typeRendu": "qcm",
-            "rendu": "[{'question':'Que ferais tu en premier ? ','reponses':['Je regarde sa coupure sans rien faire','Je ferme son couteau et le met en lieu sûr','Je crie car ça saigne beaucoup']},{'question':'Et ensuite ?','reponses':['Je préviens les chefs','Je désinfecte','Je mets sous l’eau']},{'question':'Et enfin ?','reponses':['Je lui met de la crème hydratante','Je désinfecte','Je mets un pansement']}]",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 2
-        },
-        {
-            "position": 2,
-            "question": "Question suivante",
-            "documents": [],
-            "typeRendu": "qcm",
-            "rendu": "[{'question':'Est ce que tu vois des étapes dans la réaction commune aux deux situation? Si oui, lesquelles?','reponse':['Prévenir','Proteger','Crier','Soigner','Secourir','Alerter','Désinfecter']}]",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 3
-        },
-        {
-            "position": 3,
-            "question": "Dans quel ordre mettrais tu ces étapes? ",
-            "documents": [],
-            "typeRendu": "orderList",
-            "rendu": [
-                "Alerter",
-                "Secourir",
-                "Proteger"
-            ],
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 4
-        }
-    ]
+  "idActivite": "10",
+  "idParcours": "0",
+  "state": "INPROGRESS",
+  "duration": 10,
+  "startedAt": 0,
+  "finishedAt": 0,
+  "reviewAt": 0,
+  "entries": [
+    {
+      "position": 0,
+      "question": "Situation 1 : Ton meilleur ami à se brûle en mettant la main sur une des pierres tenant la grille de la table à feu.",
+      "documents": [],
+      "typeRendu": "qcm",
+      "rendu": "[{'question':'Que ferais tu en premier ? ','reponses':['Je lui demande si ça fait mal','Je l’éloigne du feu ','Je vais chercher les chefs']},{'question':'Et ensuite ?','reponses':['Je cri car sa brûlure est importante','Je lui mets de la crème hydratante','J’appelle les chefs']},{'question':'Et enfin ?','reponses':['Je lui mets la main sous l’eau tiède/ froide','Je désinfecte','Je mets un pansement ']}]",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 1
+    },
+    {
+      "position": 1,
+      "question": "Situation 2 : Un ami se coupe en voulant tailler un bout de bois alors que vous êtes en explo.",
+      "documents": [],
+      "typeRendu": "qcm",
+      "rendu": "[{'question':'Que ferais tu en premier ? ','reponses':['Je regarde sa coupure sans rien faire','Je ferme son couteau et le met en lieu sûr','Je crie car ça saigne beaucoup']},{'question':'Et ensuite ?','reponses':['Je préviens les chefs','Je désinfecte','Je mets sous l’eau']},{'question':'Et enfin ?','reponses':['Je lui met de la crème hydratante','Je désinfecte','Je mets un pansement']}]",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 2
+    },
+    {
+      "position": 2,
+      "question": "Question suivante",
+      "documents": [],
+      "typeRendu": "qcm",
+      "rendu": "[{'question':'Est ce que tu vois des étapes dans la réaction commune aux deux situation? Si oui, lesquelles?','reponse':['Prévenir','Proteger','Crier','Soigner','Secourir','Alerter','Désinfecter']}]",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 3
+    },
+    {
+      "position": 3,
+      "question": "Dans quel ordre mettrais tu ces étapes? ",
+      "documents": [],
+      "typeRendu": "orderList",
+      "rendu": [
+        "Alerter",
+        "Secourir",
+        "Proteger"
+      ],
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 4
+    }
+  ]
 }

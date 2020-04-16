@@ -1,20 +1,21 @@
 {
-    "id": "Server-side generated UUID",
-    "idActivite": "5",
-    "idParcours": "2",
-    "state": "INPROGRESS",
-    "duration": 20,
-    "startedAt": 0,
-    "finishedAt": 0,
-    "reviewAt": 0,
-    "entries": [{
-        "position": 0,
-        "question": "Filme toi en train de jouer des maracas.",
-        "documents": [],
-        "typeRendu": "file",
-        "rendu": "",
-        "state": "NOTSTARTED",
-        "tracked": true,
-        "page": 1
-    }]
+  "idActivite": "5",
+  "idParcours": "2",
+  "state": "INPROGRESS",
+  "duration": 20,
+  "startedAt": 0,
+  "finishedAt": 0,
+  "reviewAt": 0,
+  "entries": [
+    {
+      "position": 0,
+      "question": "Filme toi en train de jouer des maracas.",
+      "documents": [],
+      "typeRendu": "file",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 1
+    }
+  ]
 }

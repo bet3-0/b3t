@@ -1,20 +1,21 @@
 {
-    "id": "Server-side generated UUID",
-    "idActivite": "3",
-    "idParcours": "2",
-    "state": "INPROGRESS",
-    "duration": 15,
-    "startedAt": 0,
-    "finishedAt": 0,
-    "reviewAt": 0,
-    "entries": [{
-        "position": 0,
-        "question": "Filme toi en train de chanter avec ton kazou.",
-        "documents": [],
-        "typeRendu": "file",
-        "rendu": "",
-        "state": "NOTSTARTED",
-        "tracked": true,
-        "page": 1
-    }]
+  "idActivite": "3",
+  "idParcours": "2",
+  "state": "INPROGRESS",
+  "duration": 15,
+  "startedAt": 0,
+  "finishedAt": 0,
+  "reviewAt": 0,
+  "entries": [
+    {
+      "position": 0,
+      "question": "Filme toi en train de chanter avec ton kazou.",
+      "documents": [],
+      "typeRendu": "file",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 1
+    }
+  ]
 }

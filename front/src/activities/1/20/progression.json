@@ -1,74 +1,71 @@
 {
-    "id": "Server-side generated UUID",
-    "idActivite": "20",
-    "idParcours": "1",
-    "state": "INPROGRESS",
-    "duration": 20,
-    "startedAt": 0,
-    "finishedAt": 0,
-    "reviewAt": 0,
-    "entries": [
-
-        {
-            "position": 0,
-            "question": "Menu de lundi (Petit déjeuner, Déjeuner, Diner)",
-            "documents": [],
-            "typeRendu": "text",
-            "rendu": "",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 1
-        },
-        {
-            "position": 1,
-            "question": "Menu de mardi (Petit déjeuner, Diner)",
-            "documents": [],
-            "typeRendu": "text",
-            "rendu": "",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 1
-        },
-        {
-            "position": 2,
-            "question": "Menu de mercredi (Petit déjeuner, Déjeuner, Diner)",
-            "documents": [],
-            "typeRendu": "text",
-            "rendu": "",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 1
-        },
-        {
-            "position": 3,
-            "question": "Menu de jeudi (Petit déjeuner, Déjeuner, Diner)",
-            "documents": [],
-            "typeRendu": "text",
-            "rendu": "",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 1
-        },
-        {
-            "position": 4,
-            "question": "Menu de vendredi (Petit déjeuner, Déjeuner, Diner)",
-            "documents": [],
-            "typeRendu": "text",
-            "rendu": "",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 1
-        },
-        {
-            "position": 5,
-            "question": "Menu de samedi (Petit déjeuner, Déjeuner, Diner)",
-            "documents": [],
-            "typeRendu": "text",
-            "rendu": "",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 1
-        }
-
-    ]
+  "idActivite": "20",
+  "idParcours": "1",
+  "state": "INPROGRESS",
+  "duration": 20,
+  "startedAt": 0,
+  "finishedAt": 0,
+  "reviewAt": 0,
+  "entries": [
+    {
+      "position": 0,
+      "question": "Menu de lundi (Petit déjeuner, Déjeuner, Diner)",
+      "documents": [],
+      "typeRendu": "text",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 1
+    },
+    {
+      "position": 1,
+      "question": "Menu de mardi (Petit déjeuner, Diner)",
+      "documents": [],
+      "typeRendu": "text",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 1
+    },
+    {
+      "position": 2,
+      "question": "Menu de mercredi (Petit déjeuner, Déjeuner, Diner)",
+      "documents": [],
+      "typeRendu": "text",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 1
+    },
+    {
+      "position": 3,
+      "question": "Menu de jeudi (Petit déjeuner, Déjeuner, Diner)",
+      "documents": [],
+      "typeRendu": "text",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 1
+    },
+    {
+      "position": 4,
+      "question": "Menu de vendredi (Petit déjeuner, Déjeuner, Diner)",
+      "documents": [],
+      "typeRendu": "text",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 1
+    },
+    {
+      "position": 5,
+      "question": "Menu de samedi (Petit déjeuner, Déjeuner, Diner)",
+      "documents": [],
+      "typeRendu": "text",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 1
+    }
+  ]
 }

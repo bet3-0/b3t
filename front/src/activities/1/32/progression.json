@@ -1,22 +1,21 @@
 {
-    "idActivite": "32",
-    "idParcours":"1",
-    "state": "INPROGRESS",
-    "duration": 30,
-    "startedAt": 5,
-    "finishedAt": 0,
-    "reviewAt": 0,
-    "entries": 
-    [
-        {
-            "position": 0,
-            "question": "Charge une photo de ta maquette sur la plateforme. Il sera validé au plus vite par des chefs et cheftaines !",
-            "documents": [],
-            "typeRendu": "file",
-            "rendu": "",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 1
-        }
-    ]
-  }
+  "idActivite": "32",
+  "idParcours": "1",
+  "state": "INPROGRESS",
+  "duration": 30,
+  "startedAt": 0,
+  "finishedAt": 0,
+  "reviewAt": 0,
+  "entries": [
+    {
+      "position": 0,
+      "question": "Charge une photo de ta maquette sur la plateforme. Il sera validé au plus vite par des chefs et cheftaines !",
+      "documents": [],
+      "typeRendu": "file",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 1
+    }
+  ]
+}

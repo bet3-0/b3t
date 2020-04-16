@@ -1,10 +1,9 @@
 {
-  "id": "Server-side generated UUID",
   "idActivite": "41",
   "idParcours": "0",
   "state": "INPROGRESS",
   "duration": 15,
-  "startedAt": 5,
+  "startedAt": 0,
   "finishedAt": 0,
   "reviewAt": 0,
   "entries": [

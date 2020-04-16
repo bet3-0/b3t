@@ -1,80 +1,81 @@
 {
-    "idActivite": "31",
-    "idParcours": "0",
-    "state": "INPROGRESS",
-    "duration": 10,
-    "startedAt": 0,
-    "finishedAt": 0,
-    "reviewAt": 0,
-    "entries": [{
-            "position": 0,
-            "question": "Quel est la portion idéale pour les protéines animales et végétales?",
-            "documents": [],
-            "typeRendu": "text",
-            "rendu": "",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 1
-        },
-        {
-            "position": 1,
-            "question": "Quel est la portion idéale pour les légumes?",
-            "documents": [],
-            "typeRendu": "text",
-            "rendu": "",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 1
-        },
-        {
-            "position": 2,
-            "question": "Quel est la portion idéale pour les fruits?",
-            "documents": [],
-            "typeRendu": "text",
-            "rendu": "",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 1
-        },
-        {
-            "position": 3,
-            "question": "Quel est la portion idéale pour les céréales?",
-            "documents": [],
-            "typeRendu": "file",
-            "rendu": "",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 1
-        },
-        {
-            "position": 4,
-            "question": "Quel est la portion idéale pour les graisse, huiles et sucrés?",
-            "documents": [],
-            "typeRendu": "text",
-            "rendu": "",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 1
-        },
-        {
-            "position": 5,
-            "question": "Quel est la portion idéale pour les produits laitiers?",
-            "documents": [],
-            "typeRendu": "text",
-            "rendu": "",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 1
-        },
-        {
-            "position": 6,
-            "question": "Quelles sont tes habitudes alimentaires? Combien de portions de chaque catégorie d’aliments manges tu par jour en moyenne?",
-            "documents": [],
-            "typeRendu": "text",
-            "rendu": "",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 1
-        }
-    ]
+  "idActivite": "31",
+  "idParcours": "0",
+  "state": "INPROGRESS",
+  "duration": 10,
+  "startedAt": 0,
+  "finishedAt": 0,
+  "reviewAt": 0,
+  "entries": [
+    {
+      "position": 0,
+      "question": "Quel est la portion idéale pour les protéines animales et végétales?",
+      "documents": [],
+      "typeRendu": "text",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 1
+    },
+    {
+      "position": 1,
+      "question": "Quel est la portion idéale pour les légumes?",
+      "documents": [],
+      "typeRendu": "text",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 1
+    },
+    {
+      "position": 2,
+      "question": "Quel est la portion idéale pour les fruits?",
+      "documents": [],
+      "typeRendu": "text",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 1
+    },
+    {
+      "position": 3,
+      "question": "Quel est la portion idéale pour les céréales?",
+      "documents": [],
+      "typeRendu": "file",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 1
+    },
+    {
+      "position": 4,
+      "question": "Quel est la portion idéale pour les graisse, huiles et sucrés?",
+      "documents": [],
+      "typeRendu": "text",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 1
+    },
+    {
+      "position": 5,
+      "question": "Quel est la portion idéale pour les produits laitiers?",
+      "documents": [],
+      "typeRendu": "text",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 1
+    },
+    {
+      "position": 6,
+      "question": "Quelles sont tes habitudes alimentaires? Combien de portions de chaque catégorie d’aliments manges tu par jour en moyenne?",
+      "documents": [],
+      "typeRendu": "text",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 1
+    }
+  ]
 }

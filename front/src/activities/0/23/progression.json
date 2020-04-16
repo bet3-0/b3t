@@ -1,92 +1,88 @@
 {
-    "id": "Server-side generated UUID",
-    "idActivite": "23",
-    "idParcours": "0",
-    "state": "INPROGRESS",
-    "duration": 15,
-    "startedAt": 0,
-    "finishedAt": 0,
-    "reviewAt": 0,
-    "entries": [
-
-        {
-            "position": 0,
-            "question": "Durant le banquet, Obélix fait tomber son sanglier, le récupère dans les braises, se brûle, recule et bouscule Ordralfabétix qui se brûle à son tour. Comment soigner les brûlures ?",
-            "documents": [],
-            "typeRendu": "orderList",
-            "rendu": [
-                "Appliquez sur la zone brûlée une crème hydratante",
-                "Placez la brûlure sous l’eau jusqu’à ce que la douleur se calme",
-                "Prévenir les chefs",
-                "Couvrez avec un linge propre",
-                "Remplir le cahier",
-                "S’éloigner du feu"
-            ],
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 1
-        },
-        {
-            "position": 1,
-            "question": "Jour de soleil, bataille entre romain et gaulois dans un champ, tout se passe bien, aucun blessé chez les gaulois. Mais le soir venu, Agecanonix (qui d’ailleurs s’est donné à fond) souffre de brûlures et a très chaud, alors que le soleil s’est couché et que la température a bien baissé.",
-            "documents": [],
-            "typeRendu": "orderList",
-            "rendu": [
-                "Prévenir les chefs et cheftaines",
-                "Appliquer de la crème hydratante (à renouveler aussi souvent que nécessaire) ",
-                "Boire de l’eau",
-                "Mettre un t-shirt en coton agréable à porter"
-            ],
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 1
-        },
-        {
-            "position": 2,
-            "question": "Randonnée en équipe. Après quelques heures de marche, Assurancetourix a très mal aux pieds. L’assistant sanitaire le prend en charge et découvre une énorme ampoule percée !",
-            "documents": [],
-            "typeRendu": "orderList",
-            "rendu": [
-                "Remplir le cahier",
-                "Antiseptique appliqué avec une compresse stérile",
-                "Pansement"
-            ],
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 1
-        },
-        {
-            "position": 3,
-            "question": "En explo, 2e jour. Abraracourcix s’est levé du mauvais pied, il a assez mal dormi et a un sacré mal de tête. Il a si mal qu’il n’avale rien au petit déjeuner et n’a qu’une envie, se recoucher.",
-            "documents": [],
-            "typeRendu": "orderList",
-            "rendu": [
-                "Lui faire boire de l’eau sucrée",
-                "Rester avec lui !",
-                "Appeler les chefs et les cheftaines (les secours si il est inconscient)",
-                "L'emmener se recoucher"
-            ],
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 1
-        },
-        {
-            "position": 4,
-            "question": "Eponine prépare le repas pour son équipage. Elle ouvre une boîte de maïs, l’ouvre-boîte dérape, elle s’entaille avec le couvercle en métal.",
-            "documents": [],
-            "typeRendu": "orderList",
-            "rendu": [
-                "Prévenir les chefs et cheftaines",
-                "Se laver les mains",
-                "Mettre un pansement",
-                "Remplir le cahier",
-                "Désinfecter la plaie avec une compresse stérile"
-            ],
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 1
-        }
-
-
-    ]
+  "idActivite": "23",
+  "idParcours": "0",
+  "state": "INPROGRESS",
+  "duration": 15,
+  "startedAt": 0,
+  "finishedAt": 0,
+  "reviewAt": 0,
+  "entries": [
+    {
+      "position": 0,
+      "question": "Durant le banquet, Obélix fait tomber son sanglier, le récupère dans les braises, se brûle, recule et bouscule Ordralfabétix qui se brûle à son tour. Comment soigner les brûlures ?",
+      "documents": [],
+      "typeRendu": "orderList",
+      "rendu": [
+        "Appliquez sur la zone brûlée une crème hydratante",
+        "Placez la brûlure sous l’eau jusqu’à ce que la douleur se calme",
+        "Prévenir les chefs",
+        "Couvrez avec un linge propre",
+        "Remplir le cahier",
+        "S’éloigner du feu"
+      ],
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 1
+    },
+    {
+      "position": 1,
+      "question": "Jour de soleil, bataille entre romain et gaulois dans un champ, tout se passe bien, aucun blessé chez les gaulois. Mais le soir venu, Agecanonix (qui d’ailleurs s’est donné à fond) souffre de brûlures et a très chaud, alors que le soleil s’est couché et que la température a bien baissé.",
+      "documents": [],
+      "typeRendu": "orderList",
+      "rendu": [
+        "Prévenir les chefs et cheftaines",
+        "Appliquer de la crème hydratante (à renouveler aussi souvent que nécessaire) ",
+        "Boire de l’eau",
+        "Mettre un t-shirt en coton agréable à porter"
+      ],
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 1
+    },
+    {
+      "position": 2,
+      "question": "Randonnée en équipe. Après quelques heures de marche, Assurancetourix a très mal aux pieds. L’assistant sanitaire le prend en charge et découvre une énorme ampoule percée !",
+      "documents": [],
+      "typeRendu": "orderList",
+      "rendu": [
+        "Remplir le cahier",
+        "Antiseptique appliqué avec une compresse stérile",
+        "Pansement"
+      ],
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 1
+    },
+    {
+      "position": 3,
+      "question": "En explo, 2e jour. Abraracourcix s’est levé du mauvais pied, il a assez mal dormi et a un sacré mal de tête. Il a si mal qu’il n’avale rien au petit déjeuner et n’a qu’une envie, se recoucher.",
+      "documents": [],
+      "typeRendu": "orderList",
+      "rendu": [
+        "Lui faire boire de l’eau sucrée",
+        "Rester avec lui !",
+        "Appeler les chefs et les cheftaines (les secours si il est inconscient)",
+        "L'emmener se recoucher"
+      ],
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 1
+    },
+    {
+      "position": 4,
+      "question": "Eponine prépare le repas pour son équipage. Elle ouvre une boîte de maïs, l’ouvre-boîte dérape, elle s’entaille avec le couvercle en métal.",
+      "documents": [],
+      "typeRendu": "orderList",
+      "rendu": [
+        "Prévenir les chefs et cheftaines",
+        "Se laver les mains",
+        "Mettre un pansement",
+        "Remplir le cahier",
+        "Désinfecter la plaie avec une compresse stérile"
+      ],
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 1
+    }
+  ]
 }

@@ -1,24 +1,21 @@
 {
-    "id": "Server-side generated UUID",
-    "idActivite": "22",
-    "idParcours": "1",
-    "state": "INPROGRESS",
-    "duration": 45,
-    "startedAt": 0,
-    "finishedAt": 0,
-    "reviewAt": 0,
-    "entries": [
-
-        {
-            "position": 0,
-            "question": "Prend une belle photo de ton gâteau avec les personnes avec qui tu l’a partagé ! ",
-            "documents": [],
-            "typeRendu": "file",
-            "rendu": "",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 1
-        }
-
-    ]
+  "idActivite": "22",
+  "idParcours": "1",
+  "state": "INPROGRESS",
+  "duration": 45,
+  "startedAt": 0,
+  "finishedAt": 0,
+  "reviewAt": 0,
+  "entries": [
+    {
+      "position": 0,
+      "question": "Prend une belle photo de ton gâteau avec les personnes avec qui tu l’a partagé ! ",
+      "documents": [],
+      "typeRendu": "file",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 1
+    }
+  ]
 }

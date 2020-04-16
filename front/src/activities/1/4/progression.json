@@ -1,25 +1,21 @@
 {
-    "id": "Server-side generated UUID",
-    "idActivite": "4",
-    "idParcours": "1",
-    "state": "INPROGRESS",
-    "duration": 15,
-    "startedAt": 0,
-    "finishedAt": 0,
-    "reviewAt": 0,
-    "entries": [
-
-            {
-                "id": 0,
-                "question":
-                    "Prenez vous en vidéo en testant une des méthodes de nettoyage préconisé pour votre opinel",
-                "documents": [],
-                "typeRendu": "file",
-                "rendu": "",
-                "state": "NOTSTARTED",
-                "tracked": true,
-                "page": 1
-            }
-    
-    ]
+  "idActivite": "4",
+  "idParcours": "1",
+  "state": "INPROGRESS",
+  "duration": 15,
+  "startedAt": 0,
+  "finishedAt": 0,
+  "reviewAt": 0,
+  "entries": [
+    {
+      "question": "Prenez vous en vidéo en testant une des méthodes de nettoyage préconisé pour votre opinel",
+      "documents": [],
+      "typeRendu": "file",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 1,
+      "position": 0
+    }
+  ]
 }

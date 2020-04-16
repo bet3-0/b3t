@@ -1,89 +1,81 @@
 {
-    "id": "Server-side generated UUID",
-    "idActivite": "46",
-    "idParcours": "0",
-    "state": "INPROGRESS",
-    "duration": 20,
-    "startedAt": 0,
-    "finishedAt": 0,
-    "reviewAt": 0,
-    "entries": [
-        {
-            "position": 0,
-            "question":
-                "Que prends-tu ? Comment vous organisez-vous en équipage ?",
-            "documents": [],
-            "typeRendu": "text",
-            "rendu": "",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 1
-        },
-        {
-            "position": 1,
-            "question":
-                "Que fais-tu ?",
-            "documents": [],
-            "typeRendu": "text",
-            "rendu": "",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 2
-        },
-        {
-            "position": 2,
-            "question":
-                "Quels sont les éléments indispensables à emmener ?",
-            "documents": [],
-            "typeRendu": "text",
-            "rendu": "",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 3
-        },
-        {
-            "position": 3,
-            "question":
-                "Comment faîtes-vous les équipes ?",
-            "documents": [],
-            "typeRendu": "text",
-            "rendu": "",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 4
-        },
-        {
-            "position": 4,
-            "question":
-                "Comment réagis-tu ? Comment réagit ton équipage ?",
-            "documents": [],
-            "typeRendu": "text",
-            "rendu": "",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 5
-        },
-        {
-            "position": 5,
-            "question":
-                "Comment réagis-tu ? Penses-tu pouvoir inclure Sonia dans ce super jeu ? Si oui, comment ?",
-            "documents": [],
-            "typeRendu": "text",
-            "rendu": "",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 6
-        },
-        {
-            "position": 6,
-            "question":
-                "Comment réagis-tu ?",
-            "documents": [],
-            "typeRendu": "text",
-            "rendu": "",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 7
-        }
-    ]
+  "idActivite": "46",
+  "idParcours": "0",
+  "state": "INPROGRESS",
+  "duration": 20,
+  "startedAt": 0,
+  "finishedAt": 0,
+  "reviewAt": 0,
+  "entries": [
+    {
+      "position": 0,
+      "question": "Que prends-tu ? Comment vous organisez-vous en équipage ?",
+      "documents": [],
+      "typeRendu": "text",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 1
+    },
+    {
+      "position": 1,
+      "question": "Que fais-tu ?",
+      "documents": [],
+      "typeRendu": "text",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 2
+    },
+    {
+      "position": 2,
+      "question": "Quels sont les éléments indispensables à emmener ?",
+      "documents": [],
+      "typeRendu": "text",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 3
+    },
+    {
+      "position": 3,
+      "question": "Comment faîtes-vous les équipes ?",
+      "documents": [],
+      "typeRendu": "text",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 4
+    },
+    {
+      "position": 4,
+      "question": "Comment réagis-tu ? Comment réagit ton équipage ?",
+      "documents": [],
+      "typeRendu": "text",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 5
+    },
+    {
+      "position": 5,
+      "question": "Comment réagis-tu ? Penses-tu pouvoir inclure Sonia dans ce super jeu ? Si oui, comment ?",
+      "documents": [],
+      "typeRendu": "text",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 6
+    },
+    {
+      "position": 6,
+      "question": "Comment réagis-tu ?",
+      "documents": [],
+      "typeRendu": "text",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 7
+    }
+  ]
 }

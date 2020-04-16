@@ -1,19 +1,21 @@
 {
-    "idActivite": "27",
-    "idParcours": "0",
-    "state": "INPROGRESS",
-    "duration": 20,
-    "startedAt": 0,
-    "finishedAt": 0,
-    "reviewAt": 0,
-    "entries": [{
-        "position": 0,
-        "question": "Prends ton tawashi en photo, et partage la !",
-        "documents": [],
-        "typeRendu": "file",
-        "rendu": "",
-        "state": "NOTSTARTED",
-        "tracked": true,
-        "page": 1
-    }]
+  "idActivite": "27",
+  "idParcours": "0",
+  "state": "INPROGRESS",
+  "duration": 20,
+  "startedAt": 0,
+  "finishedAt": 0,
+  "reviewAt": 0,
+  "entries": [
+    {
+      "position": 0,
+      "question": "Prends ton tawashi en photo, et partage la !",
+      "documents": [],
+      "typeRendu": "file",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 1
+    }
+  ]
 }
