@@ -1,24 +1,27 @@
 import axios from "axios";
-import {API_URL} from "./config";
+import { API_URL } from "./config";
 
 class AuthService {
-  login(user) {
-    return axios
-      .post(
-        API_URL + "login",
-        {
-          data: JSON.stringify({
-            code_adherent: user.code_adherent
-          }),
-          headers: { "Content-Type": "application/json" }
-        })
-      .then(response => {
-        if (response.data.token) {
-          localStorage.setItem("user", JSON.stringify(response.data));
-        }
-
-        return response.data;
+  async login(user) {
+    try {
+      let response = await fetch(API_URL + "login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          code_adherent: user.code_adherent,
+        }),
       });
+      let data = await response.json();
+      if (data.token) {
+        localStorage.setItem("user", JSON.stringify(data));
+        return data;
+      }
+      throw("Erreur inconnue");
+    } catch (error) {
+      console.log("Error while retrieving token");
+      console.error(error);
+      throw(error);
+    }
   }
 
   logout() {
@@ -29,7 +32,7 @@ class AuthService {
   register(user) {
     return axios.post(API_URL + "register", {
       code_adherent: user.code_adherent,
-      role: user.role
+      role: user.role,
     });
   }
 }

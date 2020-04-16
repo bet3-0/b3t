@@ -80,15 +80,13 @@ export default {
         if (this.user.code_adherent) {
           this.$store.dispatch("auth/login", this.user).then(
             () => {
-              this.$router.push("/parcours");
+              if (this.$store.state.auth.loggedIn){
+              this.$router.push("/parcours");}
             },
             (error) => {
               this.loading = false;
-              this.message =
-                (error.response && error.response.data) ||
-                error.message ||
-                error.toString() || 
-                "Nous ne reconnaissons pas ton identifiant... Es-tu sûr qu'il est correct ?";
+              console.error(error)
+              this.message = "Identifiant incorrect !"
             }
           );
         }
