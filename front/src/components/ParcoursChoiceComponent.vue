@@ -35,6 +35,10 @@ Vue.use(VueRouter);
 export default {
   name: "ParcoursChoiceComponent",
   created() {
+    // if user not logged in, redirect to /login
+    if (!this.$store.state.auth.status.loggedIn) {
+      this.$router.push("/login");
+    }
     // if a parcours has been chosen, redirect to /activitees
     if (this.$store.state.parcours.parcours < 4) {
       this.$router.push("/activitees");
@@ -45,8 +49,8 @@ export default {
       console.log(selected);
       this.$store.dispatch("parcours/setParcours", selected);
       this.$router.push("/activitees");
-    }
-  }
+    },
+  },
 };
 </script>
 

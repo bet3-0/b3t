@@ -271,9 +271,9 @@ export default {
       if (!this.progression.entries) {
         return [];
       }
-      return this.progression.entries.filter(
-        (entry) => entry.page === this.pageNumber
-      );
+      return this.progression.entries
+        .filter((entry) => entry.page === this.pageNumber)
+        .sort((a, b) => a.position - b.position);
     },
     changePage(pageNumber) {
       $(`#page${this.pageNumber}`).hide();
