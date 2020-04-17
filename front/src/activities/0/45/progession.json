@@ -1,5 +1,4 @@
 {
-    "id": "Server-side generated UUID",
     "idActivite": "45",
     "idParcours": "0",
     "state": "INPROGRESS",
@@ -9,9 +8,9 @@
     "reviewAt": 0,
     "entries": [
         {
-            "id": 0,
+            "position": 0,
             "question":
-                "Comment te sens tu actuellement? (calme, serein, curieux, inquiet, anxieux, détendu, stressé, j’ai peur, je suis heureux, je suis confiant, je me pose des questions….) Sais-tu pourquoi tu ressens ça? (tu n’es pas obligé d’expliquer)",
+                "Comment te sens-tu actuellement ? (calme, serein, curieux, inquiet, anxieux, détendu, stressé, j’ai peur, je suis heureux, je suis confiant, je me pose des questions….) Sais-tu pourquoi tu ressens ça ? (tu n’es pas obligé d’expliquer)",
             "documents": [],
             "typeRendu": "text",
             "rendu": "",
@@ -20,9 +19,9 @@
             "page": 1
         },
         {
-            "id": 1,
+            "position": 1,
             "question":
-                "Quelle personne as tu choisi? Pourquoi as tu choisi cette personne? Quel sentiment ressens tu lorsque tu regardes cette personne? ",
+                "Quelle personne as-tu choisi ? Pourquoi as-tu choisi cette personne ? Quel sentiment ressens-tu lorsque tu regardes cette personne ? ",
             "documents": [],
             "typeRendu": "text",
             "rendu": "",
@@ -31,9 +30,9 @@
             "page": 2
         },
         {
-            "id": 2,
+            "position": 2,
             "question":
-                "Pour toi, quelle est l’émotion que tu as le plus de difficultés à exprimer? As tu une idée de pourquoi? ",
+                "Pour toi, quelle est l’émotion que tu as le plus de difficultés à exprimer ? As-tu une idée de pourquoi ? ",
             "documents": [],
             "typeRendu": "text",
             "rendu": "",
@@ -42,9 +41,9 @@
             "page": 3
         },
         {
-            "id": 3,
+            "position": 3,
             "question":
-                "Pour toi, quelle est l’émotion la plus facile à exprimer? Pourquoi selon toi?",
+                "Pour toi, quelle est l’émotion la plus facile à exprimer ? Pourquoi selon toi ?",
             "documents": [],
             "typeRendu": "text",
             "rendu": "",
