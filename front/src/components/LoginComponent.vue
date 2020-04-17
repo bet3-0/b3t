@@ -48,7 +48,7 @@
 
 <script>
 import User from "../models/user";
-import ProgressionService from "../service/progression.service";
+import activityService from "../service/activity";
 
 export default {
   name: "LoginComponent",
@@ -71,34 +71,7 @@ export default {
   },
   methods: {
     async onLoggin() {
-      let pastProgressions = await ProgressionService.getProgressions();
-      let gloabalProgression = 0;
-      if (pastProgressions) {
-        let activities = {};
-        pastProgressions.forEach((prog) => {
-          if (
-            ["FINISHED", "INREVIEW", "VALIDATED", "REFUSED"].includes(
-              prog.state
-            )
-          ) {
-            gloabalProgression += parseInt(prog.duration);
-          }
-          if (!(prog.idParcours in activities)) {
-            activities[prog.idParcours] = {};
-          }
-          if (!(prog.idActvite in activities[prog.idParcours])) {
-            activities[prog.idParcours][prog.idActivite] = {};
-          }
-          activities[prog.idParcours][prog.idActivite] = {
-            idParcours: prog.idParcours,
-            id: prog.idActvite,
-            nom: "Activité",
-            progression: prog,
-          };
-        });
-        localStorage.setItem("activities", JSON.stringify(activities));
-        localStorage.setItem("progression", gloabalProgression);
-      }
+      await activityService.getAllParcoursWithProgressions();
       this.$router.push("/parcours");
     },
     async handleLogin() {

@@ -37,11 +37,11 @@ export default {
   created() {
     // if user not logged in, redirect to /login
     if (!this.$store.state.auth.status.loggedIn) {
-      this.$router.push("/login");
+      return this.$router.push("/login");
     }
     // if a parcours has been chosen, redirect to /activitees
     if (this.$store.state.parcours.parcours < 4) {
-      this.$router.push("/activitees");
+      return this.$router.push("/activitees");
     }
   },
   methods: {

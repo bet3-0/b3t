@@ -7,21 +7,17 @@ Base Component for an activity page -->
     <ActivityProgressBar :progress="progress" />
     <div class="row">
       <div id="main-container" class="activity-container col-12">
+        <img
+          v-if="!activity.nom"
+          class="img-spinner"
+          src="/img/icons/spinner.svg"
+          alt="Chargement en cours..."
+        />
         <h1 class="activity-title" :style="'color:' + changeParcoursColor()">
           {{ activity.nom }}
         </h1>
-        <div class="details-container">
-          <a
-            class="btn btn-secondary"
-            data-toggle="collapse"
-            href="#details"
-            role="button"
-            aria-expanded="false"
-            aria-controls="details"
-          >
-            Details
-          </a>
-          <div class="collapse" id="details">
+        <div v-if="pageNumber == 1 && activity.nom" class="details-container">
+          <div id="details">
             <div class="card card-body">
               <ul>
                 <li>
@@ -48,11 +44,14 @@ Base Component for an activity page -->
             </div>
           </div>
         </div>
-        <ActivityContent
-          :idActivite="activity.id"
-          :idParcours="activity.idParcours"
-        />
+        <ActivityContent :idActivite="idActivite" :idParcours="idParcours" />
         <div class="end-container">
+          <img
+            v-if="!progression.id"
+            class="img-spinner"
+            src="/img/icons/spinner.svg"
+            alt="Chargement en cours..."
+          />
           <div class="submit-container">
             <!-- Choisir parmi ces deux rendus en fonction de l'activité -->
             <div
@@ -88,7 +87,7 @@ Base Component for an activity page -->
           <ValidateActivityPage
             :activity="activity"
             :pageNumber="pageNumber"
-            :changePage="changePage"
+            :updatePage="updatePage"
             :progression="progression"
           />
         </div>
@@ -127,8 +126,9 @@ export default {
   props: ["pastProgression"],
   data() {
     return {
-      showDismissibleAlert: false,
-      textAlert: false,
+      showDismissibleAlert: false, // for Alert
+      textAlert: false, // for Alert
+      idActivite: NaN,
       idParcours: NaN,
       pageNumber: 1, // number of the visible page. 1 at start
       progress: 0,
@@ -137,30 +137,46 @@ export default {
     };
   },
   async created() {
-    this.id = this.$route.params.idActivity;
-    this.idParcours = this.$store.state.parcours.parcours;
-    console.log(this.$store.state.activity.activity);
-    this.activity = this.$store.state.activity.activity;
+    // if user not logged in, redirect to /login
+    /* COMMENT: FOR DEBUG ONLY ! TODO: uncomment !
+    if (!this.$store.state.auth.status.loggedIn) {
+      return this.$router.push("/login");
+    }
+    */
+    this.idActivite = this.$route.params.idActivite;
+    this.idParcours = this.$route.params.idParcours;
 
-    await this.retrieveProgression(this.idParcours, this.id);
+    this.activity = await activityService.getActivity(
+      this.idParcours,
+      this.idActivite
+    );
+
+    // this.idParcours = this.$store.state.parcours.parcours;
+    //console.log(this.$store.state.activity.activity);
+    //this.activity = this.$store.state.activity.activity;
+    //this.$store.state.activity.activity = undefined;
+
+    await this.retrieveProgression(this.idParcours, this.idActivite);
   },
   updated() {
-    for (let i = 0; i < this.activity.page; i++) {
-      if (i + 1 !== this.pageNumber) {
-        $(`#page${i + 1}`).hide();
-      }
-    }
-    $(".content-container").removeAttr("hidden");
+    this.showCurrentPages();
+  },
+  beforeMount() {
+    this.showCurrentPages();
   },
   mounted() {
-    for (let i = 0; i < this.activity.page; i++) {
-      if (i + 1 !== this.pageNumber) {
-        $(`#page${i + 1}`).hide();
-      }
-    }
-    $(".content-container").removeAttr("hidden");
+    this.showCurrentPages();
   },
   methods: {
+    async showCurrentPages() {
+      for (let i = 0; i < this.activity.page; i++) {
+        if (i + 1 !== this.pageNumber) {
+          $(`#page${i + 1}`).hide();
+        }
+      }
+      $(".content-container").removeAttr("hidden");
+    },
+
     async findProgression(progressionId) {
       let progressions = await ProgressionService.getProgressions();
       if (!progressions) {
@@ -221,7 +237,7 @@ export default {
         this.progression = await ProgressionService.createProgression(
           progression
         );
-        this.activity.progressionId = this.progression; // store the progression for future reconnexion
+        this.activity.progression = this.progression; // store the progression for future reconnexion
         activities[idParcours][idActivity] = this.activity;
         console.log("Progression created!");
       } catch (error) {
@@ -235,6 +251,7 @@ export default {
       }
       localStorage.activities = JSON.stringify(activities);
     },
+    // Activity progression
     getProgress() {
       let counter = 0;
       let total = 0;
@@ -252,7 +269,28 @@ export default {
       }
       this.progress = (100 * counter) / total;
     },
-    updateEntry(newEntry) {
+    async updateEntry(entry) {
+      entry.state = "FINISHED";
+      console.log("update:");
+      console.log(entry.rendu);
+      console.log(entry.parsedRendu);
+
+      if (entry.parsedRendu) {
+        entry.rendu = JSON.stringify(entry.parsedRendu);
+      }
+      try {
+        await ProgressionService.updateProgression(entry, "entry");
+        console.log("Answer sent: " + entry.rendu);
+        this.updateEntryInProgression(entry); // update the primary progression object
+      } catch (error) {
+        console.log("Error while sending text entry: " + entry.rendu);
+        entry.state = "INPROGRESS";
+        alert(
+          "Impossible d'envoyer ta progression ! Vérifie ta connexion et réessaye !"
+        );
+      }
+    },
+    updateEntryInProgression(newEntry) {
       if (!this.progression.entries) {
         this.progression.entries = [];
       }
@@ -267,6 +305,16 @@ export default {
     changeParcoursColor() {
       return itineraryHelpers.getItineraryColor(this.activity.idParcours);
     },
+    async validatePageEntries() {
+      if (!this.progression.entries) {
+        return;
+      }
+      this.progression.entries.forEach(async (entry) => {
+        if (entry.page == this.pageNumber) {
+          await this.updateEntry(entry);
+        }
+      });
+    },
     pageEntries() {
       if (!this.progression.entries) {
         return [];
@@ -275,10 +323,13 @@ export default {
         .filter((entry) => entry.page === this.pageNumber)
         .sort((a, b) => a.position - b.position);
     },
-    changePage(pageNumber) {
-      $(`#page${this.pageNumber}`).hide();
-      this.pageNumber = pageNumber;
-      $(`#page${this.pageNumber}`).show();
+    async updatePage(pageNumber) {
+      await this.validatePageEntries();
+      if (pageNumber != this.pageNumber) {
+        $(`#page${this.pageNumber}`).hide();
+        this.pageNumber = pageNumber;
+        $(`#page${this.pageNumber}`).show();
+      }
       console.log(`Current page number: ${this.pageNumber}`);
       window.scrollTo(0, 0);
     },
@@ -293,15 +344,15 @@ export default {
   border: dashed;
   border-color: var(--default);
   border-width: thick;
-  padding: 2rem 2rem;
+  padding: 0.5rem 0.5rem;
   margin-top: 1rem;
   margin-bottom: 2rem;
   background-color: #fafafa;
   border-radius: 0.3rem;
 }
 .details-container {
-  margin: 1rem;
-  padding: 1rem;
+  margin: 0.5rem;
+  padding: 0.5rem;
 }
 
 .content-container {

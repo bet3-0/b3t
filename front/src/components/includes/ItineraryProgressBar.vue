@@ -5,13 +5,13 @@
       role="progressbar"
       v-bind:style="{
         width: progress + '%',
-        background: itineraryColor,
+        background: getItineraryColor(),
       }"
       aria-valuenow="25"
       aria-valuemin="0"
       aria-valuemax="100"
     >
-      {{ progress }}%
+      {{ progress.toFixed(0) }}%
     </div>
   </div>
 </template>
@@ -20,26 +20,23 @@ import ItineraryHelpers from "./../../service/itineraryHelpers";
 
 export default {
   name: "ItineraryProgressBar",
-  data() {
-    return {
-      progress: 0,
-      itineraryColor: "var(--default)",
-    };
-  },
-  beforeMount() {
-    this.progress = this.getProgression();
-    this.itineraryColor = this.getItineraryColor();
+  computed: {
+    progress(){
+      return this.getProgression();
+    }
   },
   methods: {
     // Use local storage for more reactivity (avoid call to API).
-    getProgression: () => {
-      return localStorage.getItem("progression") || 0;
+    getProgression() {
+      return this.$store.state.progression.progression;
     },
-    getItinerary: () => {
-      return localStorage.getItem("itinerary") || 5;
+    getItinerary() {
+      return this.$store.state.parcours.parcours;
     },
-    getItineraryColor: () => {
-      return ItineraryHelpers.getItineraryColor(localStorage.getItem("itinerary") || 5);
+    getItineraryColor() {
+      return ItineraryHelpers.getItineraryColor(
+        this.$store.state.parcours.parcours
+      );
     },
   },
 };

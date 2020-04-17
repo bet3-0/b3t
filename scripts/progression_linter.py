@@ -1,5 +1,6 @@
 import json
 import os
+import ast
 
 REF_DIR = "../front/src/activities"
 
@@ -66,8 +67,25 @@ def check_progression(file, dico):
         for entry in dico["entries"]:
             for key in entry:
                 if key == "rendu":
-                    entry[key] = str(entry[key])
-                    print(f"Rendu must be str in file '{file}'")
+                    if entry["typeRendu"].lower() == "orderlist":
+                        # print(f"ORDERLIST: {file}. Rendu: {entry[key]}")
+                        if isinstance(entry[key], str):  # try to convert to Python list before json.dumps
+                            entry[key] = ast.literal_eval(entry[key])
+                        entry[key] = json.dumps(entry[key], ensure_ascii=False)
+                        # print(f"changed to {entry[key]}")
+                    elif entry["typeRendu"].lower() == "qcm":
+                        print(f"QCM: {file}. Rendu: {entry[key]}")
+                        if isinstance(entry[key], str):  # try to convert to Python list before json.dumps
+                            entry[key] = ast.literal_eval(entry[key].replace("false", "False"))
+                        assert isinstance(entry[key], list), "qcm not a list"
+                        for question_dict in entry[key]:
+                            assert set(question_dict) == {"question", "reponses"}, "bad keys for qcm"
+                            question_dict["reponses"] = {k: False for k in question_dict["reponses"]}
+                        entry[key] = json.dumps(entry[key], ensure_ascii=False)
+                        print(f"changed to {entry[key]}")
+                    else:
+                        entry[key] = str(entry[key])
+                    # print(f"Rendu must be str in file '{file}'")
                 if key not in entry_keys:
                     if key == "id":
                         to_update.append({"position": int(entry['id'])})

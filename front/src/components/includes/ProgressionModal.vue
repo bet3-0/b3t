@@ -45,7 +45,7 @@ export default {
   methods: {
     go(activity) {
       this.$store.state.activity.progression = this.progression;
-      this.$router.push(`/activity/${activity.id}`);
+      this.$router.push(`/activity/${activity.idParcours}/${activity.id}`);
     },
     getCommentFromState(state) {
       switch (state) {

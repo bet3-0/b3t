@@ -149,15 +149,22 @@ export default {
     };
   },
   created() {
+    // if user not logged in, redirect to /login
+    if (!this.$store.state.auth.status.loggedIn) {
+      return this.$router.push("/login");
+    }
     // Check if parcours is defined. If not, redirect to /parcours
     if (isNaN(this.idParcours) | (this.idParcours > 3)) {
-      this.$router.push("/parcours");
+      return this.$router.push("/parcours");
     }
   },
   async mounted() {
     let progressions = await ProgressionService.getProgressions();
     if (progressions) {
-      this.progressions = progressions;
+      // Show only progressions of the Parcours.
+      this.progressions = progressions.filter(
+        (prog) => prog.idParcours == this.$store.state.parcours.parcours
+      );
     } else {
       this.progressions = [
         {
@@ -185,7 +192,8 @@ export default {
     },
     getActivityName(idParcours, idActivite) {
       try {
-        return this.getActivity(idParcours, idActivite).nom;
+        let activity = this.getActivity(idParcours, idActivite);
+        return activity.nom || "Activité inconnue";
       } catch (error) {
         return "Nom inconnu";
       }
