@@ -64,6 +64,7 @@ func pushFile(c *gin.Context) {
 	})
 
 	if err != nil {
+		fmt.Println(err)
 		c.JSON(500, gin.H{"error": "cannot_upload_file"})
 		return
 	}
