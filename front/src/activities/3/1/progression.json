@@ -1,0 +1,24 @@
+{
+    "idActivite": "1",
+    "idParcours": "3",
+    "state": "INPROGRESS",
+    "duration": 30,
+    "startedAt": 0,
+    "finishedAt": 0,
+    "reviewAt": 0,
+    "entries": [
+
+            {
+                "position": 0,
+                "question":
+                    "Envoie-nous une photo du piquet que tu as taillé !",
+                "documents": [],
+                "typeRendu": "file",
+                "rendu": "",
+                "state": "NOTSTARTED",
+                "tracked": true,
+                "page": 2
+            }
+    
+    ]
+}
