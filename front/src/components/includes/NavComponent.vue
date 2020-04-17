@@ -81,23 +81,23 @@ export default {
       return this.$store.state.auth.user;
     },
     role() {
-      if (!this.isConnected) {
-        return "jeune";
+      console.log(this.$store.state.auth.user);
+      if (this.$store.state.auth.user) {
+        return this.$store.state.auth.user.role || "jeune";
       }
-      return this.$store.state.auth.user.role || "jeune";
-    }
+      return "jeune";
+    },
   },
   methods: {
     logOut() {
       this.$store.dispatch("auth/logout");
       this.$router.push("/");
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style scoped>
-
 .navbar-brand {
   height: 3rem;
   margin-left: 0.5rem;
