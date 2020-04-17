@@ -58,12 +58,11 @@ Base Component for an activity page -->
               style="text-align: center; width: 100%"
             >
               <h3 style="text-align: left">
-                {{ entry.question }}
+                Merci de valider les rendus suivants
               </h3>
-              <UploadFile
+              <DownloadFile
                 v-if="entry.typeRendu === 'file'"
-                :entry="entry"
-                :updateEntry="updateEntry"
+                :idFile="entry.documents[0]"
               />
               <UploadText
                 v-if="entry.typeRendu === 'text'"
@@ -96,7 +95,7 @@ Base Component for an activity page -->
 
 <script>
 import Alert from "./includes/Alert";
-import UploadFile from "./includes/activityComponents/UploadFile";
+import DownloadFile from "./includes/activityComponents/DownloadFile";
 import UploadText from "./includes/activityComponents/UploadText";
 import OrderList from "./includes/activityComponents/OrderList";
 import Qcm from "./includes/activityComponents/Qcm";
@@ -110,7 +109,7 @@ import ProgressionService from "../service/progression.service";
 export default {
   name: "ActivityToValidate",
   components: {
-    UploadFile,
+    DownloadFile,
     UploadText,
     Qcm,
     ValidateActivityPage,

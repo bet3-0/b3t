@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import ProgressionService from "./../../../service/progression.service";
+import FileService from "./../../../service/file.service";
 import Alert from "./../../includes/Alert";
 import $ from "jquery";
 
@@ -53,14 +53,9 @@ export default {
     /* Submits the file to the server */
     async submitFile() {
       $(`#submitFileButton-${this.idEntry}`).prop("disabled", true);
-      /* Iniitialize the form data */
-      let formData = new FormData();
 
-      /* Add the form data we need to submit */
-      formData.append("file", this.file);
-
-      let url = await ProgressionService.pushFile(formData);
-      if (url == undefined) {
+      let idFile = await FileService.pushFile(this.file);
+      if (idFile == undefined) {
         this.entry.state = "INPROGRESS";
         alert(
           "Nous n'avons pas pu envoyer ton fichier... Réessaie pour voir ?"
@@ -73,7 +68,7 @@ export default {
         return;
       }
       try {
-        this.entry.documents.push(url);
+        this.entry.documents.push(idFile);
         this.updateEntry(this.entry);
         await this.submitText(); // Send the entry
       } finally {
