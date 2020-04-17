@@ -1,62 +1,111 @@
 <div class="container">
     <div id="page1">
-        <div  >
+        <div>
             <h2>Regarde cette vidéo</h2>
 
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/" frameborder="0" allow=encrypted-media"
-                allowfullscreen></iframe>
+            <div id="playerHalte1">
 
+            </div>
         </div>
-    </div>
 
-    <div id="page4">
-        <div  >
-            <div class="alert alert-info" role="alert">
-                Merci pour ton message. Il sera transmis à tes chefs et cheftaines avec les messages des autres 3èmes
-                années de ta Tribu !
+        <div id="page4">
+            <div>
+                <div class="alert alert-info" role="alert">
+                    Merci pour ton message. Il sera transmis à tes chefs et cheftaines avec les messages des autres
+                    3èmes
+                    années de ta Tribu !
+                </div>
+            </div>
+        </div>
+
+        <div id="page5">
+            <div>
+                <h2>Regarde cette vidéo</h2>
+
+                <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/cqkskKllpl8?controls=0"
+                    frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+            </div>
+        </div>
+        <div id="page6">
+            <div>
+                <img class="img-fluid" src="img\logo-pionniers-caravelles.png" alt="Logo Pionniers Caravelles SGDF"
+                    width="" , height="">
+
+                <h2 class="text-danger">A la rentrée, tu es ammené-e à devenir Pionniers/Caravelle</h2>
+
+            </div>
+        </div>
+
+        <div id="page7">
+            <div>
+
+                <!-- Video autoplay avec la caravane qui part  -->
+                <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/4xRL3bYRjaM?controls=0"
+                    frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+
+            </div>
+        </div>
+
+
+        <div id="page8">
+            <div>
+                <img class="img-fluid" src="img\logo-pionniers-caravelles.png" alt="Logo Pionniers Caravelles SGDF"
+                    width="" , height="">
+
+                <h2>Regarde cette vidéo</h2>
+
+                <iframe width="560" height="315"
+                    src="https://www.youtube-nocookie.com/embed/QYop-4BzAho?controls=0&amp;start=1319" frameborder="0"
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+
             </div>
         </div>
     </div>
 
-    <div id="page5">
-        <div  >
-            <h2>Regarde cette vidéo</h2>
-
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/" frameborder="0" allow=encrypted-media"
-                allowfullscreen></iframe>
-        </div>
-    </div>
-    <div id="page6">
-        <div  >
-            <img class="img-fluid" src="img\logo-pionniers-caravelles.png" alt="Logo Pionniers Caravelles SGDF"
-                width="" , height="">
-
-            <h2 class="text-danger">A la rentrée, tu es ammené-e à devenir Pionniers/Caravelle</h2>
-
-        </div>
-    </div>
-
-    <div id="page7">
-        <div  >
-            
-            <!-- Video autoplay avec la caravane qui part  -->
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/" frameborder="0" allow=encrypted-media"
-                allowfullscreen></iframe>
-
-        </div>
-    </div>
 
 
-    <div id="page8">
-        <div  >
-            <img class="img-fluid" src="img\logo-pionniers-caravelles.png" alt="Logo Pionniers Caravelles SGDF"
-                width="" , height="">
+    <script>
+        // Load API
 
-            <h2>Regarde cette vidéo</h2>
+        var tag = document.createElement('script')
+        tag.src = "https://youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/" frameborder="0" allow=encrypted-media"
-                allowfullscreen></iframe>
+        // Create IFrame
 
-        </div>
-    </div>
-</div>
+        var playerHalte1;
+
+        function onYouTubeIframeAPIReady() {
+            playerHalte1 = new YT.Player('playerHalte1', {
+                height: '390',
+                width: '640',
+                videoId: 'QYop-4BzAho',
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+
+        function onPlayerReady(event) {
+            event.target.playVideo();
+        }
+
+        var done = false;
+
+        function onPlayerStateChange(event) {
+
+            if (event.data == YT.PlayerState.PLAYING && !done) {
+                setTimeout(stopVideo, 70980);
+                done = true;
+            }
+        }
+
+        function stopVideo() {
+            player.stopVideo();
+        }
+    </script>
