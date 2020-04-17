@@ -47,13 +47,6 @@ const router = new VueRouter({
       path: "/activitees",
       component: ActivitiesComponent
     },
-    /*
-    {
-      // TO BE DEPRECATED !!!!
-      path: "/activity/:idActivity",
-      component: ActivityComponent
-    },
-    */
     {
       path: "/activity/:idParcours/:idActivite",
       component: ActivityComponent

@@ -50,7 +50,7 @@ import VueWordCloud from "vuewordcloud";
 export default {
   name: "HalteComponent",
   components: {
-    [VueWordCloud.name]: VueWordCloud
+    [VueWordCloud.name]: VueWordCloud,
   },
   data() {
     return {
@@ -61,13 +61,13 @@ export default {
             ["romance", 19],
             ["horror", 3],
             ["fantasy", 7],
-            ["adventure", 3]
-          ]
+            ["adventure", 3],
+          ],
         },
         {
           question: "c'est quoi 2?",
-          words: ["aa", "aa", "b", "c", "c", "c", "c", "c", "c", "d", "i"]
-        }
+          words: ["aa", "aa", "b", "c", "c", "c", "c", "c", "c", "d", "i"],
+        },
       ],
       progressions: [
         {
@@ -79,15 +79,15 @@ export default {
               id: 0,
               question: "Quel est le sens de la vie pour toi ?",
               typeRendu: "text",
-              rendu: "beaucoup de choses"
+              rendu: "beaucoup de choses",
             },
             {
               id: 1,
               question: "Pourquoi les scouts c'est bien ?",
               typeRendu: "text",
-              rendu: "parce que"
-            }
-          ]
+              rendu: "parce que",
+            },
+          ],
         },
         {
           id: 9,
@@ -98,17 +98,17 @@ export default {
               id: 0,
               question: "Quel est le sens de la vie pour toi ?",
               typeRendu: "text",
-              rendu: "plein de trucs"
+              rendu: "plein de trucs",
             },
             {
               id: 1,
               question: "Pourquoi les scouts c'est bien ?",
               typeRendu: "text",
-              rendu: "car il me semble que ce n'est pas nul"
-            }
-          ]
-        }
-      ]
+              rendu: "car il me semble que ce n'est pas nul",
+            },
+          ],
+        },
+      ],
     };
   },
   computed: {
@@ -124,15 +124,15 @@ export default {
               id: 0,
               question: "Quel est le sens de la vie pour toi ?",
               typeRendu: "text",
-              rendu: "beaucoup de choses"
+              rendu: "beaucoup de choses",
             },
             {
               id: 1,
               question: "Pourquoi les scouts c'est bien ?",
               typeRendu: "text",
-              rendu: "parce que"
-            }
-          ]
+              rendu: "parce que",
+            },
+          ],
         },
         {
           id: 9,
@@ -143,25 +143,25 @@ export default {
               id: 0,
               question: "Quel est le sens de la vie pour toi ?",
               typeRendu: "text",
-              rendu: "plein de trucs"
+              rendu: "plein de trucs",
             },
             {
               id: 1,
               question: "Pourquoi les scouts c'est bien ?",
               typeRendu: "text",
-              rendu: "car il me semble que ce n'est pas nul"
-            }
-          ]
-        }
+              rendu: "car il me semble que ce n'est pas nul",
+            },
+          ],
+        },
       ];
-      let filteredProgressions = progressions.filter(prog => {
+      let filteredProgressions = progressions.filter((prog) => {
         return Boolean(prog.idActivite == 1 && prog.idParcours == 4);
       });
       console.log(filteredProgressions);
       let result0 = {};
-      filteredProgressions.entries.forEach(entry => {
+      filteredProgressions.entries.forEach((entry) => {
         result0[entry.id] = { question: entry.question, words: [] };
-        entry.rendu.split(" ").forEach(word => {
+        entry.rendu.split(" ").forEach((word) => {
           if (word in result0[entry.id]["words"]) {
             result0[entry.id]["words"][word]++;
           } else {
@@ -171,23 +171,27 @@ export default {
         console.log(result0);
       });
       let result1 = {};
-      result0.forEach(id => {
+      result0.forEach((id) => {
         result1[id] = {
           question: result0[id]["question"],
           words: result0[id]["words"].map((v, i, a) => {
             return [i, a[i]];
-          })
+          }),
         };
       });
       console.log(result1);
       return result1;
-    }
+    },
   },
   created() {
     // TODO: fetch all progressions of Halte (idParcours = 4)
     this.progressions = [];
+    const a = true;
+    if (a == true) {
+      return this.$router.push("/activity/4/1");
+    }
   },
-  methods: {}
+  methods: {},
 };
 </script>
 
