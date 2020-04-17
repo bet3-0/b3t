@@ -34,7 +34,7 @@
     </div>
 
     <img
-      v-if="!activities || !activities.length"
+      v-if="!displayActivities || !displayActivities.length"
       class="img-spinner"
       src="/img/icons/spinner.svg"
       alt="Chargement en cours..."
@@ -114,22 +114,25 @@ export default {
   created() {
     // Check if parcours is defined. If not, redirect to /parcours
     if (isNaN(this.idParcours) | (this.idParcours > 3)) {
-      this.$router.push("/parcours");
+      return this.$router.push("/parcours");
     }
   },
   async mounted() {
     try {
       this.activities = await activityService.getAllActivity(this.idParcours);
     } catch (error) {
-      console.error(error);
-      this.activities = activityService.listActi(); // for debug : TODO: remove
+      return console.error(error);
+      // this.activities = activityService.listActi(); // for debug : TODO: remove
     }
     // Filter in case API does not
     let startedActivities =
       JSON.parse(localStorage.getItem("activities")) || {};
     let startedIds = [];
     if (startedActivities[this.idParcours]) {
-      startedIds = Object.keys(startedActivities[this.idParcours]);
+      startedIds = Object.keys(startedActivities[this.idParcours]).filter(
+        (idActivite) =>
+          startedActivities[this.idParcours][idActivite].progression
+      );
     }
     this.displayActivities = this.activities.filter(
       (activity) =>
@@ -144,7 +147,7 @@ export default {
 
     change(data) {
       if (data === "parcours") {
-        this.displayActivities = this.activities;
+        // this.displayActivities = this.activities;
         this.displayActivities.sort(function(item, other) {
           if (item.nom < other.nom) {
             return -1;
@@ -156,7 +159,7 @@ export default {
       }
 
       if (data === "difficulte") {
-        this.displayActivities = this.activities;
+        // this.displayActivities = this.activities;
         this.displayActivities.sort(function(item, other) {
           if (
             item.difficulte === "facile" &&
@@ -183,7 +186,7 @@ export default {
       }
 
       if (data === "duration") {
-        this.displayActivities = this.activities;
+        // this.displayActivities = this.activities;
         this.displayActivities.sort(function(item, other) {
           if (item.duree < other.duree) {
             return -1;

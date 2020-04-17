@@ -8,8 +8,8 @@
       <img src="/img/clever_cloud_logo_on_dark.png" />
     </div>
     <div class="copyright">
-        <span>Conditions d'utilisation</span>
-        <span>Copyright © 2020</span>
+      <span>Conditions d'utilisation</span>
+      <span>Copyright © 2020</span>
     </div>
   </footer>
 </template>

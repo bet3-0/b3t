@@ -63,18 +63,7 @@ export default {
     },
 
     async submitText() {
-      this.entry.state = "FINISHED";
-      try {
-        await ProgressionService.updateProgression(this.entry, "entry");
-        console.log("Answer sent: " + this.entry.rendu);
-        this.updateEntry(this.entry); // update the primary progression object
-      } catch (error) {
-        console.log("Error while sending text entry: " + this.entry.rendu);
-        this.entry.state = "INPROGRESS";
-        alert(
-          "Impossible d'envoyer ta progression ! Vérifie ta connexion et réessaye !"
-        );
-      }
+      await this.updateEntry(this.entry); // update the primary progression object
     },
   },
 };

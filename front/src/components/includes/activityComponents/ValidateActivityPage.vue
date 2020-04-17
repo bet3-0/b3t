@@ -17,7 +17,7 @@ import ProgressionService from "./../../../service/progression.service";
 
 export default {
   name: "ValidateActivityPage",
-  props: ["activity", "progression", "pageNumber", "changePage"],
+  props: ["activity", "progression", "pageNumber", "updatePage"],
   data() {
     return {};
   },
@@ -26,16 +26,17 @@ export default {
       console.log("nb pages: " + this.activity.page);
       return this.pageNumber < this.activity.page;
     },
-    previousPage() {
-      return this.changePage(this.pageNumber - 1);
+    async previousPage() {
+      return await this.updatePage(this.pageNumber - 1);
     },
-    nextPage() {
-      return this.changePage(this.pageNumber + 1);
+    async nextPage() {
+      return await this.updatePage(this.pageNumber + 1);
     },
     async validate() {
       if (this.hasNext()) {
         this.nextPage();
       } else {
+        await this.updatePage(this.pageNumber);
         await this.checkValidation();
       }
     },
@@ -66,8 +67,12 @@ export default {
         );
         console.log("Progression sent: " + this.progression);
         // Redirect
-        alert("Ton activité a bien été envoyée !")
-        this.$router.push("/activitees");
+        alert("Ton activité a bien été envoyée !");
+        this.$store.dispatch(
+          "progression/updateProgression",
+          this.progression.duration || 0
+        );
+        this.$router.push("/progression");
       } catch (error) {
         console.log("Error while sending text entry: " + this.progression);
         this.progression.state = "INPROGRESS";

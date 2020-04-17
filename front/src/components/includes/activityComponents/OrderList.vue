@@ -15,6 +15,7 @@
           class="btn btn-primary"
           style="width: 80%"
           @click="submitText()"
+          hidden
         >
           Valider
         </button>
@@ -25,7 +26,6 @@
 
 <script>
 import draggable from "vuedraggable";
-import ProgressionService from "./../../../service/progression.service";
 
 export default {
   name: "OrderList",
@@ -57,19 +57,8 @@ export default {
   },
   methods: {
     async submitText() {
-      this.entry.state = "FINISHED";
       this.entry.rendu = JSON.stringify(this.list);
-      try {
-        await ProgressionService.updateProgression(this.entry, "entry");
-        console.log("Answer sent: " + this.entry.rendu);
-        this.updateEntry(this.entry); // update the primary progression object
-      } catch (error) {
-        console.log("Error while sending text entry: " + this.entry.rendu);
-        this.entry.state = "INPROGRESS";
-        alert(
-          "Impossible d'envoyer ta progression ! Vérifie ta connexion et réessaye !"
-        );
-      }
+      await this.updateEntry(this.entry); // update the primary progression object
     },
   },
 };
