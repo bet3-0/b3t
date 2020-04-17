@@ -4,10 +4,19 @@
       <a target="_blank" href="https://tribu.sgdf.fr/jeunes/">
         <img src="/img/SGDF_SCOUTS_GUIDES_blanc.png"
       /></a>
+      <a target="_blank" href="https://finistere2point9.fr/">
       <img src="/img/Finistere2.9.png" />
+      </a>
+      <a target ="_blank" href="https://www.clever-cloud.com/fr">
       <img src="/img/clever_cloud_logo_on_dark.png" />
+      </a>
     </div>
     <div class="copyright">
+      <div class="greets">
+        <p>Un grand merci à Antoine, Guillaume, Victor, Jacques</p>
+        <p>Etienne, Nils, Eflamm, Pierre, Alexandre, Benoit</p>
+        <p>qui ont développé ce site avec amour</p>
+      </div>
       <span>Conditions d'utilisation</span>
       <span>Copyright © 2020</span>
     </div>
@@ -40,7 +49,7 @@ img {
   align-items: center;
   overflow: hidden;
 }
-span {
+span, p {
   margin-left: 0.5rem;
   margin-right: 0.5rem;
 }
