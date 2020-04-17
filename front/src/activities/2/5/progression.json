@@ -1,6 +1,7 @@
 {
   "idActivite": "5",
   "idParcours": "2",
+  "nom": "Les Maracas",
   "state": "INPROGRESS",
   "duration": 20,
   "startedAt": 0,

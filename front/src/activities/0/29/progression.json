@@ -1,6 +1,7 @@
 {
   "idActivite": "29",
   "idParcours": "0",
+  "nom": "Fabrique du Liquide vaisselle",
   "state": "INPROGRESS",
   "duration": 15,
   "startedAt": 0,

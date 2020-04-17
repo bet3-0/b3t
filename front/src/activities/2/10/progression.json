@@ -1,6 +1,7 @@
 {
   "idActivite": "´10",
   "idParcours": "2",
+  "nom": "Poterie en pâte à sel",
   "state": "INPROGRESS",
   "duration": 30,
   "startedAt": 0,

@@ -1,6 +1,7 @@
 {
   "idActivite": "36",
   "idParcours": "1",
+  "nom": "Quelles portions par jour ?",
   "state": "INPROGRESS",
   "duration": 10,
   "startedAt": 0,

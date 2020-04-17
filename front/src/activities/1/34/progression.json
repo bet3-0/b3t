@@ -1,6 +1,7 @@
 {
   "idActivite": "32",
   "idParcours": "1",
+  "nom": "Hey Jamie, mais qu’est ce que c’est que la nutrition ?",
   "state": "INPROGRESS",
   "duration": 30,
   "startedAt": 0,

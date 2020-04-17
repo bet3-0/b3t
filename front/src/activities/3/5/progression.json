@@ -1,6 +1,7 @@
 {
   "idActivite": "5",
   "idParcours": "2",
+  "nom": "Atelier Feu",
   "state": "INPROGRESS",
   "duration": 45,
   "startedAt": 0,

@@ -1,6 +1,7 @@
 {
   "idActivite": "36",
   "idParcours": "0",
+  "nom": "Y a-t-il du sucre partout ?",
   "state": "INPROGRESS",
   "duration": 15,
   "startedAt": 0,

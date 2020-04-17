@@ -1,6 +1,7 @@
 {
   "idActivite": "38",
   "idParcours": "1",
+  "nom": "Fruits et légumes de saison",
   "state": "INPROGRESS",
   "duration": 20,
   "startedAt": 0,

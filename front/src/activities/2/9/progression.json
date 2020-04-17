@@ -1,6 +1,7 @@
 {
   "idActivite": "9",
   "idParcours": "2",
+  "nom": "Jonglage",
   "state": "INPROGRESS",
   "duration": 25,
   "startedAt": 0,

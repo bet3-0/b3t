@@ -1,6 +1,7 @@
 {
   "idActivite": "6",
   "idParcours": "1",
+  "nom": "Je m’organise pour cuisiner",
   "state": "INPROGRESS",
   "duration": 10,
   "startedAt": 0,

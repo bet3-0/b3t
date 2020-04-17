@@ -1,6 +1,7 @@
 {
   "idActivite": "12",
   "idParcours": "3",
+  "nom": "Orientation - Le Savais-tu ?",
   "state": "INPROGRESS",
   "duration": 20,
   "startedAt": 0,

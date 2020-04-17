@@ -1,6 +1,7 @@
 {
   "idActivite": "50",
   "idParcours": "0",
+  "nom": "Une nouvelle sirène pour les pompiers",
   "state": "INPROGRESS",
   "duration": 10,
   "startedAt": 0,

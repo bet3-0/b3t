@@ -1,6 +1,7 @@
 {
   "idActivite": "35",
   "idParcours": "0",
+  "nom": "L’intendance d’une aventure gauloise, pas que de la cervoise",
   "state": "INPROGRESS",
   "duration": 20,
   "startedAt": 0,

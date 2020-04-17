@@ -1,6 +1,7 @@
 {
   "idActivite": "12",
   "idParcours": "0",
+  "nom": "J’appelle les secours mais je dis quoi ?",
   "state": "INPROGRESS",
   "duration": 10,
   "startedAt": 0,

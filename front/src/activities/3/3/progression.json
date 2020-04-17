@@ -1,6 +1,7 @@
 {
     "idActivite": "3",
     "idParcours": "3",
+    "nom": "Apprends à t'installer",
     "state": "INPROGRESS",
     "duration": 75,
     "startedAt": 0,

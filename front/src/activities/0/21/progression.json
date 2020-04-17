@@ -1,6 +1,7 @@
 {
   "idActivite": "21",
   "idParcours": "0",
+  "nom": "Je connais le secret de la potion magique",
   "state": "INPROGRESS",
   "duration": 20,
   "startedAt": 0,

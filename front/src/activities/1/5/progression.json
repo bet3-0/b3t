@@ -1,6 +1,7 @@
 {
   "idActivite": "5",
   "idParcours": "1",
+  "nom": "Solutions pour un camp plus sûr",
   "state": "INPROGRESS",
   "duration": 15,
   "startedAt": 0,

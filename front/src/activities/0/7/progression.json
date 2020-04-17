@@ -1,6 +1,7 @@
 {
   "idActivite": "7",
   "idParcours": "0",
+  "nom": "Connais tu les bonnes pratiques en matière d’hygiène ?",
   "state": "INPROGRESS",
   "duration": 20,
   "startedAt": 0,
