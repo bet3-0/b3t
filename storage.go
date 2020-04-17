@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+	"strings"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/credentials"
@@ -36,9 +37,18 @@ func pushFile(c *gin.Context) {
 
 	user := c.Request.Context().Value("user").(User)
 
+	_, header, err := c.Request.FormFile("file")
+	if err != nil {
+		panic(err)
+	}
+
+	s := strings.Split(header.Filename, ".")
+
 	fileID, err = uuid.NewRandom()
 
-	fileName := fmt.Sprintf("%s/%s", user.CodeAdherent, fileID.String())
+	fileName := fmt.Sprintf("%s/%s.%s", user.CodeAdherent, fileID.String(), s[1])
+
+	fmt.Println(fileName)
 
 	fileBuffer, err = c.GetRawData()
 	if err != nil {
