@@ -18,12 +18,6 @@
         <b-dropdown-item @click="filter(3)">Robinson</b-dropdown-item>
       </b-dropdown>
     </div>
-    <img
-      v-if="!progressions || !progressions.length"
-      class="img-spinner"
-      src="/img/icons/spinner.svg"
-      alt="Chargement en cours..."
-    />
     <!-- /#wrapper -->
     <div class="container">
       <table class="table">
@@ -32,7 +26,6 @@
             <th scope="col"></th>
             <th scope="col">Activité</th>
             <th scope="col">État</th>
-            <th scope="col">Nombre de rendus</th>
             <th scope="col">Durée prise par le jeune</th>
           </tr>
         </thead>
@@ -70,7 +63,6 @@
               />
               {{ getStateName(progression.state) }}
             </td>
-            <td>{{ progression.entries.length }}</td>
             <td>
               {{
                 (
@@ -83,7 +75,13 @@
         </tbody>
       </table>
     </div>
-
+    <img
+      v-if="!progressions"
+      class="img-spinner"
+      src="/img/icons/spinner.svg"
+      alt="Chargement en cours..."
+    />
+    <p v-if="!progressions.length" >Aucune progression a valider</p>
     <!-- Modal -->
     <ValidationModal :progression="currentProgression" />
   </div>
@@ -98,6 +96,7 @@ import { VALID_STATES } from "./../service/progressionHelpers";
 import Vue from "vue";
 import BootstrapVue from "bootstrap-vue";
 import VueRouter from "vue-router";
+import ProgressionService from '../service/progression.service';
 
 Vue.use(BootstrapVue);
 Vue.use(VueRouter);
@@ -121,45 +120,19 @@ export default {
       }
     };
   },
-  beforeMount() {
-    // TODO: fetch progressions
-    this.progressions = [
-      {
-        id: 5, // primary key (not used here!)
-        idActivite: "5",
-        idParcours: "0",
-        state: "REFUSED", // peut prendre les valeurs enum(notStarted,inProgress,finished, validated, refused)
-        duration: 20, // en minutes aussi
-        startedAt: 5, // ms
-        finishedAt: 152.0, // ms
-        reviewAt: 0, // ms
-        entries: []
-      },
-      {
-        id: 6,
-        idActivite: "6",
-        idParcours: "0",
-        state: "VALIDATED", // peut prendre les valeurs enum(notStarted,inProgress,finished, validated, refused)
-        duration: 20, // en minutes aussi
-        startedAt: 5, // ms
-        finishedAt: 0, // ms
-        reviewAt: 0, // ms
-        entries: []
-      },
-      {
-        id: 7,
-        idActivite: "7",
-        idParcours: "1",
-        state: "FINISHED", // peut prendre les valeurs enum(notStarted,inProgress,finished, validated, refused)
-        duration: 20, // en minutes aussi
-        startedAt: 5, // ms
-        finishedAt: 0, // ms
-        reviewAt: 0, // ms
-        entries: []
-      }
-    ];
-  },
-  mounted() {
+  async mounted() {
+    let progressions = await ProgressionService.getUserProgressions();
+    if (progressions) {
+      this.progressions = progressions;
+    } else {
+      this.progressions = [
+        {
+          id: "error_fetch",
+          state: "UNKNOWN", // error
+          evaluation: "Une erreur inconnue est survenue ! Recharge la page !",
+        },
+      ];
+    }
     this.countProgressionStates();
     this.displayProgressions = this.progressions;
   },
