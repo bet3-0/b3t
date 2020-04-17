@@ -9,7 +9,11 @@ func main() {
 	connect()
 	connectS3()
 	router := gin.Default()
+
 	router.Use(static.Serve("/", static.LocalFile("site", false)))
+	router.NoRoute(func(c *gin.Context) {
+		c.File("site/index.html")
+	})
 
 	api := router.Group("/api")
 	{
