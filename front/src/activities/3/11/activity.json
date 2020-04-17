@@ -2,7 +2,7 @@
   "id": "11",
   "idParcours": "3",
   "nom": "Codes : A toi de jouer! Mets ta famille au défi! ",
-  "description": "Salut jeune gaulois ! Cette fois-ci, c’est à toi de jouer : Crées une course d’orientation dans ton logement et mets ta famille au défi ! Attention, pour faire cet atelier, il faut que tu aies d'abord fait l'atelier Apprends à décoder et à suivre la piste",
+  "description": "Salut jeune Gaulois ! Cette fois-ci, c’est à toi de jouer : Crées une course d’orientation dans ton logement et mets ta famille au défi ! Attention, pour faire cet atelier, il faut que tu aies d'abord fait l'atelier Apprends à décoder et à suivre la piste",
   "duree": 60,
   "materiel": ["Un stylo", "Du papier"],
   "difficulte": "difficile",
