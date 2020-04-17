@@ -138,11 +138,10 @@ export default {
   },
   async created() {
     // if user not logged in, redirect to /login
-    /* COMMENT: FOR DEBUG ONLY ! TODO: uncomment !
+    // COMMENT: FOR DEBUG ONLY ! TODO: uncomment !
     if (!this.$store.state.auth.status.loggedIn) {
       return this.$router.push("/login");
     }
-    */
     this.idActivite = this.$route.params.idActivite;
     this.idParcours = this.$route.params.idParcours;
 
