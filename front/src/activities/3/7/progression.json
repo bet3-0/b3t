@@ -1,0 +1,22 @@
+{
+    "idActivite": "7",
+    "idParcours": "3",
+    "state": "INPROGRESS",
+    "duration": 30,
+    "startedAt": 0,
+    "finishedAt": 0,
+    "reviewAt": 0,
+    "entries": [
+
+        {
+            "position": 0,
+            "question": "Note les numéros associés aux images dans l'ordre dans lequel tu as rencontré les images pendant le jeu de piste. (Comme tu as commencé par le foulard, tu auras: 28 - ... - ... - ... - ... - ... - ... - ...",
+            "documents": [],
+            "typeRendu": "text",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 4
+        }
+    ]
+}
