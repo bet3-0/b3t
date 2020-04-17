@@ -1,14 +1,6 @@
 <template>
   <div>
     <div class="input-group mb-3">
-      <div class="input-group-prepend">
-        <button
-          class="input-group-text btn-primary text-white"
-          v-on:click="submitFile()"
-        >
-          Charger
-        </button>
-      </div>
       <div class="custom-file">
         <input
           ref="file"
@@ -22,19 +14,32 @@
           <span v-else>{{ entry.documents.length }} fichiers rendu(s)</span>
         </label>
       </div>
+      <div class="input-group-append">
+        <button
+          class="input-group-text btn-primary text-white"
+          v-on:click="submitFile()"
+        >
+          Charger
+        </button>
+      </div>
     </div>
+    <Alert ref="alert" :show="showDismissibleAlert" :text="textAlert" />
   </div>
 </template>
 
 <script>
 import ProgressionService from "./../../../service/progression.service";
+import Alert from "./../../includes/Alert";
 
 export default {
   name: "UploadFile",
+  components: { Alert },
   props: ["entry", "updateEntry"],
   data() {
     return {
       file: "",
+      showDismissibleAlert: false, // for Alert
+      textAlert: false, // for Alert
     };
   },
   methods: {
@@ -56,6 +61,10 @@ export default {
         alert(
           "Nous n'avons pas pu envoyer ton fichier... Réessaie pour voir ?"
         );
+        this.textAlert =
+          "Nous n'avons pas pu envoyer ton fichier... Réessaie pour voir ?";
+        this.showDismissibleAlert = true;
+        return;
       }
       this.entry.documents.push(url);
       this.updateEntry(this.entry);

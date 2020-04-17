@@ -18,7 +18,7 @@ export default class ProgressionService {
     return jsonResponse.progression;
   }
 
-  static async updateProgression(data, route="entry") {
+  static async updateProgression(data, route = "entry") {
     console.log("Updating progression...");
     return await fetch(API_URL + route, {
       method: "PUT",
@@ -31,23 +31,36 @@ export default class ProgressionService {
 
   static async pushFile(data) {
     console.log("Pushing file...");
+    let response;
     try {
-      let response = await fetch(API_URL + "file", {
+      response = await fetch(API_URL + "file", {
         method: "POST",
         headers: Object.assign(authHeader(), {
           "Content-Type": "application/octet-stream",
         }),
         body: data,
       });
-      console.log(response);
-      let jsonResponse = await response.json();
-      console.log(jsonResponse);
-      return jsonResponse.url;
     } catch (error) {
-      console.log("Error while sending file!");
+      console.log("Error while sending file: fetch error!");
       console.error(error);
       return undefined;
     }
+    if (!response.ok) {
+      console.log("Error while sending file: response error!");
+      console.warn(response);
+      return undefined;
+    }
+
+    let jsonResponse;
+    try {
+      jsonResponse = await response.json();
+    } catch (error) {
+      console.log("Error while sending file: response data error!");
+      console.warn(response);
+      return undefined;
+    }
+    console.log("File sent successfully!");
+    return jsonResponse.url;
   }
 
   static async getProgressions() {
