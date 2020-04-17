@@ -1,0 +1,21 @@
+{
+  "idActivite": "43",
+  "idParcours": "1",
+  "state": "INPROGRESS",
+  "duration": 15,
+  "startedAt": 0,
+  "finishedAt": 0,
+  "reviewAt": 0,
+  "entries": [
+    {
+      "position": 0,
+      "question": "Il existe un tas d’expressions françaises avec des mots culinaires, mais connais-tu leurs significations ? À toi de répondre !",
+      "documents": [],
+      "typeRendu": "qcm",
+      "rendu": "[{\"question\": \"Quel est le sens de l'expression \\\"Entre la poire et le fromage\\\" ?\", \"reponses\": {\"Être devant deux options, aussi tentantes l'une et l'autre, mais incompatibles ; avoir à résoudre un dilemme\": false, \"Être entre deux événements, à un moment perdu ; à un moment de conversation libre et détendu, comme on en trouve à la fin d'un repas\": false, \"Un résultat incertain ou difficile à caractériser : ni bon ni mauvais, quelque chose qui est difficile à classer\": false}}, {\"question\": \"L'expression \\\"En faire tout un fromage\\\" veut dire\", \"reponses\": {\"Faire toute une histoire pour pas grand-chose ; grossir à l'extrême une difficulté\": false, \"Réaliser quelque chose d'important, d'original et de grande qualité\": false, \"Ne rien faire comme il faut ; tout gâcher\": false}}, {\"question\": \"\\\"Mettre de l'eau dans son vin\\\" signifie\", \"reponses\": {\"Adoucir son ton, renoncer aux critiques ou aux ironies pour dépasser une difficulté\": false, \"Tricher, se mentir soi-même et mentir aux autres\": false, \"Modérer ses exigences ou ses ambitions\": false}},{\"question\": \"L'expression \\\"ça ne mange pas de pain\\\" veut dire\", \"reponses\": {\"Ça ne présente aucun danger ; on ne prend aucun risque en entreprenant quelque chose de banal\": false, \"Ça ne coûte rien (même si ça n'a aucun intérêt). Ça ne provoque rien de désagréable (même si ça n'apporte pas grand-chose)\": false, \"Ça ne coûte rien, mais c'est mauvais pour la réputation de quelqu'un\": false}},{\"question\": \"\\\"Avoir du pain sur la planche\\\" signifie\", \"reponses\": {\"Être riche ; être à l'abri de tout souci\": false, \"Avoir une ribambelle d'enfants qui demandent à manger\": false, \"Avoir beaucoup de travail, de tâches à accomplir\": false}},{\"question\": \"\\\"Mettre du beurre dans les épinards\\\" veut dire\", \"reponses\": {\"Gâter à la fin une chose qui était bien faite\": false, \"Améliorer son existence\": false, \"Se montrer créatif et original\": false}},{\"question\": \"L'expression \\\"Compter pour du beurre\\\" signifie\", \"reponses\": {\"Ne pas être pris en considération, être méprisé. N'avoir aucune importance.\": false, \"Avoir un rôle essentiel à jouer ; être considéré comme l'acteur principal dans une entreprise\": false, \"Conduire une affaire de l'ombre, agir sans s'afficher\": false}},{\"question\": \"Quelle est la signification de l'expression \\\"Rouler quelqu'un dans la farine\\\" ?\", \"reponses\": {\"Vaincre dans un combat\": false, \"Duper quelqu'un ; lui mentir\": false, \"Calomnier quelqu'un\": false}},{\"question\": \"L'expression \\\"Avoir la frite\\\" veut dire\", \"reponses\": {\"Être pauvre, mais de bonne humeur\": false, \"Être rancunier, éprouver un vif désir de vengeance\": false, \"Se sentir plein d’énergie, être en forme\": false}},{\"question\": \"\\\"Sabrer le champagne\\\" a le sens\", \"reponses\": {\"Boire/ouvrir une bouteille de champagne pour fêter un joyeux événement\": false, \"Être très avare ; refuser d'offrir quelque chose de raffiné à ses invités\": false, \"Faire une gaffe monumentale\": false}},{\"question\": \"\\\"Retourner quelqu'un comme une crêpe\\\" veut dire\", \"reponses\": {\"Lui faire aisément changer d'opinion\": false, \"Faire travailler quelqu'un sans le récompenser\": false, \"Rigoler sur le compte de quelqu'un\": false}},{\"question\": \"\\\"On ne fait pas de l'omelette sans casser des oeufs\\\" signifie\", \"reponses\": {\"On ne fait pas de scandale sans salir sa réputation\": false, \"On ne traite pas une maladie sans avaler des pilules\": false, \"On n'obtient rien sans faire un minimum de sacrifices, sans prendre quelques risques inévitables\": false}}}]",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 1
+    }
+  ]
+}
