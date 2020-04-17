@@ -1,14 +1,6 @@
 <template>
   <div>
     <div class="input-group mb-3">
-      <div class="input-group-prepend">
-        <button
-          class="input-group-text btn-primary text-white"
-          v-on:click="submitFile()"
-        >
-          Charger
-        </button>
-      </div>
       <div class="custom-file">
         <input
           ref="file"
@@ -22,19 +14,35 @@
           <span v-else>{{ entry.documents.length }} fichiers rendu(s)</span>
         </label>
       </div>
+      <div class="input-group-append">
+        <button
+          :id="`submitFileButton-${idEntry}`"
+          class="input-group-text btn-primary text-white"
+          v-on:click="submitFile()"
+        >
+          Charger
+        </button>
+      </div>
     </div>
+    <Alert ref="alert" :show="showDismissibleAlert" :text="textAlert" />
   </div>
 </template>
 
 <script>
 import ProgressionService from "./../../../service/progression.service";
+import Alert from "./../../includes/Alert";
+import $ from "jquery";
 
 export default {
   name: "UploadFile",
+  components: { Alert },
   props: ["entry", "updateEntry"],
   data() {
     return {
+      idEntry: this.entry.id,
       file: "",
+      showDismissibleAlert: false, // for Alert
+      textAlert: false, // for Alert
     };
   },
   methods: {
@@ -44,6 +52,7 @@ export default {
     },
     /* Submits the file to the server */
     async submitFile() {
+      $(`#submitFileButton-${this.idEntry}`).prop("disabled", true);
       /* Iniitialize the form data */
       let formData = new FormData();
 
@@ -56,10 +65,20 @@ export default {
         alert(
           "Nous n'avons pas pu envoyer ton fichier... Réessaie pour voir ?"
         );
+        this.textAlert =
+          "Nous n'avons pas pu envoyer ton fichier... Réessaie pour voir ?";
+        this.showDismissibleAlert = true;
+        $(`#submitFileButton-${this.idEntry}`).removeAttr("disabled");
+
+        return;
       }
-      this.entry.documents.push(url);
-      this.updateEntry(this.entry);
-      await this.submitText(); // Send the entry
+      try {
+        this.entry.documents.push(url);
+        this.updateEntry(this.entry);
+        await this.submitText(); // Send the entry
+      } finally {
+        $(`#submitFileButton-${this.idEntry}`).removeAttr("disabled");
+      }
     },
 
     async submitText() {
