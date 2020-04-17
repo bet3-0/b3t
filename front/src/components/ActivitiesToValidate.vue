@@ -54,7 +54,7 @@
                 />
               </svg>
             </td>
-            <td>{{ getActivity(progression).nom }}</td>
+            <td>{{ progression.nom }}</td>
             <td>
               <img
                 :src="`/img/icons/${progression.state}.png`"
