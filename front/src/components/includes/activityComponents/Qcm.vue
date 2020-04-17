@@ -4,7 +4,7 @@
       <div class="col-12">
         <div
           class="form-group"
-          v-for="(qcmObject, indexQcmObj) in qcmQuestions"
+          v-for="(qcmObject, indexQcmObj) in entry.parsedRendu"
           :key="indexQcmObj"
         >
           <div class="form-label">
@@ -22,7 +22,7 @@
               :name="'q' + indexQcmObj"
               :id="'q' + indexQcmObj + 'r' + indexReponse"
               v-bind:value="qcmObject.reponses[reponse]"
-              v-model="qcmQuestions[indexQcmObj].reponses[reponse]"
+              v-model="entry.parsedRendu[indexQcmObj].reponses[reponse]"
             />
             <label
               style="margin-left:1rem"
@@ -46,11 +46,6 @@
 export default {
   name: "Qcm",
   props: ["entry", "updateEntry"],
-  data() {
-    return {
-      qcmQuestions: [],
-    };
-  },
   created() {
     // const regex = /'/gm;  // On peut avoir un apostrophe dans un texte, donc erreurs possibles avec remplacement de texte.
     const regex = /'/gm;
@@ -60,15 +55,17 @@ export default {
     } catch (error) {
       qcmQuestions = JSON.parse(this.entry.rendu.replace(regex, '"'));
     }
-    this.qcmQuestions = qcmQuestions;
+    // this.qcmQuestions = qcmQuestions;
+    this.entry.parsedRendu = qcmQuestions
     /*
     entry.rendu est de la forme:
     [{"question": "Ma question ?", "reponses": {"reponse1": false, "reponse2": false}}]
     */
   },
   methods: {
+    // DEPRECATED
     async submitText() {
-      this.entry.rendu = JSON.stringify(this.qcmQuestions);
+      this.entry.rendu = JSON.stringify(this.entry.parsedRendu);
       await this.updateEntry(this.entry); // update the primary progression object
     },
   },

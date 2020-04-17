@@ -2,9 +2,18 @@
   <div class="container">
     <div class="row">
       <div class="col-md-6" style="border-left: solid 1px lightgray">
-        <draggable v-model="list" class="mb-5" ghost-class="ghost" :sort="true">
+        <draggable
+          :list="propositions"
+          class="mb-5"
+          ghost-class="ghost"
+          :sort="true"
+        >
           <transition-group>
-            <div v-for="element in list" :key="element" class="mb-3 cursor">
+            <div
+              v-for="(element, index) in propositions"
+              :key="index"
+              class="mb-3 cursor"
+            >
               {{ element }}
             </div>
           </transition-group>
@@ -34,7 +43,7 @@ export default {
   },
   data() {
     return {
-      list: [],
+      propositions: [],
     };
   },
   props: {
@@ -45,7 +54,7 @@ export default {
       type: Object,
     },
   },
-  mounted() {
+  created() {
     const regex = /'/gm;
     var initQuestions = [];
     try {
@@ -53,11 +62,17 @@ export default {
     } catch (error) {
       initQuestions = JSON.parse(this.entry.rendu.replace(regex, '"'));
     }
-    this.list = initQuestions;
+    this.propositions = initQuestions;
+    this.entry.parsedRendu = this.propositions;
+  },
+  updated(){
+      this.entry.parsedRendu = this.propositions;
   },
   methods: {
+    // DEPRECATED
     async submitText() {
-      this.entry.rendu = JSON.stringify(this.list);
+      this.entry.parsedRendu = this.propositions;
+      this.entry.rendu = JSON.stringify(this.entry.parsedRendu);
       await this.updateEntry(this.entry); // update the primary progression object
     },
   },

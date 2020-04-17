@@ -11,7 +11,7 @@
       aria-valuemin="0"
       aria-valuemax="100"
     >
-      {{ progress }}%
+      {{ progress.toFixed(0) }}%
     </div>
   </div>
 </template>

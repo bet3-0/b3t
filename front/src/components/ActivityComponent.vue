@@ -47,11 +47,11 @@ Base Component for an activity page -->
         <ActivityContent :idActivite="idActivite" :idParcours="idParcours" />
         <div class="end-container">
           <img
-          v-if="!progression.id"
-          class="img-spinner"
-          src="/img/icons/spinner.svg"
-          alt="Chargement en cours..."
-        />
+            v-if="!progression.id"
+            class="img-spinner"
+            src="/img/icons/spinner.svg"
+            alt="Chargement en cours..."
+          />
           <div class="submit-container">
             <!-- Choisir parmi ces deux rendus en fonction de l'activité -->
             <div
@@ -138,9 +138,11 @@ export default {
   },
   async created() {
     // if user not logged in, redirect to /login
+    /* COMMENT: FOR DEBUG ONLY ! TODO: uncomment !
     if (!this.$store.state.auth.status.loggedIn) {
       return this.$router.push("/login");
     }
+    */
     this.idActivite = this.$route.params.idActivite;
     this.idParcours = this.$route.params.idParcours;
 
@@ -269,6 +271,13 @@ export default {
     },
     async updateEntry(entry) {
       entry.state = "FINISHED";
+      console.log("update:");
+      console.log(entry.rendu);
+      console.log(entry.parsedRendu);
+
+      if (entry.parsedRendu) {
+        entry.rendu = JSON.stringify(entry.parsedRendu);
+      }
       try {
         await ProgressionService.updateProgression(entry, "entry");
         console.log("Answer sent: " + entry.rendu);
