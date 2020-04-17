@@ -143,8 +143,6 @@ export default {
 
     this.idActivite = this.progression.idActivite;
     this.idParcours = this.progression.idParcours;
-    
-    alert(this.progression);
 
     this.activity = await activityService.getActivity(
       this.idParcours,
