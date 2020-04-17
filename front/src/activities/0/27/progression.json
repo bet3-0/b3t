@@ -1,6 +1,7 @@
 {
   "idActivite": "27",
   "idParcours": "0",
+  "nom": "Fabrique un ou plusieurs tawashi",
   "state": "INPROGRESS",
   "duration": 20,
   "startedAt": 0,

@@ -1,6 +1,7 @@
 {
   "idActivite": "18",
   "idParcours": "1",
+  "nom": "Ca va swinguer !",
   "state": "INPROGRESS",
   "duration": 20,
   "startedAt": 0,

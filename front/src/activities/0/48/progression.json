@@ -1,6 +1,7 @@
 {
   "idActivite": "0",
   "idParcours": "0",
+  "nom": "Mon plan d’implantation d’un camp romain",
   "state": "INPROGRESS",
   "duration": 15,
   "startedAt": 0,

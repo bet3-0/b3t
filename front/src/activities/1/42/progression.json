@@ -1,6 +1,7 @@
 {
   "idActivite": "42",
   "idParcours": "1",
+  "nom": "Grand chef: Mots fléchés culinaires",
   "state": "INPROGRESS",
   "duration": 20,
   "startedAt": 0,

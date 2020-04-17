@@ -1,6 +1,7 @@
 {
   "idActivite": "14",
   "idParcours": "2",
+  "nom": "L’improvisation",
   "state": "INPROGRESS",
   "duration": 10,
   "startedAt": 0,

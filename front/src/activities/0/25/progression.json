@@ -1,6 +1,7 @@
 {
   "idActivite": "25",
   "idParcours": "0",
+  "nom": "Fabrique ta lessive",
   "state": "INPROGRESS",
   "duration": 15,
   "startedAt": 0,

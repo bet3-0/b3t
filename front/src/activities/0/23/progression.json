@@ -1,6 +1,7 @@
 {
   "idActivite": "23",
   "idParcours": "0",
+  "nom": "La potion magique ? Connais pas...",
   "state": "INPROGRESS",
   "duration": 15,
   "startedAt": 0,

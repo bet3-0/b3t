@@ -1,6 +1,7 @@
 {
   "idActivite": "53",
   "idParcours": "0",
+  "nom": "Es-tu un vrai druide? ",
   "state": "INPROGRESS",
   "duration": 30,
   "startedAt": 0,

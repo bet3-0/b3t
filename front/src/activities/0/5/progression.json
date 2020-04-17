@@ -2,6 +2,7 @@
   "idActivite": "5",
   "idParcours": "0",
   "state": "INPROGRESS",
+  "nom": "Fabrication d’un système de distribution d’eau",
   "duration": 15,
   "startedAt": 0,
   "finishedAt": 0,

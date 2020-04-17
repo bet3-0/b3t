@@ -1,6 +1,7 @@
 {
   "idActivite": "6",
   "idParcours": "2",
+  "nom": "Marionnettes chaussettes",
   "state": "INPROGRESS",
   "duration": 20,
   "startedAt": 0,

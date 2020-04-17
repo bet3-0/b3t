@@ -1,6 +1,7 @@
 {
   "idActivite": "1",
   "idParcours": "4",
+  "nom": "La Halte",
   "state": "INPROGRESS",
   "duration": 60,
   "startedAt": 0,

@@ -1,6 +1,7 @@
 {
   "idActivite": "22",
   "idParcours": "0",
+  "nom": "Il me manque quelques ingrédients de la recette",
   "state": "INPROGRESS",
   "duration": 15,
   "startedAt": 0,

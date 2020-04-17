@@ -1,6 +1,7 @@
 {
   "idActivite": "32",
   "idParcours": "1",
+  "nom": "Fabrique ton four",
   "state": "INPROGRESS",
   "duration": 30,
   "startedAt": 0,

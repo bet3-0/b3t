@@ -1,6 +1,7 @@
 {
   "idActivite": "46",
   "idParcours": "0",
+  "nom": "Il faut rester en forme pour maintenir le moral des troupes",
   "state": "INPROGRESS",
   "duration": 20,
   "startedAt": 0,

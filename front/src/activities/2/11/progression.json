@@ -1,6 +1,7 @@
 {
   "idActivite": "11",
   "idParcours": "2",
+  "nom": "Poterie en pâte à modeler",
   "state": "INPROGRESS",
   "duration": 15,
   "startedAt": 0,

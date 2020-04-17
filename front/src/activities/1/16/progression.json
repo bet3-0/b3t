@@ -1,6 +1,7 @@
 {
   "idActivite": "16",
   "idParcours": "1",
+  "nom": "A vos fourneaux : plat monochrome !",
   "state": "INPROGRESS",
   "duration": 45,
   "startedAt": 0,

@@ -1,6 +1,7 @@
 {
   "idActivite": "4",
   "idParcours": "1",
+  "nom": "Entretenir son opinel, ça sécurise.",
   "state": "INPROGRESS",
   "duration": 15,
   "startedAt": 0,

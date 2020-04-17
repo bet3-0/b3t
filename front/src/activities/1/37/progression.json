@@ -1,6 +1,7 @@
 {
   "idActivite": "37",
   "idParcours": "1",
+  "nom": "Quel aliment pour quel bienfait?",
   "state": "INPROGRESS",
   "duration": 10,
   "startedAt": 0,

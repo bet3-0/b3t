@@ -1,6 +1,7 @@
 {
   "idActivite": "8",
   "idParcours": "2",
+  "nom": "Ombres chinoises",
   "state": "INPROGRESS",
   "duration": 20,
   "startedAt": 0,
