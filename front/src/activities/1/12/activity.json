@@ -1,0 +1,13 @@
+{
+  "id": "12",
+  "idParcours": "1",
+  "nom": "À vos fourneaux : Trompe l’oeil !",
+  "description": "Aide Astérix à diversifier l’alimentation d’Obélix !  Avec tout ce que tu trouve dans ton frigo et placards, réalise une entrée, un plat ou un dessert en trompe l'œil.",
+  "duree": 30,
+  "materiel": [
+    "Aliments",
+    "Appareil photo"
+  ],
+  "difficulte": "facile",
+  "page": 1
+}
