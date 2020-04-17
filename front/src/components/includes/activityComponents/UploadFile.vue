@@ -16,6 +16,7 @@
       </div>
       <div class="input-group-append">
         <button
+          :id="`submitFileButton-${idEntry}`"
           class="input-group-text btn-primary text-white"
           v-on:click="submitFile()"
         >
@@ -30,6 +31,7 @@
 <script>
 import ProgressionService from "./../../../service/progression.service";
 import Alert from "./../../includes/Alert";
+import $ from "jquery";
 
 export default {
   name: "UploadFile",
@@ -37,6 +39,7 @@ export default {
   props: ["entry", "updateEntry"],
   data() {
     return {
+      idEntry: this.entry.id,
       file: "",
       showDismissibleAlert: false, // for Alert
       textAlert: false, // for Alert
@@ -49,6 +52,7 @@ export default {
     },
     /* Submits the file to the server */
     async submitFile() {
+      $(`#submitFileButton-${this.idEntry}`).prop("disabled", true);
       /* Iniitialize the form data */
       let formData = new FormData();
 
@@ -64,11 +68,17 @@ export default {
         this.textAlert =
           "Nous n'avons pas pu envoyer ton fichier... Réessaie pour voir ?";
         this.showDismissibleAlert = true;
+        $(`#submitFileButton-${this.idEntry}`).removeAttr("disabled");
+
         return;
       }
-      this.entry.documents.push(url);
-      this.updateEntry(this.entry);
-      await this.submitText(); // Send the entry
+      try {
+        this.entry.documents.push(url);
+        this.updateEntry(this.entry);
+        await this.submitText(); // Send the entry
+      } finally {
+        $(`#submitFileButton-${this.idEntry}`).removeAttr("disabled");
+      }
     },
 
     async submitText() {
