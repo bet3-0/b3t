@@ -13,9 +13,9 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item active" v-if="role === 'jeune'">
-          <router-link class="nav-link text-white" to="/parcours"
-            >Parcours</router-link
-          >
+          <router-link class="nav-link text-white" to="/parcours">{{
+            activityNavItem
+          }}</router-link>
         </li>
         <li class="nav-item" v-if="role != 'jeune'">
           <router-link class="nav-link text-white" to="/validation"
@@ -24,7 +24,7 @@
         </li>
         <li class="nav-item" v-if="role === 'jeune'">
           <router-link class="nav-link text-white" to="/progression"
-            >Progression personnelle</router-link
+            >Mes activités</router-link
           >
         </li>
         <li class="nav-item" v-if="['chef', 'admin'].includes(role)">
@@ -43,8 +43,11 @@
           >
         </li>
         <li class="nav-item">
-          <router-link class="nav-link text-white" to="/"
-            >Progression Générale</router-link
+          <router-link
+            class="nav-link text-white"
+            v-if="role === 'admin'"
+            to="/"
+            >Progression générale</router-link
           >
         </li>
       </ul>
@@ -86,6 +89,12 @@ export default {
         return this.$store.state.auth.user.role || "jeune";
       }
       return "jeune";
+    },
+    activityNavItem() {
+      if (isNaN(this.$store.state.parcours.parcours)) {
+        return "Choix de parcours";
+      }
+      return "Activités du parcours";
     },
   },
   methods: {
