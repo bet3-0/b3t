@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1>Choisi ton parcours</h1>
+    <h1>Choisis ton parcours</h1>
     <div class="row">
       <div class="col-md-3">
         <img
