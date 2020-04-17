@@ -9,7 +9,7 @@
   "entries": [
     {
       "position": 0,
-      "question": "Ton meilleur ami à se brûle en mettant la main sur une des pierres tenant la grille de la table à feu. Dans quel ordre réalises-tu les actions suivante ?",
+      "question": "Ton meilleur ami se brûle en mettant la main sur une des pierres tenant la grille de la table à feu. Dans quel ordre réalises-tu les actions suivante ?",
       "documents": [],
       "typeRendu": "orderList",
       "rendu": "[\"S'éloigner du feu\", \"Mettre la brûlure sous l’eau tiède/froide jusqu’à ce que la douleur disparaisse\", \"Prévenir les chefs\"]",
