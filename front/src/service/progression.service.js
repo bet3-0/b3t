@@ -114,4 +114,19 @@ export default class ProgressionService {
       return undefined;
     }
   }
+
+  static async getUserProgression(idProgression) {
+    console.log("Fetching progression...");
+    try {
+      let response = await fetch(API_URL + "user/progression/"+idProgression, {
+        method: "GET",
+        headers: authHeader(),
+      });
+      let data = await response.json();
+      return data.progression;
+    } catch (error) {
+      console.error(error);
+      return undefined;
+    }
+  }
 }
