@@ -11,6 +11,7 @@ import "@/assets/css/main.css";
 import ParcoursChoiceComponent from "./components/ParcoursChoiceComponent";
 import PersonalProgression from "./components/PersonalProgression";
 import ActivitiesToValidate from "./components/ActivitiesToValidate";
+import HalteComponent from "./components/HalteComponent";
 
 Vue.use(VeeValidate); // todo: understand this line for login ?
 Vue.use(VueRouter);
@@ -46,13 +47,6 @@ const router = new VueRouter({
       path: "/activitees",
       component: ActivitiesComponent
     },
-    /*
-    {
-      // TO BE DEPRECATED !!!!
-      path: "/activity/:idActivity",
-      component: ActivityComponent
-    },
-    */
     {
       path: "/activity/:idParcours/:idActivite",
       component: ActivityComponent
@@ -68,6 +62,10 @@ const router = new VueRouter({
     {
       path: "/validation",
       component: ActivitiesToValidate
+    },
+    {
+      path: "/halte",
+      component: HalteComponent
     }
   ]
 });

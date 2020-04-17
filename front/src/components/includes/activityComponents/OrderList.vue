@@ -10,8 +10,8 @@
         >
           <transition-group>
             <div
-              v-for="(element, index) in propositions"
-              :key="index"
+              v-for="element in propositions"
+              :key="element"
               class="mb-3 cursor"
             >
               {{ element }}

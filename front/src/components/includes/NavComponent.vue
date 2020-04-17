@@ -33,7 +33,7 @@
           >
         </li>
         <li class="nav-item">
-          <router-link class="nav-link text-white" to="/activity/4/1"
+          <router-link class="nav-link text-white" to="/halte"
             >Halte</router-link
           >
         </li>
