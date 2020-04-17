@@ -1,4 +1,3 @@
-import axios from "axios";
 import { API_URL } from "./config";
 
 class AuthService {
@@ -26,14 +25,6 @@ class AuthService {
 
   logout() {
     localStorage.removeItem("user");
-  }
-
-  // for test purposes only
-  register(user) {
-    return axios.post(API_URL + "register", {
-      code_adherent: user.code_adherent,
-      role: user.role,
-    });
   }
 }
 
