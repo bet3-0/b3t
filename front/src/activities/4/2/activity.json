@@ -1,9 +1,9 @@
 {
   "id": "2",
   "idParcours": "4",
-  "nom": "Espace Bien-être",
+  "nom": "Espace prévention",
   "description": "Bienvenue dans notre espace prévention. Ici tu vas pouvoir découvrir nos différents outils de prévention sur l'enfance durant ce BET. Tu peux venir sur cette page autant de fois que tu le désires",
-  "duree": 0,
+  "duree": 30,
   "materiel": [""],
   "difficulte": "facile",
   "page": 1
