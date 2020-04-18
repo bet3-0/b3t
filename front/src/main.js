@@ -14,6 +14,8 @@ import ActivitiesToValidate from "./components/ActivitiesToValidate";
 import HalteComponent from "./components/HalteComponent";
 import ActivityToValidate from "./components/ActivityToValidate";
 import YouthActivities from "./components/YouthActivities";
+import Error404 from "./components/Error404";
+
 
 Vue.use(VeeValidate); // todo: understand this line for login ?
 Vue.use(VueRouter);
@@ -92,6 +94,10 @@ const router = new VueRouter({
       get component() {
         return ActivityToValidate;
       },
+    },
+    {
+      path: "*",
+      component: Error404,
     },
   ],
 });
