@@ -9,7 +9,7 @@
           class="list-group-item d-flex justify-content-between align-items-center"
         >
           <div>
-            <img class="icon" src="/img/icons/inProgress.png" /> : Activité en
+            <img class="icon" src="/img/icons/INPROGRESS.png" /> : Activité en
             cours. Tu peux la reprendre à tout moment !
           </div>
           <span class="badge badge-primary badge-pill">{{
@@ -20,7 +20,7 @@
           class="list-group-item d-flex justify-content-between align-items-center"
         >
           <div>
-            <img class="icon" src="/img/icons/finished.png" /> : Activité
+            <img class="icon" src="/img/icons/FINISHED.png" /> : Activité
             terminée, en cours de validation.
           </div>
           <span class="badge badge-primary badge-pill">{{
@@ -32,7 +32,7 @@
           class="list-group-item d-flex justify-content-between align-items-center"
         >
           <div>
-            <img class="icon" src="/img/icons/validated.png" /> : Activité
+            <img class="icon" src="/img/icons/VALIDATED.png" /> : Activité
             validée.
           </div>
           <span class="badge badge-primary badge-pill">{{
@@ -44,7 +44,7 @@
           class="list-group-item d-flex justify-content-between align-items-center"
         >
           <div>
-            <img class="icon" src="/img/icons/refused.png" /> : Activitée
+            <img class="icon" src="/img/icons/REFUSED.png" /> : Activitée
             refusée. Pas de panique, tu peux la recommencer si tu le souhaites !
           </div>
           <span class="badge badge-primary badge-pill">{{
