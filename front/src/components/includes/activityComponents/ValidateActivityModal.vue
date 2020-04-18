@@ -18,12 +18,15 @@
         <b-button variant="secondary" @click="cancel()">
           Reprendre mon activité
         </b-button>
-        <b-button variant="success" @click="validate()">
+        <b-button
+          :variant="message ? 'warning' : 'success'"
+          @click="validate()"
+        >
           <span
             v-show="loading"
             class="spinner-border spinner-border-sm"
           ></span>
-          Envoyer mon activité
+          Envoyer mon activité{{message ? ' quand même' : ''}}
         </b-button>
       </template>
     </b-modal>
@@ -59,8 +62,8 @@ export default {
           this.progression,
           "progression"
         );
-        if (!response){
-            throw "Impossible d'envoyer ta progression !"
+        if (!response) {
+          throw "Impossible d'envoyer ta progression !";
         }
         console.log("Progression sent: " + this.progression);
 
