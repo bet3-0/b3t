@@ -81,6 +81,7 @@ export default {
       console.log("Editing progression...");
       //Change state
       this.progression.state = progressionState;
+      this.progression.entries.forEach((_entry) => _entry.state = this.progression.state);
 
       // Update progression
       try {
