@@ -6,8 +6,7 @@
     "startedAt": 0,
     "finishedAt": 0,
     "reviewAt": 0,
-    "entries": [
-        {
+    "entries": [{
             "id": 0,
             "question": "Classe les étiquettes dans le bon ordre pour qu’elles correspondent à l’ordre du texte puis clique sur suivant.",
             "documents": [],
@@ -17,9 +16,9 @@
                 "reponses": {
                     "NE": false,
                     "sous-directions": false,
-		    "N": false,
+                    "N": false,
                     "NO": false,
-		    "points cardinaux":false
+                    "points cardinaux": false
                 }
             }],
             "state": "NOTSTARTED",
