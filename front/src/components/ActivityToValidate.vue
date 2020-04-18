@@ -144,7 +144,7 @@ export default {
 
     this.progression.state = "REVIEWING"
     await ProgressionService.updateProgression(this.progression, "user/progression");
-    
+
     this.idActivite = this.progression.idActivite;
     this.idParcours = this.progression.idParcours;
 

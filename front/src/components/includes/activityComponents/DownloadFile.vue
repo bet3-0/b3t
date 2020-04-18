@@ -1,6 +1,11 @@
 <template>
   <div>
-    <button :id="`anchor-${idFile}`" v-on:click="redirectToFIle()" class="btn btn-primary">Télécharger le fichier</button>
+    <a :id="`anchor-${idFile}`"
+       class="btn btn-primary"
+       :disabled="disabled"
+       :href="fileUrl">
+       Télécharger le fichier
+    </a>
   </div>
 </template>
 
@@ -9,22 +14,26 @@ import FileService from "./../../../service/file.service";
 
 export default {
   name: "DownloadFile",
-  data() {},
+  data: function() {
+     return {
+        fileUrl: null,
+        disabled: true
+     };
+  },
   props: ["idFile"],
   methods: {
     // Redirect user to file if file is available
-    async redirectToFIle() {
-      let url = await FileService.getUrl(this.idFile);
-      if (url == undefined) {
-        alert(
-          "Impossible de récuperer ton fichier... Réessaie pour voir ?"
-        );
-        return
-      }
-      window.open(url, '_blank').focus();
-      return
-    },
   },
+  async created() {
+     this.fileUrl = await FileService.getUrl(this.idFile);
+     if (this.fileUrl == undefined) {
+        alert(
+        "Impossible de récuperer ton fichier... Réessaie pour voir ?"
+        );
+     } else {
+        this.disabled = false
+     }
+  }
 };
 </script>
 <style scoped>
