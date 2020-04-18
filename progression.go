@@ -23,8 +23,10 @@ const (
 type typeRendu string
 
 const (
-	Text typeRendu = "text"
-	File           = "file"
+	Text      typeRendu = "text"
+	File                = "file"
+	OrderList           = "orderList"
+	Qcm                 = "qcm"
 )
 
 type Entry struct {
