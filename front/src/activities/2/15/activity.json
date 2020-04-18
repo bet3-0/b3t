@@ -1,0 +1,10 @@
+{
+  "id": "15",
+  "idParcours": "2",
+  "nom": "La vie en bleu",
+  "description": "Développe ta créativité en écrivant un couplet de \"La vie en bleu\"",
+  "duree": 20,
+  "materiel": [""],
+  "difficulte": "facile",
+  "pages": 2
+}
