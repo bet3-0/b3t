@@ -4,6 +4,7 @@ Base Component for an activity page -->
 <template>
   <div class="container" role="main">
     <Alert :show="showDismissibleAlert" :text="textAlert" />
+    <ActivityProgressBar :progress="progress" />
     <div class="row">
       <div id="main-container" class="activity-container col-12">
         <img
@@ -101,6 +102,7 @@ import OrderList from "./includes/activityComponents/OrderList";
 import Qcm from "./includes/activityComponents/Qcm";
 import activityService from "./../service/activity";
 import itineraryHelpers from "./../service/itineraryHelpers";
+import ActivityProgressBar from "./includes/activityComponents/ActivityProgressBar";
 
 import ValidateActivityPage from "./includes/activityComponents/ValidateActivityPage";
 import $ from "jquery";
@@ -115,8 +117,8 @@ export default {
     ValidateActivityPage,
     OrderList,
     Alert,
+    ActivityProgressBar,
   },
-  props: ["pastProgression"],
   data() {
     return {
       showDismissibleAlert: false, // for Alert
@@ -131,11 +133,11 @@ export default {
     };
   },
   async created() {
-        // if user not logged in, redirect to /login
+    // if user not logged in, redirect to /login
     if (!this.$store.state.auth.status.loggedIn) {
       return this.$router.push("/login");
     }
-    
+
     this.idProgression = this.$route.params.idProgression;
 
     this.progression = await this.findProgression(this.idProgression);
@@ -169,93 +171,54 @@ export default {
     },
 
     async findProgression(progressionId) {
-      let progression = await ProgressionService.getUserProgression(progressionId);
+      let progression = await ProgressionService.getUserProgression(
+        progressionId
+      );
       if (!progression) {
         console.log("failed to retrieve progression");
         return false; // do not create a new progression and raises an error
       }
       return progression;
     },
-    
+
     // Activity progression
     getProgress() {
-      let counter = 0;
-      let total = 0;
-      for (let entryIndex in this.progression.entries) {
-        if (this.progression.entries[entryIndex].tracked) {
-          total += 1;
-          if (this.progression.entries[entryIndex].state === "FINISHED") {
-            counter += 1;
-          }
-        }
-      }
+      let counter = this.pageNumber;
+      let total = this.activity.page;
       if (total === 0) {
         this.progress = 0; // div by 0
         return;
       }
       this.progress = (100 * counter) / total;
     },
-    async updateEntry(entry) {
-      entry.state = "FINISHED";
-      console.log("update:");
-      console.log(entry.rendu);
-      console.log(entry.parsedRendu);
 
-      if (entry.parsedRendu) {
-        entry.rendu = JSON.stringify(entry.parsedRendu);
-      }
-      try {
-        await ProgressionService.updateProgression(entry, "entry");
-        console.log("Answer sent: " + entry.rendu);
-        this.updateEntryInProgression(entry); // update the primary progression object
-      } catch (error) {
-        console.log("Error while sending text entry: " + entry.rendu);
-        entry.state = "INPROGRESS";
-        alert(
-          "Impossible d'envoyer ta progression ! Vérifie ta connexion et réessaye !"
-        );
-      }
-    },
-    updateEntryInProgression(newEntry) {
-      if (!this.progression.entries) {
-        this.progression.entries = [];
-      }
-      for (var i in this.progression.entries) {
-        if (this.progression.entries[i].id == newEntry.id) {
-          this.progression.entries[i] = newEntry;
-          break;
-        }
-      }
-      this.getProgress();
+    updateEntry(entry) {
+      console.warn(
+        "Should not appear in this view: updateEntry called for entry: "
+      );
+      console.log(entry);
     },
     changeParcoursColor() {
       return itineraryHelpers.getItineraryColor(this.activity.idParcours);
-    },
-    async validatePageEntries() {
-      if (!this.progression.entries) {
-        return;
-      }
-      this.progression.entries.forEach(async (entry) => {
-        if (entry.page == this.pageNumber) {
-          await this.updateEntry(entry);
-        }
-      });
     },
     pageEntries() {
       if (!this.progression.entries) {
         return [];
       }
+      this.progression.entries.forEach((entry) => {
+        entry.state = "INREVIEW";
+      });
       return this.progression.entries
         .filter((entry) => entry.page === this.pageNumber)
         .sort((a, b) => a.position - b.position);
     },
     async updatePage(pageNumber) {
-      await this.validatePageEntries();
       if (pageNumber != this.pageNumber) {
         $(`#page${this.pageNumber}`).hide();
         this.pageNumber = pageNumber;
         $(`#page${this.pageNumber}`).show();
       }
+      this.getProgress();
       console.log(`Current page number: ${this.pageNumber}`);
       window.scrollTo(0, 0);
     },

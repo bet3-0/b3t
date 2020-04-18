@@ -14,8 +14,8 @@
         <p>
           Durée réelle:
           {{
-            ((progression.finishedAt - progression.startedAt) / 60000).toFixed(
-              2
+            ((progression.finishedAt - progression.startedAt) / 3600000).toFixed(
+              1
             )
           }}
           minutes

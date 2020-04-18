@@ -69,7 +69,7 @@ const router = new VueRouter({
       component: HalteComponent
     },
     {
-      path: "/validation/:idProgression/:idParcours/:IdActivite",
+      path: "/validation/:idProgression/:idParcours/:idActivite",
       component: ActivityToValidate
     }
   ]

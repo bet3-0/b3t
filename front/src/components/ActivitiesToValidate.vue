@@ -67,8 +67,8 @@
               {{
                 (
                   (progression.finishedAt - progression.startedAt) /
-                  60000
-                ).toFixed(2)
+                  3600000
+                ).toFixed(1)
               }}
             </td>
           </tr>
@@ -76,12 +76,12 @@
       </table>
     </div>
     <img
-      v-if="!progressions"
+      v-if="!progressions.length"
       class="img-spinner"
       src="/img/icons/spinner.svg"
       alt="Chargement en cours..."
     />
-    <p v-if="!progressions.length" >Aucune progression a valider</p>
+    <p v-if="!displayProgressions.length" >Aucune progression à valider</p>
     <!-- Modal -->
     <ValidationModal :progression="currentProgression" />
   </div>
