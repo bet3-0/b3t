@@ -37,7 +37,7 @@
     <!-- /#wrapper -->
     <div class="container">
       <table class="table">
-        <thead>
+        <thead v-if="!loading">
           <tr>
             <th scope="col"></th>
             <th scope="col">Nom</th>
@@ -73,10 +73,14 @@
           </tr>
         </tbody>
       </table>
+      <div v-if="!loading && !displayActivities.length">
+        Aucune activité à afficher.
+      </div>
     </div>
 
     <!-- Modal -->
     <ActivityModal :activity="currentActivity" />
+    <ErrorModal :title="titleError" :message="messageError" />
   </div>
 </template>
 
@@ -88,13 +92,14 @@ import Vue from "vue";
 import BootstrapVue from "bootstrap-vue";
 import VueRouter from "vue-router";
 import Spinner from "./includes/Spinner";
+import ErrorModal from "./includes/ErrorModal";
 
 Vue.use(BootstrapVue);
 Vue.use(VueRouter);
 
 export default {
   name: "ActivitiesComponent",
-  components: { ActivityModal, Spinner },
+  components: { ActivityModal, Spinner, ErrorModal },
   data() {
     return {
       idParcours: this.$store.state.parcours.parcours,
@@ -103,49 +108,64 @@ export default {
       duration: "",
       difficulte: "",
       currentActivity: {},
-      activities: [],
-      displayActivities: [],
+      activities: {}, // object {idActivite: {activity object}}
+      displayActivities: [], // list of activities
+      titleError: "Erreur de chargement des activités",
+      messageError: "",
     };
   },
-  created() {
-    // Check if parcours is defined. If not, redirect to /parcours
-    if (isNaN(this.idParcours) | (this.idParcours > 3)) {
-      return this.$router.push("/parcours");
-    }
-  },
   async mounted() {
-    this.loading = true;
-    try {
-      this.activities = await activityService.getAllActivity(this.idParcours);
-    } catch (error) {
-      return console.error(error);
-      // this.activities = activityService.listActi(); // for debug : TODO: remove
-    }
-    // Filter in case API does not
-    let startedActivities =
-      JSON.parse(localStorage.getItem("activities")) || {};
-    let startedIds = [];
-    if (startedActivities[this.idParcours]) {
-      startedIds = Object.keys(startedActivities[this.idParcours]).filter(
-        (idActivite) =>
-          startedActivities[this.idParcours][idActivite].progression
-      );
-    }
-    this.displayActivities = this.activities.filter(
-      (activity) =>
-        activity.idParcours == this.idParcours &&
-        !startedIds.includes(activity.id)
-    );
-    this.loading = false;
+    await this.loadActivities();
   },
   methods: {
     sendInfo(activity) {
+      // Send info for the modal
       this.currentActivity = activity;
+    },
+    async loadActivities() {
+      this.loading = true;
+      let activities = await activityService.getAllActivities(this.idParcours);
+      if (activities === undefined) {
+        this.titleError = "Impossible de charger le contenu !";
+        this.messageError =
+          "Les activités n'arrivent pas à transiter jusqu'ici ! Recharge la page ou essaie de te déconnecter/reconnecter !";
+        this.$bvModal.show("errorModal");
+        this.loading = false;
+        return undefined;
+      }
+      this.activities = activities;
+      // Filter in case API does not
+      let startedActivities = {};
+      try {
+        startedActivities =
+          JSON.parse(localStorage.getItem("activities")) || {};
+      } catch (error) {
+        // localStorage corrupted
+        this.titleError = "Impossible de charger le contenu !";
+        this.messageError =
+          "Les activités ont un souci pour venir jusqu'ici ! Essaie de te déconnecter/reconnecter pour régler le problème !";
+        this.$bvModal.show("errorModal");
+        this.loading = false;
+        return undefined;
+      }
+      let startedIds = [];
+      if (startedActivities[this.idParcours]) {
+        startedIds = Object.keys(startedActivities[this.idParcours]).filter(
+          (idActivite) =>
+            startedActivities[this.idParcours][idActivite].progression
+        );
+      }
+      // TODO: afficher plus si les jeunes ont fini ! Et colorer les activités par parcours/permettre de filter
+      this.displayActivities = Object.values(this.activities).filter(
+        (activity) =>
+          activity.idParcours == this.idParcours &&
+          !startedIds.includes(activity.id)
+      );
+      this.loading = false;
     },
 
     change(data) {
       if (data === "parcours") {
-        // this.displayActivities = this.activities;
         this.displayActivities.sort(function(item, other) {
           if (item.nom < other.nom) {
             return -1;
@@ -157,7 +177,6 @@ export default {
       }
 
       if (data === "difficulte") {
-        // this.displayActivities = this.activities;
         this.displayActivities.sort(function(item, other) {
           if (
             item.difficulte === "facile" &&
@@ -184,7 +203,6 @@ export default {
       }
 
       if (data === "duration") {
-        // this.displayActivities = this.activities;
         this.displayActivities.sort(function(item, other) {
           if (item.duree < other.duree) {
             return -1;

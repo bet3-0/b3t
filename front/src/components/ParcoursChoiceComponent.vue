@@ -48,6 +48,7 @@ export default {
   components: { ErrorModal },
   data() {
     return {
+      selected: null,
       titleError: "Impossible de choisir le parcours",
       messageError:
         "Nous n'arrivons pas à sélectionner le parcours ! Vérifie ta connexion internet et réessaie !",
@@ -57,6 +58,16 @@ export default {
     async selectChoice(selected) {
       // Creates the first empty progression to permit to retrieve parcours after reconnection
       console.log("Parcours chosen:" + selected);
+      if ([0, 1, 2, 3].includes(this.$store.state.parcours.parcours)) {
+        //Parcours already chosen before (can open if user uses back/previous button)
+        console.warn("Parcours already chosen before !");
+        this.$router.push("/activitees");
+      }
+      if (this.selected !== null) {
+        console.warn("Parcours already selected !");
+        return; // Parcours has just been selected
+      }
+      this.selected = selected;
       let parcoursFirstPrgression = {
         state: "NOTSTARTED",
         idActivite: "-1",
@@ -69,6 +80,7 @@ export default {
       if (isChosen === undefined) {
         console.warn("Impossible to send the Parcours to server!");
         this.$bvModal.show("errorModal");
+        this.selected = null;
       } else {
         // Store the Parcours and redirecte to activities
         this.$store.dispatch("parcours/setParcours", selected);

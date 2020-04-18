@@ -22,17 +22,13 @@ export default class activityService {
     }
   }
 
-  // TODO: DEPRECATE THIS --> getAllParcours()
   /**Get all activities associated tout a Parcours */
-  static async getAllActivity(idParcours) {
-    try {
-      let response = await fetch(`${API_URL}parcours`, { method: "GET" });
-      let data = await response.json();
-      let result = data.parcours[idParcours].Activites;
-      return result;
-    } catch (error) {
-      return [];
+  static async getAllActivities(idParcours) {
+    let allParcours = await this.getAllParcours();
+    if (allParcours === undefined) {
+      return undefined;
     }
+    return allParcours[idParcours];
   }
 
   static async getActivity(idParcours, idActivite) {
@@ -86,15 +82,15 @@ export default class activityService {
       let response = await fetch(API_URL + "parcours", { method: "GET" });
       let data = await response.json();
       // data.parcours[idParcours].Activites -> {idParcours: {idActivity: {activity},...}, ...};
-      let result = {};
+      let parcours = {};
       for (let index in data.parcours) {
-        result[data.parcours[index].id] = {};
+        parcours[data.parcours[index].id] = {};
         for (let ind in data.parcours[index].Activites) {
           let activity = data.parcours[index].Activites[ind]; // no check on the object
-          result[data.parcours[index].id][activity.id] = activity;
+          parcours[data.parcours[index].id][activity.id] = activity;
         }
       }
-      return result;
+      return parcours;
     } catch (error) {
       console.error(error);
       return undefined;
