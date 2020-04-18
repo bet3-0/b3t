@@ -6,7 +6,7 @@
           :list="propositions"
           class="mb-5"
           ghost-class="ghost"
-          :sort="entry.state != 'INREVIEW'"
+          :sort="entry.state != 'REVIEWING'"
         >
           <transition-group>
             <div

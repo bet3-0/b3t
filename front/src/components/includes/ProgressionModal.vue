@@ -55,7 +55,7 @@ export default {
           return "Tu n'as pas encore validé cette activité. Tu peux y retourner pour la terminer.";
         case "FINISHED":
           return "Ton activité est en cours de validation par un chef ou une cheftaine";
-        case "INREVIEW":
+        case "REVIEWING":
           return "Ton activité est en cours de validation par un chef ou une cheftaine";
         case "VALIDATED":
           return "Ton activité a été validée ! Bravo à toi !";

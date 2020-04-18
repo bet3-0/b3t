@@ -189,7 +189,7 @@ export default {
         console.log("Existing progression id is incorrect!");
         return "TOCREATE"; // do create a new progression
       }
-      if (["FINISHED", "INREVIEW"].includes(existingProgression.state)) {
+      if (["FINISHED", "REVIEWING"].includes(existingProgression.state)) {
         console.log("Existing progression is in a non editable state");
         return false; // do not create a new progression and raises an error
       }

@@ -44,7 +44,7 @@ export default {
   },
   computed: {
     validationString() {
-      if (this.progression.state == "INREVIEW") {
+      if (this.progression.state == "REVIEWING") {
         return "Réviser l'activité";
       }
       return "Valider";
@@ -67,7 +67,7 @@ export default {
         this.nextPage();
       } else {
         await this.updatePage(this.pageNumber);
-        if (this.progression.state == "INREVIEW") {
+        if (this.progression.state == "REVIEWING") {
           // Validation for reviewer
           this.$bvModal.show("activityToValidateModal");
         } else {

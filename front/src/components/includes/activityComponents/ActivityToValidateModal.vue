@@ -97,7 +97,7 @@ export default {
         this.$router.push("/validation");
       } catch (error) {
         console.log("Error while sending text entry: " + this.progression);
-        this.progression.state = "INREVIEW";
+        this.progression.state = "REVIEWING";
         alert(
           "Impossible d'envoyer ta progression ! Vérifie ta connexion et réessaye !"
         );

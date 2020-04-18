@@ -24,7 +24,7 @@
             terminée, en cours de validation.
           </div>
           <span class="badge badge-primary badge-pill">{{
-            counter.FINISHED + counter.INREVIEW
+            counter.FINISHED + counter.REVIEWING
           }}</span>
         </li>
 
@@ -143,7 +143,7 @@ export default {
         NOTSTARTED: 0,
         INPROGRESS: 0,
         FINISHED: 0,
-        INREVIEW: 0,
+        REVIEWING: 0,
         VALIDATED: 0,
         REFUSED: 0,
       },

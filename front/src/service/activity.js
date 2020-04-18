@@ -85,7 +85,7 @@ export default class activityService {
     if (pastProgressions && pastProgressions.length) {
       pastProgressions.forEach((prog) => {
         if (
-          ["FINISHED", "INREVIEW", "VALIDATED", "REFUSED"].includes(prog.state)
+          ["FINISHED", "REVIEWING", "VALIDATED", "REFUSED"].includes(prog.state)
         ) {
           gloabalProgression += parseInt(prog.duration);
         }
