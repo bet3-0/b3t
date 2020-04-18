@@ -4,6 +4,7 @@ go 1.14
 
 require (
 	github.com/aws/aws-sdk-go v1.30.4 // indirect
+	github.com/gin-contrib/secure v0.0.1 // indirect
 	github.com/gin-contrib/static v0.0.0-20191128031702-f81c604d8ac2
 	github.com/gin-gonic/gin v1.6.2
 	github.com/google/uuid v1.1.1 // indirect
