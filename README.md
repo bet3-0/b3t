@@ -31,3 +31,9 @@ cd front
 npm install
 npm run serve
 ```
+
+# Build to release 
+
+```
+npx vue-cli-service build
+```

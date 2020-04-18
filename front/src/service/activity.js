@@ -107,7 +107,9 @@ export default class activityService {
     }
     // Get the Parcours
     if (pastProgressions && pastProgressions.length) {
-      pastProgressions.sort((a, b) => a.startedAt - b.startedAt);
+      pastProgressions
+        .sort((a, b) => a.startedAt - b.startedAt)
+        .filter((prog) => [0, 1, 2, 3].includes(parseInt(prog.idParcours)));
       store.dispatch("parcours/setParcours", pastProgressions[0].idParcours);
     }
     // store results in localStorage
