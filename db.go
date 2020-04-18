@@ -103,6 +103,7 @@ func connect() {
 			if err != nil {
 				fmt.Println(err)
 			}
+			fmt.Printf("Loading activite %s from parcours %s\n", activiteCode, parcoursCode)
 			Activite := Activite{Difficulte: "moyen"}
 			err = json.Unmarshal([]byte(jsonContent), &Activite)
 			if err != nil {
