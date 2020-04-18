@@ -42,7 +42,7 @@
       "position": 3,
       "question": "Quel est la portion idéale pour les céréales?",
       "documents": [],
-      "typeRendu": "file",
+      "typeRendu": "text",
       "rendu": "",
       "state": "NOTSTARTED",
       "tracked": true,

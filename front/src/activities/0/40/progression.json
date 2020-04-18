@@ -1,7 +1,7 @@
 {
   "idActivite": "40",
   "idParcours": "0",
-  "nom": "Alcool, tabac, que sais tu sur eux?",
+  "nom": "Alcool, tabac, que sais-tu sur eux ?",
   "state": "INPROGRESS",
   "duration": 20,
   "startedAt": 0,
@@ -10,7 +10,7 @@
   "entries": [
     {
       "position": 0,
-      "question": "Qu’est ce que cette image signifie pour toi? ",
+      "question": "Qu’est-ce que cette image signifie pour toi ? ",
       "documents": [],
       "typeRendu": "text",
       "rendu": "",
@@ -20,7 +20,7 @@
     },
     {
       "position": 1,
-      "question": "Connais tu des gens qui fume?",
+      "question": "Connais tu des gens qui fument ?",
       "documents": [],
       "typeRendu": "text",
       "rendu": "",
@@ -30,7 +30,7 @@
     },
     {
       "position": 2,
-      "question": "Consomme tu de l’alcool et/ou du tabac?",
+      "question": "Consomme tu de l’alcool et/ou du tabac ?",
       "documents": [],
       "typeRendu": "text",
       "rendu": "",
@@ -40,7 +40,7 @@
     },
     {
       "position": 3,
-      "question": "Savais tu qu’une cigarette contient autant de composants? En connais tu certains?",
+      "question": "Savais tu qu’une cigarette contient autant de composants?  En connais tu certains ?",
       "documents": [],
       "typeRendu": "text",
       "rendu": "",
@@ -50,7 +50,7 @@
     },
     {
       "position": 4,
-      "question": "ma super question?",
+      "question": "",
       "documents": [],
       "typeRendu": "qcm",
       "rendu": "[{\"question\": \"L’alcool est responsable de 10 000 décès par ans.\", \"reponses\": {\"Vrai\": false, \"Faux\": false}}, {\"question\": \"La fumée de cigarette contient ⅔ trucs chimiques.\", \"reponses\": {\"Vrai\": false, \"Faux\": false}}, {\"question\": \"Que tu commences à fumer à 7 ou 77 ans cela ne fait aucune différence.\", \"reponses\": {\"Vrai\": false, \"Faux\": false}}, {\"question\": \"Lequel ou lesquels de ces symptômes peut traduire une dépendance à l’alcool?\", \"reponses\": {\"Le fait de boire toujours plus\": false, \"Le fait d’avoir les mains qui tremblent \": false, \"Le fait de ne plus éprouver aucun intérêt pour les autres\": false}}, {\"question\": \"L’alcool réchauffe\", \"reponses\": {\"Vrai\": false, \"Faux\": false}}, {\"question\": \"Tu cours plus de risques en traversant la rue qu’en fumant une cigarette\", \"reponses\": {\"Vrai\": false, \"Faux\": false}}, {\"question\": \"Les français sont parmi les plus gros consommateurs d’alcool au monde\", \"reponses\": {\"Vrai\": false, \"Faux\": false}}, {\"question\": \"La chicha? (coche les affirmations correct)\", \"reponses\": {\"Une séance de chicha = 40 à 200 cigarettes\": false, \"est moins dangereuse que la cigarette ordinaire\": false, \"est responsable de maladies des poumons\": false, \"Sa dangerosité est atténuée par l’eau qui retient les composés toxiques\": false}}, {\"question\": \"Qui supporte le moins bien l’alcool?\", \"reponses\": {\"les femmes\": false, \"les hommes\": false, \"les licornes\": false}}, {\"question\": \"Est ce qu’éviter d’avaler la fumée de cigarette limite les risques pour la santé?\", \"reponses\": {\"Vrai\": false, \"Faux\": false}}]",
@@ -60,7 +60,7 @@
     },
     {
       "position": 5,
-      "question": "Est ce que ces informations, te font te poser des questions? SI oui, n’hésites pas à les poser ici, nous essaierons de te répondre. (Ces questions sont anonymes).",
+      "question": "Est ce que ces informations, te font te poser des questions ? SI oui, n’hésites pas à les poser ici, nous essaierons de te répondre. (Ces questions sont anonymes).",
       "documents": [],
       "typeRendu": "text",
       "rendu": "",
@@ -70,7 +70,7 @@
     },
     {
       "position": 6,
-      "question": "Qu’as tu retenu? Certaines choses t’ont paru étonnantes? Si oui, lesquelles?",
+      "question": "Qu’as tu retenu ? Certaines choses t’ont paru étonnantes ? Si oui, lesquelles ?",
       "documents": [],
       "typeRendu": "text",
       "rendu": "",
