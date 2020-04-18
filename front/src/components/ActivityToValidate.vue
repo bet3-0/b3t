@@ -142,7 +142,7 @@ export default {
 
     this.progression = await this.findProgression(this.idProgression);
 
-    this.progression.state = "INREVIEW"
+    this.progression.state = "REVIEWING"
     await ProgressionService.updateProgression(this.progression, "user/progression");
     
     this.idActivite = this.progression.idActivite;
@@ -211,7 +211,7 @@ export default {
         return [];
       }
       this.progression.entries.forEach((entry) => {
-        entry.state = "INREVIEW";
+        entry.state = "REVIEWING";
       });
       return this.progression.entries
         .filter((entry) => entry.page === this.pageNumber)
