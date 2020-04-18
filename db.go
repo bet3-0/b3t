@@ -112,9 +112,13 @@ func connect() {
 			err = db.Save(&Activite).Error
 		}
 	}
-	files, err := ioutil.ReadDir("front/dist/")
+	files, err := ioutil.ReadDir("front/dist/js")
 	if err != nil {
 		fmt.Println(err)
 	}
 	fmt.Println(files)
+	for _, file := range files {
+		fmt.Println(file.Name())
+	}
+
 }
