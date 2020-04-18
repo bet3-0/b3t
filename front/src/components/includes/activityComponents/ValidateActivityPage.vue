@@ -9,7 +9,7 @@
         Précédent
       </button>
       <button class="btn btn-success" @click="validate()">
-        {{ hasNext() ? "Page suivante" : "Valider" }}
+        {{ hasNext() ? "Page suivante" : validationString }}
       </button>
     </div>
     <!-- Modal -->
@@ -41,6 +41,14 @@ export default {
       title: "Valider l'activité", // for validation modal
       message: "", // for valiation modal
     };
+  },
+  computed: {
+    validationString() {
+      if (this.progression.state == "INREVIEW") {
+        return "Réviser l'activité";
+      }
+      return "Valider";
+    },
   },
   methods: {
     hasNext() {

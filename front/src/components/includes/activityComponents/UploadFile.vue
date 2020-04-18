@@ -52,6 +52,9 @@ export default {
     },
     /* Submits the file to the server */
     async submitFile() {
+      if (!this.file) {
+        return; // No file to load (and no error, no need a priori)
+      }
       $(`#submitFileButton-${this.idEntry}`).prop("disabled", true);
 
       let idFile = await FileService.pushFile(this.file);

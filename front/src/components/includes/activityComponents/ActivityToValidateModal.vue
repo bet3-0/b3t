@@ -20,6 +20,15 @@
 
         {{ message }}
       </div>
+      <b-form-textarea
+        class="form-control"
+        v-model="progression.commentaire"
+        placeholder="Entre ton commentaire ici !"
+        id="exampleFormControlTextarea1"
+        rows="3"
+      >
+        {{ progression.commentaire }}</b-form-textarea
+      >
       <template v-slot:modal-footer="{ ok, cancel }">
         <b-button variant="secondary" @click="cancel()">
           Relire l'activité
