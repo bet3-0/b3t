@@ -66,25 +66,33 @@ export default {
   },
   created() {
     if (this.loggedIn) {
-      this.$router.push("/parcours");
+       if (this.$route.params.nextUrl != null) {
+          this.router.push(this.$route.params.nextUrl);
+       } else {
+         this.$router.push("/parcours");
+       }
     }
   },
   methods: {
     async onLoggin() {
       await activityService.getAllParcoursWithProgressions();
-      switch (this.$store.state.auth.user.role) {
-        case "jeune":
-          return this.$router.push("/parcours");
-        case "chef":
-          return this.$router.push("/youth");
-        case "ap":
-          return this.$router.push("/youth");
-        case "relecteur":
-          return this.$router.push("/validation");
-        case "admin":
-          return this.$router.push("/validation");
-        default:
-          return this.$router.push("/");
+      if(this.$route.params.nextUrl != null){
+         this.$router.push(this.$route.params.nextUrl);
+      } else {
+         switch (this.$store.state.auth.user.role) {
+            case "jeune":
+               return this.$router.push("/parcours");
+            case "chef":
+               return this.$router.push("/youth");
+            case "ap":
+               return this.$router.push("/youth");
+            case "relecteur":
+               return this.$router.push("/validation");
+            case "admin":
+               return this.$router.push("/validation");
+            default:
+               return this.$router.push("/");
+         }
       }
     },
     async handleLogin() {
