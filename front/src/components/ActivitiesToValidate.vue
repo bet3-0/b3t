@@ -81,7 +81,7 @@
       src="/img/icons/spinner.svg"
       alt="Chargement en cours..."
     />
-    <p v-if="!displayProgressions.length" >Aucune progression à valider</p>
+    <p v-if="!displayProgressions.length">Aucune progression à valider</p>
     <!-- Modal -->
     <ValidationModal :progression="currentProgression" />
   </div>
@@ -96,7 +96,7 @@ import { VALID_STATES } from "./../service/progressionHelpers";
 import Vue from "vue";
 import BootstrapVue from "bootstrap-vue";
 import VueRouter from "vue-router";
-import ProgressionService from '../service/progression.service';
+import ProgressionService from "../service/progression.service";
 
 Vue.use(BootstrapVue);
 Vue.use(VueRouter);
@@ -116,39 +116,49 @@ export default {
         inProgress: 0,
         finished: 0,
         validated: 0,
-        refused: 0
-      }
+        refused: 0,
+      },
     };
   },
   async mounted() {
-    let progressions = await ProgressionService.getUserProgressions();
-    if (progressions) {
-      this.progressions = progressions;
-    } else {
-      this.progressions = [
-        {
-          id: "error_fetch",
-          state: "UNKNOWN", // error
-          evaluation: "Une erreur inconnue est survenue ! Recharge la page !",
-        },
-      ];
-    }
-    this.countProgressionStates();
-    this.displayProgressions = this.progressions;
+    await this.loadProgressions();
+  },
+  async updated() {
+    await this.loadProgressions();
   },
   methods: {
+    async loadProgressions() {
+      let progressions = await ProgressionService.getUserProgressions();
+      if (progressions) {
+        this.progressions = progressions;
+      } else {
+        this.progressions = [
+          {
+            id: "error_fetch",
+            state: "UNKNOWN", // error
+            evaluation: "Une erreur inconnue est survenue ! Recharge la page !",
+          },
+        ];
+      }
+      this.countProgressionStates();
+      this.displayProgressions = this.progressions;
+    },
     getStateName: progressionHelpers.getStateName,
 
     getActivity(progression) {
       // TODO: get activity by id
       // fetchActivityFromProgression(progression)
-      return { id: progression.idActivite, nom: "Nom générique", idParcours: 0 };
+      return {
+        id: progression.idActivite,
+        nom: "Nom générique",
+        idParcours: 0,
+      };
     },
     sendInfo(progression) {
       this.currentProgression = progression;
     },
     countProgressionStates() {
-      this.progressions.forEach(progression => {
+      this.progressions.forEach((progression) => {
         if (VALID_STATES.includes(progression.state)) {
           this.counter[progression.state]++;
         }
@@ -166,12 +176,12 @@ export default {
         this.currentParcours = "Tous les parcours";
       } else {
         this.currentParcours = this.getParcoursName(idParcours);
-        this.displayProgressions = this.progressions.filter(progression => {
+        this.displayProgressions = this.progressions.filter((progression) => {
           return progression.idParcours == idParcours;
         });
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

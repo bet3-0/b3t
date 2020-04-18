@@ -142,6 +142,9 @@ export default {
 
     this.progression = await this.findProgression(this.idProgression);
 
+    this.progression.state = "INREVIEW"
+    await ProgressionService.updateProgression(this.progression, "user/progression");
+    
     this.idActivite = this.progression.idActivite;
     this.idParcours = this.progression.idParcours;
 
@@ -149,6 +152,8 @@ export default {
       this.idParcours,
       this.idActivite
     );
+
+
     this.showCurrentPages();
   },
   updated() {
