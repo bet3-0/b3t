@@ -179,6 +179,7 @@ func UpdateProgression(c *gin.Context) {
 		})
 		return
 	}
+
 	user := c.Request.Context().Value("user").(User)
 
 	progression.CodeAdherent = user.CodeAdherent
@@ -203,8 +204,10 @@ func UpdateProgression(c *gin.Context) {
 
 func UpdateUserProgression(c *gin.Context) {
 	var progression Progression
+	var db_progression Progression
+	var err error
 
-	err := c.BindJSON(&progression)
+	err = c.BindJSON(&progression)
 	if err != nil {
 		fmt.Println(err)
 		c.JSON(400, gin.H{
@@ -213,9 +216,16 @@ func UpdateUserProgression(c *gin.Context) {
 		return
 	}
 
+	err = db.Where("id = ?", progression.ID).Preload("Entries").First(&db_progression).Error
+	if err != nil {
+		c.JSON(404, gin.H{"error": "Progression not found"})
+		return
+	}
+
 	user := c.Request.Context().Value("user").(User)
 
 	progression.CodeRelecteur = user.CodeAdherent
+	progression.CodeAdherent = db_progression.CodeAdherent
 
 	if progression.State == state("VALIDATED") || progression.State == state("REFUSED") {
 		progression.ReviewdAt = time.Now().UnixNano()

@@ -55,7 +55,7 @@
                 />
               </svg>
             </td>
-            <td>{{ progression.nom }}</td>
+            <td>{{ getActivityName(progression.idParcours, progression.idActivite) }}</td>
             <td>
               <img
                 :src="`/img/icons/${progression.state}.png`"
@@ -150,6 +150,25 @@ export default {
       this.countProgressionStates();
       this.displayProgressions = this.progressions;
     },
+    getActivity(idParcours, idActivite) {
+      try {
+        let activities = JSON.parse(localStorage.getItem("activities"));
+        return activities[idParcours][idActivite];
+      } catch (error) {
+        console.error(
+          `Activity ${idParcours}/${idActivite} not found in localStorage.`
+        );
+        return { id: idActivite, idParcours: idParcours, nom: "Nom inconnu" };
+      }
+    },
+    getActivityName(idParcours, idActivite) {
+      try {
+        let activity = this.getActivity(idParcours, idActivite);
+        return activity.nom || "Activité inconnue";
+      } catch (error) {
+        return "Nom inconnu";
+      }
+    },
     getStateName: progressionHelpers.getStateName,
     getTimeDiff(finishedAt, startedAt){
       let finishedAtMs=finishedAt*1000;
@@ -157,16 +176,7 @@ export default {
       let startedAtMs=startedAt*1000;
       let startedAtDate = new Date(startedAtMs)
       let diff = finishedAtDate - startedAtDate
-      return diff/60000
-    },
-    getActivity(progression) {
-      // TODO: get activity by id
-      // fetchActivityFromProgression(progression)
-      return {
-        id: progression.idActivite,
-        nom: "Nom générique",
-        idParcours: 0,
-      };
+      return diff/60000 || "inconnu"
     },
     sendInfo(progression) {
       this.currentProgression = progression;

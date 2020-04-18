@@ -142,9 +142,10 @@ export default {
 
     this.progression = await this.findProgression(this.idProgression);
 
-    this.progression.state = "REVIEWING"
+    this.progression.state = "REVIEWING";
+    this.progression.entries.forEach((_entry) => _entry.state = this.progression.state);
     await ProgressionService.updateProgression(this.progression, "user/progression");
-    
+
     this.idActivite = this.progression.idActivite;
     this.idParcours = this.progression.idParcours;
 

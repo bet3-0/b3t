@@ -1,10 +1,10 @@
 <template>
   <div class="container">
-    <div class="row">
-      <div class="col-md-6" style="border-left: solid 1px lightgray">
+    <div class="d-flex flex-column align-items-center">
+      <div class="col-md-6" style="border-left: solid 1px lightgray; border-right: solid 1px lightgray">
         <draggable
           :list="propositions"
-          class="mb-5"
+          class="mb-1"
           ghost-class="ghost"
           :sort="entry.state != 'REVIEWING'"
         >

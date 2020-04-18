@@ -137,11 +137,6 @@ export default {
     };
   },
   async created() {
-    // if user not logged in, redirect to /login
-    // COMMENT: FOR DEBUG ONLY ! TODO: uncomment !
-    if (!this.$store.state.auth.status.loggedIn) {
-      return this.$router.push("/login");
-    }
     this.idActivite = this.$route.params.idActivite;
     this.idParcours = this.$route.params.idParcours;
 
@@ -149,11 +144,6 @@ export default {
       this.idParcours,
       this.idActivite
     );
-
-    // this.idParcours = this.$store.state.parcours.parcours;
-    //console.log(this.$store.state.activity.activity);
-    //this.activity = this.$store.state.activity.activity;
-    //this.$store.state.activity.activity = undefined;
 
     await this.retrieveProgression(this.idParcours, this.idActivite);
   },
