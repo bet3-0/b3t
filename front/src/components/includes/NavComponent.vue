@@ -94,7 +94,7 @@ export default {
       if (isNaN(this.$store.state.parcours.parcours)) {
         return "Choix de parcours";
       }
-      return "Activités du parcours";
+      return "Choix des activités";
     },
   },
   methods: {
