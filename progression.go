@@ -56,6 +56,10 @@ type Progression struct {
 	CodeAdherent string
 }
 
+func makeTimestamp() int64 {
+	return time.Now().UnixNano() / int64(time.Millisecond)
+}
+
 func CreateProgression(c *gin.Context) {
 	var progression Progression
 
@@ -72,7 +76,7 @@ func CreateProgression(c *gin.Context) {
 	id, _ = uuid.NewRandom()
 	progression.ID = id.String()
 
-	progression.StartedAt = time.Now().UnixNano()
+	progression.StartedAt = makeTimestamp()
 
 	user := c.Request.Context().Value("user").(User)
 
@@ -167,7 +171,11 @@ func UpdateProgression(c *gin.Context) {
 	progression.CodeAdherent = user.CodeAdherent
 
 	if progression.State == state("FINISHED") {
-		progression.FinishedAt = time.Now().UnixNano()
+		progression.FinishedAt = makeTimestamp()
+	}
+
+	if progression.State == state("VALIDATED") || progression.State == state("REFUSED") {
+		progression.ReviewdAt = makeTimestamp()
 	}
 
 	err = db.Save(&progression).Error
