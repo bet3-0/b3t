@@ -13,11 +13,7 @@
 
         <p>
           Durée réelle:
-          {{
-            ((progression.finishedAt - progression.startedAt) / 3600000).toFixed(
-              1
-            )
-          }}
+            {{ getTimeDiff(progression.finishedAt,progression.startedAt)}}
           minutes
         </p>
         <p>Durée prévue: {{ activity.duree }} minutes</p>
@@ -62,6 +58,14 @@ export default {
     },
     getParcoursName(idParcours) {
       return itineraryHelpers.getParcoursName(idParcours);
+    },
+    getTimeDiff(finishedAt, startedAt){
+      let finishedAtMs=finishedAt*1000;
+      let finishedAtDate = new Date(finishedAtMs)
+      let startedAtMs=startedAt*1000;
+      let startedAtDate = new Date(startedAtMs)
+      let diff = finishedAtDate - startedAtDate
+      return diff/60000
     },
   },
 };

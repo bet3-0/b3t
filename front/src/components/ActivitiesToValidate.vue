@@ -157,7 +157,7 @@ export default {
       let startedAtMs=startedAt*1000;
       let startedAtDate = new Date(startedAtMs)
       let diff = finishedAtDate - startedAtDate
-      return diff
+      return diff/60000
     },
     getActivity(progression) {
       // TODO: get activity by id
