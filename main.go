@@ -1,9 +1,22 @@
 package main
 
 import (
+	"fmt"
+
 	"github.com/gin-contrib/static"
 	"github.com/gin-gonic/gin"
 )
+
+func redirectSSL() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		proto := c.GetHeader("X-Forwarded-Proto")
+		if proto != "https" {
+			c.Redirect(301, fmt.Sprintf("https://%s/%s", c.Request.URL.Host, c.Request.URL.Path))
+		} else {
+			c.Next()
+		}
+	}
+}
 
 func main() {
 	// Connect to dabase and load Parcours and Activites
@@ -12,6 +25,8 @@ func main() {
 	connectS3()
 
 	router := gin.Default()
+
+	router.Use(redirectSSL())
 
 	router.Use(static.Serve("/", static.LocalFile("front/dist", false)))
 
