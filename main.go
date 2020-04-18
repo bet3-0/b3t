@@ -14,9 +14,11 @@ func main() {
 	router := gin.Default()
 
 	router.Use(static.Serve("/", static.LocalFile("front/dist", false)))
-	router.NoRoute(func(c *gin.Context) {
-		c.File("front/dist/index.html")
-	})
+
+	/*
+		router.NoRoute(func(c *gin.Context) {
+			c.File("front/dist/index.html")
+		})*/
 
 	api := router.Group("/api")
 	{
