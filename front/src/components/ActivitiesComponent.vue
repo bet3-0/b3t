@@ -34,7 +34,7 @@
     </div>
 
     <img
-      v-if="!displayActivities || !displayActivities.length"
+      v-if="!loaded"
       class="img-spinner"
       src="/img/icons/spinner.svg"
       alt="Chargement en cours..."
@@ -103,6 +103,7 @@ export default {
   data() {
     return {
       idParcours: this.$store.state.parcours.parcours,
+      loaded: false,
       parcours: "",
       duration: "",
       difficulte: "",
@@ -118,6 +119,7 @@ export default {
     }
   },
   async mounted() {
+    this.loaded = false
     try {
       this.activities = await activityService.getAllActivity(this.idParcours);
     } catch (error) {
@@ -139,6 +141,7 @@ export default {
         activity.idParcours == this.idParcours &&
         !startedIds.includes(activity.id)
     );
+    this.loaded = true
   },
   methods: {
     sendInfo(activity) {
