@@ -1,0 +1,178 @@
+{
+    "idActivite": "47",
+    "idParcours": "1",
+    "state": "INPROGRESS",
+    "duration": 30,
+    "startedAt": 0,
+    "finishedAt": 0,
+    "reviewAt": 0,
+    "entries": [
+        {
+            "position": 0,
+            "question": "Que faut il faire avec ses déchets ?",
+            "documents": [],
+            "typeRendu": "qcm",
+            "rendu": [
+                "Tout mettre dans la même poubelle",
+                "Les mettre dans le jardin",
+                "Trier"
+            ],
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 1
+        },
+        {
+            "position": 1,
+            "question": "Pour combien de Français, le tri est devenu un réflexe quotidien ?",
+            "documents": [],
+            "typeRendu": "qcm",
+            "rendu": [
+                "½",
+                "⅓",
+                "¾"
+            ],
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 1
+        },
+        {
+            "position": 2,
+            "question": "Qui met en place les poubelles de tri dans les villes ?",
+            "documents": [],
+            "typeRendu": "qcm",
+            "rendu": [
+                "Les maires",
+                "Le préfet",
+                "Le président de la république"
+            ],
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 1
+        },
+        {
+            "position": 3,
+            "question": "Comment s’appelle le compactage des de la poubelle jaune avant d’aller dans les usines de tri ?",
+            "documents": [],
+            "typeRendu": "qcm",
+            "rendu": [
+                "Mise en ballon",
+                "Mise en balle",
+                "Mise en carrée"
+            ],
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 1
+        },
+        {
+            "position": 4,
+            "question": "Quel est le gain d’énergie entre la fabrication du textile à partir du pétrole et la fabrication de textile à partir de plastiques recyclés ? ",
+            "documents": [],
+            "typeRendu": "qcm",
+            "rendu": [
+                "Pas de différence de consommation",
+                "2 fois moins de consommation d’énergie",
+                "5 fois moins de consommation d’énergie"
+            ],
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 1
+        },
+        {
+            "position": 5,
+            "question": "Combien de tonnes de déchets les fours peuvent-ils brûler en 1h00 ? ",
+            "documents": [],
+            "typeRendu": "qcm",
+            "rendu": [
+                "100 T",
+                "150 T",
+                "200 T"
+            ],
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 1
+        },
+        {
+            "position": 6,
+            "question": "A quoi peut servir l’incinération des déchets ? (choix multiples)",
+            "documents": [],
+            "typeRendu": "qcm",
+            "rendu": [
+                "Produire de l'électricité",
+                "Produire du feu pour les fonderies",
+                "Produire du chauffage urbain"
+            ],
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 1
+        },
+        {
+            "position": 7,
+            "question": "Identifier la bonne répartitions de gestion de nos déchets en France ? ",
+            "documents": [],
+            "typeRendu": "qcm",
+            "rendu": [
+                "50% Décharge, 30% Incinération, 10% Composte, 10% Recyclage",
+                "46% Décharge, 35% Incinération, 7% Composte, 12% Recyclage",
+                "10% Décharge, 10% Incinération, 30% Composte, 50% Recyclage"
+            ],
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 1
+        },
+        {
+            "position": 8,
+            "question": "Quel est le risque de la dioxine sur l’Homme ?",
+            "documents": [],
+            "typeRendu": "qcm",
+            "rendu": [
+                "Rien, ça embellit le teint",
+                "Des cancers",
+                "Des brûlures"
+            ],
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 1
+        },
+        {
+            "position": 9,
+            "question": "Les vendeurs d’électroménagers sont ils obligés de repartir avec le vieil appareil ?",
+            "documents": [],
+            "typeRendu": "qcm",
+            "rendu": [
+                "Oui",
+                "Non"
+            ],
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 1
+        },
+        {
+            "position": 10,
+            "question": " Comment s’appelle la taxe que l’acheteur d’un produit électroménager doit verser au vendeur, pour que celui ci reparte avec le vieil appareil ?",
+            "documents": [],
+            "typeRendu": "qcm",
+            "rendu": [
+                "Taxe recyclage",
+                "Taxe éco-participation",
+                "Taxe #protège ta planète"
+            ],
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 1
+        },
+        {
+            "position": 11,
+            "question": " Combien de Tonnes de déchets une ville de 100 000 habitants génèrent elle par an ?",
+            "documents": [],
+            "typeRendu": "qcm",
+            "rendu": [
+                "41 500 T",
+                "42 500 T",
+                "43 500 T"
+            ],
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 1
+        }
+    ]
+}
