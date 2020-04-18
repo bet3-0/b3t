@@ -1,6 +1,7 @@
 {
   "idActivite": "1",
   "idParcours": "4",
+  "nom": "La Halte",
   "state": "INPROGRESS",
   "duration": 60,
   "startedAt": 0,
@@ -15,7 +16,7 @@
       "rendu": "",
       "state": "NOTSTARTED",
       "tracked": true,
-      "page": 2
+      "page": 3
     },
     {
       "position": 1,
@@ -25,7 +26,7 @@
       "rendu": "",
       "state": "NOTSTARTED",
       "tracked": true,
-      "page": 2
+      "page": 3
     },
     {
       "position": 2,
@@ -45,7 +46,7 @@
       "rendu": "",
       "state": "NOTSTARTED",
       "tracked": true,
-      "page": 6
+      "page": 7
     },
     {
       "position": 4,
@@ -55,17 +56,17 @@
       "rendu": "",
       "state": "NOTSTARTED",
       "tracked": true,
-      "page": 6
+      "page": 7
     },
     {
       "position": 5,
-      "question": "Quelles sont tes appréhensions ?",
+      "question": "Quelles sont tes apréhensions ?",
       "documents": [],
       "typeRendu": "text",
       "rendu": "",
       "state": "NOTSTARTED",
       "tracked": true,
-      "page": 6
+      "page": 7
     }
   ]
 }

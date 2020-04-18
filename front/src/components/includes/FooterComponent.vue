@@ -11,12 +11,12 @@
       <img src="/img/clever_cloud_logo_on_dark.png" />
       </a>
     </div>
-    <div class="copyright">
-      <div class="greets">
-        <p>Un grand merci à Antoine, Guillaume, Victor, Jacques</p>
-        <p>Etienne, Nils, Eflamm, Pierre, Alexandre, Benoit</p>
-        <p>qui ont développé ce site avec amour</p>
+     <div class="greets">
+        Un grand merci à Antoine, Guillaume, Victor, Jacques,
+        Etienne, Nils, Eflamm, Pierre, Alexandre et Benoit
+        qui ont développé ce site avec amour
       </div>
+    <div class="copyright">
       <span>Conditions d'utilisation</span>
       <span>Copyright © 2020</span>
     </div>
@@ -38,6 +38,15 @@ img {
   max-height: 100%;
   max-width: 100%;
 }
+
+.greets {
+  display:flex;
+  text-align: center;
+  width: 80%;
+  align-content: center;
+  align-items: center;
+}
+
 .copyright {
   width: 50%;
   padding: 0.5rem;
@@ -49,7 +58,7 @@ img {
   align-items: center;
   overflow: hidden;
 }
-span, p {
+span {
   margin-left: 0.5rem;
   margin-right: 0.5rem;
 }

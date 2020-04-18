@@ -18,49 +18,37 @@ export default class ProgressionService {
     return jsonResponse.progression;
   }
 
+  /*Returns a boolean depending on the success of the update*/
   static async updateProgression(data, route = "entry") {
     console.log("Updating progression...");
-    return await fetch(API_URL + route, {
-      method: "PUT",
-      headers: Object.assign(authHeader(), {
-        "Content-Type": "application/json",
-      }),
-      body: JSON.stringify(data),
-    });
-  }
-
-  static async pushFile(data) {
-    console.log("Pushing file...");
-    let response;
     try {
-      response = await fetch(API_URL + "file", {
-        method: "POST",
+      let response = await fetch(API_URL + route, {
+        method: "PUT",
         headers: Object.assign(authHeader(), {
-          "Content-Type": "application/octet-stream",
+          "Content-Type": "application/json",
         }),
-        body: data,
+        body: JSON.stringify(data),
       });
+      if (!response.ok) {
+        console.error(response);
+        return false; // Bad response
+      }
+      let dataResponse = {};
+      try {
+        dataResponse = await response.json();
+      } catch (error) {
+        console.error(error);
+        return false;
+      }
+      if (dataResponse.message) {
+        return true;
+      }
+      console.warn("No message item in response payload!");
+      return false;
     } catch (error) {
-      console.log("Error while sending file: fetch error!");
       console.error(error);
-      return undefined;
+      return false;
     }
-    if (!response.ok) {
-      console.log("Error while sending file: response error!");
-      console.warn(response);
-      return undefined;
-    }
-
-    let jsonResponse;
-    try {
-      jsonResponse = await response.json();
-    } catch (error) {
-      console.log("Error while sending file: response data error!");
-      console.warn(response);
-      return undefined;
-    }
-    console.log("File sent successfully!");
-    return jsonResponse.url;
   }
 
   static async getProgressions() {
@@ -72,6 +60,36 @@ export default class ProgressionService {
       });
       let data = await response.json();
       return data.progressions;
+    } catch (error) {
+      console.error(error);
+      return undefined;
+    }
+  }
+
+  static async getUserProgressions() {
+    console.log("Fetching progressions...");
+    try {
+      let response = await fetch(API_URL + "user/progressions", {
+        method: "GET",
+        headers: authHeader(),
+      });
+      let data = await response.json();
+      return data.progressions;
+    } catch (error) {
+      console.error(error);
+      return undefined;
+    }
+  }
+
+  static async getUserProgression(idProgression) {
+    console.log("Fetching progression...");
+    try {
+      let response = await fetch(API_URL + "user/progression/"+idProgression, {
+        method: "GET",
+        headers: authHeader(),
+      });
+      let data = await response.json();
+      return data.progression;
     } catch (error) {
       console.error(error);
       return undefined;

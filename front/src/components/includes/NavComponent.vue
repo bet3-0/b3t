@@ -13,9 +13,9 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item active" v-if="role === 'jeune'">
-          <router-link class="nav-link text-white" to="/parcours"
-            >Parcours</router-link
-          >
+          <router-link class="nav-link text-white" to="/parcours">{{
+            activityNavItem
+          }}</router-link>
         </li>
         <li class="nav-item" v-if="role != 'jeune'">
           <router-link class="nav-link text-white" to="/validation"
@@ -24,7 +24,7 @@
         </li>
         <li class="nav-item" v-if="role === 'jeune'">
           <router-link class="nav-link text-white" to="/progression"
-            >Progression personnelle</router-link
+            >Mes activités</router-link
           >
         </li>
         <li class="nav-item" v-if="['chef', 'admin'].includes(role)">
@@ -33,7 +33,7 @@
           >
         </li>
         <li class="nav-item">
-          <router-link class="nav-link text-white" to="/activity/4/1"
+          <router-link class="nav-link text-white" to="/halte"
             >Halte</router-link
           >
         </li>
@@ -43,8 +43,11 @@
           >
         </li>
         <li class="nav-item">
-          <router-link class="nav-link text-white" to="/"
-            >Progression Générale</router-link
+          <router-link
+            class="nav-link text-white"
+            v-if="role === 'admin'"
+            to="/"
+            >Progression générale</router-link
           >
         </li>
       </ul>
@@ -81,23 +84,29 @@ export default {
       return this.$store.state.auth.user;
     },
     role() {
-      if (!this.isConnected) {
-        return "jeune";
+      console.log(this.$store.state.auth.user);
+      if (this.$store.state.auth.user) {
+        return this.$store.state.auth.user.role || "jeune";
       }
-      return this.$store.state.auth.user.role || "jeune";
-    }
+      return "jeune";
+    },
+    activityNavItem() {
+      if (isNaN(this.$store.state.parcours.parcours)) {
+        return "Choix de parcours";
+      }
+      return "Choix des activités";
+    },
   },
   methods: {
     logOut() {
       this.$store.dispatch("auth/logout");
       this.$router.push("/");
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style scoped>
-
 .navbar-brand {
   height: 3rem;
   margin-left: 0.5rem;

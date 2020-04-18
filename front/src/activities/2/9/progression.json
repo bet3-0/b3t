@@ -1,6 +1,7 @@
 {
   "idActivite": "9",
   "idParcours": "2",
+  "nom": "Jonglage",
   "state": "INPROGRESS",
   "duration": 25,
   "startedAt": 0,
@@ -9,7 +10,7 @@
   "entries": [
     {
       "position": 0,
-      "question": "Filme toi en train de jongler avec tes balles gauloises.",
+      "question": "Filme toi en train de jongler avec tes balles Gauloises.",
       "documents": [],
       "typeRendu": "file",
       "rendu": "",

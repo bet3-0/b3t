@@ -8,6 +8,7 @@
         id="exampleFormControlTextarea1"
         rows="3"
         style=""
+        :disabled="entry.state == 'INREVIEW'"
       >
         {{ entry.rendu }}</b-form-textarea
       >

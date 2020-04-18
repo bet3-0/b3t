@@ -29,6 +29,7 @@
 <script>
 import Vue from "vue";
 import VueRouter from "vue-router";
+import ProgressionService from '../service/progression.service';
 
 Vue.use(VueRouter);
 
@@ -45,8 +46,16 @@ export default {
     }
   },
   methods: {
-    selectChoice(selected) {
-      console.log(selected);
+    async selectChoice(selected) {
+      // Creates the first empty progression to permit to retrieve parcours after reconnection
+      console.log("Parcours chosen:" + selected);
+      let parcoursFirstPrgression = {
+        state: "NOTSTARTED",
+        idActivite: "-1",
+        idParcours: JSON.stringify(parseInt(selected)),
+        entries: [],
+      };
+      await ProgressionService.createProgression(parcoursFirstPrgression)
       this.$store.dispatch("parcours/setParcours", selected);
       this.$router.push("/activitees");
     },

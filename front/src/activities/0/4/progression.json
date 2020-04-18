@@ -1,6 +1,7 @@
 {
   "idActivite": "4",
   "idParcours": "0",
+  "nom": "Fabrication d’un porte savon",
   "state": "INPROGRESS",
   "duration": 15,
   "startedAt": 0,

@@ -1,6 +1,7 @@
 {
   "idActivite": "7",
   "idParcours": "0",
+  "nom": "Connais tu les bonnes pratiques en matière d’hygiène ?",
   "state": "INPROGRESS",
   "duration": 20,
   "startedAt": 0,
@@ -9,7 +10,7 @@
   "entries": [
     {
       "position": 0,
-      "question": "Tu es ultra pressé(e) d’aller aux toilettes. Tu t’es retenu(e) toute la matinée pendant la visite du village gaulois. Arrivé(e) au camp, tu fonces aux feuillées et repars sans te laver les mains  puis tu t’essuies les mains sur ton pantalon en criant à table, c’est l’heure du goûter. Est ce une bonne habitude? Explique ta réponse ou ce qu’il faudrait faire si c’est une mauvaise habitude.",
+      "question": "Tu es ultra pressé(e) d’aller aux toilettes. Tu t’es retenu(e) toute la matinée pendant la visite du village Gaulois. Arrivé(e) au camp, tu fonces aux feuillées et repars sans te laver les mains  puis tu t’essuies les mains sur ton pantalon en criant à table, c’est l’heure du goûter. Est ce une bonne habitude? Explique ta réponse ou ce qu’il faudrait faire si c’est une mauvaise habitude.",
       "documents": [],
       "typeRendu": "text",
       "rendu": "",

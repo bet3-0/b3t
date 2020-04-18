@@ -1,6 +1,7 @@
 {
   "idActivite": "50",
   "idParcours": "0",
+  "nom": "Une nouvelle sirène pour les pompiers",
   "state": "INPROGRESS",
   "duration": 10,
   "startedAt": 0,
@@ -9,7 +10,7 @@
   "entries": [
     {
       "position": 0,
-      "question": "A toi de jouer, envoi nous un extrait de maximum 20 secondes de ta création ensuite!",
+      "question": "A toi de jouer, envoie-nous un extrait de maximum 20 secondes de ta création !",
       "documents": [],
       "typeRendu": "file",
       "rendu": "",

@@ -1,6 +1,7 @@
 {
   "idActivite": "35",
   "idParcours": "1",
+  "nom": "La pyramide des aliments",
   "state": "INPROGRESS",
   "duration": 10,
   "startedAt": 0,

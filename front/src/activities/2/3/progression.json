@@ -1,6 +1,7 @@
 {
   "idActivite": "3",
   "idParcours": "2",
+  "nom": "Kazou",
   "state": "INPROGRESS",
   "duration": 15,
   "startedAt": 0,

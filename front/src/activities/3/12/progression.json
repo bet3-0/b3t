@@ -1,6 +1,7 @@
 {
   "idActivite": "12",
   "idParcours": "3",
+  "nom": "Orientation - Le Savais-tu ?",
   "state": "INPROGRESS",
   "duration": 20,
   "startedAt": 0,
@@ -9,7 +10,7 @@
   "entries": [
     {
       "position": 0,
-      "question": "Et maintenant, le sais tu ?",
+      "question": "Et maintenant, le sais-tu ?",
       "documents": [],
       "typeRendu": "qcm",
       "rendu": "[{\"question\": \"L’étoile du Berger\", \"reponses\": {\"Est l’étoile la moins brillante\": false, \"Apparaît souvent en première\": false, \"Est au-dessus de la Grande Ourse\": false}}, {\"question\": \"Hors forêt, la mousse sur les arbres\", \"reponses\": {\"Est plus souvent placée au Nord\": false, \"Est plus souvent placée au Sud\": false, \"Recouvre tout l’arbre\": false}}, {\"question\": \"L’eau est importante pour les scouts car le corps humain est composé de\", \"reponses\": {\"20% d’eau\": false, \"50% d’eau\": false, \"70% d’eau\": false}}, {\"question\": \"Quand tu vois une mouche dans la nature, l’eau est souvent\", \"reponses\": {\"Très proche\": false, \"À moins de 90 m\": false, \"À moins de 5 km\": false}}]",

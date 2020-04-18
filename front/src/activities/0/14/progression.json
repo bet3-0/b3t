@@ -1,6 +1,7 @@
 {
   "idActivite": "14",
   "idParcours": "0",
+  "nom": "La PLS, Késako?",
   "state": "INPROGRESS",
   "duration": 20,
   "startedAt": 0,
@@ -9,7 +10,7 @@
   "entries": [
     {
       "position": 0,
-      "question": "2) Sais tu ce que veux dire PLS? Si oui, dis le nous, sinon tu le découvriras bientôt.",
+      "question": "Sais-tu ce que veux dire PLS? Si oui, dis le nous, sinon tu le découvriras bientôt.",
       "documents": [],
       "typeRendu": "text",
       "rendu": "",
@@ -19,7 +20,7 @@
     },
     {
       "position": 1,
-      "question": "3) Quand faut il mettre quelqu’un en PLS ?",
+      "question": "Quand faut-il mettre quelqu’un en PLS ?",
       "documents": [],
       "typeRendu": "text",
       "rendu": "",
@@ -29,7 +30,7 @@
     },
     {
       "position": 2,
-      "question": "4) Quand faut il mettre quelqu’un en PLS ?",
+      "question": "Mets une personne en PLS et envoie nous la photo",
       "documents": [],
       "typeRendu": "file",
       "rendu": "",

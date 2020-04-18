@@ -1,6 +1,7 @@
 {
   "idActivite": "33",
   "idParcours": "0",
+  "nom": "Faire un banquet équilibré",
   "state": "INPROGRESS",
   "duration": 10,
   "startedAt": 0,

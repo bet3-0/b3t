@@ -1,6 +1,7 @@
 {
   "idActivite": "3",
   "idParcours": "0",
+  "nom": "Se laver les mains, c’est que les paumes, non? ",
   "state": "INPROGRESS",
   "duration": 10,
   "startedAt": 0,

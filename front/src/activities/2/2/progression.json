@@ -1,6 +1,7 @@
 {
   "idActivite": "2",
   "idParcours": "2",
+  "nom": "Harmonica",
   "state": "INPROGRESS",
   "duration": 10,
   "startedAt": 0,
@@ -9,7 +10,7 @@
   "entries": [
     {
       "position": 0,
-      "question": " Filme toi en train de faire de la musique avec ton harmonica.",
+      "question": " Filme-toi en train de faire de la musique avec ton harmonica.",
       "documents": [],
       "typeRendu": "file",
       "rendu": "",

@@ -1,0 +1,56 @@
+{
+    "idActivite": "45",
+    "idParcours": "0",
+    "nom": "Jamais, je ne me confierai à César mais à Panoramix peut être",
+    "state": "INPROGRESS",
+    "duration": 15,
+    "startedAt": 0,
+    "finishedAt": 0,
+    "reviewAt": 0,
+    "entries": [
+        {
+            "position": 0,
+            "question":
+                "Comment te sens-tu actuellement ? (calme, serein, curieux, inquiet, anxieux, détendu, stressé, j’ai peur, je suis heureux, je suis confiant, je me pose des questions….) Sais-tu pourquoi tu ressens ça ? (tu n’es pas obligé d’expliquer)",
+            "documents": [],
+            "typeRendu": "text",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 1
+        },
+        {
+            "position": 1,
+            "question":
+                "Quelle personne as-tu choisi ? Pourquoi as-tu choisi cette personne ? Quel sentiment ressens-tu lorsque tu regardes cette personne ? ",
+            "documents": [],
+            "typeRendu": "text",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 2
+        },
+        {
+            "position": 2,
+            "question":
+                "Pour toi, quelle est l’émotion que tu as le plus de difficultés à exprimer ? As-tu une idée de pourquoi ? ",
+            "documents": [],
+            "typeRendu": "text",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 3
+        },
+        {
+            "position": 3,
+            "question":
+                "Pour toi, quelle est l’émotion la plus facile à exprimer ? Pourquoi selon toi ?",
+            "documents": [],
+            "typeRendu": "text",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 3
+        }
+    ]
+}

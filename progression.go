@@ -44,6 +44,7 @@ type Progression struct {
 	ID           string  `gorm:"primary_key" json:"id"`
 	ActiviteCode string  `json:"idActivite"`
 	ParcoursCode string  `json:"idParcours"`
+	Nom          string  `json:"nom"`
 	State        state   `sql:"type:state" json:"state"`
 	Duration     int     `json:"duration"`
 	StartedAt    int64   `json:"startedAt"`

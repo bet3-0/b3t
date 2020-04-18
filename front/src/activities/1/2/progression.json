@@ -1,6 +1,7 @@
 {
   "idActivite": "2",
   "idParcours": "1",
+  "nom": "Hygiène : et si le poivre était des bactéries ?",
   "state": "INPROGRESS",
   "duration": 10,
   "startedAt": 0,

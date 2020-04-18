@@ -1,6 +1,7 @@
 {
   "idActivite": "28",
   "idParcours": "0",
+  "nom": "Fabrique ton dentifrice",
   "state": "INPROGRESS",
   "duration": 15,
   "startedAt": 0,

@@ -1,0 +1,10 @@
+{
+  "id": "7",
+  "idParcours": "3",
+  "nom": "Jeu de piste: Repère-toi avec une boussole",
+  "description": "Très cher gaulois ! Tu sais, après Apprends à te repérer que tu dois impérativement avoir fait avant celui-ci, utiliser une carte et une boussole ! A ton tour de te débrouiller pour retrouver ton chemin !",
+  "duree": 30,
+  "materiel": ["Une boussole","Une imprimante qui peut imprimer en A4","Une règle","Un crayon"],
+  "difficulte": "moyen",
+  "page": 4
+}

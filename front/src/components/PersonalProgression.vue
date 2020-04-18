@@ -9,22 +9,22 @@
           class="list-group-item d-flex justify-content-between align-items-center"
         >
           <div>
-            <img class="icon" src="/img/icons/inProgress.png" /> : Activité en
+            <img class="icon" src="/img/icons/INPROGRESS.png" /> : Activité en
             cours. Tu peux la reprendre à tout moment !
           </div>
           <span class="badge badge-primary badge-pill">{{
-            counter["inProgress"]
+            counter.INPROGRESS
           }}</span>
         </li>
         <li
           class="list-group-item d-flex justify-content-between align-items-center"
         >
           <div>
-            <img class="icon" src="/img/icons/finished.png" /> : Activité
+            <img class="icon" src="/img/icons/FINISHED.png" /> : Activité
             terminée, en cours de validation.
           </div>
           <span class="badge badge-primary badge-pill">{{
-            counter["finished"]
+            counter.FINISHED + counter.INREVIEW
           }}</span>
         </li>
 
@@ -32,11 +32,11 @@
           class="list-group-item d-flex justify-content-between align-items-center"
         >
           <div>
-            <img class="icon" src="/img/icons/validated.png" /> : Activité
+            <img class="icon" src="/img/icons/VALIDATED.png" /> : Activité
             validée.
           </div>
           <span class="badge badge-primary badge-pill">{{
-            counter["validated"]
+            counter.VALIDATED
           }}</span>
         </li>
 
@@ -44,11 +44,11 @@
           class="list-group-item d-flex justify-content-between align-items-center"
         >
           <div>
-            <img class="icon" src="/img/icons/refused.png" /> : Activitée
+            <img class="icon" src="/img/icons/REFUSED.png" /> : Activitée
             refusée. Pas de panique, tu peux la recommencer si tu le souhaites !
           </div>
           <span class="badge badge-primary badge-pill">{{
-            counter["refused"]
+            counter.REFUSED
           }}</span>
         </li>
       </ul>
@@ -140,11 +140,12 @@ export default {
       currentProgression: {},
       progressions: [],
       counter: {
-        notStarted: 0,
-        inProgress: 0,
-        finished: 0,
-        validated: 0,
-        refused: 0,
+        NOTSTARTED: 0,
+        INPROGRESS: 0,
+        FINISHED: 0,
+        INREVIEW: 0,
+        VALIDATED: 0,
+        REFUSED: 0,
       },
     };
   },
@@ -163,7 +164,9 @@ export default {
     if (progressions) {
       // Show only progressions of the Parcours.
       this.progressions = progressions.filter(
-        (prog) => prog.idParcours == this.$store.state.parcours.parcours
+        (prog) =>
+          prog.idParcours == this.$store.state.parcours.parcours &&
+          prog.state != "NOTSTARTED"  // NOTSTARTED est utilisée pour la toute première progression qui permet de définir le parcours
       );
     } else {
       this.progressions = [

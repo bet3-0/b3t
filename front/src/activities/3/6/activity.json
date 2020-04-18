@@ -1,0 +1,10 @@
+{
+  "id": "6",
+  "idParcours": "3",
+  "nom": "Apprends à te repérer",
+  "description": "Très cher gaulois ! Comment utiliser une carte ? Comment utiliser une boussole ? Comment se repérer quand tu es perdu ? Tu veux tout savoir ? Alors cet atelier est pour toi ! ",
+  "duree": 55,
+  "materiel": ["Une feuille", "Une règle", "Un crayon", "Une boussole, ou si tu n'en as pas, un rapporteur"],
+  "difficulte": "moyen",
+  "page": 15
+}

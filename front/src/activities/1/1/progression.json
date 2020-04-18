@@ -1,6 +1,7 @@
 {
   "idActivite": "1",
   "idParcours": "1",
+  "nom": "Hygiène",
   "state": "INPROGRESS",
   "duration": 15,
   "startedAt": 0,

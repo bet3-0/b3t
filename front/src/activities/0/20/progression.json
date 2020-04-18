@@ -1,6 +1,7 @@
 {
   "idActivite": "20",
   "idParcours": "0",
+  "nom": "Qu’est ce qu’un registre de soins ?",
   "state": "INPROGRESS",
   "duration": 10,
   "startedAt": 0,

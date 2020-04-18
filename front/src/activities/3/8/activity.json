@@ -1,0 +1,10 @@
+{
+  "id": "8",
+  "idParcours": "3",
+  "nom": "Apprends à décoder et à suivre la piste",
+  "description": "Salut jeune Gaulois ! Tu veux découvrir la multitude de codes qu’il existe et jouer pour les utiliser, alors, viens par ici !",
+  "duree": 60,
+  "materiel": ["Du papier","Un stylo"],
+  "difficulte": "moyen",
+  "page": 13
+}

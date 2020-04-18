@@ -17,13 +17,8 @@
         <b-dropdown-item @click="filter(2)">Cés'Arts</b-dropdown-item>
         <b-dropdown-item @click="filter(3)">Robinson</b-dropdown-item>
       </b-dropdown>
+      <button class="btn btn-primary" @click="pollData()">Mettre à jour</button>
     </div>
-    <img
-      v-if="!progressions || !progressions.length"
-      class="img-spinner"
-      src="/img/icons/spinner.svg"
-      alt="Chargement en cours..."
-    />
     <!-- /#wrapper -->
     <div class="container">
       <table class="table">
@@ -32,7 +27,6 @@
             <th scope="col"></th>
             <th scope="col">Activité</th>
             <th scope="col">État</th>
-            <th scope="col">Nombre de rendus</th>
             <th scope="col">Durée prise par le jeune</th>
           </tr>
         </thead>
@@ -61,7 +55,7 @@
                 />
               </svg>
             </td>
-            <td>{{ getActivity(progression).nom }}</td>
+            <td>{{ progression.nom }}</td>
             <td>
               <img
                 :src="`/img/icons/${progression.state}.png`"
@@ -70,20 +64,25 @@
               />
               {{ getStateName(progression.state) }}
             </td>
-            <td>{{ progression.entries.length }}</td>
             <td>
               {{
                 (
                   (progression.finishedAt - progression.startedAt) /
-                  60000
-                ).toFixed(2)
+                  3600000
+                ).toFixed(1)
               }}
             </td>
           </tr>
         </tbody>
       </table>
     </div>
-
+    <img
+      v-if="!progressions.length"
+      class="img-spinner"
+      src="/img/icons/spinner.svg"
+      alt="Chargement en cours..."
+    />
+    <p v-if="!displayProgressions.length">Aucune progression à valider</p>
     <!-- Modal -->
     <ValidationModal :progression="currentProgression" />
   </div>
@@ -98,6 +97,7 @@ import { VALID_STATES } from "./../service/progressionHelpers";
 import Vue from "vue";
 import BootstrapVue from "bootstrap-vue";
 import VueRouter from "vue-router";
+import ProgressionService from "../service/progression.service";
 
 Vue.use(BootstrapVue);
 Vue.use(VueRouter);
@@ -117,65 +117,66 @@ export default {
         inProgress: 0,
         finished: 0,
         validated: 0,
-        refused: 0
-      }
+        refused: 0,
+      },
+      interval: null,
     };
   },
-  beforeMount() {
-    // TODO: fetch progressions
-    this.progressions = [
-      {
-        id: 5, // primary key (not used here!)
-        idActivite: "5",
-        idParcours: "0",
-        state: "REFUSED", // peut prendre les valeurs enum(notStarted,inProgress,finished, validated, refused)
-        duration: 20, // en minutes aussi
-        startedAt: 5, // ms
-        finishedAt: 152.0, // ms
-        reviewAt: 0, // ms
-        entries: []
-      },
-      {
-        id: 6,
-        idActivite: "6",
-        idParcours: "0",
-        state: "VALIDATED", // peut prendre les valeurs enum(notStarted,inProgress,finished, validated, refused)
-        duration: 20, // en minutes aussi
-        startedAt: 5, // ms
-        finishedAt: 0, // ms
-        reviewAt: 0, // ms
-        entries: []
-      },
-      {
-        id: 7,
-        idActivite: "7",
-        idParcours: "1",
-        state: "FINISHED", // peut prendre les valeurs enum(notStarted,inProgress,finished, validated, refused)
-        duration: 20, // en minutes aussi
-        startedAt: 5, // ms
-        finishedAt: 0, // ms
-        reviewAt: 0, // ms
-        entries: []
-      }
-    ];
+  async mounted() {
+    await this.loadProgressions();
   },
-  mounted() {
-    this.countProgressionStates();
-    this.displayProgressions = this.progressions;
+
+  // not working...
+  ready() {
+    this.pollData().then(console.log("updated!"));
+    // reload data every 30 seconds
+    this.interval = setInterval(
+      function() {
+        this.pollData().then(console.log("updated!"));
+      }.bind(this),
+      30000
+    );
   },
+  beforeDestroy: function() {
+    clearInterval(this.interval);
+  },
+
   methods: {
+    async pollData() {
+      await this.loadProgressions();
+    },
+    async loadProgressions() {
+      let progressions = await ProgressionService.getUserProgressions();
+      if (progressions) {
+        this.progressions = progressions;
+      } else {
+        this.progressions = [
+          {
+            id: "error_fetch",
+            state: "UNKNOWN", // error
+            evaluation: "Une erreur inconnue est survenue ! Recharge la page !",
+          },
+        ];
+      }
+      this.countProgressionStates();
+      this.displayProgressions = this.progressions;
+    },
     getStateName: progressionHelpers.getStateName,
 
     getActivity(progression) {
       // TODO: get activity by id
       // fetchActivityFromProgression(progression)
-      return { id: progression.idActivite, nom: "Nom générique", idParcours: 0 };
+      return {
+        id: progression.idActivite,
+        nom: "Nom générique",
+        idParcours: 0,
+      };
     },
     sendInfo(progression) {
       this.currentProgression = progression;
     },
     countProgressionStates() {
-      this.progressions.forEach(progression => {
+      this.progressions.forEach((progression) => {
         if (VALID_STATES.includes(progression.state)) {
           this.counter[progression.state]++;
         }
@@ -193,12 +194,12 @@ export default {
         this.currentParcours = "Tous les parcours";
       } else {
         this.currentParcours = this.getParcoursName(idParcours);
-        this.displayProgressions = this.progressions.filter(progression => {
+        this.displayProgressions = this.progressions.filter((progression) => {
           return progression.idParcours == idParcours;
         });
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -1,6 +1,7 @@
 {
   "idActivite": "23",
   "idParcours": "0",
+  "nom": "La potion magique ? Connais pas...",
   "state": "INPROGRESS",
   "duration": 15,
   "startedAt": 0,
@@ -19,7 +20,7 @@
     },
     {
       "position": 1,
-      "question": "Jour de soleil, bataille entre romain et gaulois dans un champ, tout se passe bien, aucun blessé chez les gaulois. Mais le soir venu, Agecanonix (qui d’ailleurs s’est donné à fond) souffre de brûlures et a très chaud, alors que le soleil s’est couché et que la température a bien baissé.",
+      "question": "Jour de soleil, bataille entre Romains et Gaulois dans un champ, tout se passe bien, aucun blessé chez les Gaulois. Mais le soir venu, Agecanonix (qui d’ailleurs s’est donné à fond) souffre de brûlures et a très chaud, alors que le soleil s’est couché et que la température a bien baissé.",
       "documents": [],
       "typeRendu": "orderList",
       "rendu": "[\"Prévenir les chefs et cheftaines\", \"Appliquer de la crème hydratante (à renouveler aussi souvent que nécessaire) \", \"Boire de l’eau\", \"Mettre un t-shirt en coton agréable à porter\"]",

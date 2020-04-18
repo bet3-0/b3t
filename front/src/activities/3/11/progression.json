@@ -1,0 +1,32 @@
+{
+    "idActivite": "11",
+    "idParcours": "3",
+    "state": "INPROGRESS",
+    "duration": 60,
+    "startedAt": 0,
+    "finishedAt": 0,
+    "reviewAt": 0,
+    "entries": [
+
+        {
+            "position": 0,
+            "question": "Montre-nous tes énigmes!",
+            "documents": [],
+            "typeRendu": "file",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 7
+        },
+        {
+            "position": 1,
+            "question": "Partage-nous les mains du gagnant avec l'objet trouvé!",
+            "documents": [],
+            "typeRendu": "file",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 7
+        }
+    ]
+}

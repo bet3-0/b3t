@@ -1,6 +1,7 @@
 {
   "idActivite": "17",
   "idParcours": "1",
+  "nom": "L'imagination a du bon !",
   "state": "INPROGRESS",
   "duration": 30,
   "startedAt": 0,

@@ -1,25 +1,54 @@
 <template>
   <div class="container">
-    <button
-      v-if="pageNumber > 1"
-      class="btn btn-success"
-      @click="previousPage()"
-    >
-      Précédent
-    </button>
-    <button class="btn btn-success" @click="validate()">
-      {{ hasNext() ? "Page suivante" : "Valider" }}
-    </button>
+    <div class="container-buttons">
+      <button
+        v-if="pageNumber > 1"
+        class="btn btn-success"
+        @click="previousPage()"
+      >
+        Précédent
+      </button>
+      <button class="btn btn-success" @click="validate()">
+        {{ hasNext() ? "Page suivante" : validationString }}
+      </button>
+    </div>
+    <!-- Modal -->
+    <ValidateActivityModal
+      :title="title"
+      :message="message"
+      :progression="progression"
+    />
+    <ActivityToValidateModal
+      :title="title"
+      :message="message"
+      :progression="progression"
+    />
   </div>
 </template>
 <script>
-import ProgressionService from "./../../../service/progression.service";
+// import ProgressionService from "./../../../service/progression.service";
+import ValidateActivityModal from "./ValidateActivityModal";
+import ActivityToValidateModal from "./ActivityToValidateModal";
+
+//import $ from "jquery";
 
 export default {
   name: "ValidateActivityPage",
+  components: { ValidateActivityModal, ActivityToValidateModal },
   props: ["activity", "progression", "pageNumber", "updatePage"],
   data() {
-    return {};
+    return {
+      title: "Valider l'activité", // for validation modal
+      message: "", // for valiation modal
+    };
+  },
+  computed: {
+    validationString() {
+      if (this.progression.state == "INREVIEW") {
+        return "Réviser l'activité";
+      }
+      return "Valider";
+    },
   },
   methods: {
     hasNext() {
@@ -32,60 +61,49 @@ export default {
     async nextPage() {
       return await this.updatePage(this.pageNumber + 1);
     },
+    // Go to previous/next page or validate
     async validate() {
       if (this.hasNext()) {
         this.nextPage();
       } else {
         await this.updatePage(this.pageNumber);
-        await this.checkValidation();
+        if (this.progression.state == "INREVIEW") {
+          // Validation for reviewer
+          this.$bvModal.show("activityToValidateModal");
+        } else {
+          // Validation for jeune
+          this.message = this.checkEntries();
+          if (this.message) {
+            console.warn("Entries not complete");
+          }
+          this.$bvModal.show("validateActivityModal");
+        }
       }
     },
-    async checkValidation() {
+    checkEntries() {
       // Check entries are filled
       if (!this.progression.entries) {
         this.progression.entries = [];
       }
       let incompleteEntries = this.progression.entries.filter(
-        (entry) => entry.state != "FINISHED"
+        (entry) =>
+          entry.state != "FINISHED" ||
+          !entry.rendu ||
+          (entry.typeRendu == "file" && !entry.documents.length)
       );
       if (incompleteEntries.length > 0) {
-        console.log("Some entries where not sent!");
-        alert(
-          `Certains rendus (${incompleteEntries.length}) n'ont pas été envoyés !`
-        ); // todo: faire une modale
-        return;
+        console.log(
+          "Some entries where not sent: " + JSON.stringify(incompleteEntries)
+        );
+        return `Attention ! Certains rendus (au nombre de ${incompleteEntries.length}) n'ont pas été remplis ou envoyés !`;
       }
-
-      //Change state
-      this.progression.state = "FINISHED";
-
-      // Update progression
-      try {
-        await ProgressionService.updateProgression(
-          this.progression,
-          "progression"
-        );
-        console.log("Progression sent: " + this.progression);
-        // Redirect
-        alert("Ton activité a bien été envoyée !");
-        this.$store.dispatch(
-          "progression/updateProgression",
-          this.progression.duration || 0
-        );
-        this.$router.push("/progression");
-      } catch (error) {
-        console.log("Error while sending text entry: " + this.progression);
-        this.progression.state = "INPROGRESS";
-        alert(
-          "Impossible d'envoyer ta progression ! Vérifie ta connexion et réessaye !"
-        );
-      }
+      return "";
     },
   },
 };
 </script>
 <style scoped>
-.container {
+.container-buttons {
   margin: 1rem;
   display: flex;
   justify-content: space-evenly;

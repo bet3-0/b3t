@@ -1,6 +1,7 @@
 {
   "idActivite": "19",
   "idParcours": "1",
+  "nom": "Lavons en chanson !",
   "state": "INPROGRESS",
   "duration": 30,
   "startedAt": 0,

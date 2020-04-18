@@ -1,6 +1,7 @@
 {
   "idActivite": "31",
   "idParcours": "1",
+  "nom": "Création d’une toque",
   "state": "INPROGRESS",
   "duration": 15,
   "startedAt": 0,
