@@ -29,12 +29,6 @@ func CreateGroupe(c *gin.Context) {
 		return
 	}
 
-	err = createBucket(groupe.CodeStructure)
-	if err != nil {
-		c.JSON(500, gin.H{"error": "cannot_create_group_file_space"})
-		return
-	}
-
 	err = db.Create(&groupe).Error
 	if err != nil {
 		c.JSON(500, gin.H{"error": "internal_server_error"})
