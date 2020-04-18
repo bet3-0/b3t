@@ -33,13 +33,7 @@
       </div>
     </div>
 
-    <img
-      v-if="!loaded"
-      class="img-spinner"
-      src="/img/icons/spinner.svg"
-      alt="Chargement en cours..."
-    />
-
+    <Spinner :activated="loading" />
     <!-- /#wrapper -->
     <div class="container">
       <table class="table">
@@ -93,17 +87,18 @@ import itineraryHelpers from "./../service/itineraryHelpers";
 import Vue from "vue";
 import BootstrapVue from "bootstrap-vue";
 import VueRouter from "vue-router";
+import Spinner from "./includes/Spinner";
 
 Vue.use(BootstrapVue);
 Vue.use(VueRouter);
 
 export default {
   name: "ActivitiesComponent",
-  components: { ActivityModal },
+  components: { ActivityModal, Spinner },
   data() {
     return {
       idParcours: this.$store.state.parcours.parcours,
-      loaded: false,
+      loading: true,
       parcours: "",
       duration: "",
       difficulte: "",
@@ -119,7 +114,7 @@ export default {
     }
   },
   async mounted() {
-    this.loaded = false
+    this.loading = true;
     try {
       this.activities = await activityService.getAllActivity(this.idParcours);
     } catch (error) {
@@ -141,7 +136,7 @@ export default {
         activity.idParcours == this.idParcours &&
         !startedIds.includes(activity.id)
     );
-    this.loaded = true
+    this.loading = false;
   },
   methods: {
     sendInfo(activity) {

@@ -7,12 +7,7 @@ Base Component for an activity page -->
     <ActivityProgressBar :progress="progress" />
     <div class="row">
       <div id="main-container" class="activity-container col-12">
-        <img
-          v-if="!activity.nom"
-          class="img-spinner"
-          src="/img/icons/spinner.svg"
-          alt="Chargement en cours..."
-        />
+        <Spinner :activated="!activity.nom && loading" />
         <h1 class="activity-title" :style="'color:' + changeParcoursColor()">
           {{ activity.nom }}
         </h1>
@@ -46,12 +41,7 @@ Base Component for an activity page -->
         </div>
         <ActivityContent :idActivite="idActivite" :idParcours="idParcours" />
         <div class="end-container">
-          <img
-            v-if="!progression.id"
-            class="img-spinner"
-            src="/img/icons/spinner.svg"
-            alt="Chargement en cours..."
-          />
+          <Spinner :activated="!progression.id && loading" />
           <div class="submit-container">
             <!-- Choisir parmi ces deux rendus en fonction de l'activité -->
             <div
@@ -106,6 +96,7 @@ import OrderList from "./includes/activityComponents/OrderList";
 import Qcm from "./includes/activityComponents/Qcm";
 import activityService from "./../service/activity";
 import itineraryHelpers from "./../service/itineraryHelpers";
+import Spinner from "./includes/Spinner";
 
 import ValidateActivityPage from "./includes/activityComponents/ValidateActivityPage";
 import $ from "jquery";
@@ -114,6 +105,7 @@ import ProgressionService from "../service/progression.service";
 export default {
   name: "ActivityComponent",
   components: {
+    Spinner,
     UploadFile,
     UploadText,
     Qcm,
@@ -126,6 +118,7 @@ export default {
   props: ["pastProgression"],
   data() {
     return {
+      loading: true,
       showDismissibleAlert: false, // for Alert
       textAlert: false, // for Alert
       idActivite: NaN,
@@ -137,6 +130,7 @@ export default {
     };
   },
   async created() {
+    this.loading = true;
     this.idActivite = this.$route.params.idActivite;
     this.idParcours = this.$route.params.idParcours;
 
@@ -146,6 +140,7 @@ export default {
     );
 
     await this.retrieveProgression(this.idParcours, this.idActivite);
+    this.loading = false;
   },
   updated() {
     this.showCurrentPages();
