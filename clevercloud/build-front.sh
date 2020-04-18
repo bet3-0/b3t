@@ -1,10 +1,8 @@
 #!/bin/bash -l
 
-set -x
-
 pushd front
 
-NODE_ENV=production npm install
-NODE_ENV=production npm run build
+npm install || exit 1
+NODE_ENV=production npm run build || exit 1
 
 popd
