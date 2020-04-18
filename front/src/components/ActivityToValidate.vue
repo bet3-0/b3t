@@ -59,7 +59,7 @@ Base Component for an activity page -->
               style="text-align: center; width: 100%"
             >
               <h3 style="text-align: left">
-                Merci de valider les rendus suivants
+                Merci de valider les rendus suivants :
               </h3>
               <DownloadFile
                 v-if="entry.typeRendu === 'file'"
