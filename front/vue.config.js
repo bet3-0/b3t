@@ -7,7 +7,7 @@ module.exports = {
             .loader('html-loader')
         config.module
             .rule('files')
-            .test(/\.(png|jpe?g|gif|m4a)$/i)
+            .test(/\.(png|jpe?g|gif|m4a)$/)
             .use('file-loader')
             .loader('file-loader')
     },
