@@ -6,8 +6,11 @@ import (
 )
 
 func main() {
+	// Connect to dabase and load Parcours and Activites
 	connect()
+	// Connect to cellar
 	connectS3()
+
 	router := gin.Default()
 
 	router.Use(static.Serve("/", static.LocalFile("front/dist", false)))
