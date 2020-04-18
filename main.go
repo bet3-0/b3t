@@ -11,7 +11,8 @@ func redirectSSL() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		proto := c.GetHeader("X-Forwarded-Proto")
 		if proto != "https" {
-			c.Redirect(301, fmt.Sprintf("https://%s/%s", c.Request.URL.Host, c.Request.URL.Path))
+			fmt.Println(c.Request.Host)
+			c.Redirect(301, fmt.Sprintf("https://%s%s", c.Request.Host, c.Request.URL.Path))
 		} else {
 			c.Next()
 		}
