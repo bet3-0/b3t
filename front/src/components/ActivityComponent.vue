@@ -323,7 +323,10 @@ export default {
         .sort((a, b) => a.position - b.position);
     },
     async updatePage(pageNumber) {
-      await this.validatePageEntries();
+      // go to pageNumber
+      if (pageNumber >= this.pageNumber) {
+        await this.validatePageEntries(); // if Page suivante or Valider: send all entries in the current page
+      }
       if (pageNumber != this.pageNumber) {
         $(`#page${this.pageNumber}`).hide();
         this.pageNumber = pageNumber;

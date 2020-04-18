@@ -6,7 +6,6 @@ import { activity } from "./activity.module";
 import { parcours } from "./parcours.module";
 import { progression } from "./progression.module";
 
-
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -14,6 +13,6 @@ export default new Vuex.Store({
     auth,
     activity,
     parcours,
-    progression
+    progression,
   }
 });
