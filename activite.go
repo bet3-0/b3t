@@ -19,7 +19,7 @@ type Activite struct {
 	Nom         string         `json:"nom"`
 	Description string         `json:"description"`
 	Duree       int            `json:"duree"`
-	Materiel    pq.StringArray `gorm:"type:varchar(100)[]" json:"materiel"`
+	Materiel    pq.StringArray `gorm:"type:varchar(300)[]" json:"materiel"`
 	Difficulte  difficulte     `sql:"type:difficulte" json:"difficulte"`
 	Pages       int            `json:"page"`
 }
