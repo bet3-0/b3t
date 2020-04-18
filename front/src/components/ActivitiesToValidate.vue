@@ -1,7 +1,7 @@
 <template>
   <div class="container mt-4">
     <h1>
-      Activitées à valider
+      Activités à valider
     </h1>
     <div>
       <b-dropdown
