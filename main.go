@@ -10,9 +10,9 @@ func main() {
 	connectS3()
 	router := gin.Default()
 
-	router.Use(static.Serve("/", static.LocalFile("site", false)))
+	router.Use(static.Serve("/", static.LocalFile("front/dist", false)))
 	router.NoRoute(func(c *gin.Context) {
-		c.File("site/index.html")
+		c.File("front/dist/index.html")
 	})
 
 	api := router.Group("/api")
@@ -54,7 +54,7 @@ func main() {
 		// Accessible by Relecteurs and Admins only
 
 		api.Use(restrictAccess([]role{role("relecteur"), role("admin")}))
-		api.GET("/file/:code_structure_groupe/:code_adherent/:id", getUserFile)
+		api.GET("/file/url/:code_structure_groupe/:code_adherent/:name", getUrl)
 		api.GET("/user/progressions", ListFinishedProgressions)
 		api.GET("/user/progression/:id", GetUserProgression)
 		api.PUT("/user/progression", UpdateUserProgression)

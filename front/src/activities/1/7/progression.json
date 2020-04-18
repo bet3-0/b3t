@@ -1,6 +1,7 @@
 {
   "idActivite": "7",
   "idParcours": "1",
+  "nom": "Les étapes de la préparation d’un plat",
   "state": "INPROGRESS",
   "duration": 10,
   "startedAt": 0,

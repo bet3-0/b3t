@@ -1,6 +1,7 @@
 {
   "idActivite": "6",
   "idParcours": "0",
+  "nom": "Fabrication d’un protège papier toilette",
   "state": "INPROGRESS",
   "duration": 20,
   "startedAt": 0,

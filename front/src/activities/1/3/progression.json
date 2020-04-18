@@ -1,6 +1,7 @@
 {
   "idActivite": "3",
   "idParcours": "1",
+  "nom": "Les ustensiles, ça se nettoie !",
   "state": "INPROGRESS",
   "duration": 15,
   "startedAt": 0,

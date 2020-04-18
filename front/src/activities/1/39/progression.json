@@ -1,6 +1,7 @@
 {
   "idActivite": "39",
   "idParcours": "1",
+  "nom": "Quels fruits et légumes avec quel mois ?",
   "state": "INPROGRESS",
   "duration": 20,
   "startedAt": 0,

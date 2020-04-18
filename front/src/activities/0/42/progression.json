@@ -1,6 +1,7 @@
 {
   "idActivite": "42",
   "idParcours": "0",
+  "nom": "Ecoute les sangliers et les romains sont là",
   "state": "INPROGRESS",
   "duration": 15,
   "startedAt": 0,

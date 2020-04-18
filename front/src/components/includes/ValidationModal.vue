@@ -8,14 +8,14 @@
     >
       <div class="modal-body">
         <p>Id : {{ progression.id }}</p>
-        <p>Id activité : {{ activity.idActivite }}</p>
-        <p>Parcours : {{ getParcoursName(activity.idParcours) }}</p>
+        <p>Id activité : {{ progression.idActivite }}</p>
+        <p>Parcours : {{ getParcoursName(progression.idParcours) }}</p>
 
         <p>
           Durée réelle:
           {{
-            ((progression.finishedAt - progression.startedAt) / 60000).toFixed(
-              2
+            ((progression.finishedAt - progression.startedAt) / 3600000).toFixed(
+              1
             )
           }}
           minutes
@@ -26,7 +26,7 @@
         <b-button variant="secondary" @click="cancel()">
           Fermer
         </b-button>
-        <b-button variant="success" @click.prevent.capture="go(progression.id)">
+        <b-button variant="success" @click.prevent.capture="go(progression.id+'/'+progression.idActivite+'/'+progression.idParcours)">
           Vérifier l'activité
         </b-button>
       </template>

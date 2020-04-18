@@ -1,6 +1,7 @@
 {
   "idActivite": "10",
   "idParcours": "3",
+  "nom": "Code des templiers et code Chinois",
   "state": "INPROGRESS",
   "duration": 40,
   "startedAt": 0,

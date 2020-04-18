@@ -1,6 +1,7 @@
 {
   "idActivite": "22",
   "idParcours": "1",
+  "nom": "Étape la galerie",
   "state": "INPROGRESS",
   "duration": 45,
   "startedAt": 0,

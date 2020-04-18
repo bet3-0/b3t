@@ -4,7 +4,7 @@
       <NavComponent />
       <ItineraryProgressBar />
     </div>
-    <router-view></router-view>
+    <router-view :key="$route.path"></router-view>
     <FooterComponent />
   </div>
 </template>
@@ -15,7 +15,6 @@ import ItineraryProgressBar from "./components/includes/ItineraryProgressBar";
 import FooterComponent from "./components/includes/FooterComponent";
 
 export default {
-  components: { NavComponent, ItineraryProgressBar, FooterComponent }
+  components: { NavComponent, ItineraryProgressBar, FooterComponent },
 };
 </script>
-

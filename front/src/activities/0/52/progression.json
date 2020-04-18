@@ -1,6 +1,7 @@
 {
   "idActivite": "52",
   "idParcours": "0",
+  "nom": "Le brossage des dents, c’est pas la passion des gaulois",
   "state": "INPROGRESS",
   "duration": 10,
   "startedAt": 0,

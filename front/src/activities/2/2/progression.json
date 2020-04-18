@@ -1,6 +1,7 @@
 {
   "idActivite": "2",
   "idParcours": "2",
+  "nom": "Harmonica",
   "state": "INPROGRESS",
   "duration": 10,
   "startedAt": 0,

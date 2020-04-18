@@ -1,6 +1,7 @@
 {
   "idActivite": "34",
   "idParcours": "0",
+  "nom": "Des repas équilibrés pour une aventure au top!",
   "state": "INPROGRESS",
   "duration": 10,
   "startedAt": 0,

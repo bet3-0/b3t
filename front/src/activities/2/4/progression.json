@@ -1,6 +1,7 @@
 {
   "idActivite": "4",
   "idParcours": "2",
+  "nom": "Djembe",
   "state": "INPROGRESS",
   "duration": 25,
   "startedAt": 0,

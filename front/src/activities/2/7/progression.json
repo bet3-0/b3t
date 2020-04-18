@@ -1,6 +1,7 @@
 {
   "idActivite": "7",
   "idParcours": "2",
+  "nom": "Théâtre d'ombres",
   "state": "INPROGRESS",
   "duration": 40,
   "startedAt": 0,

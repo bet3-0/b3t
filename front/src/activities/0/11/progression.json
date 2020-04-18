@@ -1,6 +1,7 @@
 {
   "idActivite": "11",
   "idParcours": "0",
+  "nom": "Qui appeler ?",
   "state": "INPROGRESS",
   "duration": 10,
   "startedAt": 0,

@@ -77,11 +77,11 @@ func connect() {
 		Nom:        "Halte",
 	}
 
-	_ = db.Create(&BossesEtBobos).Error
-	_ = db.Create(&TroisEtoiles).Error
-	_ = db.Create(&CesArts).Error
-	_ = db.Create(&Robinson).Error
-	_ = db.Create(&Halte).Error
+	_ = db.Save(&BossesEtBobos).Error
+	_ = db.Save(&TroisEtoiles).Error
+	_ = db.Save(&CesArts).Error
+	_ = db.Save(&Robinson).Error
+	_ = db.Save(&Halte).Error
 
 	// Load Activites
 	parcours, err := ioutil.ReadDir("front/src/activities")
