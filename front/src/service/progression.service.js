@@ -18,15 +18,37 @@ export default class ProgressionService {
     return jsonResponse.progression;
   }
 
+  /*Returns a boolean depending on the success of the update*/
   static async updateProgression(data, route = "entry") {
     console.log("Updating progression...");
-    return await fetch(API_URL + route, {
-      method: "PUT",
-      headers: Object.assign(authHeader(), {
-        "Content-Type": "application/json",
-      }),
-      body: JSON.stringify(data),
-    });
+    try {
+      let response = await fetch(API_URL + route, {
+        method: "PUT",
+        headers: Object.assign(authHeader(), {
+          "Content-Type": "application/json",
+        }),
+        body: JSON.stringify(data),
+      });
+      if (!response.ok) {
+        console.error(response);
+        return false; // Bad response
+      }
+      let dataResponse = {};
+      try {
+        dataResponse = await response.json();
+      } catch (error) {
+        console.error(error);
+        return false;
+      }
+      if (dataResponse.message) {
+        return true;
+      }
+      console.warn("No message item in response payload!");
+      return false;
+    } catch (error) {
+      console.error(error);
+      return false;
+    }
   }
 
   static async pushFile(data) {
