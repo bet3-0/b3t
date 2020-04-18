@@ -70,6 +70,7 @@ func main() {
 		api.GET("/users", listUsers)
 		api.POST("/groupe", CreateGroupe)
 		api.POST("/territoire", CreateTerritoire)
+		api.GET("/progressions/all", ListAllProgressions)
 	}
 
 	router.Run() // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")

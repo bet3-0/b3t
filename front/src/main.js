@@ -48,76 +48,67 @@ const router = new VueRouter({
     {
       path: "/activitees",
       get component() {
-        if (!store.state.auth.status.loggedIn) {
-          return LoginComponent;
-        }
         return ActivitiesComponent;
       },
     },
     {
       path: "/activity/:idParcours/:idActivite",
       get component() {
-        if (!store.state.auth.status.loggedIn) {
-          return LoginComponent;
-        }
         return ActivityComponent;
       },
     },
     {
       path: "/parcours",
       get component() {
-        if (!store.state.auth.status.loggedIn) {
-          return LoginComponent;
-        }
-        return ParcoursChoiceComponent;
+         return ParcoursChoiceComponent;
       },
     },
     {
       path: "/progression",
       get component() {
-        if (!store.state.auth.status.loggedIn) {
-          return LoginComponent;
-        }
         return PersonalProgression;
       },
     },
     {
       path: "/validation",
       get component() {
-        if (!store.state.auth.status.loggedIn) {
-          return LoginComponent;
-        }
         return ActivitiesToValidate;
       },
     },
     {
       path: "/youth",
       get component() {
-        if (!store.state.auth.status.loggedIn) {
-          return LoginComponent;
-        }
         return YouthActivities;
       },
     },
     {
       path: "/halte",
       get component() {
-        if (!store.state.auth.status.loggedIn) {
-          return LoginComponent;
-        }
         return HalteComponent;
       },
     },
     {
       path: "/validation/:idProgression/:idParcours/:idActivite",
       get component() {
-        if (!store.state.auth.status.loggedIn) {
-          return LoginComponent;
-        }
         return ActivityToValidate;
       },
     },
   ],
+});
+
+router.beforeEach((to, from, next) => {
+   if(!/^\/login/.test(to.fullPath) && to.fullPath !== "/") {
+      if (!store.state.auth.status.loggedIn) {
+         next({
+            path: "/login",
+            params: { nextUrl: to.fullPath }
+         });
+      } else {
+         next();
+      }
+   } else {
+      next();
+   }
 });
 
 new Vue({

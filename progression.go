@@ -43,19 +43,20 @@ type Entry struct {
 }
 
 type Progression struct {
-	ID           string  `gorm:"primary_key" json:"id"`
-	ActiviteCode string  `json:"idActivite"`
-	ParcoursCode string  `json:"idParcours"`
-	Nom          string  `json:"nom"`
-	State        state   `sql:"type:state" json:"state"`
-	Duration     int     `json:"duration"`
-	StartedAt    int64   `json:"startedAt"`
-	FinishedAt   int64   `json:"finishedAt"`
-	ReviewdAt    int64   `json:"reviewdAt"`
-	Commentaire  string  `json:"commentaire"`
-	Page         int     `json:"page"`
-	Entries      []Entry `gorm:"foreignkey:IDProgression" json:"entries"`
-	CodeAdherent string
+	ID            string  `gorm:"primary_key" json:"id"`
+	ActiviteCode  string  `json:"idActivite"`
+	ParcoursCode  string  `json:"idParcours"`
+	Nom           string  `json:"nom"`
+	State         state   `sql:"type:state" json:"state"`
+	Duration      int     `json:"duration"`
+	StartedAt     int64   `json:"startedAt"`
+	FinishedAt    int64   `json:"finishedAt"`
+	ReviewdAt     int64   `json:"reviewdAt"`
+	Commentaire   string  `json:"commentaire"`
+	Page          int     `json:"page"`
+	Entries       []Entry `gorm:"foreignkey:IDProgression" json:"entries"`
+	CodeAdherent  string  `json:"-"`
+	CodeRelecteur string  `json:"-"`
 }
 
 func CreateProgression(c *gin.Context) {
@@ -121,10 +122,24 @@ func ListMyProgressions(c *gin.Context) {
 }
 
 func ListFinishedProgressions(c *gin.Context) {
-
 	var progressions []Progression
 
-	err := db.Where("state = ?", "FINISHED").Find(&progressions).Error
+	user := c.Request.Context().Value("user").(User)
+
+	err := db.Where("state = ? or ( state = ? and code_relecteur = ?)", "FINISHED", "REVIEWING", user.CodeAdherent).Find(&progressions).Error
+	if err != nil {
+		c.JSON(500, gin.H{"error": "internal_server_error"})
+		return
+	}
+
+	c.JSON(200, gin.H{"progressions": progressions})
+	return
+}
+
+func ListAllProgressions(c *gin.Context) {
+	var progressions []Progression
+
+	err := db.Preload("Entries").Find(&progressions).Error
 	if err != nil {
 		c.JSON(500, gin.H{"error": "internal_server_error"})
 		return
@@ -197,6 +212,10 @@ func UpdateUserProgression(c *gin.Context) {
 		})
 		return
 	}
+
+	user := c.Request.Context().Value("user").(User)
+
+	progression.CodeRelecteur = user.CodeAdherent
 
 	if progression.State == state("VALIDATED") || progression.State == state("REFUSED") {
 		progression.ReviewdAt = time.Now().UnixNano()
