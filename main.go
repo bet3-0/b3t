@@ -1,7 +1,6 @@
 package main
 
 import (
-	"github.com/gin-contrib/secure"
 	"github.com/gin-contrib/static"
 	"github.com/gin-gonic/gin"
 )
@@ -13,11 +12,6 @@ func main() {
 	connectS3()
 
 	router := gin.Default()
-
-	secureConfig := secure.DefaultConfig()
-	secureConfig.SSLProxyHeaders = map[string]string{"X-Forwarded-Proto": "http"}
-
-	router.Use(secure.New(secureConfig))
 
 	router.Use(static.Serve("/", static.LocalFile("front/dist", false)))
 
