@@ -76,12 +76,6 @@
         </tbody>
       </table>
     </div>
-    <img
-      v-if="!progressions.length"
-      class="img-spinner"
-      src="/img/icons/spinner.svg"
-      alt="Chargement en cours..."
-    />
     <p v-if="!displayProgressions.length">Aucune progression à valider</p>
     <!-- Modal -->
     <ValidationModal :progression="currentProgression" />
