@@ -65,23 +65,12 @@
               {{ getStateName(progression.state) }}
             </td>
             <td>
-              {{
-                (
-                  (progression.finishedAt - progression.startedAt) /
-                  3600000
-                ).toFixed(1)
-              }}
+              {{ getTimeDiff(progression.finishedAt,progression.startedAt)}}
             </td>
           </tr>
         </tbody>
       </table>
     </div>
-    <img
-      v-if="!progressions.length"
-      class="img-spinner"
-      src="/img/icons/spinner.svg"
-      alt="Chargement en cours..."
-    />
     <p v-if="!displayProgressions.length">Aucune progression à valider</p>
     <!-- Modal -->
     <ValidationModal :progression="currentProgression" />
@@ -162,7 +151,14 @@ export default {
       this.displayProgressions = this.progressions;
     },
     getStateName: progressionHelpers.getStateName,
-
+    getTimeDiff(finishedAt, startedAt){
+      let finishedAtMs=finishedAt*1000;
+      let finishedAtDate = new Date(finishedAtMs)
+      let startedAtMs=startedAt*1000;
+      let startedAtDate = new Date(startedAtMs)
+      let diff = finishedAtDate - startedAtDate
+      return diff/60000
+    },
     getActivity(progression) {
       // TODO: get activity by id
       // fetchActivityFromProgression(progression)

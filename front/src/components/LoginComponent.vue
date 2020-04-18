@@ -72,7 +72,10 @@ export default {
   methods: {
     async onLoggin() {
       await activityService.getAllParcoursWithProgressions();
-      this.$router.push("/parcours");
+      if (this.$store.state.auth.user.role == "jeune") {
+        return this.$router.push("/parcours");
+      }
+      return this.$router.push("/");
     },
     async handleLogin() {
       this.loading = true;

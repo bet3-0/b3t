@@ -72,7 +72,7 @@ func CreateProgression(c *gin.Context) {
 	id, _ = uuid.NewRandom()
 	progression.ID = id.String()
 
-	progression.StartedAt = time.Now().UnixNano()
+	progression.StartedAt = time.Now().Unix()
 
 	user := c.Request.Context().Value("user").(User)
 
@@ -167,7 +167,11 @@ func UpdateProgression(c *gin.Context) {
 	progression.CodeAdherent = user.CodeAdherent
 
 	if progression.State == state("FINISHED") {
-		progression.FinishedAt = time.Now().UnixNano()
+		progression.FinishedAt = time.Now().Unix()
+	}
+
+	if progression.State == state("VALIDATED") || progression.State == state("REFUSED") {
+		progression.ReviewdAt = time.Now().Unix()
 	}
 
 	err = db.Save(&progression).Error
