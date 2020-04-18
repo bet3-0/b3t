@@ -1,6 +1,11 @@
 {
+<<<<<<< HEAD
   "idActivite": "48",
   "idParcours": "0",
+=======
+  "idActivite": "0",
+  "idParcours": "48",
+>>>>>>> 73a5e05d36b79a5cb96450555fc9db632e76c5c5
   "nom": "Mon plan d’implantation d’un camp romain",
   "state": "INPROGRESS",
   "duration": 15,
