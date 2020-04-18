@@ -23,6 +23,7 @@ def check_progression(file, dico):
                      'idParcours',
                      'commentaire',
                      'state',
+                     'nom',
                      'duration',
                      'startedAt',
                      'finishedAt',
@@ -74,7 +75,8 @@ def check_progression(file, dico):
                         entry[key] = json.dumps(entry[key], ensure_ascii=False)
                         # print(f"changed to {entry[key]}")
                     elif entry["typeRendu"].lower() == "qcm":
-                        print(f"QCM: {file}. Rendu: {entry[key]}")
+                        # print(f"QCM: {file}. Rendu: {entry[key]}")
+                        _old = entry[key]
                         if isinstance(entry[key], str):  # try to convert to Python list before json.dumps
                             entry[key] = ast.literal_eval(entry[key].replace("false", "False"))
                         assert isinstance(entry[key], list), "qcm not a list"
@@ -82,7 +84,9 @@ def check_progression(file, dico):
                             assert set(question_dict) == {"question", "reponses"}, "bad keys for qcm"
                             question_dict["reponses"] = {k: False for k in question_dict["reponses"]}
                         entry[key] = json.dumps(entry[key], ensure_ascii=False)
-                        print(f"changed to {entry[key]}")
+                        if _old != entry[key]:
+                            print(f"QCM changed from {_old} to {entry[key]}")
+                        # print(f"changed to {entry[key]}")
                     else:
                         entry[key] = str(entry[key])
                     # print(f"Rendu must be str in file '{file}'")
