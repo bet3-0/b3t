@@ -67,13 +67,13 @@ export default {
   methods: {
     async accept() {
       this.loadingAccept = true;
-      await this.updateProgression("REFUSED");
+      await this.updateProgression("VALIDATED");
       this.loadingAccept = false;
     },
     async refuse() {
       this.loadingRefuse = true;
 
-      await this.updateProgression("VALIDATED");
+      await this.updateProgression("REFUSED");
       this.loadingRefuse = false;
     },
 
