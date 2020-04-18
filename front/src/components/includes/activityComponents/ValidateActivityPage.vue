@@ -68,10 +68,16 @@ export default {
         console.log("Progression sent: " + this.progression);
         // Redirect
         alert("Ton activité a bien été envoyée !");
-        this.$store.dispatch(
-          "progression/updateProgression",
-          this.progression.duration || 0
-        );
+
+        // update global progression only if it is in parcours
+        if (
+          this.progression.idParcours == this.$store.state.parcours.parcours
+        ) {
+          this.$store.dispatch(
+            "progression/updateProgression",
+            this.progression.duration || 0
+          );
+        }
         this.$router.push("/progression");
       } catch (error) {
         console.log("Error while sending text entry: " + this.progression);
