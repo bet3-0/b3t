@@ -30,7 +30,7 @@
     },
     {
       "position": 2,
-      "question": "Question suivante",
+      "question": "",
       "documents": [],
       "typeRendu": "qcm",
       "rendu": "[{\"question\": \"Est ce que tu vois des étapes dans la réaction commune aux deux situation? Si oui, lesquelles?\", \"reponses\": {\"Prévenir\": false, \"Proteger\": false, \"Crier\": false, \"Soigner\": false, \"Secourir\": false, \"Alerter\": false, \"Désinfecter\": false}}]",
