@@ -65,7 +65,7 @@ export default {
       let startedAtMs=startedAt*1000;
       let startedAtDate = new Date(startedAtMs)
       let diff = finishedAtDate - startedAtDate
-      return diff/60000
+      return diff/60000 || "inconnu"
     },
   },
 };
