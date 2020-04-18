@@ -2,7 +2,7 @@
 
 pushd front
 
-npm install || exit 1
+npm --production=false install --no-progress || exit 1
 NODE_ENV=production npm run build || exit 1
 
 popd
