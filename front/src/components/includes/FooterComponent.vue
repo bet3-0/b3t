@@ -4,11 +4,11 @@
       <a target="_blank" href="https://tribu.sgdf.fr/jeunes/">
         <img src="/img/SGDF_SCOUTS_GUIDES_blanc.png"
       /></a>
-      <a target="_blank" href="https://finistere2point9.fr/">
-      <img src="/img/Finistere2.9.png" />
-      </a>
       <a target ="_blank" href="https://www.clever-cloud.com/fr">
       <img src="/img/clever_cloud_logo_on_dark.png" />
+      </a>
+      <a target="_blank" href="https://finistere2point9.fr/">
+      <img src="/img/Finistere2.9.png" />
       </a>
     </div>
      <div class="greets">
@@ -41,7 +41,7 @@ img {
 .greets {
   display:flex;
   text-align: center;
-  width: 100%;
+  width: 90%;
   align-content: center;
   align-items: center;
 }
