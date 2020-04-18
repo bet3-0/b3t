@@ -112,4 +112,9 @@ func connect() {
 			err = db.Save(&Activite).Error
 		}
 	}
+	files, err := ioutil.ReadDir("front/dist/")
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(files)
 }
