@@ -43,7 +43,7 @@ func pushFile(c *gin.Context) {
 
 	fileID, err = uuid.NewRandom()
 
-	fileName := fmt.Sprintf("%s/%s.%s", user.CodeAdherent, fileID.String(), s[1])
+	fileName := fmt.Sprintf("%s/%s/%s.%s", user.CodeStructureGroupe, user.CodeAdherent, fileID.String(), s[1])
 
 	if err != nil {
 		c.JSON(412, gin.H{"error": "cannot_read_file"})
@@ -53,7 +53,7 @@ func pushFile(c *gin.Context) {
 	fmt.Println(header.Header)
 
 	_, err = s3.New(sess).PutObject(&s3.PutObjectInput{
-		Bucket:      aws.String(user.CodeStructureGroupe),
+		Bucket:      aws.String("bet2020"),
 		Key:         aws.String(fileName),
 		Body:        file,
 		ContentType: aws.String("application/octet-stream"),
@@ -65,20 +65,7 @@ func pushFile(c *gin.Context) {
 		return
 	}
 
-	c.JSON(200, gin.H{"message": "file_uploaded", "id": fmt.Sprintf("%s/%s", user.CodeStructureGroupe, fileName)})
-}
-
-func createBucket(codeAdherent string) error {
-	var err error
-
-	_, err = s3.New(sess).CreateBucket(&s3.CreateBucketInput{
-		Bucket: aws.String(codeAdherent),
-	})
-	if err != nil {
-		fmt.Println(err)
-		return err
-	}
-	return nil
+	c.JSON(200, gin.H{"message": "file_uploaded", "id": fileName})
 }
 
 func getUrl(c *gin.Context) {
@@ -90,11 +77,11 @@ func getUrl(c *gin.Context) {
 	svc := s3.New(sess)
 
 	req, _ := svc.GetObjectRequest(&s3.GetObjectInput{
-		Bucket: aws.String(codeStructureGroupe),
-		Key:    aws.String(fmt.Sprintf("%s/%s", codeAdherent, name)),
+		Bucket: aws.String("bet2020"),
+		Key:    aws.String(fmt.Sprintf("%s/%s/%s", codeStructureGroupe, codeAdherent, name)),
 	})
 
-	url, err := req.Presign(15 * time.Minute)
+	url, err := req.Presign(30 * time.Minute)
 
 	if err != nil {
 		fmt.Println(err)
