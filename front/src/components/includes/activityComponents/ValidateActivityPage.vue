@@ -88,7 +88,7 @@ export default {
       let incompleteEntries = this.progression.entries.filter(
         (entry) =>
           entry.state != "FINISHED" ||
-          !entry.rendu ||
+          (entry.typeRendu != "file" && !entry.rendu) ||
           (entry.typeRendu == "file" && !entry.documents.length)
       );
       if (incompleteEntries.length > 0) {
