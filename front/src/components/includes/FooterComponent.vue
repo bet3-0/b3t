@@ -18,7 +18,6 @@
       </div>
     <div class="copyright">
       <span>Conditions d'utilisation</span>
-      <span>Copyright © 2020</span>
     </div>
   </footer>
 </template>
