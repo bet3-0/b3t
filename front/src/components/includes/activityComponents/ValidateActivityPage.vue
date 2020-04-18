@@ -14,7 +14,11 @@
     </div>
     <!-- Modal -->
     <ValidateActivityModal
-      id="validationModal"
+      :title="title"
+      :message="message"
+      :progression="progression"
+    />
+    <ActivityToValidateModal
       :title="title"
       :message="message"
       :progression="progression"
@@ -24,11 +28,13 @@
 <script>
 // import ProgressionService from "./../../../service/progression.service";
 import ValidateActivityModal from "./ValidateActivityModal";
+import ActivityToValidateModal from "./ActivityToValidateModal";
+
 //import $ from "jquery";
 
 export default {
   name: "ValidateActivityPage",
-  components: { ValidateActivityModal },
+  components: { ValidateActivityModal, ActivityToValidateModal },
   props: ["activity", "progression", "pageNumber", "updatePage"],
   data() {
     return {
@@ -53,11 +59,17 @@ export default {
         this.nextPage();
       } else {
         await this.updatePage(this.pageNumber);
-        this.message = this.checkEntries();
-        if (this.message) {
-          console.warn("Entries not complete");
+        if (this.progression.state == "INREVIEW") {
+          // Validation for reviewer
+          this.$bvModal.show("activityToValidateModal");
+        } else {
+          // Validation for jeune
+          this.message = this.checkEntries();
+          if (this.message) {
+            console.warn("Entries not complete");
+          }
+          this.$bvModal.show("validateActivityModal");
         }
-        this.$bvModal.show("validateActivityModal");
       }
     },
     checkEntries() {

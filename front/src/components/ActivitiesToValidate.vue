@@ -17,6 +17,7 @@
         <b-dropdown-item @click="filter(2)">Cés'Arts</b-dropdown-item>
         <b-dropdown-item @click="filter(3)">Robinson</b-dropdown-item>
       </b-dropdown>
+      <button class="btn btn-primary" @click="pollData()">Mettre à jour</button>
     </div>
     <!-- /#wrapper -->
     <div class="container">
@@ -118,15 +119,32 @@ export default {
         validated: 0,
         refused: 0,
       },
+      interval: null,
     };
   },
   async mounted() {
     await this.loadProgressions();
   },
-  async updated() {
-    await this.loadProgressions();
+
+  // not working...
+  ready() {
+    this.pollData().then(console.log("updated!"));
+    // reload data every 30 seconds
+    this.interval = setInterval(
+      function() {
+        this.pollData().then(console.log("updated!"));
+      }.bind(this),
+      30000
+    );
   },
+  beforeDestroy: function() {
+    clearInterval(this.interval);
+  },
+
   methods: {
+    async pollData() {
+      await this.loadProgressions();
+    },
     async loadProgressions() {
       let progressions = await ProgressionService.getUserProgressions();
       if (progressions) {
