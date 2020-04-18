@@ -6,40 +6,52 @@
         <img
           @click="selectChoice(0)"
           src="@/assets/img/bosseEtBobo.png"
-          alt=""
+          alt="Bosses et bobos"
         />
       </div>
       <div class="col-md-3">
-        <img @click="selectChoice(3)" src="@/assets/img/robinson.png" alt="" />
+        <img
+          @click="selectChoice(3)"
+          src="@/assets/img/robinson.png"
+          alt="Robinson"
+        />
       </div>
       <div class="col-md-3">
-        <img @click="selectChoice(2)" src="@/assets/img/cesArt.png" alt="" />
+        <img
+          @click="selectChoice(2)"
+          src="@/assets/img/cesArt.png"
+          alt="Césart"
+        />
       </div>
       <div class="col-md-3">
         <img
           @click="selectChoice(1)"
           src="@/assets/img/troisEtoiles.png"
-          alt=""
+          alt="Trois étoiles"
         />
       </div>
     </div>
+    <ErrorModal :title="titleError" :message="messageError" />
   </div>
 </template>
 
 <script>
 import Vue from "vue";
 import VueRouter from "vue-router";
-import ProgressionService from '../service/progression.service';
+import ProgressionService from "../service/progression.service";
+import ErrorModal from "./includes/ErrorModal";
 
 Vue.use(VueRouter);
 
 export default {
   name: "ParcoursChoiceComponent",
-  created() {
-    // if a parcours has been chosen, redirect to /activitees
-    if (this.$store.state.parcours.parcours < 4) {
-      return this.$router.push("/activitees");
-    }
+  components: { ErrorModal },
+  data() {
+    return {
+      titleError: "Impossible de choisir le parcours",
+      messageError:
+        "Nous n'arrivons pas à sélectionner le parcours ! Vérifie ta connexion internet et réessaie !",
+    };
   },
   methods: {
     async selectChoice(selected) {
@@ -51,9 +63,17 @@ export default {
         idParcours: JSON.stringify(parseInt(selected)),
         entries: [],
       };
-      await ProgressionService.createProgression(parcoursFirstPrgression)
-      this.$store.dispatch("parcours/setParcours", selected);
-      this.$router.push("/activitees");
+      let isChosen = await ProgressionService.createProgression(
+        parcoursFirstPrgression
+      );
+      if (isChosen === undefined) {
+        console.warn("Impossible to send the Parcours to server!");
+        this.$bvModal.show("errorModal");
+      } else {
+        // Store the Parcours and redirecte to activities
+        this.$store.dispatch("parcours/setParcours", selected);
+        this.$router.push("/activitees");
+      }
     },
   },
 };
