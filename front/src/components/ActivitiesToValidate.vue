@@ -65,12 +65,7 @@
               {{ getStateName(progression.state) }}
             </td>
             <td>
-              {{
-                (
-                  (progression.finishedAt - progression.startedAt) /
-                  3600000
-                ).toFixed(1)
-              }}
+              {{ getTimeDiff(progression.finishedAt,progression.startedAt)}}
             </td>
           </tr>
         </tbody>
@@ -156,7 +151,14 @@ export default {
       this.displayProgressions = this.progressions;
     },
     getStateName: progressionHelpers.getStateName,
-
+    getTimeDiff(finishedAt, startedAt){
+      let finishedAtMs=finishedAt*1000;
+      let finishedAtDate = new Date(finishedAtMs)
+      let startedAtMs=startedAt*1000;
+      let startedAtDate = new Date(startedAtMs)
+      let diff = finishedAtDate - startedAtDate
+      return diff
+    },
     getActivity(progression) {
       // TODO: get activity by id
       // fetchActivityFromProgression(progression)
