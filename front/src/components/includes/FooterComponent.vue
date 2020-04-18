@@ -42,7 +42,7 @@ img {
 .greets {
   display:flex;
   text-align: center;
-  width: 80%;
+  width: 100%;
   align-content: center;
   align-items: center;
 }
