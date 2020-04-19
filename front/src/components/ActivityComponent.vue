@@ -83,6 +83,12 @@ Base Component for an activity page -->
         </div>
       </div>
     </div>
+    <ErrorModal
+      :title="titleError"
+      :message="messageError"
+      :link="linkError"
+      :linkMessage="linkMessage"
+    />
   </div>
 </template>
 
@@ -97,6 +103,7 @@ import Qcm from "./includes/activityComponents/Qcm";
 import activityService from "./../service/activity";
 import itineraryHelpers from "./../service/itineraryHelpers";
 import Spinner from "./includes/Spinner";
+import ErrorModal from "./includes/ErrorModal";
 
 import ValidateActivityPage from "./includes/activityComponents/ValidateActivityPage";
 import $ from "jquery";
@@ -106,6 +113,7 @@ export default {
   name: "ActivityComponent",
   components: {
     Spinner,
+    ErrorModal,
     UploadFile,
     UploadText,
     Qcm,
@@ -127,20 +135,16 @@ export default {
       progress: 0,
       activity: {},
       progression: {},
+      titleError: "Activité impossible à charger !",
+      messageError: "L'activité est imposible à charger ou inexistante !",
+      linkError: "",
+      linkMessage: "",
     };
   },
   async created() {
-    this.loading = true;
     this.idActivite = this.$route.params.idActivite;
     this.idParcours = this.$route.params.idParcours;
-
-    this.activity = await activityService.getActivity(
-      this.idParcours,
-      this.idActivite
-    );
-
-    await this.retrieveProgression(this.idParcours, this.idActivite);
-    this.loading = false;
+    await this.loadActivity();
   },
   updated() {
     this.showCurrentPages();
@@ -152,6 +156,28 @@ export default {
     this.showCurrentPages();
   },
   methods: {
+    async loadActivity() {
+      this.loading = true;
+
+      let activity = await activityService.getActivity(
+        this.idParcours,
+        this.idActivite
+      );
+      if (activity === undefined) {
+        this.titleError = "Activité impossible à charger !";
+        this.messageError =
+          "L'activité est imposible à charger ou inexistante !";
+        this.linkError = "";
+        this.$bvModal.show("errorModal");
+        this.activity = { nom: "Activité inconnue !" };
+        this.loading = false;
+        return;
+      }
+      this.loading = false;
+      this.activity = activity;
+      await this.retrieveProgression(this.idParcours, this.idActivite);
+      this.loading = false;
+    },
     async showCurrentPages() {
       for (let i = 0; i < this.activity.page; i++) {
         if (i + 1 !== this.pageNumber) {
@@ -163,7 +189,7 @@ export default {
 
     async findProgression(progressionId) {
       let progressions = await ProgressionService.getProgressions();
-      if (!progressions) {
+      if (progressions === undefined) {
         console.log("failed to retrieve progressions");
         return false; // do not create a new progression and raises an error
       }
@@ -176,7 +202,7 @@ export default {
       }
       if (["FINISHED", "REVIEWING"].includes(existingProgression.state)) {
         console.log("Existing progression is in a non editable state");
-        return false; // do not create a new progression and raises an error
+        return "REVIEWING"; // do not create a new progression and raises an error
       }
       return existingProgression;
     },
@@ -188,8 +214,13 @@ export default {
         this.$store.state.activity.progression = undefined;
         return;
       }
-
-      const activities = JSON.parse(localStorage.getItem("activities")) || {};
+      let activities;
+      try {
+        activities = JSON.parse(localStorage.getItem("activities")) || {};
+      } catch (error) {
+        //localStorage corrupted
+        activities = {};
+      }
       if (!(idParcours in activities)) {
         activities[idParcours] = {};
       }
@@ -200,14 +231,27 @@ export default {
           let progression = await this.findProgression(savedProgression.id);
           if (progression == "TOCREATE") {
             console.log("Creating a new progression");
+          } else if (progression == "REVIEWING") {
+            this.titleError = "Activité en cours de validation";
+            this.messageError =
+              "Tu as déjà fait cette activité ! Elle est en train d'être relue, tu peux le voir sur la page Mes activités !";
+            this.linkError = "/progression";
+            (this.linkMessage = "Voir mes activités"),
+              this.$bvModal.show("errorModal");
+            this.textAlert =
+              "Tu as déjà fait cette activité ! Elle est sûrement en train d'être relue, tu peux le voir sur la page Mes activités !";
+            this.showDismissibleAlert = true;
           } else if (progression) {
             this.progression = progression;
             return;
           } else {
-            this.textAlert =
-              "Tu as déjà fait cette activité ! Elle est sûrement en train d'être relue, tu peux le voir sur la page Progression Personnelle !";
-            this.showDismissibleAlert = true;
-            //alert("Tu as déjà fait cette activité ! Elle est sûrement en train d'être relue, tu peux le voir sur la page Progression Personnelle !");
+            this.titleError = "Impossible de charger l'activité";
+            this.messageError =
+              "Nous ne parvenons pas à charger les réponses que tu as déjà envoyées ! Si l'erreur persiste, essaie de te déconnecter/reconnecter.";
+            this.linkError = "";
+            this.linkMessage = "";
+            this.$bvModal.show("errorModal");
+            return;
           }
         }
       }
@@ -217,22 +261,25 @@ export default {
       let progression = activityService.getProgression(idParcours, idActivity);
 
       // Post the new progression
-      try {
-        this.progression = await ProgressionService.createProgression(
-          progression
-        );
-        this.activity.progression = this.progression; // store the progression for future reconnexion
-        activities[idParcours][idActivity] = this.activity;
-        console.log("Progression created!");
-      } catch (error) {
+      let progressionUpdated = await ProgressionService.createProgression(progression);
+      if (progressionUpdated === undefined) {
         console.warn("Impossible to create a progression!");
-        this.textAlert =
-          "Impossible de démarrer l'activité ! Recharge la page !";
+        this.titleError = "Impossible de charger les réponses";
+        this.messageError =
+          "Impossible de charger les réponses à envoyer, elles ont dû se perdre en cours de route ! Essaie de recharger la page ?";
+        this.linkError = "";
+        this.linkMessage = "";
+        this.$bvModal.show("errorModal");
+        this.textAlert = "Impossible de charger les réponses !";
         this.showDismissibleAlert = true;
-        // alert("Impossible de démarrer l'activité ! Recharge la page !");
-        this.progression = progression;
-        // return;
+        this.progression = progression;  // Progression without id: send will fail.
+        return;
       }
+      this.progression = progressionUpdated;
+      this.activity.progression = this.progression; // store the progression for future reconnexion
+      activities[idParcours][idActivity] = this.activity;
+      console.log("Progression created!");
+
       localStorage.activities = JSON.stringify(activities);
     },
     // Activity progression
@@ -259,20 +306,23 @@ export default {
       console.log(entry.rendu);
       console.log(entry.parsedRendu);
 
+      // TODO: handle send file ?
+
       if (entry.parsedRendu) {
         entry.rendu = JSON.stringify(entry.parsedRendu);
       }
-      try {
-        await ProgressionService.updateProgression(entry, "entry");
-        console.log("Answer sent: " + entry.rendu);
-        this.updateEntryInProgression(entry); // update the primary progression object
-      } catch (error) {
-        console.log("Error while sending text entry: " + entry.rendu);
+      let isUpdated = await ProgressionService.updateProgression(
+        entry,
+        "entry"
+      );
+      if (!isUpdated) {
+        console.warn("Error while sending text entry: " + entry.rendu);
         entry.state = "INPROGRESS";
-        alert(
-          "Impossible d'envoyer ta progression ! Vérifie ta connexion et réessaye !"
-        );
+        return false;
       }
+      console.log("Answer sent: " + entry.rendu);
+      this.updateEntryInProgression(entry); // update the primary progression object
+      return true;
     },
     updateEntryInProgression(newEntry) {
       if (!this.progression.entries) {
@@ -291,13 +341,19 @@ export default {
     },
     async validatePageEntries() {
       if (!this.progression.entries) {
-        return;
+        return true;
       }
+      let isUpdated = true;
       this.progression.entries.forEach(async (entry) => {
         if (entry.page == this.pageNumber) {
-          await this.updateEntry(entry);
+          if (!(await this.updateEntry(entry))) {
+            isUpdated = false;
+            console.log("Valiidation of entry failed:")
+            console.log(entry)
+          }
         }
       });
+      return isUpdated;
     },
     pageEntries() {
       if (!this.progression.entries) {
@@ -310,7 +366,15 @@ export default {
     async updatePage(pageNumber) {
       // go to pageNumber
       if (pageNumber >= this.pageNumber) {
-        await this.validatePageEntries(); // if Page suivante or Valider: send all entries in the current page
+        // if Page suivante or Valider: send all entries in the current page
+        if (!(await this.validatePageEntries())) {
+          // impossible to send at least one entry
+          //this.titleError = "Impossible d'envoyer ta réponse !";
+          //this.messageError =            "Une des réponses de ta page n'arrive pas à partir ! Réessaie à nouveau ?";
+          //this.$bvModal.show("errorModal");
+          console.log("Validation of entries failed")
+          return false;  // error trigger in ValidateActivityPage
+        }
       }
       if (pageNumber != this.pageNumber) {
         $(`#page${this.pageNumber}`).hide();
@@ -319,6 +383,7 @@ export default {
       }
       console.log(`Current page number: ${this.pageNumber}`);
       window.scrollTo(0, 0);
+      return true;
     },
   },
 };

@@ -114,6 +114,11 @@ export default {
       messageError: "",
     };
   },
+  created() {
+    if (![0, 1, 2, 3].includes(this.$store.state.parcours.parcours)) {
+      return this.$router.push("/parcours");
+    }
+  },
   async mounted() {
     await this.loadActivities();
   },

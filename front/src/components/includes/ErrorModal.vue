@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <b-modal class="modal-backdrop" id="errorModal" :title="title">
+    <b-modal class="modal-backdrop" :id="`errorModal${idModal}`" :title="title">
       <div class="modal-body">
         {{ message }}
       </div>
@@ -10,6 +10,9 @@
         </b-button>
         <b-button variant="secondary" @click="cancel()">
           Retourner sur la page pour réessayer
+        </b-button>
+        <b-button v-if="link && linkMessage" variant="success" @click="go()">
+          {{ linkMessage }}
         </b-button>
       </template>
     </b-modal>
@@ -23,11 +26,21 @@ import VueRouter from "vue-router";
 Vue.use(VueRouter);
 export default {
   name: "ValidationModal",
-  props: ["title", "message"],
+  props: ["idError", "title", "message", "link", "linkMessage"],
+  data(){
+    return{
+      idModal: this.idError || ""
+    }
+  },
   methods: {
     reload() {
       window.location.reload();
     },
+    go(){
+      if (this.link){
+        this.$router.push(this.link)
+      }
+    }
   },
 };
 </script>

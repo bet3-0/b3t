@@ -54,6 +54,11 @@ export default {
         "Nous n'arrivons pas à sélectionner le parcours ! Vérifie ta connexion internet et réessaie !",
     };
   },
+  created() {
+    if ([0, 1, 2, 3].includes(this.$store.state.parcours.parcours)) {
+      return this.$router.push("/activitees");
+    }
+  },
   methods: {
     async selectChoice(selected) {
       // Creates the first empty progression to permit to retrieve parcours after reconnection
