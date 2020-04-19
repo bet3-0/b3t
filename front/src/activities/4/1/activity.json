@@ -1,10 +1,12 @@
 {
-    "id": "1",
-    "idParcours": "4",
-    "nom": "La Halte",
-    "description": "Avant de commencer, mets toi au calme afin de profiter au maximum du temps qui t'es proposé",
-    "duree": 60,
-    "materiel": ["Toi"],
-    "difficulte": "facile",
-    "page": 8
+  "id": "1",
+  "idParcours": "4",
+  "nom": "La Halte",
+  "description": "Avant de commencer, mets toi au calme afin de profiter au maximum du temps qui t'es proposé",
+  "duree": 60,
+  "materiel": [
+    "Toi"
+  ],
+  "difficulte": "facile",
+  "page": 8
 }

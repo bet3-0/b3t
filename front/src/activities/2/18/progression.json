@@ -1,23 +1,21 @@
 {
-    "idActivite": "18",
-    "idParcours": "2",
-    "state": "INPROGRESS",
-    "duration": 20,
-    "startedAt": 0,
-    "finishedAt": 0,
-    "reviewAt": 0,
-    "entries": [
-    
-            {
-                "position": 0,
-                "question":
-                    "Filme-toi en train de faire ta chorégraphie et envoie la nous ! Attention qu’elle ne dépasse pas 3 minutes car sinon elle sera trop lourde à envoyer.",
-                "documents": [],
-                "typeRendu": "file",
-                "rendu": "",
-                "state": "NOTSTARTED",
-                "tracked": true,
-                "page": 1
-            }
-    ]
+  "idActivite": "18",
+  "idParcours": "2",
+  "state": "INPROGRESS",
+  "duration": 20,
+  "startedAt": 0,
+  "finishedAt": 0,
+  "reviewAt": 0,
+  "entries": [
+    {
+      "position": 0,
+      "question": "Filme-toi en train de faire ta chorégraphie et envoie la nous ! Attention qu’elle ne dépasse pas 3 minutes car sinon elle sera trop lourde à envoyer.",
+      "documents": [],
+      "typeRendu": "file",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 1
+    }
+  ]
 }

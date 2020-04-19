@@ -4,7 +4,9 @@
   "nom": "Danse comme une star",
   "description": "Créer une chorégraphie",
   "duree": 20,
-  "materiel": ["Appareil pour te filmer"],
+  "materiel": [
+    "Appareil pour te filmer"
+  ],
   "difficulte": "facile",
-  "pages": 1
+  "page": 1
 }

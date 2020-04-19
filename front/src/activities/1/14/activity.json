@@ -4,7 +4,9 @@
   "nom": "Menu gastronomique 3.0",
   "description": "Pour faire plaisir à sa reine des reines, Cléopâtre, son goûteur vient demander de l’aide à ses amis gaulois. Il leur demande de renommer de manière originale et en faisant preuves d’imagination les plats qu’il va préparer pour la reine.",
   "duree": 15,
-  "materiel": [""],
+  "materiel": [
+    ""
+  ],
   "difficulte": "facile",
   "page": 12
 }

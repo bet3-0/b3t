@@ -4,7 +4,9 @@
   "nom": "Hey Jamie, mais où vont mes poubelles ?",
   "description": "Avoir des notions sur comment les villes gèrent le recyclage de nos déchets. Il est important de montrer l’importance et la difficulté que nous avons aujourd’hui encore à trier.",
   "duree": 30,
-  "materiel": [""],
+  "materiel": [
+    ""
+  ],
   "difficulte": "facile",
   "page": 2
 }

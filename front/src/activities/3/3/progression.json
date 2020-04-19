@@ -1,34 +1,32 @@
 {
-    "idActivite": "3",
-    "idParcours": "3",
-    "nom": "Apprends à t'installer",
-    "state": "INPROGRESS",
-    "duration": 75,
-    "startedAt": 0,
-    "finishedAt": 0,
-    "reviewAt": 0,
-    "entries": [
-
-        {
-            "position": 0,
-            "question": "Remets dans le champs texte, quelle image correspond à quel noeud. (Image 1 : ....., Image 2 : ....)",
-            "documents": [],
-            "typeRendu": "text",
-            "rendu": "",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 1
-        },
-        {
-            "position": 1,
-            "question": "Partage-nous une photo de ta table pour qu’on valide ton atelier. Il sera validé au plus vite par des chefs et cheftaines !",
-            "documents": [],
-            "typeRendu": "file",
-            "rendu": "",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 11
-        }
-
-    ]
+  "idActivite": "3",
+  "idParcours": "3",
+  "nom": "Apprends à t'installer",
+  "state": "INPROGRESS",
+  "duration": 75,
+  "startedAt": 0,
+  "finishedAt": 0,
+  "reviewAt": 0,
+  "entries": [
+    {
+      "position": 0,
+      "question": "Remets dans le champs texte, quelle image correspond à quel noeud. (Image 1 : ....., Image 2 : ....)",
+      "documents": [],
+      "typeRendu": "text",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 1
+    },
+    {
+      "position": 1,
+      "question": "Partage-nous une photo de ta table pour qu’on valide ton atelier. Il sera validé au plus vite par des chefs et cheftaines !",
+      "documents": [],
+      "typeRendu": "file",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 11
+    }
+  ]
 }

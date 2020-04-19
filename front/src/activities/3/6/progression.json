@@ -1,49 +1,41 @@
 {
-    "idActivite": "6",
-    "idParcours": "3",
-    "state": "INPROGRESS",
-    "duration": 55,
-    "startedAt": 0,
-    "finishedAt": 0,
-    "reviewAt": 0,
-    "entries": [{
-            "position": 0,
-            "question": "Classe les étiquettes dans le bon ordre pour qu’elles correspondent à l’ordre du texte puis clique sur suivant.",
-            "documents": [],
-            "typeRendu": "orderList",
-            "rendu": [{
-                "question": "",
-                "reponses": {
-                    "NE": false,
-                    "sous-directions": false,
-                    "N": false,
-                    "NO": false,
-                    "points cardinaux": false
-                }
-            }],
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 2
-        },
-        {
-            "position": 1,
-            "question": "Associe à chaque image la bonne description (Image 1:..., Image 2: ..., ...)",
-            "documents": [],
-            "typeRendu": "text",
-            "rendu": "",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 7
-        },
-        {
-            "position": 2,
-            "question": "Charge ton dessin ici!",
-            "documents": [],
-            "typeRendu": "file",
-            "rendu": "",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 15
-        }
-    ]
+  "idActivite": "6",
+  "idParcours": "3",
+  "state": "INPROGRESS",
+  "duration": 55,
+  "startedAt": 0,
+  "finishedAt": 0,
+  "reviewAt": 0,
+  "entries": [
+    {
+      "position": 0,
+      "question": "Classe les étiquettes dans le bon ordre pour qu’elles correspondent à l’ordre du texte puis clique sur suivant.",
+      "documents": [],
+      "typeRendu": "orderList",
+      "rendu": "[{\"question\": \"\", \"reponses\": {\"NE\": false, \"sous-directions\": false, \"N\": false, \"NO\": false, \"points cardinaux\": false}}]",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 2
+    },
+    {
+      "position": 1,
+      "question": "Associe à chaque image la bonne description (Image 1:..., Image 2: ..., ...)",
+      "documents": [],
+      "typeRendu": "text",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 7
+    },
+    {
+      "position": 2,
+      "question": "Charge ton dessin ici!",
+      "documents": [],
+      "typeRendu": "file",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 15
+    }
+  ]
 }

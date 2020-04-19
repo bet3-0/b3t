@@ -1,135 +1,21 @@
 {
-    "idActivite": "48",
-    "idParcours": "1",
-    "state": "INPROGRESS",
-    "duration": 15,
-    "startedAt": 0,
-    "finishedAt": 0,
-    "reviewAt": 0,
-    "entries": [{
-        "position": 0,
-        "question": "",
-        "documents": [],
-        "typeRendu": "qcm",
-        "rendu": [{
-                "question": "Pierre, 2e année, est allergique au lactose. Faut-il prévoir pour le dîner :",
-                "reponses": [
-                    "Une tartiflette?",
-                    "Des pâtes bolo?",
-                    "Une quiche lorraine?"
-                ]
-            },
-            {
-                "question": "Valérie, la plus jeune de la tribu, est allergique aux crustacés et aux mollusques. Au dîner ce soir, il est prévu une paella. Il faut :",
-                "reponses": [
-                    "Garder la recette prévue, Valérie mangera les restes du midi",
-                    "Séparer la cuisson des crustacés, des mollusques et des autres ingrédients de la paella",
-                    "Faire la recette habituelle, Valérie triera et donnera à son voisin les crevettes et moules."
-
-                ]
-            },
-            {
-                "question": "Adrien, 1ère année, sait qu’il est allergique à quelque chose mais ne sait plus si c’est aux fruits à coque ou aux arachides. A l’apéritif que lui conseilles-tu de prendre ?",
-                "reponses": [
-                    "Des tomates cerises, des chips et du saucisson",
-                    "Du saucisson, des cacahuètes et des crudités avec de la mayo",
-                    "Des cacahuètes, des amandes et des noix"
-                ]
-            },
-            {
-                "question": "Lequel de ces légumes fait partie des allergènes les plus fréquents ?",
-                "reponses": [
-                    "carotte",
-                    "rutabaga",
-                    "céleri"
-                ]
-            },
-            {
-                "question": "Gaspard n’aime pas trop les légumes.",
-                "reponses": [
-                    "Pendant le camp, il mangera ce qu’il veut",
-                    "On lui demande goûter à tous les plats",
-                    "Il peut manger les desserts uniquement "
-                ]
-            },
-            {
-                "question": "Stéphanie fête aujourd’hui ses 12 ans. Pour son anniversaire la tribu veut lui faire une surprise, mais le chef rappelle qu’elle est allergique aux œufs et aux produits laitiers. Que faire ?",
-                "reponses": [
-                    "Un gâteau au chocolat bien fondant",
-                    "Une fondue au chocolat avec des fraises",
-                    "Des crêpes au chocolat et au sucre"
-                ]
-            },
-            {
-                "question": "C’est le concours cuisine ! Il faut nourrir l’équipe de pirate, ennemis d’Astérix et Obélix. Vous souhaitez alors réaliser un vrai repas marin… Attention, Mathilde, cheftaine, est allergique aux poissons. Quel est votre menu du concu ?",
-                "reponses": [
-                    "Sardines marinées au piment d’Espelette, tagliatelles au saumon, crêpes",
-                    "Verrines crevettes avocat, tagliatelles aux saint jacques, gateau caramel beurre salé",
-                    "Tartelette poireaux, dorade grillée et ses petits légumes, compote de figues."
-
-                ]
-            },
-            {
-                "question": "Martin, 3e année, est allergique à un des allergènes les plus fréquents. Quelle sera la recette de la vinaigrette officielle du camp?",
-                "reponses": [
-                    "Huile d’olive, vinaigre de vin, sauce soja, sel, poivre.",
-                    "Huile d’olive, vinaigre balsamique, sel, poivre.",
-                    "Huile d’olive, vinaigre balsamique, moutarde, sel. "
-                ]
-            },
-            {
-                "question": "Lequel de ces plats/menus correspond pour un dîner de tribu ou plusieurs scouts/guides présentent des allergies alimentaires parmi les plus fréquentes ?",
-                "reponses": [
-                    "Salade champignons avocats tomates, poulet aux épices tandoori ratatouille, compote de pommes",
-                    "Salade de concombres, poulet au curry coco riz, brownie chocolat noisettes",
-                    "Salade tomates-mozzarella, purée de butternut sans lactose, nectarines"
-
-                ]
-            },
-            {
-                "question": "Lesquels de ces allergènes font tous partie des plus fréquents ?",
-                "reponses": [
-                    "Fruits à coque, chocolat, produits laitiers, soja",
-                    "Produit laitiers, arachides, farine, mollusques",
-                    "Crustacés, moutarde, gluten, oeufs "
-                ]
-            },
-            {
-                "question": "Marco est allergique aux oeufs, et une omelette aux champignons est prévue ce soir",
-                "reponses": [
-                    "Tant pis, ça va pas le tuer",
-                    "Il mangera uniquement les champignons",
-                    "On lui prépare un autre plat"
-                ]
-            },
-            {
-                "question": "Marie-Christine est allergique aux arachides",
-                "reponses": [
-                    "Elle ne peut pas manger d’araignées",
-                    "Elle ne peut pas manger de cacahuètes",
-                    "Elle ne peut pas manger d’accras"
-                ]
-            },
-            {
-                "question": "C’est l’anniversaire de Karim qui est allergique aux fruits à coques. On peut lui proposer :",
-                "reponses": [
-                    "un gâteau aux amandes",
-                    "des M&Ms tout chocolat",
-                    "un brownie"
-                ]
-            },
-            {
-                "question": "René ne se rappelle jamais de ses allergies...",
-                "reponses": [
-                    "Il n’en a sûrement pas",
-                    "Dans le doute, il mangera un régime particulier",
-                    "Les informations sont écrites dans la fiche sanitaire !"
-                ]
-            }
-
-        ],
-        "state": "NOTSTARTED",
-        "tracked": true,
-        "page": 2
-    }]
+  "idActivite": "48",
+  "idParcours": "1",
+  "state": "INPROGRESS",
+  "duration": 15,
+  "startedAt": 0,
+  "finishedAt": 0,
+  "reviewAt": 0,
+  "entries": [
+    {
+      "position": 0,
+      "question": "",
+      "documents": [],
+      "typeRendu": "qcm",
+      "rendu": "[{\"question\": \"Pierre, 2e année, est allergique au lactose. Faut-il prévoir pour le dîner :\", \"reponses\": {\"Une tartiflette?\": false, \"Des pâtes bolo?\": false, \"Une quiche lorraine?\": false}}, {\"question\": \"Valérie, la plus jeune de la tribu, est allergique aux crustacés et aux mollusques. Au dîner ce soir, il est prévu une paella. Il faut :\", \"reponses\": {\"Garder la recette prévue, Valérie mangera les restes du midi\": false, \"Séparer la cuisson des crustacés, des mollusques et des autres ingrédients de la paella\": false, \"Faire la recette habituelle, Valérie triera et donnera à son voisin les crevettes et moules.\": false}}, {\"question\": \"Adrien, 1ère année, sait qu’il est allergique à quelque chose mais ne sait plus si c’est aux fruits à coque ou aux arachides. A l’apéritif que lui conseilles-tu de prendre ?\", \"reponses\": {\"Des tomates cerises, des chips et du saucisson\": false, \"Du saucisson, des cacahuètes et des crudités avec de la mayo\": false, \"Des cacahuètes, des amandes et des noix\": false}}, {\"question\": \"Lequel de ces légumes fait partie des allergènes les plus fréquents ?\", \"reponses\": {\"carotte\": false, \"rutabaga\": false, \"céleri\": false}}, {\"question\": \"Gaspard n’aime pas trop les légumes.\", \"reponses\": {\"Pendant le camp, il mangera ce qu’il veut\": false, \"On lui demande goûter à tous les plats\": false, \"Il peut manger les desserts uniquement \": false}}, {\"question\": \"Stéphanie fête aujourd’hui ses 12 ans. Pour son anniversaire la tribu veut lui faire une surprise, mais le chef rappelle qu’elle est allergique aux œufs et aux produits laitiers. Que faire ?\", \"reponses\": {\"Un gâteau au chocolat bien fondant\": false, \"Une fondue au chocolat avec des fraises\": false, \"Des crêpes au chocolat et au sucre\": false}}, {\"question\": \"C’est le concours cuisine ! Il faut nourrir l’équipe de pirate, ennemis d’Astérix et Obélix. Vous souhaitez alors réaliser un vrai repas marin… Attention, Mathilde, cheftaine, est allergique aux poissons. Quel est votre menu du concu ?\", \"reponses\": {\"Sardines marinées au piment d’Espelette, tagliatelles au saumon, crêpes\": false, \"Verrines crevettes avocat, tagliatelles aux saint jacques, gateau caramel beurre salé\": false, \"Tartelette poireaux, dorade grillée et ses petits légumes, compote de figues.\": false}}, {\"question\": \"Martin, 3e année, est allergique à un des allergènes les plus fréquents. Quelle sera la recette de la vinaigrette officielle du camp?\", \"reponses\": {\"Huile d’olive, vinaigre de vin, sauce soja, sel, poivre.\": false, \"Huile d’olive, vinaigre balsamique, sel, poivre.\": false, \"Huile d’olive, vinaigre balsamique, moutarde, sel. \": false}}, {\"question\": \"Lequel de ces plats/menus correspond pour un dîner de tribu ou plusieurs scouts/guides présentent des allergies alimentaires parmi les plus fréquentes ?\", \"reponses\": {\"Salade champignons avocats tomates, poulet aux épices tandoori ratatouille, compote de pommes\": false, \"Salade de concombres, poulet au curry coco riz, brownie chocolat noisettes\": false, \"Salade tomates-mozzarella, purée de butternut sans lactose, nectarines\": false}}, {\"question\": \"Lesquels de ces allergènes font tous partie des plus fréquents ?\", \"reponses\": {\"Fruits à coque, chocolat, produits laitiers, soja\": false, \"Produit laitiers, arachides, farine, mollusques\": false, \"Crustacés, moutarde, gluten, oeufs \": false}}, {\"question\": \"Marco est allergique aux oeufs, et une omelette aux champignons est prévue ce soir\", \"reponses\": {\"Tant pis, ça va pas le tuer\": false, \"Il mangera uniquement les champignons\": false, \"On lui prépare un autre plat\": false}}, {\"question\": \"Marie-Christine est allergique aux arachides\", \"reponses\": {\"Elle ne peut pas manger d’araignées\": false, \"Elle ne peut pas manger de cacahuètes\": false, \"Elle ne peut pas manger d’accras\": false}}, {\"question\": \"C’est l’anniversaire de Karim qui est allergique aux fruits à coques. On peut lui proposer :\", \"reponses\": {\"un gâteau aux amandes\": false, \"des M&Ms tout chocolat\": false, \"un brownie\": false}}, {\"question\": \"René ne se rappelle jamais de ses allergies...\", \"reponses\": {\"Il n’en a sûrement pas\": false, \"Dans le doute, il mangera un régime particulier\": false, \"Les informations sont écrites dans la fiche sanitaire !\": false}}]",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 2
+    }
+  ]
 }

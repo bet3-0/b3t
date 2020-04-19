@@ -1,14 +1,19 @@
 {
-    "id": "1",
-    "idParcours": "2",
-    "nom": "Bâton de pluie",
-    "description": "Exprime ta créativité en fabriquant un bâton de pluie avec des éléments de récupération. Une fois réalisé, écoute le son qu’il provoque, et amuse toi à jouer de la musique avec.",
-    "duree": 20,
-    "materiel": ["Tube cartonné (tube de papier d’aluminium/boîtes rondes de chips pour apéritif/rouleau d’essuie-tout...)",
-        "scie ou ciseau", "crayon", "marteau, clous à tête plate OU cure-dents",
-        "riz", "bouchon OU papiers épais+scotch", "peinture ou éléments de décoration",
-        "Caméra, appareil photo, smartphone ou ordinateur pour te filmer"
-    ],
-    "difficulte": "facile",
-    "pages": 1
+  "id": "1",
+  "idParcours": "2",
+  "nom": "Bâton de pluie",
+  "description": "Exprime ta créativité en fabriquant un bâton de pluie avec des éléments de récupération. Une fois réalisé, écoute le son qu’il provoque, et amuse toi à jouer de la musique avec.",
+  "duree": 20,
+  "materiel": [
+    "Tube cartonné (tube de papier d’aluminium/boîtes rondes de chips pour apéritif/rouleau d’essuie-tout...)",
+    "scie ou ciseau",
+    "crayon",
+    "marteau, clous à tête plate OU cure-dents",
+    "riz",
+    "bouchon OU papiers épais+scotch",
+    "peinture ou éléments de décoration",
+    "Caméra, appareil photo, smartphone ou ordinateur pour te filmer"
+  ],
+  "difficulte": "facile",
+  "page": 1
 }

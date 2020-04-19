@@ -4,7 +4,9 @@
   "nom": "Expressions imagées",
   "description": "Connaître des expressions françaises",
   "duree": 10,
-  "materiel": [""],
+  "materiel": [
+    ""
+  ],
   "difficulte": "facile",
   "page": 2
 }

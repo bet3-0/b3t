@@ -4,7 +4,9 @@
   "nom": "La vie en bleu",
   "description": "Développe ta créativité en écrivant un couplet de \"La vie en bleu\"",
   "duree": 20,
-  "materiel": ["Appareil pour te filmer en chantant"],
+  "materiel": [
+    "Appareil pour te filmer en chantant"
+  ],
   "difficulte": "facile",
   "page": 2
 }

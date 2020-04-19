@@ -4,7 +4,9 @@
   "nom": "Connais-tu vraiment les outils",
   "description": "Salut jeune Gaulois ! Grâce à cet atelier tu découvriras les outils utilisés pour les installations. A quoi ressemblent-il ? Comment les utiliser en en prenant soin et en toute sécurité ? ",
   "duree": 45,
-  "materiel": [""],
+  "materiel": [
+    ""
+  ],
   "difficulte": "facile",
   "page": 4
 }
