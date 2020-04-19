@@ -42,7 +42,7 @@
       "position": 3,
       "question": "Quelle classe d'aliment va dans le numéro 4 de la pyramide?",
       "documents": [],
-      "typeRendu": "file",
+      "typeRendu": "text",
       "rendu": "",
       "state": "NOTSTARTED",
       "tracked": true,
