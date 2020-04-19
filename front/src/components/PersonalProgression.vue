@@ -163,6 +163,15 @@ export default {
           prog.idParcours == this.$store.state.parcours.parcours &&
           prog.state != "NOTSTARTED" // NOTSTARTED est utilisée pour la toute première progression qui permet de définir le parcours
       );
+      // Update the global progression
+      let gloabalProgression = 0;
+      progressions.forEach((prog) => {
+        // Update global progression if the activity is validated
+        if (prog.state == "VALIDATED") {
+          gloabalProgression += parseInt(prog.duration);
+        }
+      });
+      this.$store.dispatch("progression/setProgression", gloabalProgression);
     } else {
       this.progressions = [
         {
