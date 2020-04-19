@@ -99,6 +99,7 @@ export default class activityService {
 
   /**Get all activities linked to progressions */
   static async getAllParcoursWithProgressions() {
+    console.log("Updating all activities and progresssions...");
     // Update activities
     let activities = await this.getAllParcours();
     if (activities === undefined) {
@@ -143,7 +144,10 @@ export default class activityService {
       .filter((prog) => [0, 1, 2, 3].includes(parseInt(prog.idParcours)));
     if (parcoursProgressions.length) {
       // store the idParcours in store and localStorage
-      store.dispatch("parcours/setParcours", parcoursProgressions[0].idParcours);
+      store.dispatch(
+        "parcours/setParcours",
+        parcoursProgressions[0].idParcours
+      );
     }
     // store activities and global progression in localStorage
     localStorage.setItem("activities", JSON.stringify(activities));
