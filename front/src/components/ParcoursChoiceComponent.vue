@@ -66,6 +66,9 @@ export default {
   },
   computed: {
     role() {
+      if (!this.$store.state.auth.user) {
+        return "jeune";
+      }
       return this.$store.state.auth.user.role;
     },
   },

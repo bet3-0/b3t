@@ -7,16 +7,20 @@
       hide-backdrop
     >
       <div class="modal-body">
-        <p>Id : {{ progression.id }}</p>
-        <p>Id activité : {{ progression.idActivite }}</p>
+        <p>Identifiant de progression : {{ progression.id }}</p>
+        <p>Identifiant d'activité : {{ progression.idActivite }}</p>
         <p>Parcours : {{ getParcoursName(progression.idParcours) }}</p>
-
-        <p>
-          Durée réelle:
-          {{ getTimeDiff(progression.finishedAt, progression.startedAt) }}
-          minutes
+        <p>Durée prévue : {{ progression.duration }} minutes</p>
+        <p>Date de début : {{ getDate(progression.startedAt) }}</p>
+        <p v-if="progression.finishedAt">
+          Date de fin : {{ getDate(progression.finishedAt) }}
         </p>
-        <p>Durée prévue: {{ progression.duration }} minutes</p>
+        <p v-if="progression.reviewdAt">
+          Date de revue : {{ getDate(progression.reviewdAt) }}
+        </p>
+        <p>
+          Durée réelle : {{ getTimeDiff(progression.finishedAt, progression.startedAt) }}
+        </p>
       </div>
       <template v-slot:modal-footer="{ ok, cancel }">
         <b-button variant="secondary" @click="cancel()">
@@ -46,6 +50,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import itineraryHelpers from "./../../service/itineraryHelpers";
+import ProgressionHelpers from "./../../service/progressionHelpers";
 
 Vue.use(VueRouter);
 export default {
@@ -53,21 +58,14 @@ export default {
   props: ["progression"],
   methods: {
     go(progressionId) {
-      console.log(progressionId);
-      // TODO: create a specific route (depending on identifiant = BAD) ? Or everything on context
+      console.log("Validation of progression : " + progressionId);
       this.$router.push("/validation/" + progressionId);
     },
     getParcoursName(idParcours) {
       return itineraryHelpers.getParcoursName(idParcours);
     },
-    getTimeDiff(finishedAt, startedAt) {
-      let finishedAtMs = finishedAt * 1000;
-      let finishedAtDate = new Date(finishedAtMs);
-      let startedAtMs = startedAt * 1000;
-      let startedAtDate = new Date(startedAtMs);
-      let diff = finishedAtDate - startedAtDate;
-      return diff / 60000 || "inconnu";
-    },
+    getTimeDiff: ProgressionHelpers.getTimeDiff,
+    getDate: ProgressionHelpers.timestampToPrettyDate,
   },
 };
 </script>

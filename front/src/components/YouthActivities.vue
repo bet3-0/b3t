@@ -91,10 +91,8 @@
 import ValidationModal from "./includes/ValidationModal";
 import Spinner from "./includes/Spinner";
 import itineraryHelpers from "./../service/itineraryHelpers";
-import progressionHelpers from "./../service/progressionHelpers";
-import ProgressionHelpers, {
-  VALID_STATES,
-} from "./../service/progressionHelpers";
+import ProgressionHelpers from "./../service/progressionHelpers";
+import { VALID_STATES } from "./../service/progressionHelpers";
 
 import Vue from "vue";
 import BootstrapVue from "bootstrap-vue";
@@ -159,7 +157,8 @@ export default {
           {
             id: "Erreur de chargement",
             state: "UNKNOWN", // error
-            commentaire: "Une erreur inconnue est survenue ! Recharge la page !",
+            commentaire:
+              "Une erreur inconnue est survenue ! Recharge la page !",
           },
         ];
       }
@@ -168,26 +167,15 @@ export default {
       this.loading = false;
     },
 
-    getActivity(idParcours, idActivite) {
-      try {
-        let activities = JSON.parse(localStorage.getItem("activities"));
-        return activities[idParcours][idActivite];
-      } catch (error) {
-        console.error(
-          `Activity ${idParcours}/${idActivite} not found in localStorage.`
-        );
-        return { id: idActivite, idParcours: idParcours, nom: "Nom inconnu" };
-      }
-    },
+    getActivity: ProgressionHelpers.getActivityFromLocalStorage,
     getActivityName(idParcours, idActivite) {
-      try {
-        let activity = this.getActivity(idParcours, idActivite);
-        return activity.nom || "Activité inconnue";
-      } catch (error) {
-        return "Nom inconnu";
+      const activity = this.getActivity(idParcours, idActivite);
+      if (!activity){
+        return "Activité invalide" 
       }
+      return activity.nom || "Activité au nom inconnu";
     },
-    getStateName: progressionHelpers.getStateName,
+    getStateName: ProgressionHelpers.getStateName,
     getTimeDiff: ProgressionHelpers.getTimeDiff,
     sendInfo(progression) {
       this.currentProgression = progression;
