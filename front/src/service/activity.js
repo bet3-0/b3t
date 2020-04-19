@@ -138,12 +138,12 @@ export default class activityService {
     });
 
     // Get the Parcours = the idParcours from the first progression sent.
-    pastProgressions
+    const parcoursProgressions = pastProgressions
       .sort((a, b) => a.startedAt - b.startedAt)
       .filter((prog) => [0, 1, 2, 3].includes(parseInt(prog.idParcours)));
-    if (pastProgressions.length) {
+    if (parcoursProgressions.length) {
       // store the idParcours in store and localStorage
-      store.dispatch("parcours/setParcours", pastProgressions[0].idParcours);
+      store.dispatch("parcours/setParcours", parcoursProgressions[0].idParcours);
     }
     // store activities and global progression in localStorage
     localStorage.setItem("activities", JSON.stringify(activities));
