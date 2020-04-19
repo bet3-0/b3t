@@ -1,11 +1,17 @@
 /* This is an example file */
 import authHeader from "./auth-header";
 import { API_URL } from "./config";
+import store from "../store";
 
 export default class ProgressionService {
   /** Sends an empty progression to back to create a new progression
    */
   static async createProgression(data) {
+    if (!store.state.auth.user || store.state.user.role != "jeune") {
+      // Only a jeune can create a progression !
+      console.warn("Not authorized to create a progression!");
+      return undefined;
+    }
     console.log("Creating progression...");
     try {
       let response = await fetch(API_URL + "progression", {
