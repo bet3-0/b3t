@@ -241,6 +241,7 @@ export default {
             this.textAlert =
               "Tu as déjà fait cette activité ! Elle est sûrement en train d'être relue, tu peux le voir sur la page Mes activités !";
             this.showDismissibleAlert = true;
+            return;
           } else if (progression) {
             this.progression = progression;
             return;
@@ -261,7 +262,9 @@ export default {
       let progression = activityService.getProgression(idParcours, idActivity);
 
       // Post the new progression
-      let progressionUpdated = await ProgressionService.createProgression(progression);
+      let progressionUpdated = await ProgressionService.createProgression(
+        progression
+      );
       if (progressionUpdated === undefined) {
         console.warn("Impossible to create a progression!");
         this.titleError = "Impossible de charger les réponses";
@@ -272,7 +275,7 @@ export default {
         this.$bvModal.show("errorModal");
         this.textAlert = "Impossible de charger les réponses !";
         this.showDismissibleAlert = true;
-        this.progression = progression;  // Progression without id: send will fail.
+        this.progression = progression; // Progression without id: send will fail.
         return;
       }
       this.progression = progressionUpdated;
@@ -348,8 +351,8 @@ export default {
         if (entry.page == this.pageNumber) {
           if (!(await this.updateEntry(entry))) {
             isUpdated = false;
-            console.log("Valiidation of entry failed:")
-            console.log(entry)
+            console.log("Valiidation of entry failed:");
+            console.log(entry);
           }
         }
       });
@@ -372,8 +375,8 @@ export default {
           //this.titleError = "Impossible d'envoyer ta réponse !";
           //this.messageError =            "Une des réponses de ta page n'arrive pas à partir ! Réessaie à nouveau ?";
           //this.$bvModal.show("errorModal");
-          console.log("Validation of entries failed")
-          return false;  // error trigger in ValidateActivityPage
+          console.log("Validation of entries failed");
+          return false; // error trigger in ValidateActivityPage
         }
       }
       if (pageNumber != this.pageNumber) {

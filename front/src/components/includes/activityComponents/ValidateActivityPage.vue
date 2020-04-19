@@ -24,7 +24,13 @@
       :message="message"
       :progression="progression"
     />
-    <ErrorModal idError="-VAL" :title="titleError" :message="messageError" />
+    <ErrorModal
+      idError="-VAL"
+      :title="titleError"
+      :message="messageError"
+      :link="linkError"
+      :linkMessage="linkMessage"
+    />
   </div>
 </template>
 <script>
@@ -46,6 +52,8 @@ export default {
       loading: false,
       titleError: "Impossible d'envoyer tes réponses !",
       messageError: "",
+      linkMessage: "Voir Mes activités",
+      linkError: "/progression",
     };
   },
   computed: {
@@ -96,14 +104,28 @@ export default {
           this.titleError = "Impossible d'envoyer tes réponses !";
           this.messageError =
             "Tes réponses ne peuvent pas être enregistrées ! Tu dois rafraîchir la page !";
+          this.linkMessage = "";
+          this.linkError = "";
           this.$bvModal.show("errorModal-VAL");
           return false;
         }
-        if (this.progression.state == "REVIEWING") {
+        if (this.$store.state.auth.user.role != "jeune") {
           // Validation for reviewer
-          this.$bvModal.show("activityToValidateModal");
+          if (this.progression.state == "REVIEWING") {
+            this.$bvModal.show("activityToValidateModal");
+          }
         } else {
           // Validation for jeune
+          if (["FINISHED", "REVIEWING"].includes(this.progression.state)) {
+            // Cannot send this type of progression !
+            this.titleError = "Impossible d'envoyer tes réponses !";
+            this.messageError =
+              "Tu as déjà envoyé cette activité ! Elle se trouve maintenant dans Mes activités où tu peux suivre la progression de sa validation !";
+            this.linkMessage = "Voir Mes activités";
+            this.linkError = "/progression";
+            this.$bvModal.show("errorModal-VAL");
+            return;
+          }
           this.message = this.checkEntries();
           if (this.message) {
             console.warn("Entries not complete");
