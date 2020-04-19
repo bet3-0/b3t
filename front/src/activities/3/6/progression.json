@@ -7,7 +7,7 @@
     "finishedAt": 0,
     "reviewAt": 0,
     "entries": [{
-            "id": 0,
+            "position": 0,
             "question": "Classe les étiquettes dans le bon ordre pour qu’elles correspondent à l’ordre du texte puis clique sur suivant.",
             "documents": [],
             "typeRendu": "orderList",

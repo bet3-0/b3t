@@ -13,7 +13,7 @@
       "question": "Situation 1 : Ton meilleur ami se brûle en mettant la main sur une des pierres tenant la grille de la table à feu.",
       "documents": [],
       "typeRendu": "qcm",
-      "rendu": "[{\"question\": \"Que ferais tu en premier ? \", \"reponses\": {\"Je lui demande si ça fait mal\": false, \"Je l’éloigne du feu \": false, \"Je vais chercher les chefs\": false}}, {\"question\": \"Et ensuite ?\", \"reponses\": {\"Je cri car sa brûlure est importante\": false, \"Je lui mets de la crème hydratante\": false, \"J’appelle les chefs\": false}}, {\"question\": \"Et enfin ?\", \"reponses\": {\"Je lui mets la main sous l’eau tiède/ froide\": false, \"Je désinfecte\": false, \"Je mets un pansement \": false}}]",
+      "rendu": "[{\"question\": \"Que ferais tu en premier ? \", \"reponses\": {\"Je lui demande si ça fait mal\": false, \"Je l’éloigne du feu \": false, \"Je vais chercher les chefs\": false}}, {\"question\": \"Et ensuite ?\", \"reponses\": {\"Je crie car sa brûlure est importante\": false, \"Je lui mets de la crème hydratante\": false, \"J’appelle les chefs\": false}}, {\"question\": \"Et enfin ?\", \"reponses\": {\"Je lui mets la main sous l’eau tiède/ froide\": false, \"Je désinfecte\": false, \"Je mets un pansement \": false}}]",
       "state": "NOTSTARTED",
       "tracked": true,
       "page": 1
