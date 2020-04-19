@@ -12,7 +12,7 @@
       </a>
     </div>
      <div class="greets">
-        Un grand merci à Antoine, Guillaume, Victor, Jacques,
+        Un grand merci à Antoine, Guillaume, Julien, Victor, Jacques,
         Etienne, Nils, Eflamm, Pierre, Alexandre et Benoit
         qui ont développé ce site avec amour
       </div>
