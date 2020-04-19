@@ -4,7 +4,12 @@
   "nom": "Découvre le morse",
   "description": "Trés cher gaulois ! Tu as déjà entendu parlé du morse ? C'est un language qui t'est inconnu ? Après cet atelier, tu connaîtras tous les secrets du morse !",
   "duree": 45,
-  "materiel": ["Une lampe", "Une feuille", "Un crayon", "Un camarade de jeu avec sa lampe pour te répondre"],
+  "materiel": [
+    "Une lampe",
+    "Une feuille",
+    "Un crayon",
+    "Un camarade de jeu avec sa lampe pour te répondre"
+  ],
   "difficulte": "moyen",
   "page": 5
 }

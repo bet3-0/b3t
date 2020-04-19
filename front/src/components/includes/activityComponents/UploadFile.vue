@@ -10,8 +10,8 @@
           v-on:change="loadFilename()"
         />
         <label class="custom-file-label" for="file" id="labelInput">
-          <span v-if="!entry.documents">Choisis un fichier</span>
-          <span v-else>{{ entry.documents.length }} fichiers rendu(s)</span>
+          <span v-if="!entry.documents || !entry.documents.length ">Choisis un fichier</span>
+          <span v-else>{{ entry.documents.length }} fichier(s) rendu(s)</span>
         </label>
       </div>
       <div class="input-group-append">
@@ -29,6 +29,9 @@
       </div>
     </div>
     <span>Une fois ton fichier sélectionné, clique sur Charger !</span>
+    <span v-if="entry.documents && entry.documents.length"
+      >{{ entry.documents.length }} fichier(s) rendu(s)</span
+    >
     <Alert ref="alert" :show="showDismissibleAlert" :text="textAlert" />
   </div>
 </template>
@@ -79,7 +82,9 @@ export default {
       try {
         this.entry.documents.push(idFile);
         let isSent = await this.updateEntry(this.entry);
-        if (!isSent) {
+        if (isSent) {
+          alert("Nous avons bien reçu ton fichier !");
+        } else {
           this.entry.state = "INPROGRESS";
           alert(
             "Nous n'avons pas pu envoyer ton fichier... Réessaie pour voir ?"

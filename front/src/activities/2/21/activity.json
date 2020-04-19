@@ -4,7 +4,13 @@
   "nom": "Tuto Potion Magique",
   "description": "Exprime et développe ta créativité par le dessin",
   "duree": 25,
-  "materiel": ["Marmite ou récipient de cuisine", "Cuillère en bois", "Louche", "Tes ingrédients", "Appareil pour te filmer"],
+  "materiel": [
+    "Marmite ou récipient de cuisine",
+    "Cuillère en bois",
+    "Louche",
+    "Tes ingrédients",
+    "Appareil pour te filmer"
+  ],
   "difficulte": "facile",
-  "pages": 1
+  "page": 1
 }

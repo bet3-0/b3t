@@ -4,7 +4,10 @@
   "nom": "Dessine ton monde Gaulois",
   "description": "Exprime et développe ta créativité par le dessin",
   "duree": 20,
-  "materiel": ["1 feuille A4", "De la peinture ou des feutres / crayons"],
+  "materiel": [
+    "1 feuille A4",
+    "De la peinture ou des feutres / crayons"
+  ],
   "difficulte": "facile",
-  "pages": 1
+  "page": 1
 }

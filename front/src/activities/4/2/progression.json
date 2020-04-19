@@ -1,12 +1,10 @@
 {
-    "idActivite": "2",
-    "idParcours": "4",
-    "state": "INPROGRESS",
-    "duration": 30,
-    "startedAt": 0,
-    "finishedAt": 0,
-    "reviewAt": 0,
-    "entries": [
-    
-    ]
+  "idActivite": "2",
+  "idParcours": "4",
+  "state": "INPROGRESS",
+  "duration": 30,
+  "startedAt": 0,
+  "finishedAt": 0,
+  "reviewAt": 0,
+  "entries": []
 }

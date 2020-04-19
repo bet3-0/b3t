@@ -1,23 +1,21 @@
 {
-    "idActivite": "21",
-    "idParcours": "2",
-    "state": "INPROGRESS",
-    "duration": 25,
-    "startedAt": 0,
-    "finishedAt": 0,
-    "reviewAt": 0,
-    "entries": [
-    
-            {
-                "position": 0,
-                "question":
-                    "Envoies-nous ta vidéo. Attention qu’elle ne dépasse pas 4 minutes car sinon elle sera trop lourde à envoyer.",
-                "documents": [],
-                "typeRendu": "file",
-                "rendu": "",
-                "state": "NOTSTARTED",
-                "tracked": true,
-                "page": 1
-            }
-    ]
+  "idActivite": "21",
+  "idParcours": "2",
+  "state": "INPROGRESS",
+  "duration": 25,
+  "startedAt": 0,
+  "finishedAt": 0,
+  "reviewAt": 0,
+  "entries": [
+    {
+      "position": 0,
+      "question": "Envoies-nous ta vidéo. Attention qu’elle ne dépasse pas 4 minutes car sinon elle sera trop lourde à envoyer.",
+      "documents": [],
+      "typeRendu": "file",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 1
+    }
+  ]
 }

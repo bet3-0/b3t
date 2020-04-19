@@ -4,7 +4,9 @@
   "nom": "Attention aux allergies !",
   "description": "Obélix dit être allergique aux légumes.. il ne veut manger que des sangliers et rien d’autre! Est-ce une excuse? Il existe pourtant pleins d’autres solutions et recettes face aux allergies. Et oui il est important de connaître les principaux allergènes alimentaires et d'y faire attention dans la confection d’un menu de tribu !",
   "duree": 15,
-  "materiel": [""],
+  "materiel": [
+    ""
+  ],
   "difficulte": "facile",
   "page": 2
 }
