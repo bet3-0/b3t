@@ -17,7 +17,7 @@
             activityNavItem
           }}</router-link>
         </li>
-        <li class="nav-item" v-if="role != 'jeune'">
+        <li class="nav-item" v-if="['relecteur', 'admin'].includes(role)">
           <router-link class="nav-link text-white" to="/validation"
             >Activités à valider</router-link
           >

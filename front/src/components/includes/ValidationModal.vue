@@ -3,7 +3,7 @@
     <b-modal
       class="modal-backdrop"
       id="validationModal"
-      :title="activity.nom"
+      title="Description de l'activité"
       hide-backdrop
     >
       <div class="modal-body">
@@ -13,16 +13,28 @@
 
         <p>
           Durée réelle:
-            {{ getTimeDiff(progression.finishedAt,progression.startedAt)}}
+          {{ getTimeDiff(progression.finishedAt, progression.startedAt) }}
           minutes
         </p>
-        <p>Durée prévue: {{ activity.duree }} minutes</p>
+        <p>Durée prévue: {{ progression.duration }} minutes</p>
       </div>
       <template v-slot:modal-footer="{ ok, cancel }">
         <b-button variant="secondary" @click="cancel()">
           Fermer
         </b-button>
-        <b-button variant="success" @click.prevent.capture="go(progression.id+'/'+progression.idActivite+'/'+progression.idParcours)">
+        <b-button
+          v-if="['relecteur', 'admin'].includes($store.state.auth.user.role)"
+          variant="success"
+          @click.prevent.capture="
+            go(
+              progression.id +
+                '/' +
+                progression.idActivite +
+                '/' +
+                progression.idParcours
+            )
+          "
+        >
           Vérifier l'activité
         </b-button>
       </template>
@@ -39,17 +51,6 @@ Vue.use(VueRouter);
 export default {
   name: "ValidationModal",
   props: ["progression"],
-  data() {
-    return {
-      // TODO
-      activity: {
-        nom: "Nom de l'activité !",
-        duree: "5",
-        idActivité: 4,
-        idParcours: 1,
-      },
-    };
-  },
   methods: {
     go(progressionId) {
       console.log(progressionId);
@@ -59,13 +60,13 @@ export default {
     getParcoursName(idParcours) {
       return itineraryHelpers.getParcoursName(idParcours);
     },
-    getTimeDiff(finishedAt, startedAt){
-      let finishedAtMs=finishedAt*1000;
-      let finishedAtDate = new Date(finishedAtMs)
-      let startedAtMs=startedAt*1000;
-      let startedAtDate = new Date(startedAtMs)
-      let diff = finishedAtDate - startedAtDate
-      return diff/60000 || "inconnu"
+    getTimeDiff(finishedAt, startedAt) {
+      let finishedAtMs = finishedAt * 1000;
+      let finishedAtDate = new Date(finishedAtMs);
+      let startedAtMs = startedAt * 1000;
+      let startedAtDate = new Date(startedAtMs);
+      let diff = finishedAtDate - startedAtDate;
+      return diff / 60000 || "inconnu";
     },
   },
 };

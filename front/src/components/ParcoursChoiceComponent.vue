@@ -1,8 +1,13 @@
 <template>
   <div class="container">
-
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/VD2bQN5M9wM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
+    <iframe
+      width="560"
+      height="315"
+      src="https://www.youtube.com/embed/VD2bQN5M9wM"
+      frameborder="0"
+      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+    ></iframe>
 
     <h1>Choisis ton parcours</h1>
     <div class="row">
@@ -35,6 +40,7 @@
         />
       </div>
     </div>
+    <span v-if="role != 'jeune'">Vue des jeunes</span>
     <ErrorModal :title="titleError" :message="messageError" />
   </div>
 </template>
@@ -58,6 +64,11 @@ export default {
         "Nous n'arrivons pas à sélectionner le parcours ! Vérifie ta connexion internet et réessaie !",
     };
   },
+  computed: {
+    role() {
+      return this.$store.state.auth.user.role;
+    },
+  },
   created() {
     if ([0, 1, 2, 3].includes(this.$store.state.parcours.parcours)) {
       return this.$router.push("/activitees");
@@ -65,6 +76,10 @@ export default {
   },
   methods: {
     async selectChoice(selected) {
+      // Check the role
+      if (this.role != "jeune") {
+        return this.$router.push("/");
+      }
       // Creates the first empty progression to permit to retrieve parcours after reconnection
       console.log("Parcours chosen:" + selected);
       if ([0, 1, 2, 3].includes(this.$store.state.parcours.parcours)) {

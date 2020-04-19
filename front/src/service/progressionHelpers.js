@@ -2,7 +2,7 @@ export default class ProgressionHelpers {
   static getStateName(state) {
     switch (state) {
       case "NOTSTARTED":
-        return "Non commencé";
+        return "Choix de parcours";
       case "INPROGRESS":
         return "En cours";
       case "FINISHED":

@@ -107,4 +107,19 @@ export default class ProgressionService {
       return undefined;
     }
   }
+
+  static async getGroupeProgressions() {
+    console.log("Fetching progressions...");
+    try {
+      let response = await fetch(API_URL + "groupe/progressions", {
+        method: "GET",
+        headers: authHeader(),
+      });
+      let data = await response.json();
+      return data.Progressions;
+    } catch (error) {
+      console.error(error);
+      return undefined;
+    }
+  }
 }

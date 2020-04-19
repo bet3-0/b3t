@@ -80,7 +80,7 @@
       </table>
     </div>
     <p v-if="!loading && !displayProgressions.length">
-      Aucune progression à valider
+      Aucun jeune n'a commencé d'activité.
     </p>
     <!-- Modal -->
     <ValidationModal :progression="currentProgression" />
@@ -151,15 +151,15 @@ export default {
     },
     async loadProgressions() {
       this.loading = true;
-      let progressions = await ProgressionService.getUserProgressions();
+      let progressions = await ProgressionService.getGroupeProgressions();
       if (progressions) {
         this.progressions = progressions;
       } else {
         this.progressions = [
           {
-            id: "error_fetch",
+            id: "Erreur de chargement",
             state: "UNKNOWN", // error
-            evaluation: "Une erreur inconnue est survenue ! Recharge la page !",
+            commentaire: "Une erreur inconnue est survenue ! Recharge la page !",
           },
         ];
       }
