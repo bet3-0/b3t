@@ -7,7 +7,7 @@ export default class ProgressionService {
   /** Sends an empty progression to back to create a new progression
    */
   static async createProgression(data) {
-    if (!store.state.auth.user || store.state.user.role != "jeune") {
+    if (!store.state.auth.user || store.state.auth.user.role != "jeune") {
       // Only a jeune can create a progression !
       console.warn("Not authorized to create a progression!");
       return undefined;
