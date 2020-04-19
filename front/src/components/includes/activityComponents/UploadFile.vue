@@ -20,6 +20,10 @@
           class="input-group-text btn-primary text-white"
           v-on:click="submitFile()"
         >
+          <span
+            v-show="loading"
+            class="spinner-border spinner-border-sm"
+          ></span>
           Charger
         </button>
       </div>
@@ -43,6 +47,7 @@ export default {
       file: "",
       showDismissibleAlert: false, // for Alert
       textAlert: false, // for Alert
+      loading: false,
     };
   },
   methods: {
@@ -56,7 +61,7 @@ export default {
         return; // No file to load (and no error, no need a priori)
       }
       $(`#submitFileButton-${this.idEntry}`).prop("disabled", true);
-
+      this.loading = true;
       let idFile = await FileService.pushFile(this.file);
       if (idFile == undefined) {
         this.entry.state = "INPROGRESS";
@@ -67,20 +72,25 @@ export default {
           "Nous n'avons pas pu envoyer ton fichier... Réessaie pour voir ?";
         this.showDismissibleAlert = true;
         $(`#submitFileButton-${this.idEntry}`).removeAttr("disabled");
-
+        this.loading = false;
         return;
       }
       try {
         this.entry.documents.push(idFile);
-        this.updateEntry(this.entry);
-        await this.submitText(); // Send the entry
+        let isSent = await this.updateEntry(this.entry);
+        if (!isSent) {
+          this.entry.state = "INPROGRESS";
+          alert(
+            "Nous n'avons pas pu envoyer ton fichier... Réessaie pour voir ?"
+          );
+          this.textAlert =
+            "Nous n'avons pas pu envoyer ton fichier... Réessaie pour voir ?";
+          this.showDismissibleAlert = true;
+        }
       } finally {
         $(`#submitFileButton-${this.idEntry}`).removeAttr("disabled");
+        this.loading = false;
       }
-    },
-
-    async submitText() {
-      await this.updateEntry(this.entry); // update the primary progression object
     },
   },
 };

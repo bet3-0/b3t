@@ -6,42 +6,56 @@
         <img
           @click="selectChoice(0)"
           src="@/assets/img/bosseEtBobo.png"
-          alt=""
+          alt="Bosses et bobos"
         />
       </div>
       <div class="col-md-3">
-        <img @click="selectChoice(3)" src="@/assets/img/robinson.png" alt="" />
+        <img
+          @click="selectChoice(3)"
+          src="@/assets/img/robinson.png"
+          alt="Robinson"
+        />
       </div>
       <div class="col-md-3">
-        <img @click="selectChoice(2)" src="@/assets/img/cesArt.png" alt="" />
+        <img
+          @click="selectChoice(2)"
+          src="@/assets/img/cesArt.png"
+          alt="Césart"
+        />
       </div>
       <div class="col-md-3">
         <img
           @click="selectChoice(1)"
           src="@/assets/img/troisEtoiles.png"
-          alt=""
+          alt="Trois étoiles"
         />
       </div>
     </div>
+    <ErrorModal :title="titleError" :message="messageError" />
   </div>
 </template>
 
 <script>
 import Vue from "vue";
 import VueRouter from "vue-router";
-import ProgressionService from '../service/progression.service';
+import ProgressionService from "../service/progression.service";
+import ErrorModal from "./includes/ErrorModal";
 
 Vue.use(VueRouter);
 
 export default {
   name: "ParcoursChoiceComponent",
+  components: { ErrorModal },
+  data() {
+    return {
+      selected: null,
+      titleError: "Impossible de choisir le parcours",
+      messageError:
+        "Nous n'arrivons pas à sélectionner le parcours ! Vérifie ta connexion internet et réessaie !",
+    };
+  },
   created() {
-    // if user not logged in, redirect to /login
-    if (!this.$store.state.auth.status.loggedIn) {
-      return this.$router.push("/login");
-    }
-    // if a parcours has been chosen, redirect to /activitees
-    if (this.$store.state.parcours.parcours < 4) {
+    if ([0, 1, 2, 3].includes(this.$store.state.parcours.parcours)) {
       return this.$router.push("/activitees");
     }
   },
@@ -49,15 +63,34 @@ export default {
     async selectChoice(selected) {
       // Creates the first empty progression to permit to retrieve parcours after reconnection
       console.log("Parcours chosen:" + selected);
+      if ([0, 1, 2, 3].includes(this.$store.state.parcours.parcours)) {
+        //Parcours already chosen before (can open if user uses back/previous button)
+        console.warn("Parcours already chosen before !");
+        this.$router.push("/activitees");
+      }
+      if (this.selected !== null) {
+        console.warn("Parcours already selected !");
+        return; // Parcours has just been selected
+      }
+      this.selected = selected;
       let parcoursFirstPrgression = {
         state: "NOTSTARTED",
         idActivite: "-1",
         idParcours: JSON.stringify(parseInt(selected)),
         entries: [],
       };
-      await ProgressionService.createProgression(parcoursFirstPrgression)
-      this.$store.dispatch("parcours/setParcours", selected);
-      this.$router.push("/activitees");
+      let isChosen = await ProgressionService.createProgression(
+        parcoursFirstPrgression
+      );
+      if (isChosen === undefined) {
+        console.warn("Impossible to send the Parcours to server!");
+        this.$bvModal.show("errorModal");
+        this.selected = null;
+      } else {
+        // Store the Parcours and redirecte to activities
+        this.$store.dispatch("parcours/setParcours", selected);
+        this.$router.push("/activitees");
+      }
     },
   },
 };

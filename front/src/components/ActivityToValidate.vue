@@ -133,11 +133,6 @@ export default {
     };
   },
   async created() {
-    // if user not logged in, redirect to /login
-    if (!this.$store.state.auth.status.loggedIn) {
-      return this.$router.push("/login");
-    }
-
     this.idProgression = this.$route.params.idProgression;
 
     this.progression = await this.findProgression(this.idProgression);

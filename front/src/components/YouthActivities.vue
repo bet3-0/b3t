@@ -19,6 +19,8 @@
       </b-dropdown>
       <button class="btn btn-primary" @click="pollData()">Mettre à jour</button>
     </div>
+    <Spinner :activated="loading" />
+
     <!-- /#wrapper -->
     <div class="container">
       <table class="table">
@@ -56,7 +58,11 @@
                 />
               </svg>
             </td>
-            <td>{{ progression.nom }}</td>
+            <td>
+              {{
+                getActivityName(progression.idParcours, progression.idActivite)
+              }}
+            </td>
             <td>{{ progression.CodeAdherent }}</td>
             <td>
               <img
@@ -67,24 +73,15 @@
               {{ getStateName(progression.state) }}
             </td>
             <td>
-              {{
-                (
-                  (progression.finishedAt - progression.startedAt) /
-                  3600000
-                ).toFixed(1)
-              }}
+              {{ getTimeDiff(progression.finishedAt, progression.startedAt) }}
             </td>
           </tr>
         </tbody>
       </table>
     </div>
-    <img
-      v-if="!progressions.length"
-      class="img-spinner"
-      src="/img/icons/spinner.svg"
-      alt="Chargement en cours..."
-    />
-    <p v-if="!displayProgressions.length">Aucune progression à valider</p>
+    <p v-if="!loading && !displayProgressions.length">
+      Aucune progression à valider
+    </p>
     <!-- Modal -->
     <ValidationModal :progression="currentProgression" />
   </div>
@@ -92,9 +89,12 @@
 
 <script>
 import ValidationModal from "./includes/ValidationModal";
+import Spinner from "./includes/Spinner";
 import itineraryHelpers from "./../service/itineraryHelpers";
 import progressionHelpers from "./../service/progressionHelpers";
-import { VALID_STATES } from "./../service/progressionHelpers";
+import ProgressionHelpers, {
+  VALID_STATES,
+} from "./../service/progressionHelpers";
 
 import Vue from "vue";
 import BootstrapVue from "bootstrap-vue";
@@ -106,20 +106,22 @@ Vue.use(VueRouter);
 
 export default {
   name: "YouthActivities",
-  components: { ValidationModal },
+  components: { ValidationModal, Spinner },
   data() {
     return {
+      loading: true,
       idParcours: 4,
       currentParcours: "Filtrer par parcours",
       currentProgression: {},
       progressions: [],
       displayProgressions: [],
       counter: {
-        notStarted: 0,
-        inProgress: 0,
-        finished: 0,
-        validated: 0,
-        refused: 0,
+        NOTSTARTED: 0,
+        INPROGRESS: 0,
+        FINISHED: 0,
+        REVIEWING: 0,
+        VALIDATED: 0,
+        REFUSED: 0,
       },
       interval: null,
     };
@@ -148,6 +150,7 @@ export default {
       await this.loadProgressions();
     },
     async loadProgressions() {
+      this.loading = true;
       let progressions = await ProgressionService.getUserProgressions();
       if (progressions) {
         this.progressions = progressions;
@@ -162,8 +165,30 @@ export default {
       }
       this.countProgressionStates();
       this.displayProgressions = this.progressions;
+      this.loading = false;
+    },
+
+    getActivity(idParcours, idActivite) {
+      try {
+        let activities = JSON.parse(localStorage.getItem("activities"));
+        return activities[idParcours][idActivite];
+      } catch (error) {
+        console.error(
+          `Activity ${idParcours}/${idActivite} not found in localStorage.`
+        );
+        return { id: idActivite, idParcours: idParcours, nom: "Nom inconnu" };
+      }
+    },
+    getActivityName(idParcours, idActivite) {
+      try {
+        let activity = this.getActivity(idParcours, idActivite);
+        return activity.nom || "Activité inconnue";
+      } catch (error) {
+        return "Nom inconnu";
+      }
     },
     getStateName: progressionHelpers.getStateName,
+    getTimeDiff: ProgressionHelpers.getTimeDiff,
     sendInfo(progression) {
       this.currentProgression = progression;
     },
