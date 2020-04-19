@@ -1,5 +1,15 @@
 <template>
   <div class="container">
+
+    <iframe width="560" 
+    height="315" 
+    src="https://www.youtube.com/embed/Az3ZeSV6RRE" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+    allowfullscreen>
+    </iframe>
+
+
     <h1>Choisis ton parcours</h1>
     <div class="row">
       <div class="col-md-3">
