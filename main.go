@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 
+	"github.com/gin-contrib/secure"
 	"github.com/gin-contrib/static"
 	"github.com/gin-gonic/gin"
 )
@@ -27,7 +28,13 @@ func main() {
 
 	router := gin.Default()
 
-	router.Use(redirectSSL())
+	securityConfig := secure.Config{}
+
+	securityConfig.SSLRedirect = true
+
+	router.Use(secure.New(securityConfig))
+
+	//router.Use(redirectSSL())
 
 	router.Use(static.Serve("/", static.LocalFile("front/dist", false)))
 
