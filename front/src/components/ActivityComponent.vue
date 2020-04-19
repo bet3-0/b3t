@@ -303,13 +303,23 @@ export default {
       }
       this.progress = (100 * counter) / total;
     },
+    /**If INPROGRESS/NOT STARTED, send the entry and save the entry in local progression, else do nothing */
     async updateEntry(entry) {
+      if (
+        ["REVIEWING", "VALIDATED"].includes(entry.state) ||
+        this.$store.state.auth.user.role != "jeune"
+      ) {
+        // Security (normally this case does not happen)
+        // Impossible to edit entry in this state
+        console("Entry not updatable: " + entry.state);
+        return true;
+      }
       entry.state = "FINISHED";
       console.log("update:");
       console.log(entry.rendu);
       console.log(entry.parsedRendu);
 
-      // TODO: handle send file ?
+      // TODO: handle send file ? --> NO
 
       if (entry.parsedRendu) {
         entry.rendu = JSON.stringify(entry.parsedRendu);
@@ -327,6 +337,7 @@ export default {
       this.updateEntryInProgression(entry); // update the primary progression object
       return true;
     },
+    /**Save the entry in local progression + update progression bar */
     updateEntryInProgression(newEntry) {
       if (!this.progression.entries) {
         this.progression.entries = [];
