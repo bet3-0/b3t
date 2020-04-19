@@ -51,6 +51,7 @@ export default {
     },
 
     async validateProgression() {
+      // It is assumed role is jeune and not REVIEWING/VALIDATED
       console.log("Validating progression...");
       //Change state
       this.loading = true;

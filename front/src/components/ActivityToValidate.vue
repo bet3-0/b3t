@@ -222,6 +222,7 @@ export default {
       this.getProgress();
       console.log(`Current page number: ${this.pageNumber}`);
       window.scrollTo(0, 0);
+      return true;
     },
   },
 };
