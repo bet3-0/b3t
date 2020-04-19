@@ -17,13 +17,12 @@
     langages web
     (HTML5, Javascript, CSS, etc…) pour un meilleur confort d'utilisation et un graphisme plus agréable,
     nous vous
-    recommandons de recourir à des navigateurs modernes comme Internet explorer, Safari, Firefox, Google Chrome,
-    etc…
+    recommandons de recourir à des navigateurs modernes comme Firefox ou Google Chrome. 
     <br>
     <strong class="font-weight-bold">L'éditeur</strong> met en œuvre tous les moyens dont il dispose,
     pour assurer une information fiable et une mise à jour fiable de ses sites internet. Toutefois, des erreurs ou
     omissions peuvent survenir. L'internaute devra donc s'assurer de l'exactitude des informations auprès de , et
-    signaler toutes modifications du site qu'il jugerait utile. n'est en aucun cas responsable de l'utilisation faite de ces
+    signaler toutes modifications du site qu'il jugerait utile. L'éditeur n'est en aucun cas responsable de l'utilisation faite de ces
     informations, et de tout préjudice direct ou indirect pouvant en découler.
 
     <h3 class="text-left">Cookies : </h3>
