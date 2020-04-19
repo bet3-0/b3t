@@ -1,0 +1,98 @@
+{
+    "idActivite": "45",
+    "idParcours": "1",
+    "state": "INPROGRESS",
+    "duration": 10,
+    "startedAt": 0,
+    "finishedAt": 0,
+    "reviewAt": 0,
+    "entries": [
+
+
+        {
+            "position": 0,
+            "question": "",
+            "documents": [],
+            "typeRendu": "qcm",
+            "rendu": [{
+                    "question": "Lorsque l’on patauge, on dit que l’on pédale dans : ",
+                    "reponses": [
+                        "a",
+                        "b",
+                        "c"
+                    ]
+                },
+                {
+                    "question": "Si vous méprisez ce dont vous profitez allègrement, on dit que vous crachez dans : ",
+                    "reponses": [
+                        "a",
+                        "b",
+                        "c"
+                    ]
+                },
+                {
+                    "question": "Trop facile !!”, on peut dire que c’est du : ",
+                    "reponses": [
+                        "a",
+                        "b",
+                        "c"
+                    ]
+                },
+                {
+                    "question": "Améliorer ses revenus financiers, on appelle ça : ",
+                    "reponses": [
+                        "a",
+                        "b",
+                        "c"
+                    ]
+                },
+                {
+                    "question": "Gagner un salaire misérable, c’est gagner des : ",
+                    "reponses": [
+                        "a",
+                        "b",
+                        "c"
+                    ]
+                },
+                {
+                    "question": "Critiquer quelqu’un en son absence, c’est lui casser … sur le dos : ",
+                    "reponses": [
+                        "a",
+                        "b",
+                        "c"
+                    ]
+                },
+                {
+                    "question": "Prendre quelqu’un pour un idiot, c’est le prendre pour un : ",
+                    "reponses": [
+                        "a",
+                        "b",
+                        "c"
+                    ]
+                },
+                {
+                    "question": "Après le parcours 3 Etoiles, tu vas être un vrai : ",
+                    "reponses": [
+                        "a",
+                        "b",
+                        "c"
+                    ]
+                }
+            ],
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 1
+        },
+
+        {
+            "position": 9,
+            "question": "Ecris-nous ton expression!",
+            "documents": [],
+            "typeRendu": "text",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 2
+        }
+    ]
+}
