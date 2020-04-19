@@ -14,6 +14,7 @@ import ActivitiesToValidate from "./components/ActivitiesToValidate";
 import HalteComponent from "./components/HalteComponent";
 import ActivityToValidate from "./components/ActivityToValidate";
 import YouthActivities from "./components/YouthActivities";
+import PoliciesComponent from "./components/PoliciesComponent"
 import Error404 from "./components/Error404";
 
 
@@ -46,6 +47,10 @@ const router = new VueRouter({
     {
       path: "/login",
       component: LoginComponent,
+    },
+    {
+      path: "/policies",
+      component: PoliciesComponent,
     },
     {
       path: "/activitees",
@@ -103,7 +108,7 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-   if(!/^\/login/.test(to.fullPath) && to.fullPath !== "/") {
+   if(!/^\/login/.test(to.fullPath) && !["/", "/policies"].includes(to.fullPath)) {
       if (!store.state.auth.status.loggedIn) {
          next({
             path: "/login",
