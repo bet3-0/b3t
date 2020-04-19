@@ -311,7 +311,7 @@ export default {
       ) {
         // Security (normally this case does not happen)
         // Impossible to edit entry in this state
-        console("Entry not updatable: " + entry.state);
+        console.warn("Entry not updatable: " + entry.state);
         return true;
       }
       entry.state = "FINISHED";
