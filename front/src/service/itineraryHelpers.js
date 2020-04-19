@@ -37,8 +37,10 @@ export default class ItineraryHelpers {
         return "Cés'Arts";
       case 3:
         return "Robinson";
+      case 4:
+        return "La Halte";
       default:
-        return "La Halte"; // où mettre la halte ?
+        return "Parcours inconnu";
     }
   }
 }
