@@ -31,6 +31,7 @@ func main() {
 	securityConfig := secure.Config{}
 
 	securityConfig.SSLRedirect = true
+	securityConfig.SSLProxyHeaders = map[string]string{"X-Forwarded-Proto": "https"}
 
 	router.Use(secure.New(securityConfig))
 
