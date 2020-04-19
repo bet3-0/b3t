@@ -28,6 +28,7 @@
         </button>
       </div>
     </div>
+    <span>Une fois ton fichier sélectionné, clique sur Charger !</span>
     <Alert ref="alert" :show="showDismissibleAlert" :text="textAlert" />
   </div>
 </template>
