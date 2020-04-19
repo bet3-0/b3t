@@ -1,46 +1,48 @@
 <template>
-  <div class="wrap-login">
-    <div class="login-pic" data-tilt>
-      <img src="img/logo-BET-france.png" alt="BET 2k20" />
-    </div>
-    <div class="card" style="text-align: center;">
-      <div class="card-body">
-        <h1 class="card-title">Connexion</h1>
-        <p class="card-text">Entre ton identifiant BET !</p>
-        <form name="form" @submit.prevent="handleLogin">
-          <div class="form-group">
-            <label for="idUser">Identifiant :</label>
-            <input
-              v-model="user.code_adherent"
-              v-validate="'required|min:6|max:40'"
-              type="text"
-              class="form-control"
-              id="idUser"
-              name="idUser"
-            />
-            <div
-              v-if="errors.has('idUser')"
-              class="alert alert-danger"
-              role="alert"
-            >
-              L'identifiant doit avoir 9 chiffres !
+  <div>
+    <div class="wrap-login">
+      <div class="login-pic" data-tilt>
+        <img src="img/logo-BET-france.png" alt="BET 2k20" />
+      </div>
+      <div class="card" style="text-align: center;">
+        <div class="card-body">
+          <h1 class="card-title">Connexion</h1>
+          <p class="card-text">Entre ton identifiant BET !</p>
+          <form name="form" @submit.prevent="handleLogin">
+            <div class="form-group">
+              <label for="idUser">Identifiant :</label>
+              <input
+                v-model="user.code_adherent"
+                v-validate="'required|min:6|max:40'"
+                type="text"
+                class="form-control"
+                id="idUser"
+                name="idUser"
+              />
+              <div
+                v-if="errors.has('idUser')"
+                class="alert alert-danger"
+                role="alert"
+              >
+                L'identifiant doit avoir 9 chiffres !
+              </div>
             </div>
-          </div>
-          <div class="form-group">
-            <button type="submit" class="btn btn-primary" :disabled="loading">
-              <span
-                v-show="loading"
-                class="spinner-border spinner-border-sm"
-              ></span>
-              <span>Se connecter</span>
-            </button>
-          </div>
-          <div class="form-group">
-            <div v-if="message" class="alert alert-danger" role="alert">
-              {{ message }}
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary" :disabled="loading">
+                <span
+                  v-show="loading"
+                  class="spinner-border spinner-border-sm"
+                ></span>
+                <span>Se connecter</span>
+              </button>
             </div>
-          </div>
-        </form>
+            <div class="form-group">
+              <div v-if="message" class="alert alert-danger" role="alert">
+                {{ message }}
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
     <ErrorModal :title="titleError" :message="messageError" />
@@ -61,7 +63,7 @@ export default {
       loading: false,
       message: "",
       titleError: "Connexion impossible !",
-      messageError: ""
+      messageError: "",
     };
   },
   computed: {
