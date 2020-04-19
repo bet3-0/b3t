@@ -3,22 +3,30 @@ import authHeader from "./auth-header";
 import { API_URL } from "./config";
 
 export default class ProgressionService {
+  /** Sends an empty progression to back to create a new progression
+   */
   static async createProgression(data) {
     console.log("Creating progression...");
-    let response = await fetch(API_URL + "progression", {
-      method: "POST",
-      headers: Object.assign(authHeader(), {
-        "Content-Type": "application/json",
-      }),
-      body: JSON.stringify(data),
-    });
-    console.log(response);
-    let jsonResponse = await response.json();
-    console.log(jsonResponse);
-    return jsonResponse.progression;
+    try {
+      let response = await fetch(API_URL + "progression", {
+        method: "POST",
+        headers: Object.assign(authHeader(), {
+          "Content-Type": "application/json",
+        }),
+        body: JSON.stringify(data),
+      });
+      let jsonResponse = await response.json();
+      return jsonResponse.progression; // progression updated
+    } catch (error) {
+      console.error(error);
+      return undefined;
+    }
   }
 
-  /*Returns a boolean depending on the success of the update*/
+  /**Returns a boolean depending on the success of the update
+   * role jeune: entry, progression
+   * role relecteru: user/progression
+   */
   static async updateProgression(data, route = "entry") {
     console.log("Updating progression...");
     try {
@@ -31,7 +39,7 @@ export default class ProgressionService {
       });
       if (!response.ok) {
         console.error(response);
-        return false; // Bad response
+        return false; // Bad response (but can contain a payload)
       }
       let dataResponse = {};
       try {
@@ -52,6 +60,7 @@ export default class ProgressionService {
   }
 
   static async getProgressions() {
+    // Returns undefined or a JS object
     console.log("Fetching progressions...");
     try {
       let response = await fetch(API_URL + "progressions", {
@@ -84,10 +93,13 @@ export default class ProgressionService {
   static async getUserProgression(idProgression) {
     console.log("Fetching progression...");
     try {
-      let response = await fetch(API_URL + "user/progression/"+idProgression, {
-        method: "GET",
-        headers: authHeader(),
-      });
+      let response = await fetch(
+        API_URL + "user/progression/" + idProgression,
+        {
+          method: "GET",
+          headers: authHeader(),
+        }
+      );
       let data = await response.json();
       return data.progression;
     } catch (error) {

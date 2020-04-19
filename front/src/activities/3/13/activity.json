@@ -1,0 +1,10 @@
+{
+  "id": "6",
+  "idParcours": "13",
+  "nom": "Faune",
+  "description": "Salut à toi jeune gaulois et gauloise ! Manger ça t'intéresse ? Trouver à manger ça t'intéresse. Je suis sûr que dans le futur on trouvera à manger dans une boîte froide que chacun aura dans sa hutte. Mais pour l'instant on vit en -50 avant Jésus Chrix et la nourriture ne vient pas à nous, il faut aller la chercher ! Pour cela il faut savoir où trouver à manger. Si on te dit, trouve moi des fraises, tu cherches un fraisier. Si on te dit, trouve moi des glands, tu cherches un chêne ? Si je te dis trouve moi un lapin... einh... tu cherches un lapinier ? Et le sanglier ? Non ne me dis rien, je ne veux pas savoir. Bienvenue dans l'atelier qui va te former aux empreintes d'animaux et à leurs propriétaires bien sûr",
+  "duree": 60,
+  "materiel": ["Des feuilles blanches ou un carnet", "Un crayon"],
+  "difficulte": "difficile",
+  "page": 1
+}

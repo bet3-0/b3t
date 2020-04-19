@@ -10,7 +10,7 @@
   "entries": [
     {
       "position": 0,
-      "question": "",
+      "question": "Alors tu as bien retenu ? A toi de jouer ! Pour chaque fruit associe a un mois",
       "documents": [],
       "typeRendu": "qcm",
       "rendu": "[{\"question\": \"Quel mois peut on manger des abricots?\", \"reponses\": {\"Mai\": false, \"Juillet\": false, \"Septembre\": false}}, {\"question\": \"Quel mois peut on manger des fraises?\", \"reponses\": {\"mars\": false, \"Juillet\": false, \"novembre\": false}}, {\"question\": \"Quel mois peut on manger des aubergines?\", \"reponses\": {\"janvier\": false, \"mai\": false, \"octobre\": false}}, {\"question\": \"Quel mois peut on manger des aubergines?\", \"reponses\": {\"janvier\": false, \"mai\": false, \"octobre\": false}}, {\"question\": \"Quel mois peut on manger des raisins?\", \"reponses\": {\"mars\": false, \"juillet\": false, \"novembre\": false}}, {\"question\": \"Quel mois peut on manger des pommes?\", \"reponses\": {\"mai\": false, \"juillet\": false, \"decembre\": false}}, {\"question\": \"Quel mois peut on manger des carottes?\", \"reponses\": {\"février\": false, \"juillet\": false, \"septembre\": false}}, {\"question\": \"Quel mois peut on manger des kiwis?\", \"reponses\": {\"mars\": false, \"avril\": false, \"septembre\": false}}, {\"question\": \"Quel mois peut on manger des pommes de terre?\", \"reponses\": {\"mai\": false, \"juillet\": false, \"septembre\": false}}, {\"question\": \"Quel mois peut on manger des tomates?\", \"reponses\": {\"juin\": false, \"juillet\": false, \"octobre\": false}}, {\"question\": \"Quel mois peut on manger des poireaux?\", \"reponses\": {\"mai\": false, \"juillet\": false, \"septembre\": false}}]",

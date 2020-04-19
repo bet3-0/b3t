@@ -54,12 +54,8 @@
       </ul>
     </div>
 
-    <img
-      v-if="!progressions || !progressions.length"
-      class="img-spinner"
-      src="/img/icons/spinner.svg"
-      alt="Chargement en cours..."
-    />
+    <Spinner :activated="loading" />
+
     <!-- /#wrapper -->
     <div class="container">
       <table class="table">
@@ -127,15 +123,17 @@ import Vue from "vue";
 import BootstrapVue from "bootstrap-vue";
 import VueRouter from "vue-router";
 import ProgressionService from "./../service/progression.service";
+import Spinner from "./includes/Spinner";
 
 Vue.use(BootstrapVue);
 Vue.use(VueRouter);
 
 export default {
   name: "PersonalProgression",
-  components: { ProgressionModal },
+  components: { ProgressionModal, Spinner },
   data() {
     return {
+      loading: true,
       idParcours: this.$store.state.parcours.parcours,
       currentProgression: {},
       progressions: [],
@@ -150,24 +148,30 @@ export default {
     };
   },
   created() {
-    // if user not logged in, redirect to /login
-    if (!this.$store.state.auth.status.loggedIn) {
-      return this.$router.push("/login");
-    }
     // Check if parcours is defined. If not, redirect to /parcours
     if (isNaN(this.idParcours) | (this.idParcours > 3)) {
       return this.$router.push("/parcours");
     }
   },
   async mounted() {
+    this.loading = true;
     let progressions = await ProgressionService.getProgressions();
     if (progressions) {
       // Show only progressions of the Parcours.
       this.progressions = progressions.filter(
         (prog) =>
           prog.idParcours == this.$store.state.parcours.parcours &&
-          prog.state != "NOTSTARTED"  // NOTSTARTED est utilisée pour la toute première progression qui permet de définir le parcours
+          prog.state != "NOTSTARTED" // NOTSTARTED est utilisée pour la toute première progression qui permet de définir le parcours
       );
+      // Update the global progression
+      let gloabalProgression = 0;
+      progressions.forEach((prog) => {
+        // Update global progression if the activity is validated
+        if (prog.state == "VALIDATED") {
+          gloabalProgression += parseInt(prog.duration);
+        }
+      });
+      this.$store.dispatch("progression/setProgression", gloabalProgression);
     } else {
       this.progressions = [
         {
@@ -178,6 +182,7 @@ export default {
       ];
     }
     this.countProgressionStates();
+    this.loading = false;
   },
 
   methods: {

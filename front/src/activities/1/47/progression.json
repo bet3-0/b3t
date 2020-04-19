@@ -1,0 +1,115 @@
+{
+    "idActivite": "47",
+    "idParcours": "1",
+    "state": "INPROGRESS",
+    "duration": 30,
+    "startedAt": 0,
+    "finishedAt": 0,
+    "reviewAt": 0,
+    "entries": [{
+
+        "position": 0,
+        "question": "",
+        "documents": [],
+        "typeRendu": "qcm",
+        "rendu": [{
+                "question": "Que faut il faire avec ses déchets ?",
+                "reponses": [
+                    "Tout mettre dans la même poubelle",
+                    "Les mettre dans le jardin",
+                    "Trier"
+                ]
+            },
+            {
+                "question": "Pour combien de Français, le tri est devenu un réflexe quotidien ?",
+                "reponses": [
+                    "½",
+                    "⅓",
+                    "¾"
+                ]
+            },
+            {
+                "question": "Qui met en place les poubelles de tri dans les villes ?",
+                "reponses": [
+                    "Les maires",
+                    "Le préfet",
+                    "Le président de la république"
+                ]
+            },
+            {
+                "question": "Comment s’appelle le compactage des de la poubelle jaune avant d’aller dans les usines de tri ?",
+                "reponses": [
+                    "Mise en ballon",
+                    "Mise en balle",
+                    "Mise en carrée"
+                ]
+            },
+            {
+                "question": "Quel est le gain d’énergie entre la fabrication du textile à partir du pétrole et la fabrication de textile à partir de plastiques recyclés ?",
+                "reponses": [
+                    "Pas de différence de consommation",
+                    "2 fois moins de consommation d’énergie",
+                    "5 fois moins de consommation d’énergie"
+                ]
+            },
+            {
+                "question": "Combien de tonnes de déchets les fours peuvent-ils brûler en 1h00 ?",
+                "reponses": [
+                    "100 T",
+                    "150 T",
+                    "200 T"
+                ]
+            },
+            {
+                "question": "A quoi peut servir l’incinération des déchets ? (choix multiples)",
+                "reponses": [
+                    "Produire de l'électricité",
+                    "Produire du feu pour les fonderies",
+                    "Produire du chauffage urbain"
+                ]
+            },
+            {
+                "question": "Identifier la bonne répartitions de gestion de nos déchets en France ?",
+                "reponses": [
+                    "50% Décharge, 30% Incinération, 10% Composte, 10% Recyclage",
+                    "46% Décharge, 35% Incinération, 7% Composte, 12% Recyclage",
+                    "10% Décharge, 10% Incinération, 30% Composte, 50% Recyclage"
+                ]
+            },
+            {
+                "question": "Quel est le risque de la dioxine sur l’Homme ?",
+                "reponses": [
+                    "Rien, ça embellit le teint",
+                    "Des cancers",
+                    "Des brûlures"
+                ]
+            },
+            {
+                "question": "Les vendeurs d’électroménagers sont ils obligés de repartir avec le vieil appareil ?",
+                "reponses": [
+                    "Oui",
+                    "Non"
+                ]
+            },
+            {
+                "question": "Comment s’appelle la taxe que l’acheteur d’un produit électroménager doit verser au vendeur, pour que celui ci reparte avec le vieil appareil ?",
+                "reponses": [
+                    "Taxe recyclage",
+                    "Taxe éco-participation",
+                    "Taxe #protège ta planète"
+                ]
+            },
+            {
+                "question": "Combien de Tonnes de déchets une ville de 100 000 habitants génèrent elle par an ?",
+                "reponses": [
+                    "41 500 T",
+                    "42 500 T",
+                    "43 500 T"
+                ]
+            }
+        ],
+        "state": "NOTSTARTED",
+        "tracked": true,
+        "page": 1
+    }]
+}

@@ -43,20 +43,25 @@
         </form>
       </div>
     </div>
+    <ErrorModal :title="titleError" :message="messageError" />
   </div>
 </template>
 
 <script>
 import User from "../models/user";
 import activityService from "../service/activity";
+import ErrorModal from "./includes/ErrorModal";
 
 export default {
   name: "LoginComponent",
+  components: { ErrorModal },
   data() {
     return {
       user: new User(""),
       loading: false,
       message: "",
+      titleError: "Connexion impossible !",
+      messageError: ""
     };
   },
   computed: {
@@ -66,33 +71,42 @@ export default {
   },
   created() {
     if (this.loggedIn) {
-       if (this.$route.params.nextUrl != null) {
-          this.router.push(this.$route.params.nextUrl);
-       } else {
-         this.$router.push("/parcours");
-       }
+      if (this.$route.params.nextUrl != null) {
+        this.router.push(this.$route.params.nextUrl);
+      } else {
+        this.$router.push("/parcours");
+      }
     }
   },
   methods: {
     async onLoggin() {
-      await activityService.getAllParcoursWithProgressions();
-      if(this.$route.params.nextUrl != null){
-         this.$router.push(this.$route.params.nextUrl);
+      // Load activities, past progressions, global progression, parcours
+      const isLoaded = await activityService.getAllParcoursWithProgressions();
+      if (isLoaded === undefined) {
+        this.titleError = "Impossible de charger le contenu !";
+        this.messageError =
+          "Tu es bien connecté, mais nous parvenons pas à charger la page ! Réessaie pour voir ?";
+        this.$bvModal.show("errorModal");
+        return;
+      }
+      // redirect
+      if (this.$route.params.nextUrl != null) {
+        this.$router.push(this.$route.params.nextUrl);
       } else {
-         switch (this.$store.state.auth.user.role) {
-            case "jeune":
-               return this.$router.push("/parcours");
-            case "chef":
-               return this.$router.push("/youth");
-            case "ap":
-               return this.$router.push("/youth");
-            case "relecteur":
-               return this.$router.push("/validation");
-            case "admin":
-               return this.$router.push("/validation");
-            default:
-               return this.$router.push("/");
-         }
+        switch (this.$store.state.auth.user.role) {
+          case "jeune":
+            return this.$router.push("/parcours");
+          case "chef":
+            return this.$router.push("/youth");
+          case "ap":
+            return this.$router.push("/youth");
+          case "relecteur":
+            return this.$router.push("/validation");
+          case "admin":
+            return this.$router.push("/validation");
+          default:
+            return this.$router.push("/");
+        }
       }
     },
     async handleLogin() {

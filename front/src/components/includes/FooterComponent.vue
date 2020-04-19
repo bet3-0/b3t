@@ -17,7 +17,7 @@
         qui ont développé ce site avec amour
       </div>
     <div class="copyright">
-      <span>Conditions d'utilisation</span>
+      <router-link class="nav-link text-white" to="/policies">Mentions légales</router-link>
     </div>
   </footer>
 </template>
