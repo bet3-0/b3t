@@ -8,7 +8,11 @@
       >
         Précédent
       </button>
-      <button class="btn btn-success" @click="validate()">
+      <button
+        class="btn btn-success"
+        v-if="hasNext() || (progression.entries && progression.entries.length)"
+        @click="validate()"
+      >
         <span v-show="loading" class="spinner-border spinner-border-sm"></span>
         {{ hasNext() ? "Page suivante" : validationString }}
       </button>
