@@ -31,9 +31,21 @@ export default class ProgressionService {
 
   /**Returns a boolean depending on the success of the update
    * role jeune: entry, progression
-   * role relecteru: user/progression
+   * role relecteur: user/progression
    */
   static async updateProgression(data, route = "entry") {
+    if (
+      !store.state.auth.user ||
+      (store.state.auth.user.role == "jeune" &&
+        ["REVIEWING", "VALIDATED"].includes(data.state)) ||
+      (store.state.auth.user.role != "jeune" &&
+        !["VALIDATED", "REFUSED"].includes(data.state))
+    ) {
+      // Only a jeune can create a progression !
+      console.warn("Not authorized to update a progression!");
+      return undefined;
+    }
+
     console.log("Updating progression...");
     try {
       let response = await fetch(API_URL + route, {
