@@ -10,7 +10,9 @@
           v-on:change="loadFilename()"
         />
         <label class="custom-file-label" for="file" id="labelInput">
-          <span v-if="!entry.documents || !entry.documents.length ">Choisis un fichier</span>
+          <span v-if="!entry.documents || !entry.documents.length"
+            >Choisis un fichier</span
+          >
           <span v-else>{{ entry.documents.length }} fichier(s) rendu(s)</span>
         </label>
       </div>
@@ -19,6 +21,7 @@
           :id="`submitFileButton-${idEntry}`"
           class="input-group-text btn-primary text-white"
           v-on:click="submitFile()"
+          :disabled="['REVIEWING', 'VALIDATED'].includes(entry.state)"
         >
           <span
             v-show="loading"
@@ -106,6 +109,6 @@ export default {
   word-wrap: break-word;
 }
 .custom-file-input ~ .custom-file-label::after {
-    content: "Parcourir";
+  content: "Parcourir";
 }
 </style>

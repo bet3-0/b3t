@@ -23,7 +23,7 @@
               :id="'q' + indexQcmObj + 'r' + indexReponse"
               v-bind:value="qcmObject.reponses[reponse]"
               v-model="entry.parsedRendu[indexQcmObj].reponses[reponse]"
-              :disabled="entry.state == 'REVIEWING'"
+              :disabled="['REVIEWING', 'VALIDATED'].includes(entry.state)"
             />
             <label
               style="margin-left:1rem"

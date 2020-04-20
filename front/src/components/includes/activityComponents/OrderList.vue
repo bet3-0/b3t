@@ -6,7 +6,7 @@
           :list="propositions"
           class="mb-1"
           ghost-class="ghost"
-          :sort="entry.state != 'REVIEWING'"
+          :sort="!['REVIEWING', 'VALIDATED'].includes(entry.state)"
         >
           <transition-group>
             <div
