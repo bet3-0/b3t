@@ -105,4 +105,7 @@ export default {
 .btn {
   word-wrap: break-word;
 }
+.custom-file-input ~ .custom-file-label::after {
+    content: "Parcourir";
+}
 </style>
