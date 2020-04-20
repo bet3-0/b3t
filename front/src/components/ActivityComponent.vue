@@ -207,6 +207,23 @@ export default {
       return existingProgression;
     },
     async retrieveProgression(idParcours, idActivity) {
+      // CASE 1: ROLE IS NOT 'jeune'
+      if (
+        !this.$store.state.auth.user ||
+        this.$store.state.auth.user.role != "jeune"
+      ) {
+        let progression = activityService.getProgression(
+          idParcours,
+          idActivity
+        );
+        this.progression = progression;
+        this.textAlert =
+          "Ceci correspond à l'activité vue par les jeunes. Ton rôle ne permet pas d'envoyer de réponse.";
+        this.showDismissibleAlert = true;
+        return;
+      }
+
+      // CASE 2: ROLE IS 'jeune
       // FIRST OPTION: progression comes from PersonalProgression page: up to date
       if (this.$store.state.activity.progression) {
         // loaded from PersonalProgression vue
@@ -226,7 +243,7 @@ export default {
       }
       if (idActivity in activities[idParcours]) {
         let savedProgression = activities[idParcours][idActivity].progression; // retrieve the previous progression created.
-        // SECOND OPTION: a progression previously started. Its id is store in localStorage.
+        // SECOND OPTION: a progression previously started. Its id is stored in localStorage.
         if (savedProgression) {
           let progression = await this.findProgression(savedProgression.id);
           if (progression == "TOCREATE") {
