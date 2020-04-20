@@ -12,7 +12,7 @@
       "question": "Classe les étiquettes dans le bon ordre pour qu’elles correspondent à l’ordre du texte puis clique sur suivant.",
       "documents": [],
       "typeRendu": "orderList",
-      "rendu": "[{\"question\": \"\", \"reponses\": {\"NE\": false, \"sous-directions\": false, \"N\": false, \"NO\": false, \"points cardinaux\": false}}]",
+      "rendu": "[\"NE\", \"N\", \"NO\", \"Points Cardinaux\", \"Sous directions\"]",
       "state": "NOTSTARTED",
       "tracked": true,
       "page": 2
