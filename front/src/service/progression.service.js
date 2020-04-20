@@ -39,7 +39,7 @@ export default class ProgressionService {
       (store.state.auth.user.role == "jeune" &&
         ["REVIEWING", "VALIDATED"].includes(data.state)) ||
       (store.state.auth.user.role != "jeune" &&
-        !["VALIDATED", "REFUSED"].includes(data.state))
+        !["REVIEWING", "VALIDATED", "REFUSED"].includes(data.state))
     ) {
       // Only a jeune can create a progression !
       console.warn("Not authorized to update a progression!");
