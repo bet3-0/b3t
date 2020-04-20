@@ -4,20 +4,24 @@
       <a target="_blank" href="https://tribu.sgdf.fr/jeunes/">
         <img src="/img/SGDF_SCOUTS_GUIDES_blanc.png"
       /></a>
-      <a target ="_blank" href="https://www.clever-cloud.com/fr">
-      <img src="/img/clever_cloud_logo_on_dark.png" />
+      <a target="_blank" href="https://www.clever-cloud.com/fr">
+        <img src="/img/clever_cloud_logo_on_dark.png" />
       </a>
       <a target="_blank" href="https://finistere2point9.fr/">
-      <img src="/img/Finistere2.9.png" />
+        <img src="/img/Finistere2.9.png" />
       </a>
     </div>
-     <div class="greets">
-        Un grand merci à Antoine, Guillaume, Victor, Jacques,
-        Etienne, Nils, Eflamm, Pierre, Alexandre et Benoit
-        qui ont développé ce site avec amour
-      </div>
+    <div class="greets">
+      <span>
+        Un grand merci à Antoine, Guillaume, Victor, Jacques, Etienne, Nils,
+        Eflamm, Pierre, Alexandre, Benoit et Thomas qui ont développé ce site
+        avec amour.
+      </span>
+    </div>
     <div class="copyright">
-      <router-link class="nav-link text-white" to="/policies">Mentions légales</router-link>
+      <router-link class="nav-link text-white" to="/policies"
+        >Mentions légales</router-link
+      >
     </div>
   </footer>
 </template>
@@ -39,11 +43,12 @@ img {
 }
 
 .greets {
-  display:flex;
+  display: flex;
   text-align: center;
   width: 90%;
   align-content: center;
   align-items: center;
+  font-size: min(1vmax, 0.7rem);
 }
 
 .copyright {
