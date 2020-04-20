@@ -1,0 +1,210 @@
+{
+    "idActivite": "24",
+    "idParcours": "1",
+    "state": "INPROGRESS",
+    "duration": 15,
+    "startedAt": 0,
+    "finishedAt": 0,
+    "reviewAt": 0,
+    "entries": [{
+            "position": 0,
+            "question": "",
+            "documents": [],
+            "typeRendu": "qcm",
+            "rendu": [{
+                "question": "Quel plat contient des aubergines?",
+                "reponses": [
+                    "Ratatouille",
+                    "Galette",
+                    "Boeufs bourguignon",
+                    "Quiche Lorraine"
+                ]
+            },
+            {
+                "question": "Quel plat contient de l’ail?",
+                "reponses": [
+                    "Meringues",
+                    "Pain perdu",
+                    "Boeufs bourguignon",
+                    "Gratin dauphinois"
+                ]
+            },
+            {
+                "question": "Quel plat contient du lait?",
+                "reponses": [
+                    "Boeuf bourguignon",
+                    "Crêpes",
+                    "Spaghetti bolognaise",
+                    "Galette"
+                ]
+            },
+            {
+                "question": "Quel plat contient du poireau?",
+                "reponses": [
+                    "Quiche lorraine",
+                    "Spaghetti bolognaise",
+                    "Blanquette de veau",
+                    "Pain perdu"
+                ]
+            },
+            {
+                "question": "Quel plat contient des lardons?",
+                "reponses": [
+                    "Boeuf bourguignon",
+                    "Quiche lorraine",
+                    "Galette",
+                    "Ratatouille"
+                ]
+            },
+            {
+                "question": "Quel plat contient du sucre semoule?",
+                "reponses": [
+                    "Pain perdu",
+                    "Crêpes",
+                    "Meringues",
+                    "Boeuf bourguignon"
+                ]
+            },
+            {
+                "question": "Quel plat contient du concentré de tomate?",
+                "reponses": [
+                    "Galette",
+                    "Spaghetti bolognaise",
+                    "Blanquette de veau",
+                    "Quiche lorraine"
+                ]
+            },
+            {
+                "question": "Quel plat contient de la pâte feuilletée?",
+                "reponses": [
+                    "Tiramisu",
+                    "Galette",
+                    "Meringues",
+                    "Crêpes"
+                ]
+            },
+            {
+                "question": "Quel plat contient de la mascarpone?",
+                "reponses": [
+                    "Tiramisu",
+                    "Pain perdu",
+                    "Crêpes",
+                    "Gratin dauphinois"
+                ]
+            },
+            {
+                "question": "Quel plat contient du beurre?",
+                "reponses": [
+                    "Ratatouille",
+                    "Crêpes",
+                    "Pain perdu",
+                    "Tiramisu"
+                ]
+            }
+        ],
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 2
+        },
+        {
+            "position": 1,
+            "question": "Cite au moins 3 ingrédients qu'on trouve dans la ratatouille",
+            "documents": [],
+            "typeRendu": "text",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 3
+        },
+        {
+            "position": 2,
+            "question": "Cite au moins 3 ingrédients qu'on trouve dans le gratin dauphinois",
+            "documents": [],
+            "typeRendu": "text",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 4
+        },
+        {
+            "position": 3,
+            "question": "Cite au moins 3 ingrédients qu'on trouve dans les crêpes",
+            "documents": [],
+            "typeRendu": "text",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 5
+        },
+        {
+            "position": 4,
+            "question": "Cite au moins 3 ingrédients qu'on trouve dans la blanquette de veau",
+            "documents": [],
+            "typeRendu": "text",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 6
+        },
+        {
+            "position": 5,
+            "question": "Cite au moins 3 ingrédients qu'on trouve dans la quiche lorraine",
+            "documents": [],
+            "typeRendu": "text",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 7
+        },
+        {
+            "position": 6,
+            "question": "Cite au moins 3 ingrédients qu'on trouve dans la meringue",
+            "documents": [],
+            "typeRendu": "text",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 8
+        },
+        {
+            "position": 7,
+            "question": "Cite au moins 3 ingrédients qu'on trouve dans les spaghettis bolognaises",
+            "documents": [],
+            "typeRendu": "text",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 9
+        },
+        {
+            "position": 8,
+            "question": "Cite au moins 3 ingrédients qu'on trouve dans la galette",
+            "documents": [],
+            "typeRendu": "text",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 10
+        },
+        {
+            "position": 9,
+            "question": "Cite au moins 3 ingrédients qu'on trouve dans le tiramisu",
+            "documents": [],
+            "typeRendu": "text",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 11
+        },
+        {
+            "position": 10,
+            "question": "Cite au moins 3 ingrédients qu'on trouve dans le pain perdu",
+            "documents": [],
+            "typeRendu": "text",
+            "rendu": "",
+            "state": "NOTSTARTED",
+            "tracked": true,
+            "page": 12
+        }
+    ]
+}

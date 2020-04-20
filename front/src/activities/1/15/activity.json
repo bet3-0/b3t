@@ -1,0 +1,10 @@
+{
+  "id": "15",
+  "idParcours": "1",
+  "nom": "La piste pour gagner un concours cuisine",
+  "description": "Réaliser un menu simple en le liant à l'imaginaire de camp pour plus de réalisme.",
+  "duree": 15,
+  "materiel": ["Un ordinateur","Un logiciel de saisie (word, open office, ou google doc,...)" ],
+  "difficulte": "facile",
+  "page": 1
+}
