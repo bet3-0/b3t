@@ -44,6 +44,7 @@ Base Component for an activity page -->
             </div>
           </div>
         </div>
+        <ActivityContent :idParcours="idParcours" :idActivite="idActivite" />
         <div class="end-container">
           <img
             v-if="!progression.id"
@@ -59,7 +60,7 @@ Base Component for an activity page -->
               style="text-align: center; width: 100%"
             >
               <h3 style="text-align: left">
-                 {{ entry.question }}
+                {{ entry.question }}
               </h3>
               <DownloadFile
                 v-if="entry.typeRendu === 'file'"
@@ -103,6 +104,7 @@ import Qcm from "./includes/activityComponents/Qcm";
 import activityService from "./../service/activity";
 import itineraryHelpers from "./../service/itineraryHelpers";
 import ActivityProgressBar from "./includes/activityComponents/ActivityProgressBar";
+import ActivityContent from "./includes/activityComponents/ActivityContent";
 
 import ValidateActivityPage from "./includes/activityComponents/ValidateActivityPage";
 import $ from "jquery";
@@ -118,6 +120,7 @@ export default {
     OrderList,
     Alert,
     ActivityProgressBar,
+    ActivityContent,
   },
   data() {
     return {
@@ -134,13 +137,24 @@ export default {
   },
   async created() {
     this.idProgression = this.$route.params.idProgression;
+    this.idActivite = this.$route.params.idActivite;
+    this.idParcours = this.$route.params.idParcours;
 
     this.progression = await this.findProgression(this.idProgression);
 
     this.progression.state = "REVIEWING";
-    this.progression.entries.forEach((_entry) => _entry.state = this.progression.state);
-    await ProgressionService.updateProgression(this.progression, "user/progression");
-
+    this.progression.entries.forEach(
+      (_entry) => (_entry.state = this.progression.state)
+    );
+    let isUpdated = await ProgressionService.updateProgression(
+      this.progression,
+      "user/progression"
+    );
+    if (!isUpdated){
+      alert("Progression invalide !")
+      this.$router.push("/validation")
+      return
+    }
     this.idActivite = this.progression.idActivite;
     this.idParcours = this.progression.idParcours;
 
@@ -148,7 +162,6 @@ export default {
       this.idParcours,
       this.idActivite
     );
-
 
     this.showCurrentPages();
   },
