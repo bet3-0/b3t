@@ -377,6 +377,26 @@ export default {
         .filter((entry) => entry.page === this.pageNumber)
         .sort((a, b) => a.position - b.position);
     },
+    stopVideo(element) {
+      var iframe = element.querySelector("iframe");
+      var video = element.querySelector("video");
+      // TODO
+      if (iframe !== null) {
+        var iframeSrc = iframe.src;
+        // Remove autoplay option if it exists
+        iframeSrc = iframeSrc
+          .replace(/&autoplay=.+&/, "&")
+          .replace(/\?autoplay=.+&/, "?")
+          .replace(/[&?]autoplay=.+$/, "");
+        console.log("New Youtube video src: " + iframeSrc);
+        iframe.src = iframeSrc;
+      }
+      if (video !== null) {
+        video.pause();
+        video.autoplay = false;
+        console.log(video.autoplay);
+      }
+    },
     async updatePage(pageNumber) {
       // go to pageNumber
       if (pageNumber >= this.pageNumber) {
@@ -390,6 +410,7 @@ export default {
           return false; // error trigger in ValidateActivityPage
         }
       }
+      const pastPage = this.pageNumber;
       if (pageNumber != this.pageNumber) {
         $(`#page${this.pageNumber}`).hide();
         this.pageNumber = pageNumber;
@@ -397,6 +418,16 @@ export default {
       }
       console.log(`Current page number: ${this.pageNumber}`);
       window.scrollTo(0, 0);
+      // Stop Youtube videos
+      try {
+        const elements = $(`#page${pastPage}`);
+        Object.values(elements).forEach((element) => {
+          this.stopVideo(element);
+        });
+      } catch (error) {
+        console.warn("Impossible to stop video automatically");
+        console.warn(error);
+      }
       return true;
     },
   },
