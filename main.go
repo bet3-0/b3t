@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"os"
 
 	"github.com/gin-contrib/secure"
 	"github.com/gin-contrib/static"
@@ -33,7 +34,10 @@ func main() {
 	securityConfig.SSLRedirect = true
 	securityConfig.SSLProxyHeaders = map[string]string{"X-Forwarded-Proto": "https"}
 
-	router.Use(secure.New(securityConfig))
+	env := os.Getenv("ENV")
+	if env == "prod" {
+		router.Use(secure.New(securityConfig))
+	}
 
 	//router.Use(redirectSSL())
 
