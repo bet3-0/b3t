@@ -24,7 +24,7 @@
             v-show="loading"
             class="spinner-border spinner-border-sm"
           ></span>
-          Charger
+          Envoyer mon fichier
         </button>
       </div>
     </div>
