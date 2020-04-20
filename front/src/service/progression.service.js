@@ -109,7 +109,7 @@ export default class ProgressionService {
   }
 
   static async getUserProgression(idProgression) {
-    console.log("Fetching progression...");
+    console.log("Fetching progression: " + idProgression);
     try {
       let response = await fetch(
         API_URL + "user/progression/" + idProgression,
