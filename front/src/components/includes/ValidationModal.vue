@@ -19,7 +19,8 @@
           Date de revue : {{ getDate(progression.reviewdAt) }}
         </p>
         <p>
-          Durée réelle : {{ getTimeDiff(progression.finishedAt, progression.startedAt) }}
+          Durée réelle :
+          {{ getTimeDiff(progression.finishedAt, progression.startedAt) }}
         </p>
       </div>
       <template v-slot:modal-footer="{ ok, cancel }">
@@ -29,15 +30,7 @@
         <b-button
           v-if="['relecteur', 'admin'].includes($store.state.auth.user.role)"
           variant="success"
-          @click.prevent.capture="
-            go(
-              progression.id +
-                '/' +
-                progression.idActivite +
-                '/' +
-                progression.idParcours
-            )
-          "
+          @click.prevent.capture="go(progression)"
         >
           Vérifier l'activité
         </b-button>
@@ -51,15 +44,30 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import itineraryHelpers from "./../../service/itineraryHelpers";
 import ProgressionHelpers from "./../../service/progressionHelpers";
+import ProgressionService from "./../../service/progression.service";
 
 Vue.use(VueRouter);
 export default {
   name: "ValidationModal",
   props: ["progression"],
   methods: {
-    go(progressionId) {
-      console.log("Validation of progression : " + progressionId);
-      this.$router.push("/validation/" + progressionId);
+    async go(progression) {
+      console.log("Validation of progression : " + progression.id);
+      let updatedProgression = await ProgressionService.getUserProgression(progression.id)
+      console.log(updatedProgression)
+      if (!updatedProgression || updatedProgression.state != "FINISHED"){
+        alert("Cette progression n'est plus disponible ! Rafraîchis ta page ;)")
+        return;
+      }
+      console.log("OK")
+      this.$router.push(
+        "/validation/" +
+          progression.id +
+          "/" +
+          progression.idParcours +
+          "/" +
+          progression.idActivite
+      );
     },
     getParcoursName(idParcours) {
       return itineraryHelpers.getParcoursName(idParcours);
