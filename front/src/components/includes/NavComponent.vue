@@ -122,5 +122,6 @@ export default {
 }
 .logo {
   height: 100%;
+  max-height:50px;
 }
 </style>
