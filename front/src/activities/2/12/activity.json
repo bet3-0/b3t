@@ -1,0 +1,18 @@
+{
+  "id": "12",
+  "idParcours": "2",
+  "nom": "Déguisement gaulois",
+  "description": "",
+  "duree": 20,
+  "materiel": [
+    "Tissus de tailles, couleurs, aspects variés (drap, foulard, écharpes, unis, bariolés, à carreaux, fourrures, transparents ...)",
+    "Papier crépon, laine, raphia, ficelle…",
+    "Épingles à nourrice, épingles à linge...",
+    "Ciseaux, colle, scotch, agrafes ...",
+    "Peintures, feutres, gommettes ...",
+    "Vieux vêtements, lunettes, sacs à main, chapeaux, perruques ...",
+    "appareil photo ou smartphone pour te prendre en photo"
+  ],
+  "difficulte": "facile",
+  "page": 1
+}
