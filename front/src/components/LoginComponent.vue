@@ -42,6 +42,7 @@
               </div>
             </div>
           </form>
+          <p>En me connectant, j'accepte les mentions légales : <a href="policies">Mentions légales</a></p>
         </div>
       </div>
     </div>

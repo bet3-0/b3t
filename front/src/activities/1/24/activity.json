@@ -4,7 +4,9 @@
   "nom": "Petit chef : Trouve le plat !",
   "description": "Reconnaître un plat grâce aux aliments qui le composent et retrouver les aliments qui composent un plat !",
   "duree": 15,
-  "materiel": [""],
+  "materiel": [
+    ""
+  ],
   "difficulte": "moyen",
   "page": 12
 }

@@ -24,7 +24,7 @@
             v-show="loading"
             class="spinner-border spinner-border-sm"
           ></span>
-          Charger
+          Envoyer mon fichier
         </button>
       </div>
     </div>
@@ -104,5 +104,8 @@ export default {
 <style scoped>
 .btn {
   word-wrap: break-word;
+}
+.custom-file-input ~ .custom-file-label::after {
+    content: "Parcourir";
 }
 </style>

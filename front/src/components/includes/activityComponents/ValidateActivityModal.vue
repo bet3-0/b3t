@@ -68,17 +68,6 @@ export default {
         }
         console.log("Progression sent: " + this.progression);
 
-        // update global progression only if it is in parcours
-        // --> no more : progression = VALIDATED state
-        /*
-        if (
-          this.progression.idParcours == this.$store.state.parcours.parcours
-        ) {
-          this.$store.dispatch(
-            "progression/updateProgression",
-            this.progression.duration || 0
-          );
-        }*/
         // Redirect
         this.loading = false;
         this.$router.push("/progression");

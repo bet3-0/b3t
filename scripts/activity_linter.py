@@ -60,7 +60,7 @@ def main():
             print(f"Critical exception for file '{file}': {err}")
         else:
             with open(file, "w+", encoding="utf-8") as open_file:
-                open_file.write(json.dumps(dico, ensure_ascii=False))
+                open_file.write(json.dumps(dico, indent=2, ensure_ascii=False))
 
 
 if __name__ == '__main__':

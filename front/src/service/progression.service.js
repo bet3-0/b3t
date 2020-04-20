@@ -1,11 +1,17 @@
 /* This is an example file */
 import authHeader from "./auth-header";
 import { API_URL } from "./config";
+import store from "../store";
 
 export default class ProgressionService {
   /** Sends an empty progression to back to create a new progression
    */
   static async createProgression(data) {
+    if (!store.state.auth.user || store.state.auth.user.role != "jeune") {
+      // Only a jeune can create a progression !
+      console.warn("Not authorized to create a progression!");
+      return undefined;
+    }
     console.log("Creating progression...");
     try {
       let response = await fetch(API_URL + "progression", {
@@ -25,9 +31,21 @@ export default class ProgressionService {
 
   /**Returns a boolean depending on the success of the update
    * role jeune: entry, progression
-   * role relecteru: user/progression
+   * role relecteur: user/progression
    */
   static async updateProgression(data, route = "entry") {
+    if (
+      !store.state.auth.user ||
+      (store.state.auth.user.role == "jeune" &&
+        ["REVIEWING", "VALIDATED"].includes(data.state)) ||
+      (store.state.auth.user.role != "jeune" &&
+        !["REVIEWING", "VALIDATED", "REFUSED"].includes(data.state))
+    ) {
+      // Only a jeune can create a progression !
+      console.warn("Not authorized to update a progression!");
+      return undefined;
+    }
+
     console.log("Updating progression...");
     try {
       let response = await fetch(API_URL + route, {
@@ -91,7 +109,7 @@ export default class ProgressionService {
   }
 
   static async getUserProgression(idProgression) {
-    console.log("Fetching progression...");
+    console.log("Fetching progression: " + idProgression);
     try {
       let response = await fetch(
         API_URL + "user/progression/" + idProgression,
@@ -102,6 +120,21 @@ export default class ProgressionService {
       );
       let data = await response.json();
       return data.progression;
+    } catch (error) {
+      console.error(error);
+      return undefined;
+    }
+  }
+
+  static async getGroupeProgressions() {
+    console.log("Fetching progressions...");
+    try {
+      let response = await fetch(API_URL + "groupe/progressions", {
+        method: "GET",
+        headers: authHeader(),
+      });
+      let data = await response.json();
+      return data.Progressions;
     } catch (error) {
       console.error(error);
       return undefined;
