@@ -10,7 +10,7 @@
   "entries": [
     {
       "position": 0,
-      "question": "Donne les risques pendant la cuisine en camp pour un DANGER DE BRULURE (feu et/ou réchaud)",
+      "question": "Donne les solutions pendant la cuisine en camp pour un DANGER DE BRULURE (feu et/ou réchaud)",
       "documents": [],
       "typeRendu": "text",
       "rendu": "",
@@ -20,7 +20,7 @@
     },
     {
       "position": 1,
-      "question": "Donne les risques pendant la cuisine en camp pour un DANGER DE BRULURE (eau chaude)",
+      "question": "Donne les solutions pendant la cuisine en camp pour un DANGER DE BRULURE (eau chaude)",
       "documents": [],
       "typeRendu": "text",
       "rendu": "",
@@ -30,7 +30,7 @@
     },
     {
       "position": 2,
-      "question": "Donne les risques pendant la cuisine en camp pour un RISQUE DE COUPURE",
+      "question": "Donne les solutions pendant la cuisine en camp pour un RISQUE DE COUPURE",
       "documents": [],
       "typeRendu": "text",
       "rendu": "",
@@ -40,7 +40,7 @@
     },
     {
       "position": 3,
-      "question": "Donne les risques pendant la cuisine en camp pour un RISQUE D'INTOXICATION (ex: Chaîne du froid rompue)",
+      "question": "Donne les solutions pendant la cuisine en camp pour un RISQUE D'INTOXICATION (ex: Chaîne du froid rompue)",
       "documents": [],
       "typeRendu": "text",
       "rendu": "",
