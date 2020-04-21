@@ -20,7 +20,7 @@
     },
     {
       "position": 2,
-      "question": "Envoie nous la photos de l’aliment contenant le plus de sucre que tu es chez toi puis répond à cette petite question !",
+      "question": "Envoie nous la photo de l’aliment contenant le plus de sucre que tu es chez toi puis répond à cette petite question !",
       "documents": [],
       "typeRendu": "file",
       "rendu": "",
