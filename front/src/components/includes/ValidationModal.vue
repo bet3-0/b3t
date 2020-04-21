@@ -3,26 +3,35 @@
     <b-modal
       class="modal-backdrop"
       id="validationModal"
-      :title="activity.nom"
+      title="Description de l'activité"
       hide-backdrop
     >
       <div class="modal-body">
-        <p>Id : {{ progression.id }}</p>
-        <p>Id activité : {{ progression.idActivite }}</p>
+        <p>Identifiant de progression : {{ progression.id }}</p>
+        <p>Identifiant d'activité : {{ progression.idActivite }}</p>
         <p>Parcours : {{ getParcoursName(progression.idParcours) }}</p>
-
-        <p>
-          Durée réelle:
-            {{ getTimeDiff(progression.finishedAt,progression.startedAt)}}
-          minutes
+        <p>Durée prévue : {{ progression.duration }} minutes</p>
+        <p>Date de début : {{ getDate(progression.startedAt) }}</p>
+        <p v-if="progression.finishedAt">
+          Date de fin : {{ getDate(progression.finishedAt) }}
         </p>
-        <p>Durée prévue: {{ activity.duree }} minutes</p>
+        <p v-if="progression.reviewdAt">
+          Date de revue : {{ getDate(progression.reviewdAt) }}
+        </p>
+        <p>
+          Durée réelle :
+          {{ getTimeDiff(progression.finishedAt, progression.startedAt) }}
+        </p>
       </div>
       <template v-slot:modal-footer="{ ok, cancel }">
         <b-button variant="secondary" @click="cancel()">
           Fermer
         </b-button>
-        <b-button variant="success" @click.prevent.capture="go(progression.id+'/'+progression.idActivite+'/'+progression.idParcours)">
+        <b-button
+          v-if="['relecteur', 'admin'].includes($store.state.auth.user.role)"
+          variant="success"
+          @click.prevent.capture="go(progression)"
+        >
           Vérifier l'activité
         </b-button>
       </template>
@@ -34,39 +43,40 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import itineraryHelpers from "./../../service/itineraryHelpers";
+import ProgressionHelpers from "./../../service/progressionHelpers";
+import ProgressionService from "./../../service/progression.service";
 
 Vue.use(VueRouter);
 export default {
   name: "ValidationModal",
   props: ["progression"],
-  data() {
-    return {
-      // TODO
-      activity: {
-        nom: "Nom de l'activité !",
-        duree: "5",
-        idActivité: 4,
-        idParcours: 1,
-      },
-    };
-  },
   methods: {
-    go(progressionId) {
-      console.log(progressionId);
-      // TODO: create a specific route (depending on identifiant = BAD) ? Or everything on context
-      this.$router.push("/validation/" + progressionId);
+    async go(progression) {
+      console.log("Validation of progression : " + progression.id);
+      let updatedProgression = await ProgressionService.getUserProgression(progression.id)
+      console.log(updatedProgression)
+      if (progression.state == "REVIEWING"){
+        // ok
+        console.log("Already reviewing")
+      } else if (!updatedProgression || updatedProgression.state != "FINISHED"){
+        alert("Cette progression n'est plus disponible ! Rafraîchis ta page ;)")
+        return;
+      }
+      console.log("OK")
+      this.$router.push(
+        "/validation/" +
+          progression.id +
+          "/" +
+          progression.idParcours +
+          "/" +
+          progression.idActivite
+      );
     },
     getParcoursName(idParcours) {
       return itineraryHelpers.getParcoursName(idParcours);
     },
-    getTimeDiff(finishedAt, startedAt){
-      let finishedAtMs=finishedAt*1000;
-      let finishedAtDate = new Date(finishedAtMs)
-      let startedAtMs=startedAt*1000;
-      let startedAtDate = new Date(startedAtMs)
-      let diff = finishedAtDate - startedAtDate
-      return diff/60000 || "inconnu"
-    },
+    getTimeDiff: ProgressionHelpers.getTimeDiff,
+    getDate: ProgressionHelpers.timestampToPrettyDate,
   },
 };
 </script>

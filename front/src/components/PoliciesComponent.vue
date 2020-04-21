@@ -13,6 +13,11 @@
     SIREN: 524 172 699
 
     <h3 class="text-left">Conditions d’utilisation : </h3>
+    Durant ce BET tu vas devoir fournir des rendus sous forme de vidéos ou photos afin de pouvoir valider ton BET. Les modérateurs qui s’occuperont de valider tes activités supprimerons chacun des fichiers que tu auras envoyé, une fois que ton activité sera validée. 
+    Si une de tes activités est refusée ne t’inquiète pas, c’est qu’une petite erreur s’est glissée, tu vas pouvoir corriger et la refaire valider ! 
+    L’identifiant qui t’as été envoyé pour tes chefs est unique, il ne faut pas le partager à tes copains ! 
+    En cas de soucis sur la plateforme ou de questions, tu peux nous envoyer un mail à bet3.0.sgdf@gmail.com, une personne sera présente pour répondre à tes demandes !
+
     Ce site (<a href="https://bet3-0.sgdf.fr">bet3-0.sgdf.fr</a>) est proposé en différents
     langages web
     (HTML5, Javascript, CSS, etc…) pour un meilleur confort d'utilisation et un graphisme plus agréable,

@@ -17,7 +17,7 @@
             activityNavItem
           }}</router-link>
         </li>
-        <li class="nav-item" v-if="role != 'jeune'">
+        <li class="nav-item" v-if="['relecteur', 'admin'].includes(role)">
           <router-link class="nav-link text-white" to="/validation"
             >Activités à valider</router-link
           >
@@ -27,12 +27,12 @@
             >Mes activités</router-link
           >
         </li>
-        <li class="nav-item" v-if="['chef', 'admin'].includes(role)">
+        <li class="nav-item" v-if="['chef', 'ap'].includes(role)">
           <router-link class="nav-link text-white" to="/youth"
             >Progression de mes jeunes</router-link
           >
         </li>
-        <li class="nav-item">
+        <li class="nav-item" v-if="['jeune'].includes(role)">
           <router-link class="nav-link text-white" to="/halte"
             >Halte</router-link
           >
@@ -122,5 +122,6 @@ export default {
 }
 .logo {
   height: 100%;
+  max-height:50px;
 }
 </style>

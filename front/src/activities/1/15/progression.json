@@ -1,21 +1,21 @@
 {
-    "idActivite": "15",
-    "idParcours": "1",
-    "state": "INPROGRESS",
-    "duration": 15,
-    "startedAt": 0,
-    "finishedAt": 0,
-    "reviewAt": 0,
-    "entries": [
-        {
-            "position": 0,
-            "question": "Charge sur la plateforme ton menus totalement rédigé avec l’imaginaire. Des cheftaines et des chefs évalueront ton travail sur deux axes : l'équilibrage de ton menus et l’intégration de l’imaginaire dans la rédaction de ton menus",
-            "documents": [],
-            "typeRendu": "file",
-            "rendu": "",
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 1
-        }
-    ]
+  "idActivite": "15",
+  "idParcours": "1",
+  "state": "INPROGRESS",
+  "duration": 15,
+  "startedAt": 0,
+  "finishedAt": 0,
+  "reviewAt": 0,
+  "entries": [
+    {
+      "position": 0,
+      "question": "Charge sur la plateforme ton menus totalement rédigé avec l’imaginaire. Des cheftaines et des chefs évalueront ton travail sur deux axes : l'équilibrage de ton menus et l’intégration de l’imaginaire dans la rédaction de ton menus",
+      "documents": [],
+      "typeRendu": "file",
+      "rendu": "",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 1
+    }
+  ]
 }

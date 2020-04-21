@@ -6,11 +6,19 @@
         class="btn btn-success"
         @click="previousPage()"
       >
-        Précédent
+        Page précédente
       </button>
-      <button class="btn btn-success" @click="validate()">
+      <button class="btn btn-success" v-if="hasNext()" @click="nextPage()">
         <span v-show="loading" class="spinner-border spinner-border-sm"></span>
-        {{ hasNext() ? "Page suivante" : validationString }}
+        Page suivante
+      </button>
+      <button
+        class="btn btn-success"
+        v-if="!hasNext() && progression.entries && progression.entries.length"
+        @click="validate()"
+      >
+        <span v-show="loading" class="spinner-border spinner-border-sm"></span>
+        {{ validationString }}
       </button>
     </div>
     <!-- Modal -->
@@ -66,7 +74,6 @@ export default {
   },
   methods: {
     hasNext() {
-      console.log("nb pages: " + this.activity.page);
       return this.pageNumber < this.activity.page;
     },
     async updateAndCheckPage(newPage) {
@@ -84,54 +91,50 @@ export default {
       return await this.updateAndCheckPage(this.pageNumber - 1);
     },
     async nextPage() {
-      return await this.updateAndCheckPage(this.pageNumber + 1);
+      this.loading = true;
+      await this.updateAndCheckPage(this.pageNumber + 1);
+      this.loading = false;
     },
     // Go to previous/next page or validate
     async validate() {
-      if (this.hasNext()) {
-        this.loading = true;
-        this.nextPage();
-        this.loading = false;
-      } else {
-        this.loading = true;
-        let isUpdated = await this.updateAndCheckPage(this.pageNumber);
-        this.loading = false;
-        if (!isUpdated) {
-          return false;
+      this.loading = true;
+      let isUpdated = await this.updateAndCheckPage(this.pageNumber);
+      this.loading = false;
+      if (!isUpdated) {
+        return false;
+      }
+      if (!this.progression.id) {
+        // progression was never initialized with server
+        this.titleError = "Impossible d'envoyer tes réponses !";
+        this.messageError =
+          "Tes réponses ne peuvent pas être enregistrées ! Tu dois rafraîchir la page !";
+        this.linkMessage = "";
+        this.linkError = "";
+        this.$bvModal.show("errorModal-VAL");
+        return false;
+      }
+      if (this.$store.state.auth.user.role != "jeune") {
+        // Validation for reviewer
+        if (this.progression.state == "REVIEWING") {
+          this.$bvModal.show("activityToValidateModal");
         }
-        if (!this.progression.id) {
-          // progression was never initialized with server
+      } else {
+        // Validation for jeune
+        if (["FINISHED", "REVIEWING"].includes(this.progression.state)) {
+          // Cannot send this type of progression !
           this.titleError = "Impossible d'envoyer tes réponses !";
           this.messageError =
-            "Tes réponses ne peuvent pas être enregistrées ! Tu dois rafraîchir la page !";
-          this.linkMessage = "";
-          this.linkError = "";
+            "Tu as déjà envoyé cette activité ! Elle se trouve maintenant dans Mes activités où tu peux suivre la progression de sa validation !";
+          this.linkMessage = "Voir Mes activités";
+          this.linkError = "/progression";
           this.$bvModal.show("errorModal-VAL");
-          return false;
+          return;
         }
-        if (this.$store.state.auth.user.role != "jeune") {
-          // Validation for reviewer
-          if (this.progression.state == "REVIEWING") {
-            this.$bvModal.show("activityToValidateModal");
-          }
-        } else {
-          // Validation for jeune
-          if (["FINISHED", "REVIEWING"].includes(this.progression.state)) {
-            // Cannot send this type of progression !
-            this.titleError = "Impossible d'envoyer tes réponses !";
-            this.messageError =
-              "Tu as déjà envoyé cette activité ! Elle se trouve maintenant dans Mes activités où tu peux suivre la progression de sa validation !";
-            this.linkMessage = "Voir Mes activités";
-            this.linkError = "/progression";
-            this.$bvModal.show("errorModal-VAL");
-            return;
-          }
-          this.message = this.checkEntries();
-          if (this.message) {
-            console.warn("Entries not complete");
-          }
-          this.$bvModal.show("validateActivityModal");
+        this.message = this.checkEntries();
+        if (this.message) {
+          console.warn("Entries not complete");
         }
+        this.$bvModal.show("validateActivityModal");
       }
     },
     checkEntries() {

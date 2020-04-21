@@ -207,6 +207,23 @@ export default {
       return existingProgression;
     },
     async retrieveProgression(idParcours, idActivity) {
+      // CASE 1: ROLE IS NOT 'jeune'
+      if (
+        !this.$store.state.auth.user ||
+        this.$store.state.auth.user.role != "jeune"
+      ) {
+        let progression = activityService.getProgression(
+          idParcours,
+          idActivity
+        );
+        this.progression = progression;
+        this.textAlert =
+          "Ceci correspond à l'activité vue par les jeunes. Ton rôle ne permet pas d'envoyer de réponse.";
+        this.showDismissibleAlert = true;
+        return;
+      }
+
+      // CASE 2: ROLE IS 'jeune
       // FIRST OPTION: progression comes from PersonalProgression page: up to date
       if (this.$store.state.activity.progression) {
         // loaded from PersonalProgression vue
@@ -226,7 +243,7 @@ export default {
       }
       if (idActivity in activities[idParcours]) {
         let savedProgression = activities[idParcours][idActivity].progression; // retrieve the previous progression created.
-        // SECOND OPTION: a progression previously started. Its id is store in localStorage.
+        // SECOND OPTION: a progression previously started. Its id is stored in localStorage.
         if (savedProgression) {
           let progression = await this.findProgression(savedProgression.id);
           if (progression == "TOCREATE") {
@@ -311,7 +328,7 @@ export default {
       ) {
         // Security (normally this case does not happen)
         // Impossible to edit entry in this state
-        console("Entry not updatable: " + entry.state);
+        console.warn("Entry not updatable: " + entry.state);
         return true;
       }
       entry.state = "FINISHED";
@@ -377,6 +394,26 @@ export default {
         .filter((entry) => entry.page === this.pageNumber)
         .sort((a, b) => a.position - b.position);
     },
+    stopVideo(element) {
+      var iframe = element.querySelector("iframe");
+      var video = element.querySelector("video");
+      // TODO
+      if (iframe !== null) {
+        var iframeSrc = iframe.src;
+        // Remove autoplay option if it exists
+        iframeSrc = iframeSrc
+          .replace(/&autoplay=.+&/, "&")
+          .replace(/\?autoplay=.+&/, "?")
+          .replace(/[&?]autoplay=.+$/, "");
+        console.log("New Youtube video src: " + iframeSrc);
+        iframe.src = iframeSrc;
+      }
+      if (video !== null) {
+        video.pause();
+        video.autoplay = false;
+        console.log(video.autoplay);
+      }
+    },
     async updatePage(pageNumber) {
       // go to pageNumber
       if (pageNumber >= this.pageNumber) {
@@ -390,6 +427,7 @@ export default {
           return false; // error trigger in ValidateActivityPage
         }
       }
+      const pastPage = this.pageNumber;
       if (pageNumber != this.pageNumber) {
         $(`#page${this.pageNumber}`).hide();
         this.pageNumber = pageNumber;
@@ -397,6 +435,16 @@ export default {
       }
       console.log(`Current page number: ${this.pageNumber}`);
       window.scrollTo(0, 0);
+      // Stop Youtube videos
+      try {
+        const elements = $(`#page${pastPage}`);
+        Object.values(elements).forEach((element) => {
+          this.stopVideo(element);
+        });
+      } catch (error) {
+        console.warn("Impossible to stop video automatically");
+        console.warn(error);
+      }
       return true;
     },
   },
