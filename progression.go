@@ -188,10 +188,6 @@ func UpdateProgression(c *gin.Context) {
 		progression.FinishedAt = time.Now().Unix()
 	}
 
-	if progression.State == state("VALIDATED") || progression.State == state("REFUSED") {
-		progression.ReviewdAt = time.Now().Unix()
-	}
-
 	err = db.Save(&progression).Error
 	if err != nil {
 		c.JSON(500, gin.H{"error": "internal_server_error"})
@@ -228,7 +224,7 @@ func UpdateUserProgression(c *gin.Context) {
 	progression.CodeAdherent = db_progression.CodeAdherent
 
 	if progression.State == state("VALIDATED") || progression.State == state("REFUSED") {
-		progression.ReviewdAt = time.Now().UnixNano()
+		progression.ReviewdAt = time.Now().Unix()
 	}
 
 	err = db.Save(&progression).Error
