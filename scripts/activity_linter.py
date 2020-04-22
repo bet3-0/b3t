@@ -20,6 +20,12 @@ def check_progression(file, dico):
                       'nom']
     accepted_keys = ['id', 'idParcours', 'nom', 'description', 'duree', 'materiel', 'difficulte', 'page']
     difficultes = ["facile", "moyen", "difficile"]
+
+    # Get ids from path
+    activity_dir = os.path.split(file)[0]
+    parcours_dir, id_activity_file = os.path.split(activity_dir)
+    id_parcours_file = os.path.split(parcours_dir)[1]
+    # print(f"File: {id_parcours_file} / {id_activity_file}")
     # invalid keys
     to_pop = []
     to_update = []
@@ -43,7 +49,10 @@ def check_progression(file, dico):
         if key not in dico:
             dico[key] = str(dico[key])
             print(f"Mandatory key {key} is not in '{file}")
-
+    if dico["id"] != id_activity_file:
+        print(f"File {file} (id: {id_activity_file})  has an incorrect id: {dico['id']}!")
+    if dico["idParcours"] != id_parcours_file:
+        print(f"File {file} (idParcours: {id_parcours_file}) has an incorrect idParcours: {dico['idParcours']}!")
 
 def main():
     for i, file in enumerate(search()):
