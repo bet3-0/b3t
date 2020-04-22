@@ -1,0 +1,12 @@
+{
+  "id": "28",
+  "idParcours": "1",
+  "nom": "Trouve le plat qui existe !",
+  "description": "Pour assurer la transmission de la recette de la potion magique, Panoramix décide de finalement prendre un apprenti sous son aile. L’une des compétences que son apprenti doit acquérir est d’avoir de bonnes connaissances. Pour vérifier cela, il va lui demander de répondre à une série de questions",
+  "duree": 15,
+  "materiel": [
+    ""
+  ],
+  "difficulte": "difficile",
+  "page": 8
+}

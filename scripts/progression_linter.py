@@ -38,6 +38,13 @@ def check_progression(file, dico):
                   'tracked',
                   'page']
     type_rendus = ["text", "file", "qcm", "orderList"]
+
+    # Get ids from path
+    activity_dir = os.path.split(file)[0]
+    parcours_dir, id_activity_file = os.path.split(activity_dir)
+    id_parcours_file = os.path.split(parcours_dir)[1]
+    # print(f"File: {id_parcours_file} / {id_activity_file}")
+
     # invalid keys
     to_pop = []
     for key in dico:
@@ -59,6 +66,11 @@ def check_progression(file, dico):
     dico["finishedAt"] = 0
     dico["reviewAt"] = 0
 
+    if dico["idActivite"] != id_activity_file:
+        print(f"File {file} (idActivite: {id_activity_file})  has an incorrect id: {dico['idActivite']}!")
+    if dico["idParcours"] != id_parcours_file:
+        print(f"File {file} (idParcours: {id_parcours_file}) has an incorrect idParcours: {dico['idParcours']}!")
+
     if "entries" in dico:
         if not isinstance(dico["entries"], list):
             print(f"Invalid entries type for file '{file}'")
@@ -72,6 +84,8 @@ def check_progression(file, dico):
                         # print(f"ORDERLIST: {file}. Rendu: {entry[key]}")
                         if isinstance(entry[key], str):  # try to convert to Python list before json.dumps
                             entry[key] = ast.literal_eval(entry[key])
+                        if not isinstance(entry[key], list):
+                            print(f"OrderList has a bad type: {type(entry[key])}. CANNOT CONVERT AUTOMATICALLY")
                         entry[key] = json.dumps(entry[key], ensure_ascii=False)
                         # print(f"changed to {entry[key]}")
                     elif entry["typeRendu"].lower() == "qcm":

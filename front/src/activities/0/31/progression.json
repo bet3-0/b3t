@@ -10,7 +10,7 @@
   "entries": [
     {
       "position": 0,
-      "question": "Quel est la portion idéale pour les protéines animales et végétales?",
+      "question": "Quelle est la portion idéale pour les protéines animales et végétales?",
       "documents": [],
       "typeRendu": "text",
       "rendu": "",
@@ -20,7 +20,7 @@
     },
     {
       "position": 1,
-      "question": "Quel est la portion idéale pour les légumes?",
+      "question": "Quelle est la portion idéale pour les légumes?",
       "documents": [],
       "typeRendu": "text",
       "rendu": "",
@@ -30,7 +30,7 @@
     },
     {
       "position": 2,
-      "question": "Quel est la portion idéale pour les fruits?",
+      "question": "Quelle est la portion idéale pour les fruits?",
       "documents": [],
       "typeRendu": "text",
       "rendu": "",
@@ -40,7 +40,7 @@
     },
     {
       "position": 3,
-      "question": "Quel est la portion idéale pour les céréales?",
+      "question": "Quelle est la portion idéale pour les céréales?",
       "documents": [],
       "typeRendu": "text",
       "rendu": "",
@@ -50,7 +50,7 @@
     },
     {
       "position": 4,
-      "question": "Quel est la portion idéale pour les graisse, huiles et sucrés?",
+      "question": "Quelle est la portion idéale pour les graisse, huiles et sucrés?",
       "documents": [],
       "typeRendu": "text",
       "rendu": "",
@@ -60,7 +60,7 @@
     },
     {
       "position": 5,
-      "question": "Quel est la portion idéale pour les produits laitiers?",
+      "question": "Quelle est la portion idéale pour les produits laitiers?",
       "documents": [],
       "typeRendu": "text",
       "rendu": "",
