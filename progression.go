@@ -59,6 +59,23 @@ type Progression struct {
 	CodeRelecteur string  `json:"-"`
 }
 
+type UserProgression struct {
+	ID            string  `gorm:"primary_key" json:"id"`
+	ActiviteCode  string  `json:"idActivite"`
+	ParcoursCode  string  `json:"idParcours"`
+	Nom           string  `json:"nom"`
+	State         state   `sql:"type:state" json:"state"`
+	Duration      int     `json:"duration"`
+	StartedAt     int64   `json:"startedAt"`
+	FinishedAt    int64   `json:"finishedAt"`
+	ReviewdAt     int64   `json:"reviewdAt"`
+	Commentaire   string  `json:"commentaire"`
+	Page          int     `json:"page"`
+	Entries       []Entry `gorm:"foreignkey:IDProgression" json:"entries"`
+	CodeAdherent  string
+	CodeRelecteur string `json:"-"`
+}
+
 func CreateProgression(c *gin.Context) {
 	var progression Progression
 
