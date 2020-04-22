@@ -1,31 +1,21 @@
 {
-    "idActivite": "26",
-    "idParcours": "1",
-    "state": "INPROGRESS",
-    "duration": 5,
-    "startedAt": 0,
-    "finishedAt": 0,
-    "reviewAt": 0,
-    "entries": [
-        {
-            "position": 0,
-            "question": "Remets les étapes du bénédicité dans le bon ordre",
-            "documents": [],
-            "typeRendu": "orderList",
-            "rendu": [
-                    "Lire un texte (ci-après).",
-                    "Signe de croix. ",
-                    "Faire mettre tout le monde debout.",
-                    "Attendre le silence.",
-                    "Bon appétit!",
-                    "Prendre un chant.",
-                    "Signe de croix."
-            ],
-            "state": "NOTSTARTED",
-            "tracked": true,
-            "page": 1
-        }
-
-
-    ]
+  "idActivite": "26",
+  "idParcours": "1",
+  "state": "INPROGRESS",
+  "duration": 5,
+  "startedAt": 0,
+  "finishedAt": 0,
+  "reviewAt": 0,
+  "entries": [
+    {
+      "position": 0,
+      "question": "Remets les étapes du bénédicité dans le bon ordre",
+      "documents": [],
+      "typeRendu": "orderList",
+      "rendu": "[\"Lire un texte (ci-après).\", \"Signe de croix. \", \"Faire mettre tout le monde debout.\", \"Attendre le silence.\", \"Bon appétit!\", \"Prendre un chant.\", \"Signe de croix.\"]",
+      "state": "NOTSTARTED",
+      "tracked": true,
+      "page": 1
+    }
+  ]
 }
