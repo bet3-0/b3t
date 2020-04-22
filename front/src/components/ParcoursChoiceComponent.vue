@@ -1,13 +1,18 @@
 <template>
   <div class="container">
-    <iframe
-      width="560"
-      height="315"
-      src="https://www.youtube.com/embed/VD2bQN5M9wM"
-      frameborder="0"
-      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen
-    ></iframe>
+    <div
+      class="embed-responsive embed-responsive-16by9"
+      style="margin-top: 10%; width: 560px; margin-left: auto; margin-right: auto;"
+    >
+      <iframe
+        width="560"
+        height="315"
+        src="https://www.youtube.com/embed/VD2bQN5M9wM"
+        frameborder="0"
+        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      ></iframe>
+    </div>
 
     <h1>Choisis ton parcours</h1>
     <div class="row">
