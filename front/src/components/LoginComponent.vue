@@ -102,7 +102,7 @@ export default {
           case "chef":
             return this.$router.push("/youth");
           case "ap":
-            return this.$router.push("/youth");
+            return this.$router.push("/territoire");
           case "relecteur":
             return this.$router.push("/validation");
           case "admin":

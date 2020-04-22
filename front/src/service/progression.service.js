@@ -140,4 +140,18 @@ export default class ProgressionService {
       return undefined;
     }
   }
+  static async getTerritoireProgressions() {
+    console.log("Fetching progressions...");
+    try {
+      let response = await fetch(API_URL + "territoire/progressions", {
+        method: "GET",
+        headers: authHeader(),
+      });
+      let data = await response.json();
+      return data.Progressions;
+    } catch (error) {
+      console.error(error);
+      return undefined;
+    }
+  }
 }

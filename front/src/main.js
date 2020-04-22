@@ -14,6 +14,7 @@ import ActivitiesToValidate from "./components/ActivitiesToValidate";
 import HalteComponent from "./components/HalteComponent";
 import ActivityToValidate from "./components/ActivityToValidate";
 import YouthActivities from "./components/YouthActivities";
+import YouthActivitiesTerritoire from "./components/YouthActivitiesTerritoire";
 import PoliciesComponent from "./components/PoliciesComponent"
 import Error404 from "./components/Error404";
 
@@ -86,6 +87,12 @@ const router = new VueRouter({
       path: "/youth",
       get component() {
         return YouthActivities;
+      },
+    },
+    {
+      path: "/territoire",
+      get component() {
+        return YouthActivitiesTerritoire;
       },
     },
     {
