@@ -84,6 +84,8 @@ def check_progression(file, dico):
                         # print(f"ORDERLIST: {file}. Rendu: {entry[key]}")
                         if isinstance(entry[key], str):  # try to convert to Python list before json.dumps
                             entry[key] = ast.literal_eval(entry[key])
+                        if not isinstance(entry[key], list):
+                            print(f"OrderList has a bad type: {type(entry[key])}. CANNOT CONVERT AUTOMATICALLY")
                         entry[key] = json.dumps(entry[key], ensure_ascii=False)
                         # print(f"changed to {entry[key]}")
                     elif entry["typeRendu"].lower() == "qcm":
