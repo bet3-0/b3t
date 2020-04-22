@@ -106,7 +106,7 @@ func GetTerritoire(c *gin.Context) {
 }
 
 func ListGroupeProgressions(c *gin.Context) {
-	var progressions []Progression
+	var progressions []UserProgression
 
 	user := c.Request.Context().Value("user").(User)
 
@@ -124,7 +124,7 @@ func ListGroupeProgressions(c *gin.Context) {
 }
 
 func ListTerritoireProgressions(c *gin.Context) {
-	var progressions []Progression
+	var progressions []UserProgression
 
 	user := c.Request.Context().Value("user").(User)
 

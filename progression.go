@@ -59,6 +59,23 @@ type Progression struct {
 	CodeRelecteur string  `json:"-"`
 }
 
+type UserProgression struct {
+	ID            string  `gorm:"primary_key" json:"id"`
+	ActiviteCode  string  `json:"idActivite"`
+	ParcoursCode  string  `json:"idParcours"`
+	Nom           string  `json:"nom"`
+	State         state   `sql:"type:state" json:"state"`
+	Duration      int     `json:"duration"`
+	StartedAt     int64   `json:"startedAt"`
+	FinishedAt    int64   `json:"finishedAt"`
+	ReviewdAt     int64   `json:"reviewdAt"`
+	Commentaire   string  `json:"commentaire"`
+	Page          int     `json:"page"`
+	Entries       []Entry `gorm:"foreignkey:IDProgression" json:"entries"`
+	CodeAdherent  string
+	CodeRelecteur string `json:"-"`
+}
+
 func CreateProgression(c *gin.Context) {
 	var progression Progression
 
@@ -188,10 +205,6 @@ func UpdateProgression(c *gin.Context) {
 		progression.FinishedAt = time.Now().Unix()
 	}
 
-	if progression.State == state("VALIDATED") || progression.State == state("REFUSED") {
-		progression.ReviewdAt = time.Now().Unix()
-	}
-
 	err = db.Save(&progression).Error
 	if err != nil {
 		c.JSON(500, gin.H{"error": "internal_server_error"})
@@ -228,7 +241,7 @@ func UpdateUserProgression(c *gin.Context) {
 	progression.CodeAdherent = db_progression.CodeAdherent
 
 	if progression.State == state("VALIDATED") || progression.State == state("REFUSED") {
-		progression.ReviewdAt = time.Now().UnixNano()
+		progression.ReviewdAt = time.Now().Unix()
 	}
 
 	err = db.Save(&progression).Error

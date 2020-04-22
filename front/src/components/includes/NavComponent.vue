@@ -27,9 +27,14 @@
             >Mes activités</router-link
           >
         </li>
-        <li class="nav-item" v-if="['chef', 'ap'].includes(role)">
+        <li class="nav-item" v-if="['chef'].includes(role)">
           <router-link class="nav-link text-white" to="/youth"
             >Progression de mes jeunes</router-link
+          >
+        </li>
+        <li class="nav-item" v-if="['ap'].includes(role)">
+          <router-link class="nav-link text-white" to="/territoire"
+            >Progression des jeunes de mon territoire</router-link
           >
         </li>
         <li class="nav-item" v-if="['jeune'].includes(role)">
