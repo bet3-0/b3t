@@ -43,7 +43,7 @@ func pushFile(c *gin.Context) {
 
 	fileID, err = uuid.NewRandom()
 
-	fileName := fmt.Sprintf("%s/%s/%s.%s", user.CodeStructureGroupe, user.CodeAdherent, fileID.String(), s[1])
+	fileName := fmt.Sprintf("%s/%s/%s.%s", user.CodeStructureGroupe, user.CodeAdherent, fileID.String(), s[len(s)-1])
 
 	if err != nil {
 		c.JSON(412, gin.H{"error": "cannot_read_file"})
