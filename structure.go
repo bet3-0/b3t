@@ -73,7 +73,8 @@ func GetGroupe(c *gin.Context) {
 
 	groupe.CodeStructure = user.CodeStructureGroupe
 
-	err := db.Where(&groupe).Preload("Users").First(&groupe).Error
+	// Using nested preload, quite nice feature https://jinzhu.me/gorm/crud.html#nested-preloading
+	err := db.Where(&groupe).Preload("Users.Progressions.Entries").First(&groupe).Error
 	if err != nil {
 		fmt.Println(err)
 		c.JSON(500, gin.H{"error": "internal_server_error"})
@@ -93,7 +94,7 @@ func GetTerritoire(c *gin.Context) {
 
 	territoire.CodeStructure = user.CodeStructureTerritoire
 
-	err := db.Where(&territoire).Preload("Users").First(&territoire).Error
+	err := db.Where(&territoire).Preload("Users.Progressions.Entries").First(&territoire).Error
 	if err != nil {
 		c.JSON(500, gin.H{"error": "internal_server_error"})
 		return
