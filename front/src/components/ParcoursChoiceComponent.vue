@@ -46,6 +46,29 @@
       </div>
     </div>
     <span v-if="role != 'jeune'">Vue des jeunes</span>
+    <b-modal
+      class="modal-backdrop"
+      id="choiceModal"
+      title="Choix de parcours"
+      hide-backdrop
+    >
+      <div class="modal-body">
+        Tu as sélectionné le parcours <b>{{ getParcoursName(selected) }}</b
+        >. Est-ce bien ce parcours que tu souhaites suivre ? <br />
+        Une fois ton choix fait, tu ne pourras pas revenir en arrière !
+      </div>
+      <template v-slot:modal-footer="{}">
+        <b-button variant="secondary" @click="cancelChoice()">
+          Revenir au choix de parcours
+        </b-button>
+        <b-button
+          variant="success"
+          @click.prevent.capture="validateChoice(selected)"
+        >
+          Choisir ce parcours !
+        </b-button>
+      </template>
+    </b-modal>
     <ErrorModal :title="titleError" :message="messageError" />
   </div>
 </template>
@@ -53,6 +76,7 @@
 <script>
 import Vue from "vue";
 import VueRouter from "vue-router";
+import ItineraryHelpers from "../service/itineraryHelpers";
 import ProgressionService from "../service/progression.service";
 import ErrorModal from "./includes/ErrorModal";
 
@@ -83,6 +107,31 @@ export default {
     }
   },
   methods: {
+    getParcoursName: ItineraryHelpers.getParcoursName,
+    cancelChoice() {
+      this.$bvModal.hide("choiceModal");
+      this.selected = null;
+    },
+    async validateChoice(selected) {
+      let parcoursFirstProgression = {
+        state: "NOTSTARTED",
+        idActivite: "-1",
+        idParcours: JSON.stringify(parseInt(selected)),
+        entries: [],
+      };
+      let isChosen = await ProgressionService.createProgression(
+        parcoursFirstProgression
+      );
+      if (isChosen === undefined) {
+        console.warn("Impossible to send the Parcours to server!");
+        this.$bvModal.show("errorModal");
+        this.selected = null;
+      } else {
+        // Store the Parcours and redirecte to activities
+        this.$store.dispatch("parcours/setParcours", selected);
+        this.$router.push("/activitees");
+      }
+    },
     async selectChoice(selected) {
       // Check the role
       if (this.role != "jeune") {
@@ -100,24 +149,7 @@ export default {
         return; // Parcours has just been selected
       }
       this.selected = selected;
-      let parcoursFirstPrgression = {
-        state: "NOTSTARTED",
-        idActivite: "-1",
-        idParcours: JSON.stringify(parseInt(selected)),
-        entries: [],
-      };
-      let isChosen = await ProgressionService.createProgression(
-        parcoursFirstPrgression
-      );
-      if (isChosen === undefined) {
-        console.warn("Impossible to send the Parcours to server!");
-        this.$bvModal.show("errorModal");
-        this.selected = null;
-      } else {
-        // Store the Parcours and redirecte to activities
-        this.$store.dispatch("parcours/setParcours", selected);
-        this.$router.push("/activitees");
-      }
+      this.$bvModal.show("choiceModal");
     },
   },
 };
