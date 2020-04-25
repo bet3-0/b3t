@@ -206,7 +206,7 @@ Activity page loaded from YouthActivities component.
       hasNext() {
         return this.pageNumber < this.activity.page;
       },
-      async updatePage(pageNumber) {
+      updateAndCheckPage(pageNumber) {
         if (pageNumber != this.pageNumber) {
           $(`#page${this.pageNumber}`).hide();
           this.pageNumber = pageNumber;
@@ -217,22 +217,11 @@ Activity page loaded from YouthActivities component.
         window.scrollTo(0, 0);
         return true;
       },
-      async updateAndCheckPage(newPage) {
-        let isUpdated = await this.updatePage(newPage);
-        if (!isUpdated) {
-          this.titleError = "Impossible d'envoyer tes réponses !";
-          this.messageError =
-            "Tes réponses sont bloquées ici ! Réessaie pour voir ?";
-          this.$bvModal.show("errorModal-VAL");
-          return false;
-        }
-        return true;
+      previousPage() {
+        return this.updateAndCheckPage(this.pageNumber - 1);
       },
-      async previousPage() {
-        return await this.updateAndCheckPage(this.pageNumber - 1);
-      },
-      async nextPage() {
-        await this.updateAndCheckPage(this.pageNumber + 1);
+      nextPage() {
+        this.updateAndCheckPage(this.pageNumber + 1);
       },
       async goBack() {
         this.$router.push("/youth")

@@ -29,9 +29,21 @@
       </b-dropdown>
       <b-dropdown
         id="dropdown-parcours"
-        :text="currentRolesName"
+        :text="currentStatesName"
         variant="primary"
         class="m-md-2"
+      >
+        <b-dropdown-item @click="filterState('ALL')">Toutes les progressions</b-dropdown-item>
+        <b-dropdown-divider></b-dropdown-divider>
+        <b-dropdown-item @click="filterState(_state)" v-bind:key="_state" v-for="_state in validStates"
+        >{{getStateName(_state)}}
+        </b-dropdown-item>
+      </b-dropdown>
+      <b-dropdown
+        :text="currentRolesName"
+        class="m-md-2"
+        id="dropdown-parcours"
+        variant="primary"
       >
         <b-dropdown-item @click="filterRole(['jeune', 'chef', 'relecteur', 'ap'])"
         >Voir tout le groupe
@@ -44,18 +56,6 @@
         >Voir les autres adultes
         </b-dropdown-item
         >
-      </b-dropdown>
-      <b-dropdown
-        id="dropdown-parcours"
-        :text="currentStatesName"
-        variant="primary"
-        class="m-md-2"
-      >
-        <b-dropdown-item @click="filterState('ALL')">Toutes les progressions</b-dropdown-item>
-        <b-dropdown-divider></b-dropdown-divider>
-        <b-dropdown-item @click="filterState(_state)" v-bind:key="_state" v-for="_state in validStates"
-        >{{getStateName(_state)}}
-        </b-dropdown-item>
       </b-dropdown>
     </div>
     <Spinner :activated="loading"/>
@@ -135,14 +135,7 @@
                       />
                     </svg>
                   </td>
-                  <td>
-                    {{
-                    getActivityName(
-                    progression.idParcours,
-                    progression.idActivite
-                    )
-                    }}
-                  </td>
+                  <td> {{ getActivityName( progression) }}</td>
                   <td
                     @click="sendInfo(progression)"
                     v-b-modal="'validationModal'">
@@ -168,7 +161,7 @@
     <p v-if="!loading && !filteredUsers.length">
       Aucun jeune trouvé dans le groupe avec ces critères.
     </p>
-    <!-- Modal -->
+    <!-- Modal with detailed information on the activity -->
     <ValidationModal :progression="currentProgression"/>
   </div>
 </template>
@@ -264,7 +257,7 @@
                 progressions: [
                   {
                     id: "00501cdc-a12d-416d-8644-5228d1713",
-                    idActivite: "9",
+                    idActivite: "5",
                     idParcours: "3",
                     nom: "",
                     state: "VALIDATED",
@@ -272,7 +265,7 @@
                   },
                   {
                     id: "00501cdc-a12d-416d44-5228d1111713",
-                    idActivite: "9",
+                    idActivite: "6",
                     idParcours: "3",
                     nom: "",
                     state: "FINISHED",
@@ -280,7 +273,7 @@
                   },
                   {
                     id: "00501cdc-d-416d-8644-5228d1111713",
-                    idActivite: "9",
+                    idActivite: "4",
                     idParcours: "3",
                     nom: "",
                     state: "REVIEWING",
@@ -288,7 +281,7 @@
                   },
                   {
                     id: "0050c-a12d-416d-8644-5228d1111713",
-                    idActivite: "9",
+                    idActivite: "2",
                     idParcours: "3",
                     nom: "",
                     state: "INPROGRESS",

@@ -45,4 +45,8 @@ export default {
 .btn {
   word-wrap: break-word;
 }
+
+a {
+  color: white;
+}
 </style>
