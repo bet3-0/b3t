@@ -197,7 +197,7 @@
         loading: true,
         validStates: VALID_STATES,
         currentParcoursName: "Filtrer par parcours",
-        currentParcours: ["0", "1", "2", "3", "4"],
+        currentParcours: ["0", "1", "2", "3"],
         currentStatesName: "Filter par état d'avancement",
         currentStates: VALID_STATES,
         currentRolesName: "Mes jeunes",
@@ -231,33 +231,8 @@
       await this.loadProgressions();
     },
 
-    // not working...
-    ready() {
-      this.pollData().then(console.log("updated!"));
-      // reload data every 30 seconds
-      this.interval = setInterval(
-        function () {
-          this.pollData().then(console.log("updated!"));
-        }.bind(this),
-        30000
-      );
-    },
-    beforeDestroy: function () {
-      clearInterval(this.interval);
-    },
-
     methods: {
-      gotToReview(progression) {
-        this.$store.state.activity.progression = progression;
-        this.$router.push(
-          "/apercu/" +
-          progression.id +
-          "/" +
-          progression.idParcours +
-          "/" +
-          progression.idActivite
-        );
-      },
+      // Fetch functions
       async pollData() {
         await this.loadProgressions();
       },
@@ -270,8 +245,8 @@
             user.idParcours = activityService.getParcoursFromProgressions(user.progressions);
           });
           this.group = group;
-          console.log(group)
         } else {
+          // alert("Impossible de charger la page ! Merci de la recharger pour réessayer.")
           this.group = {
             code_structure: "Inconnu",
             users: [
@@ -350,8 +325,28 @@
         }
         this.loading = false;
       },
+      gotToReview(progression) {
+        this.$store.state.activity.progression = progression;
+        this.$router.push(
+          "/apercu/" +
+          progression.id +
+          "/" +
+          progression.idParcours +
+          "/" +
+          progression.idActivite
+        );
+      },
       getActivity: ProgressionHelpers.getActivityFromLocalStorage,
-      getActivityName: ProgressionHelpers.getActivityName,
+      getActivityName(progression) {
+        if (progression.nom) {
+          return progression.nom
+        }
+        const activity = this.getActivity(progression.idParcours, progression.idActivite);
+        if (!activity) {
+          return "Activité invalide";
+        }
+        return activity.nom || "Activité au nom inconnu";
+      },
       getStateName: ProgressionHelpers.getStateName,
       getTimeDiff: ProgressionHelpers.getTimeDiff,
       sendInfo(progression) {
@@ -369,7 +364,7 @@
       filterParcours(idParcours) {
         if (idParcours == 4) {
           this.currentParcoursName = "Tous les parcours";
-          this.currentParcours = ["0", "1", "2", "3", "4"]
+          this.currentParcours = ["0", "1", "2", "3"]
         } else {
           this.currentParcoursName = this.getParcoursName(idParcours);
           this.currentParcours = [idParcours.toString()]

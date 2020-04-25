@@ -64,48 +64,13 @@ export default class ProgressionHelpers {
       console.warn(
         `Activity ${idParcours}/${idActivite} not found in localStorage.`
       );
+      return {
+        id: idActivite,
+        idParcours: idParcours,
+        nom: "Activité inconnue",
+      }
     }
-    return {
-      id: idActivite,
-      idParcours: idParcours,
-      nom: "Activité inconnue",
-    };
   }
-
-  static getActivityName(progression) {
-    if (progression.nom) {
-      return progression.nom
-    }
-    const activity = getActivityFromLocalStorage(progression.idParcours, progression.idActivite);
-    if (!activity) {
-      return "Activité invalide";
-    }
-    return activity.nom || "Activité au nom inconnu";
-  }
-}
-
-function getActivityFromLocalStorage(idParcours, idActivite) {
-  if (idActivite == -1) {
-    // Particular case of the first progression
-    return {
-      id: idActivite,
-      idParcours: idParcours,
-      nom: "Choix initial de parcours",
-    };
-  }
-  try {
-    let activities = JSON.parse(localStorage.getItem("activities"));
-    return activities[idParcours][idActivite];
-  } catch (error) {
-    console.warn(
-      `Activity ${idParcours}/${idActivite} not found in localStorage.`
-    );
-  }
-  return {
-    id: idActivite,
-    idParcours: idParcours,
-    nom: "Activité inconnue",
-  };
 }
 
 export const VALID_STATES = [
