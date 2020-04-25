@@ -1,5 +1,7 @@
-<!-- ActivityComponent
-Base Component for an activity page -->
+<!-- FrozenActivity
+Activity page loaded from YouthActivities component.
+ Progressions are not edited in this version.
+ -->
 
 <template>
   <div class="container" role="main">
@@ -7,16 +9,11 @@ Base Component for an activity page -->
     <ActivityProgressBar :progress="progress"/>
     <div class="row">
       <div class="activity-container col-12" id="main-container">
-        <img
-          alt="Chargement en cours..."
-          class="img-spinner"
-          src="/img/icons/spinner.svg"
-          v-if="!activity.nom"
-        />
-        <h1 :style="'color:' + changeParcoursColor()" class="activity-title">
+        <Spinner v-if="!activity.nom"/>
+        <h1 :style="'color:' + getParcoursColor()" class="activity-title">
           {{ activity.nom }}
         </h1>
-        <div class="details-container" v-if="pageNumber == 1 && activity.nom">
+        <div class="details-container" v-if="pageNumber === 1 && activity.nom">
           <div id="details">
             <div class="card card-body">
               <ul>
@@ -46,14 +43,9 @@ Base Component for an activity page -->
         </div>
         <ActivityContent :idActivite="idActivite" :idParcours="idParcours"/>
         <div class="end-container">
-          <img
-            alt="Chargement en cours..."
-            class="img-spinner"
-            src="/img/icons/spinner.svg"
-            v-if="!progression.id"
-          />
+          <Spinner v-if="!progression.id"/>
           <div class="submit-container">
-            <!-- Choisir parmi ces deux rendus en fonction de l'activité -->
+            <!-- Choisir parmi ces rendus en fonction de l'activité -->
             <div
               :key="entry.position"
               style="text-align: center; width: 100%"
@@ -83,12 +75,27 @@ Base Component for an activity page -->
               />
             </div>
           </div>
-          <ValidateActivityPage
-            :activity="activity"
-            :pageNumber="pageNumber"
-            :progression="progression"
-            :updatePage="updatePage"
-          />
+          <div class="container">
+            <div class="container-buttons">
+              <button
+                @click="previousPage()"
+                class="btn btn-success"
+                v-if="pageNumber > 1"
+              >
+                Page précédente
+              </button>
+              <button @click="nextPage()" class="btn btn-success" v-if="hasNext()">
+                Page suivante
+              </button>
+              <button
+                @click="goBack()"
+                class="btn btn-success"
+                v-if="!hasNext()"
+              >
+                Retourner à la page des progressions de mes jeunes
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -105,18 +112,16 @@ Base Component for an activity page -->
   import itineraryHelpers from "./../service/itineraryHelpers";
   import ActivityProgressBar from "./includes/activityComponents/ActivityProgressBar";
   import ActivityContent from "./includes/activityComponents/ActivityContent";
-
-  import ValidateActivityPage from "./includes/activityComponents/ValidateActivityPage";
   import $ from "jquery";
-  import ProgressionService from "../service/progression.service";
+  import Spinner from "./includes/Spinner";
 
   export default {
     name: "ActivityToValidate",
     components: {
+      Spinner,
       DownloadFile,
       UploadText,
       Qcm,
-      ValidateActivityPage,
       OrderList,
       Alert,
       ActivityProgressBar,
@@ -140,25 +145,13 @@ Base Component for an activity page -->
       this.idActivite = this.$route.params.idActivite;
       this.idParcours = this.$route.params.idParcours;
 
-      this.progression = await this.findProgression(this.idProgression);
+      this.progression = this.$store.state.activity.progression;
+      this.$store.state.activity.progression = undefined;
       if (!this.progression) {
-        alert("Impossible de se connecter ou alors tu n'as les droits pour voir cette page !")
-        return
+        alert("Impossible de charger la page ou alors tu n'as pas les droits pour voir cette page !")
+        return this.$router.push("/youth")
       }
 
-      this.progression.state = "REVIEWING";
-      this.progression.entries.forEach(
-        (_entry) => (_entry.state = this.progression.state)
-      );
-      let isUpdated = await ProgressionService.updateProgression(
-        this.progression,
-        "user/progression"
-      );
-      if (!isUpdated) {
-        alert("Progression invalide !")
-        this.$router.push("/validation")
-        return
-      }
       this.idActivite = this.progression.idActivite;
       this.idParcours = this.progression.idParcours;
 
@@ -166,7 +159,6 @@ Base Component for an activity page -->
         this.idParcours,
         this.idActivite
       );
-
       this.showCurrentPages();
     },
     updated() {
@@ -179,24 +171,13 @@ Base Component for an activity page -->
       this.showCurrentPages();
     },
     methods: {
-      async showCurrentPages() {
+      showCurrentPages() {
         for (let i = 0; i < this.activity.page; i++) {
           if (i + 1 !== this.pageNumber) {
             $(`#page${i + 1}`).hide();
           }
         }
         $(".content-container").removeAttr("hidden");
-      },
-
-      async findProgression(progressionId) {
-        let progression = await ProgressionService.getUserProgression(
-          progressionId
-        );
-        if (!progression) {
-          console.log("failed to retrieve progression");
-          return false; // do not create a new progression and raises an error
-        }
-        return progression;
       },
 
       // Activity progression
@@ -209,26 +190,21 @@ Base Component for an activity page -->
         }
         this.progress = (100 * counter) / total;
       },
+      getParcoursColor() {
+        return itineraryHelpers.getItineraryColor(this.activity.idParcours);
+      },
 
+      // legacy
       updateEntry(entry) {
         console.warn(
           "Should not appear in this view: updateEntry called for entry: "
         );
         console.log(entry);
       },
-      changeParcoursColor() {
-        return itineraryHelpers.getItineraryColor(this.activity.idParcours);
-      },
-      pageEntries() {
-        if (!this.progression.entries) {
-          return [];
-        }
-        this.progression.entries.forEach((entry) => {
-          entry.state = "REVIEWING";
-        });
-        return this.progression.entries
-          .filter((entry) => entry.page === this.pageNumber)
-          .sort((a, b) => a.position - b.position);
+
+      // Page management
+      hasNext() {
+        return this.pageNumber < this.activity.page;
       },
       async updatePage(pageNumber) {
         if (pageNumber != this.pageNumber) {
@@ -240,6 +216,37 @@ Base Component for an activity page -->
         console.log(`Current page number: ${this.pageNumber}`);
         window.scrollTo(0, 0);
         return true;
+      },
+      async updateAndCheckPage(newPage) {
+        let isUpdated = await this.updatePage(newPage);
+        if (!isUpdated) {
+          this.titleError = "Impossible d'envoyer tes réponses !";
+          this.messageError =
+            "Tes réponses sont bloquées ici ! Réessaie pour voir ?";
+          this.$bvModal.show("errorModal-VAL");
+          return false;
+        }
+        return true;
+      },
+      async previousPage() {
+        return await this.updateAndCheckPage(this.pageNumber - 1);
+      },
+      async nextPage() {
+        await this.updateAndCheckPage(this.pageNumber + 1);
+      },
+      async goBack() {
+        this.$router.push("/youth")
+      },
+      pageEntries() {
+        if (!this.progression.entries) {
+          return [];
+        }
+        this.progression.entries.forEach((entry) => {
+          entry.state = "REVIEWING";
+        });
+        return this.progression.entries
+          .filter((entry) => entry.page === this.pageNumber)
+          .sort((a, b) => a.position - b.position);
       },
     },
   };
@@ -282,5 +289,11 @@ Base Component for an activity page -->
 
   h1.activity-title {
     color: var(--default);
+  }
+
+  .container-buttons {
+    margin: 1rem;
+    display: flex;
+    justify-content: space-evenly;
   }
 </style>

@@ -8,7 +8,7 @@
         id="exampleFormControlTextarea1"
         rows="3"
         style=""
-        :disabled="entry.state == 'REVIEWING'"
+        :disabled="entry.state == 'REVIEWING' || role !=='jeune'"
       >
         {{ entry.rendu }}</b-form-textarea
       >
@@ -23,6 +23,11 @@
 export default {
   name: "UploadText",
   props: ["entry", "updateEntry"],
+  data() {
+    return {
+      role: this.$store.state.auth.user ? this.$store.state.auth.user.role : undefined
+    }
+  },
   methods: {
     /* Submits the text to the server */
     async submitText() {
