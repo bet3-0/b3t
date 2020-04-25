@@ -1,0 +1,12 @@
+{
+  "id": "30",
+  "idParcours": "1",
+  "nom": "Quizz - Ustensiles de cuisine",
+  "description": "Reconnaître et apprendre les différents ustensiles de cuisine aux noms parfois étranges !",
+  "duree": 15,
+  "materiel": [
+    ""
+  ],
+  "difficulte": "difficile",
+  "page": 13
+}
