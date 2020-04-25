@@ -1,20 +1,19 @@
-import { API_URL } from "./config";
+import {API_URL} from "./config";
 import ProgressionService from "./progression.service";
 import store from "./../store";
 
 export default class activityService {
   /**
-  Get the file progression.json
-  */
+   Get the file progression.json
+   */
   static getProgression(idParcours, idActivite) {
     // Returns Any (in general a JS Object)
     try {
-      const progression = require("./../activities/" +
+      return require("./../activities/" +
         idParcours +
         "/" +
         idActivite +
         "/progression.json");
-      return progression;
     } catch (error) {
       console.log("Progression file not found!");
       console.error(error);
@@ -22,7 +21,7 @@ export default class activityService {
     }
   }
 
-  /**Get all activities associated tout a Parcours */
+  /** Get all activities associated tout a Parcours */
   static async getAllActivities(idParcours) {
     let allParcours = await this.getAllParcours();
     if (allParcours === undefined) {
@@ -42,7 +41,7 @@ export default class activityService {
       activities = {};
     }
     if (activities[idParcours] && activities[idParcours][idActivite]) {
-      return activities[idParcours][idActivite]; // No garanty of a correct object (could be undefined)
+      return activities[idParcours][idActivite]; // No guaranty of a correct object (could be undefined)
     }
     // 2) Download activities from back
     activities = await this.getAllParcours();
@@ -56,9 +55,9 @@ export default class activityService {
     // 3) Error!
     console.error(
       "Could not retrieve the activity in DB with ids " +
-        idParcours +
-        "/" +
-        idActivite
+      idParcours +
+      "/" +
+      idActivite
     );
 
     // TODO : Remove this part or let it ?
@@ -79,7 +78,7 @@ export default class activityService {
   static async getAllParcours() {
     // Returns a Javascript Object or undefined
     try {
-      let response = await fetch(API_URL + "parcours", { method: "GET" });
+      let response = await fetch(API_URL + "parcours", {method: "GET"});
       let data = await response.json();
       // data.parcours[idParcours].Activites -> {idParcours: {idActivity: {activity},...}, ...};
       let parcours = {};
@@ -94,6 +93,28 @@ export default class activityService {
     } catch (error) {
       console.error(error);
       return undefined;
+    }
+  }
+
+  static getGlobalProgressionFromProgressions(progressions) {
+    let gloabalProgression = 0;
+    progressions.forEach((prog) => {
+      // Update global progression if the activity is validated
+      if (prog.state === "VALIDATED") {
+        gloabalProgression += parseInt(prog.duration);
+      }
+      return gloabalProgression;
+    })
+  }
+
+  static getParcoursFromProgressions(progressions) {
+    const parcoursProgressions = progressions
+      .sort((a, b) => a.startedAt - b.startedAt)
+      .filter((prog) => [0, 1, 2, 3].includes(parseInt(prog.idParcours)));
+    if (parcoursProgressions.length) {
+      return parcoursProgressions[0].idParcours
+    } else {
+      return undefined
     }
   }
 
@@ -113,13 +134,9 @@ export default class activityService {
       return undefined;
     }
     // Update the global progression and add a progression to activities
-    let gloabalProgression = 0;
-    pastProgressions.forEach((prog) => {
-      // Update global progression if the activity is validated
-      if (prog.state == "VALIDATED") {
-        gloabalProgression += parseInt(prog.duration);
-      }
+    let globalProgression = this.getGlobalProgressionFromProgressions(pastProgressions);
 
+    pastProgressions.forEach((prog) => {
       // add progression to corresponding activity
       if (!(prog.idParcours in activities)) {
         activities[prog.idParcours] = {};
@@ -139,19 +156,13 @@ export default class activityService {
     });
 
     // Get the Parcours = the idParcours from the first progression sent.
-    const parcoursProgressions = pastProgressions
-      .sort((a, b) => a.startedAt - b.startedAt)
-      .filter((prog) => [0, 1, 2, 3].includes(parseInt(prog.idParcours)));
-    if (parcoursProgressions.length) {
-      // store the idParcours in store and localStorage
-      store.dispatch(
-        "parcours/setParcours",
-        parcoursProgressions[0].idParcours
-      );
+    const parcours = this.getParcoursFromProgressions(pastProgressions)
+    if (parcours !== undefined) {
+      store.dispatch("parcours/setParcours", parcours);
     }
     // store activities and global progression in localStorage
     localStorage.setItem("activities", JSON.stringify(activities));
-    store.dispatch("progression/setProgression", gloabalProgression);
+    store.dispatch("progression/setProgression", globalProgression);
 
     return activities;
   }
