@@ -3,7 +3,7 @@ const progressionSaved = parseInt(localStorage.getItem("progression")) || 0;
 export const progression = {
   namespaced: true,
   state: {
-    progression: progressionSaved, // initial stae
+    progression: progressionSaved, // initial state
   },
   actions: {
     setProgression({ commit }, prog) {
@@ -14,7 +14,7 @@ export const progression = {
   },
   mutations: {
     set(state, prog) {
-      state.progression = Math.min(prog / 3, 100);
+      state.progression = Math.min(prog, 100);
     },
   },
 };

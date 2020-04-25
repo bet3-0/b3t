@@ -141,6 +141,10 @@ export default {
     this.idParcours = this.$route.params.idParcours;
 
     this.progression = await this.findProgression(this.idProgression);
+    if (!this.progression) {
+      alert("Impossible de se connecter ou alors tu n'as les droits pour voir cette page !")
+      return
+    }
 
     this.progression.state = "REVIEWING";
     this.progression.entries.forEach(
@@ -150,7 +154,7 @@ export default {
       this.progression,
       "user/progression"
     );
-    if (!isUpdated){
+    if (!isUpdated) {
       alert("Progression invalide !")
       this.$router.push("/validation")
       return

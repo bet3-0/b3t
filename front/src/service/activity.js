@@ -97,17 +97,23 @@ export default class activityService {
   }
 
   static getGlobalProgressionFromProgressions(progressions) {
-    let gloabalProgression = 0;
+    if (!progressions) {
+      return 0
+    }
+    let globalProgression = 0;
     progressions.forEach((prog) => {
       // Update global progression if the activity is validated
       if (prog.state === "VALIDATED") {
-        gloabalProgression += parseInt(prog.duration);
+        globalProgression += parseInt(prog.duration);
       }
-      return gloabalProgression;
     })
+    return Math.min(globalProgression / 3, 100);  // Convert duration in % (5h = 300min = 100%)
   }
 
   static getParcoursFromProgressions(progressions) {
+    if (!progressions) {
+      return undefined
+    }
     const parcoursProgressions = progressions
       .sort((a, b) => a.startedAt - b.startedAt)
       .filter((prog) => [0, 1, 2, 3].includes(parseInt(prog.idParcours)));
@@ -134,7 +140,7 @@ export default class activityService {
       return undefined;
     }
     // Update the global progression and add a progression to activities
-    let globalProgression = this.getGlobalProgressionFromProgressions(pastProgressions);
+    const globalProgression = this.getGlobalProgressionFromProgressions(pastProgressions);
 
     pastProgressions.forEach((prog) => {
       // add progression to corresponding activity

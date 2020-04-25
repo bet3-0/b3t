@@ -1,7 +1,7 @@
 <template>
   <div class="container mt-4">
     <h1>
-      Activitées de mes jeunes <br />
+      Activitées de mes jeunes <br/>
       Groupe {{ group.code_structure }}
     </h1>
     <div>
@@ -13,14 +13,16 @@
         class="m-md-2"
       >
         <b-dropdown-item @click="filterParcours(4)"
-          >Tous les parcours</b-dropdown-item
-        >
+        >Tous les parcours
+        </b-dropdown-item>
         <b-dropdown-divider></b-dropdown-divider>
         <b-dropdown-item @click="filterParcours(0)"
-          >Bosses et Bobos</b-dropdown-item
+        >Bosses et Bobos
+        </b-dropdown-item
         >
         <b-dropdown-item @click="filterParcours(1)"
-          >Trois étoiles</b-dropdown-item
+        >Trois étoiles
+        </b-dropdown-item
         >
         <b-dropdown-item @click="filterParcours(2)">Cés'Arts</b-dropdown-item>
         <b-dropdown-item @click="filterParcours(3)">Robinson</b-dropdown-item>
@@ -32,10 +34,12 @@
         class="m-md-2"
       >
         <b-dropdown-item @click="filterRole(3)"
-          >Voir tout le groupe</b-dropdown-item
+        >Voir tout le groupe
+        </b-dropdown-item
         >
         <b-dropdown-item @click="filterRole(3)"
-          >Voir mes jeunes</b-dropdown-item
+        >Voir mes jeunes
+        </b-dropdown-item
         >
       </b-dropdown>
       <b-dropdown
@@ -54,7 +58,7 @@
         <b-dropdown-item>Les plus péda</b-dropdown-item>
       </b-dropdown>
     </div>
-    <Spinner :activated="loading" />
+    <Spinner :activated="loading"/>
 
     <!-- /#wrapper -->
     <div class="container">
@@ -64,93 +68,96 @@
         v-bind:key="user.code_adherent"
       >
         <b-card no-body class="mb-1">
-          <b-card-header header-tag="header" class="p-1" role="tab">
+          <b-card-header class="p-2" header-tag="header" role="tab">
             <b-button
               block
               href="#"
               v-b-toggle="`accordion-${user.code_adherent}`"
-              :style="
-                `background: ${changeParcoursColor(
-                  user.progressions && user.progressions.length
-                    ? user.progressions[0].idParcours
-                    : 4
-                )};`
-              "
-              >{{ user.code_adherent }} ({{ user.role }})</b-button
+              style="background-color: #fafafa"
+            >
+              <div class="user-accordion-button">
+                <span style="text-align: left; flex-grow: 1">{{ user.role }} {{ user.code_adherent }}</span>
+                <div class="progress" style="height: inherit; flex-grow: 4">
+                  <div :aria-valuenow="user.globalProgression || 0"
+                       :style="`width: ${user.globalProgression || 0}%; background: ${getParcoursColor(user.idParcours)};`"
+                       aria-valuemax="100"
+                       aria-valuemin="0" class="progress-bar" role="progressbar">
+                    {{ user.globalProgression ? user.globalProgression.toFixed(0) : 0 }}%
+                  </div>
+                </div>
+                <span style="text-align: right; flex-grow: 1">Parcours {{getParcoursName(user.idParcours)}}</span>
+              </div>
+            </b-button
             >
           </b-card-header>
           <b-collapse
             :id="`accordion-${user.code_adherent}`"
-            visible
             accordion="my-accordion"
             role="tabpanel"
           >
             <b-card-body>
               <span v-if="!user.progressions || !user.progressions.length"
-                >Le jeune n'a pas encore démarré son BET.</span
+              >Le jeune n'a pas encore démarré son BET.</span
               >
               <table
                 class="table"
                 v-if="user.progressions && user.progressions.length"
               >
                 <thead>
-                  <tr>
-                    <th scope="col"></th>
-                    <th scope="col">Activité</th>
-                    <th scope="col">État</th>
-                    <th scope="col">Durée prise par le jeune</th>
-                  </tr>
+                <tr>
+                  <th scope="col"></th>
+                  <th scope="col">Activité</th>
+                  <th scope="col">État</th>
+                  <th scope="col">Date de réalisation</th>
+                  <th scope="col">...</th>
+                </tr>
                 </thead>
                 <tbody>
-                  <tr
-                    v-for="progression in user.progressions"
-                    :key="progression.id"
-                    v-b-modal="'validationModal'"
-                    @click="sendInfo(progression)"
-                    :style="
+                <tr
+                  :key="progression.id"
+                  :style="
                       'cursor: pointer; color:' +
-                        changeParcoursColor(progression.idParcours)
+                        getParcoursColor(progression.idParcours)
                     "
-                  >
-                    <td>
-                      <svg
-                        class="bi bi-play-fill"
-                        width="1em"
-                        height="1em"
-                        viewBox="0 0 16 16"
-                        fill="currentColor"
-                        style="display: inline"
-                      >
-                        <path
-                          d="M11.596 8.697l-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 010 1.393z"
-                        />
-                      </svg>
-                    </td>
-                    <td>
-                      {{
-                        getActivityName(
-                          progression.idParcours,
-                          progression.idActivite
-                        )
-                      }}
-                    </td>
-                    <td>
-                      <img
-                        :src="`/img/icons/${progression.state}.png`"
-                        alt=""
-                        class="icon"
+                  v-for="progression in user.progressions"
+                >
+                  <td>
+                    <svg
+                      class="bi bi-play-fill"
+                      fill="currentColor"
+                      height="1em"
+                      style="display: inline"
+                      viewBox="0 0 16 16"
+                      width="1em"
+                    >
+                      <path
+                        d="M11.596 8.697l-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 010 1.393z"
                       />
-                      {{ getStateName(progression.state) }}
-                    </td>
-                    <td>
-                      {{
-                        getTimeDiff(
-                          progression.finishedAt,
-                          progression.startedAt
-                        )
-                      }}
-                    </td>
-                  </tr>
+                    </svg>
+                  </td>
+                  <td>
+                    {{
+                    getActivityName(
+                    progression.idParcours,
+                    progression.idActivite
+                    )
+                    }}
+                  </td>
+                  <td
+                    @click="sendInfo(progression)"
+                    v-b-modal="'validationModal'">
+                    <img
+                      :src="`/img/icons/${progression.state}.png`"
+                      alt=""
+                      class="icon"
+                    />
+                    {{ getStateName(progression.state) }}
+                  </td>
+                  <td> {{ getDate( progression.finishedAt || progression.startedAt ) }}</td>
+                  <td @click="gotToReview(progression)"
+                      v-if="['FINISHED', 'REVIEWING', 'VALIDATED', 'REFUSED'].includes(progression.state)"><b>Voir
+                    l'activité</b></td>
+                </tr>
                 </tbody>
               </table>
             </b-card-body>
@@ -162,208 +169,279 @@
       Aucun jeune trouvé dans le groupe.
     </p>
     <!-- Modal -->
-    <ValidationModal :progression="currentProgression" />
+    <ValidationModal :progression="currentProgression"/>
   </div>
 </template>
 
 <script>
-import ValidationModal from "./includes/ValidationModal";
-import Spinner from "./includes/Spinner";
-import itineraryHelpers from "./../service/itineraryHelpers";
-import ProgressionHelpers from "./../service/progressionHelpers";
-import { VALID_STATES } from "./../service/progressionHelpers";
+  import ValidationModal from "./includes/ValidationModal";
+  import Spinner from "./includes/Spinner";
+  import itineraryHelpers from "./../service/itineraryHelpers";
+  import ProgressionHelpers from "./../service/progressionHelpers";
+  import activityService from "./../service/activity";
+  import {VALID_STATES} from "../service/progressionHelpers";
 
-import Vue from "vue";
-import BootstrapVue from "bootstrap-vue";
-import VueRouter from "vue-router";
-import ProgressionService from "../service/progression.service";
+  import Vue from "vue";
+  import BootstrapVue from "bootstrap-vue";
+  import VueRouter from "vue-router";
+  import ProgressionService from "../service/progression.service";
 
-Vue.use(BootstrapVue);
-Vue.use(VueRouter);
+  Vue.use(BootstrapVue);
+  Vue.use(VueRouter);
 
-export default {
-  name: "YouthActivities",
-  components: { ValidationModal, Spinner },
-  data() {
-    return {
-      loading: true,
-      idParcours: 4, // deprecated
-      currentParcours: "Filtrer par parcours",
-      currentProgression: {},
-      progressions: [], // deprecated
-      displayProgressions: [], // deprecated
-      text: "blabla", // deprecated
-      group: undefined,
-      counter: {
-        NOTSTARTED: 0,
-        INPROGRESS: 0,
-        FINISHED: 0,
-        REVIEWING: 0,
-        VALIDATED: 0,
-        REFUSED: 0,
-      },
-      interval: null,
-    };
-  },
-  async mounted() {
-    await this.loadProgressions();
-  },
-
-  // not working...
-  ready() {
-    this.pollData().then(console.log("updated!"));
-    // reload data every 30 seconds
-    this.interval = setInterval(
-      function() {
-        this.pollData().then(console.log("updated!"));
-      }.bind(this),
-      30000
-    );
-  },
-  beforeDestroy: function() {
-    clearInterval(this.interval);
-  },
-
-  methods: {
-    async pollData() {
+  export default {
+    name: "YouthActivities",
+    components: {ValidationModal, Spinner},
+    data() {
+      return {
+        loading: true,
+        idParcours: 4, // deprecated
+        currentParcours: "Filtrer par parcours",
+        currentProgression: {},
+        progressions: [], // deprecated
+        displayProgressions: [], // deprecated
+        text: "blabla", // deprecated
+        group: {"code_structure": "[chargement...]"},
+        counter: {
+          NOTSTARTED: 0,
+          INPROGRESS: 0,
+          FINISHED: 0,
+          REVIEWING: 0,
+          VALIDATED: 0,
+          REFUSED: 0,
+        },
+        interval: null,
+      };
+    },
+    async mounted() {
       await this.loadProgressions();
     },
-    async loadProgressions() {
-      this.loading = true;
-      let group = await ProgressionService.getGroup();
-      if (group && group.users && group.code_structure) {
-        this.group = group;
-        this.group.users.forEach((user) => {
-          user.globalProgression = 20;
-          user.idParcours = 3;
-        });
-      } else {
-        this.group = {
-          code_structure: "Inconnu",
-          users: [
-            {
-              code_adherent:
-                "Une erreur de chargement est survenue. Merci de recharger la page.",
-            },
-            {
-              code_adherent: "1000000012",
-              role: "jeune",
-              progressions: [
-                {
-                  id: "00501cdc-a12d-416d-8644-5228d1111713",
-                  idActivite: "9",
-                  idParcours: "0",
-                  nom: "",
-                  state: "VALIDATED",
-                },
-              ],
-            },
-            {
-              code_adherent: "1000000013",
-              role: "jeune",
-              progressions: [],
-            },
-          ],
-        };
-      }
-      this.countProgressionStates();
-      this.displayProgressions = this.progressions;
-      this.loading = false;
+
+    // not working...
+    ready() {
+      this.pollData().then(console.log("updated!"));
+      // reload data every 30 seconds
+      this.interval = setInterval(
+        function () {
+          this.pollData().then(console.log("updated!"));
+        }.bind(this),
+        30000
+      );
+    },
+    beforeDestroy: function () {
+      clearInterval(this.interval);
     },
 
-    getActivity: ProgressionHelpers.getActivityFromLocalStorage,
-    getActivityName(idParcours, idActivite) {
-      const activity = this.getActivity(idParcours, idActivite);
-      if (!activity) {
-        return "Activité invalide";
-      }
-      return activity.nom || "Activité au nom inconnu";
-    },
-    getStateName: ProgressionHelpers.getStateName,
-    getTimeDiff: ProgressionHelpers.getTimeDiff,
-    sendInfo(progression) {
-      this.currentProgression = progression;
-    },
-    countProgressionStates() {
-      this.progressions.forEach((progression) => {
-        if (VALID_STATES.includes(progression.state)) {
-          this.counter[progression.state]++;
+    methods: {
+      gotToReview(progression) {
+        this.$store.state.activity.progression = progression;
+        this.$router.push(
+          "/apercu/" +
+          progression.id +
+          "/" +
+          progression.idParcours +
+          "/" +
+          progression.idActivite
+        );
+      },
+      async pollData() {
+        await this.loadProgressions();
+      },
+      async loadProgressions() {
+        this.loading = true;
+        let group = await ProgressionService.getGroup();
+        if (group && group.users && group.code_structure) {
+          group.users.forEach((user) => {
+            user.globalProgression = activityService.getGlobalProgressionFromProgressions(user.progressions);
+            user.idParcours = activityService.getParcoursFromProgressions(user.progressions);
+          });
+          this.group = group;
+          console.log(group)
+        } else {
+          this.group = {
+            code_structure: "Inconnu",
+            users: [
+              {
+                code_adherent:
+                  "Une erreur de chargement est survenue. Merci de recharger la page.",
+                globalProgression: 20,
+                idParcours: 0,
+              },
+              {
+                code_adherent: "1000000012",
+                role: "jeune",
+                globalProgression: 50,
+                idParcours: 3,
+                progressions: [
+                  {
+                    id: "00501cdc-a12d-416d-8644-5228d1111713",
+                    idActivite: "9",
+                    idParcours: "3",
+                    nom: "",
+                    state: "VALIDATED",
+                    startedAt: 1587254316,
+                  },
+                  {
+                    id: "00501cdc-a12d-416d-8644-5228d1111713",
+                    idActivite: "9",
+                    idParcours: "3",
+                    nom: "",
+                    state: "FINISHED",
+                    startedAt: 1587254316,
+                  },
+                  {
+                    id: "00501cdc-a12d-416d-8644-5228d1111713",
+                    idActivite: "9",
+                    idParcours: "3",
+                    nom: "",
+                    state: "REVIEWING",
+                    startedAt: 1587254316,
+                  },
+                  {
+                    id: "00501cdc-a12d-416d-8644-5228d1111713",
+                    idActivite: "9",
+                    idParcours: "3",
+                    nom: "",
+                    state: "INPROGRESS",
+                    startedAt: 1587254316,
+                  },
+                  {
+                    id: "00501cdc-a12d-416d-8644-5228d1111713",
+                    idActivite: "9",
+                    idParcours: "3",
+                    nom: "",
+                    state: "NOTSTARTED",
+                    startedAt: 1587254316,
+                  },
+                  {
+                    id: "00501cdc-a12d-416d-8644-5228d1111713",
+                    idActivite: "10",
+                    idParcours: "3",
+                    nom: "Blabla",
+                    state: "REFUSED",
+                    startedAt: 1587254516,
+                    finishedAt: 1587281246,
+                  },
+                ],
+              },
+              {
+                code_adherent: "1000000013",
+                role: "jeune",
+                progressions: [],
+                globalProgression: 100,
+                idParcours: 0,
+              },
+            ],
+          };
         }
-      });
-    },
-    getParcoursName(idParcours) {
-      return itineraryHelpers.getParcoursName(idParcours);
-    },
-    changeParcoursColor(idParcours) {
-      return itineraryHelpers.getItineraryColor(idParcours);
-    },
-    filterParcours(idParcours) {
-      if (idParcours == 4) {
+        this.countProgressionStates();
         this.displayProgressions = this.progressions;
-        this.currentParcours = "Tous les parcours";
-      } else {
-        this.currentParcours = this.getParcoursName(idParcours);
-        this.displayProgressions = this.progressions.filter((progression) => {
-          return progression.idParcours == idParcours;
+        this.loading = false;
+      },
+
+      getActivity: ProgressionHelpers.getActivityFromLocalStorage,
+      getActivityName(idParcours, idActivite) {
+        const activity = this.getActivity(idParcours, idActivite);
+        if (!activity) {
+          return "Activité invalide";
+        }
+        return activity.nom || "Activité au nom inconnu";
+      },
+      getStateName: ProgressionHelpers.getStateName,
+      getTimeDiff: ProgressionHelpers.getTimeDiff,
+      sendInfo(progression) {
+        this.currentProgression = progression;
+      },
+      countProgressionStates() {
+        this.progressions.forEach((progression) => {
+          if (VALID_STATES.includes(progression.state)) {
+            this.counter[progression.state]++;
+          }
         });
-      }
+      },
+      getParcoursName(idParcours) {
+        return itineraryHelpers.getParcoursName(idParcours);
+      },
+      getParcoursColor(idParcours) {
+        return itineraryHelpers.getItineraryColor(idParcours);
+      },
+      getDate: ProgressionHelpers.timestampToPrettyDate,
+      filterParcours(idParcours) {
+        if (idParcours == 4) {
+          this.displayProgressions = this.progressions;
+          this.currentParcours = "Tous les parcours";
+        } else {
+          this.currentParcours = this.getParcoursName(idParcours);
+          this.displayProgressions = this.progressions.filter((progression) => {
+            return progression.idParcours == idParcours;
+          });
+        }
+      },
+      filterRole(roles) {
+        console.log(roles)
+        // todo
+      },
     },
-    filterRole(roles) {
-      // todo
-    },
-  },
-};
+  };
 </script>
 
 <style scoped>
-.icon {
-  width: 30px;
-}
+  .user-accordion-button {
+    width: 100%;
+    color: var(--default);
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch
+  }
 
-.choices-container {
-  margin-top: 3em;
-}
+  .icon {
+    width: 30px;
+  }
 
-.choices {
-  display: flex;
-  justify-content: space-evenly;
-}
+  .choices-container {
+    margin-top: 3em;
+  }
 
-#activities p {
-  margin: 0;
-}
+  .choices {
+    display: flex;
+    justify-content: space-evenly;
+  }
 
-#activities p {
-  width: 20%;
-}
+  #activities p {
+    margin: 0;
+  }
 
-#activities p:first-of-type {
-  width: 45%;
-}
+  #activities p {
+    width: 20%;
+  }
 
-#activities p:last-of-type {
-  text-align: right;
-}
+  #activities p:first-of-type {
+    width: 45%;
+  }
 
-.choices li {
-  list-style-type: none;
-}
+  #activities p:last-of-type {
+    text-align: right;
+  }
 
-.choice {
-  border: solid;
-  cursor: pointer;
-  padding: 1em;
-  border-radius: 10px;
-  transition: background-color 0.3s, color 0.3s, border 0.3s;
-}
+  .choices li {
+    list-style-type: none;
+  }
 
-.choice:hover {
-  transform: translate(0, -10px);
-}
+  .choice {
+    border: solid;
+    cursor: pointer;
+    padding: 1em;
+    border-radius: 10px;
+    transition: background-color 0.3s, color 0.3s, border 0.3s;
+  }
 
-.active {
-  background-color: #0077b3;
-  border: solid #0077b3;
-  color: white;
-}
+  .choice:hover {
+    transform: translate(0, -10px);
+  }
+
+  .active {
+    background-color: #0077b3;
+    border: solid #0077b3;
+    color: white;
+  }
 </style>

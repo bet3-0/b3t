@@ -28,7 +28,7 @@
           Fermer
         </b-button>
         <b-button
-          v-if="['relecteur', 'admin'].includes($store.state.auth.user.role)"
+          v-if="$store.state.auth.user && ['relecteur', 'admin'].includes($store.state.auth.user.role)"
           variant="success"
           @click.prevent.capture="go(progression)"
         >

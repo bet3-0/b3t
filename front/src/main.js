@@ -17,6 +17,7 @@ import YouthActivities from "./components/YouthActivities";
 import YouthActivitiesTerritoire from "./components/YouthActivitiesTerritoire";
 import PoliciesComponent from "./components/PoliciesComponent"
 import Error404 from "./components/Error404";
+import FrozenActivity from "./components/FrozenActivity";
 
 
 Vue.use(VeeValidate); // todo: understand this line for login ?
@@ -108,12 +109,18 @@ const router = new VueRouter({
       },
     },
     {
+      path: "/apercu/:idProgression/:idParcours/:idActivite",
+      get component() {
+        return FrozenActivity;
+      },
+    },
+    {
       path: "*",
       component: Error404,
     },
   ],
 });
-
+/*
 router.beforeEach((to, from, next) => {
    if(!/^\/login/.test(to.fullPath) && !["/", "/policies"].includes(to.fullPath)) {
       if (!store.state.auth.status.loggedIn) {
@@ -128,7 +135,7 @@ router.beforeEach((to, from, next) => {
       next();
    }
 });
-
+*/
 new Vue({
   store,
   render: (h) => h(App),

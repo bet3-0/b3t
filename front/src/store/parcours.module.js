@@ -3,7 +3,7 @@ const parcoursSaved = parseInt(localStorage.getItem("parcours"));
 export const parcours = {
   namespaced: true,
   state: {
-    parcours: parcoursSaved // initial stae
+    parcours: parcoursSaved // initial state
   },
   actions: {
     setParcours({ commit }, parcoursId) {

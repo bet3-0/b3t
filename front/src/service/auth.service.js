@@ -1,4 +1,5 @@
-import { API_URL } from "./config";
+import {API_URL} from "./config";
+import store from '../store'
 
 class AuthService {
   async login(user) {
@@ -33,6 +34,9 @@ class AuthService {
     localStorage.removeItem("activities");
     localStorage.removeItem("parcours");
     localStorage.removeItem("progression");
+    store.state.parcours.parcours = undefined;
+    store.state.progression.progression = 0;
+
   }
 
   parseJwt(token) {
