@@ -55,7 +55,7 @@ Activity page loaded from YouthActivities component.
                 {{ entry.question }}
               </h3>
               <DownloadFile
-                :idFile="entry.documents[0]"
+                :idFile="entry.documents && entry.documents.length ? entry.documents[0] : undefined"
                 v-if="entry.typeRendu === 'file'"
               />
               <UploadText

@@ -4,7 +4,7 @@
        class="btn btn-primary"
        :disabled="disabled"
        :href="fileUrl">
-       Télécharger le fichier
+      {{ text }}
     </a>
   </div>
 </template>
@@ -16,8 +16,9 @@ export default {
   name: "DownloadFile",
   data: function() {
      return {
-        fileUrl: null,
-        disabled: true
+       text: "Télécharger le fichier",
+       fileUrl: null,
+       disabled: true
      };
   },
   props: ["idFile"],
@@ -25,14 +26,18 @@ export default {
     // Redirect user to file if file is available
   },
   async created() {
-     this.fileUrl = await FileService.getUrl(this.idFile);
-     if (this.fileUrl == undefined) {
-        alert(
-        "Impossible de récuperer ton fichier... Réessaie pour voir ?"
-        );
-     } else {
-        this.disabled = false
-     }
+    if (!this.idFile) {
+      this.text = "Aucun fichier à télécharger"
+      return
+    }
+    this.fileUrl = await FileService.getUrl(this.idFile);
+    if (this.fileUrl === undefined) {
+      alert(
+        "Impossible de récupérer le fichier joint !"
+      );
+    } else {
+      this.disabled = false
+    }
   }
 };
 </script>
