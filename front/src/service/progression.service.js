@@ -126,6 +126,7 @@ export default class ProgressionService {
     }
   }
 
+  // DEPRECATED
   static async getGroupeProgressions() {
     console.log("Fetching progressions...");
     try {
@@ -140,6 +141,7 @@ export default class ProgressionService {
       return undefined;
     }
   }
+  // DEPRECATED
   static async getTerritoireProgressions() {
     console.log("Fetching progressions...");
     try {
@@ -149,6 +151,21 @@ export default class ProgressionService {
       });
       let data = await response.json();
       return data.Progressions;
+    } catch (error) {
+      console.error(error);
+      return undefined;
+    }
+  }
+
+  static async getGroup() {
+    console.log("Fetching progressions...");
+    try {
+      let response = await fetch(API_URL + "groupe", {
+        method: "GET",
+        headers: authHeader(),
+      });
+      let data = await response.json();
+      return data.groupe;
     } catch (error) {
       console.error(error);
       return undefined;
