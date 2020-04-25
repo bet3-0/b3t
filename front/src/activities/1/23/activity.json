@@ -1,0 +1,12 @@
+{
+  "id": "23",
+  "idParcours": "1",
+  "nom": "Grand chef : Trouve le plat !",
+  "description": "Reconnais un plat grâce aux aliments qui le composent et retrouver les aliments qui composent un plat !",
+  "duree": 20,
+  "materiel": [
+    ""
+  ],
+  "difficulte": "difficile",
+  "page": 12
+}
