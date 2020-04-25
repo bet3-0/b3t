@@ -8,7 +8,7 @@
       <button class="btn btn-primary" @click="pollData()">Mettre à jour</button>
       <b-dropdown
         id="dropdown-parcours"
-        :text="currentParcours"
+        :text="currentParcoursName"
         variant="primary"
         class="m-md-2"
       >
@@ -44,18 +44,15 @@
       </b-dropdown>
       <b-dropdown
         id="dropdown-parcours"
-        text="Filter par performance"
+        :text="currentState"
         variant="primary"
         class="m-md-2"
       >
-        <b-dropdown-item>Tous les jeunes</b-dropdown-item>
+        <b-dropdown-item @click="filterState('ALL')">Toutes les progressions</b-dropdown-item>
         <b-dropdown-divider></b-dropdown-divider>
-        <b-dropdown-item>Les plus nuls</b-dropdown-item>
-        <b-dropdown-item>Les plus géniaux</b-dropdown-item>
-        <b-dropdown-item>Les pénibles</b-dropdown-item>
-        <b-dropdown-item>Les invisibles</b-dropdown-item>
-        <b-dropdown-item>Les fayots</b-dropdown-item>
-        <b-dropdown-item>Les plus péda</b-dropdown-item>
+        <b-dropdown-item @click="filterState(_state)" v-bind:key="_state" v-for="_state in validStates"
+        >{{getStateName(_state)}}
+        </b-dropdown-item>
       </b-dropdown>
     </div>
     <Spinner :activated="loading"/>
@@ -64,7 +61,7 @@
     <div class="container">
       <div
         role="tablist"
-        v-for="user in group.users"
+        v-for="user in filteredUsers"
         v-bind:key="user.code_adherent"
       >
         <b-card no-body class="mb-1">
@@ -165,8 +162,8 @@
         </b-card>
       </div>
     </div>
-    <p v-if="!loading && !group.users.length">
-      Aucun jeune trouvé dans le groupe.
+    <p v-if="!loading && !filteredUsers.length">
+      Aucun jeune trouvé dans le groupe avec ces critères.
     </p>
     <!-- Modal -->
     <ValidationModal :progression="currentProgression"/>
@@ -196,7 +193,11 @@
       return {
         loading: true,
         idParcours: 4, // deprecated
-        currentParcours: "Filtrer par parcours",
+        currentParcoursName: "Filtrer par parcours",
+        currentParcours: [0, 1, 2, 3, 4],
+        currentState: "Filter par état d'avancement",
+        validStates: VALID_STATES,
+        currentRoles: ["jeune"],
         currentProgression: {},
         progressions: [], // deprecated
         displayProgressions: [], // deprecated
@@ -212,6 +213,20 @@
         },
         interval: null,
       };
+    },
+    computed: {
+      filteredUsers() {
+        if (!this.group.users) {
+          console.log("HERRE")
+          return []
+        }
+        console.log("THEERE")
+        return this.group.users.filter(
+          (user) => {
+            return this.currentRoles.includes(user.role) && this.currentParcours.includes(user.idParcours)
+          }
+        );
+      }
     },
     async mounted() {
       await this.loadProgressions();
@@ -274,7 +289,7 @@
                 idParcours: 3,
                 progressions: [
                   {
-                    id: "00501cdc-a12d-416d-8644-5228d1111713",
+                    id: "00501cdc-a12d-416d-8644-5228d1713",
                     idActivite: "9",
                     idParcours: "3",
                     nom: "",
@@ -282,7 +297,7 @@
                     startedAt: 1587254316,
                   },
                   {
-                    id: "00501cdc-a12d-416d-8644-5228d1111713",
+                    id: "00501cdc-a12d-416d44-5228d1111713",
                     idActivite: "9",
                     idParcours: "3",
                     nom: "",
@@ -290,7 +305,7 @@
                     startedAt: 1587254316,
                   },
                   {
-                    id: "00501cdc-a12d-416d-8644-5228d1111713",
+                    id: "00501cdc-d-416d-8644-5228d1111713",
                     idActivite: "9",
                     idParcours: "3",
                     nom: "",
@@ -298,7 +313,7 @@
                     startedAt: 1587254316,
                   },
                   {
-                    id: "00501cdc-a12d-416d-8644-5228d1111713",
+                    id: "0050c-a12d-416d-8644-5228d1111713",
                     idActivite: "9",
                     idParcours: "3",
                     nom: "",
@@ -306,7 +321,7 @@
                     startedAt: 1587254316,
                   },
                   {
-                    id: "00501cdc-a12d-416d-8644-5228d1111713",
+                    id: "01cdc-a12d-416d-8644-5228d1111713",
                     idActivite: "9",
                     idParcours: "3",
                     nom: "",
@@ -314,7 +329,7 @@
                     startedAt: 1587254316,
                   },
                   {
-                    id: "00501cdc-a12d-416d-8644-5228d1111713",
+                    id: "00501cdc-a12d-416d-8613",
                     idActivite: "10",
                     idParcours: "3",
                     nom: "Blabla",
@@ -369,13 +384,18 @@
       filterParcours(idParcours) {
         if (idParcours == 4) {
           this.displayProgressions = this.progressions;
-          this.currentParcours = "Tous les parcours";
+          this.currentParcoursName = "Tous les parcours";
+          this.currentParcours = [0, 1, 2, 3, 4]
         } else {
-          this.currentParcours = this.getParcoursName(idParcours);
+          this.currentParcoursName = this.getParcoursName(idParcours);
           this.displayProgressions = this.progressions.filter((progression) => {
             return progression.idParcours == idParcours;
           });
+          this.currentParcours = [idParcours]
         }
+      },
+      filterState(state) {
+        console.log(state)
       },
       filterRole(roles) {
         console.log(roles)
