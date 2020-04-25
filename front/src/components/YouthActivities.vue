@@ -29,22 +29,25 @@
       </b-dropdown>
       <b-dropdown
         id="dropdown-parcours"
-        text="Mes jeunes"
+        :text="currentRolesName"
         variant="primary"
         class="m-md-2"
       >
-        <b-dropdown-item @click="filterRole(3)"
+        <b-dropdown-item @click="filterRole(['jeune', 'chef', 'relecteur', 'ap'])"
         >Voir tout le groupe
         </b-dropdown-item
         >
-        <b-dropdown-item @click="filterRole(3)"
+        <b-dropdown-item @click="filterRole(['jeune'])"
         >Voir mes jeunes
+        </b-dropdown-item>
+        <b-dropdown-item @click="filterRole(['chef', 'ap', 'relecteur'])"
+        >Voir les autres adultes
         </b-dropdown-item
         >
       </b-dropdown>
       <b-dropdown
         id="dropdown-parcours"
-        :text="currentState"
+        :text="currentStatesName"
         variant="primary"
         class="m-md-2"
       >
@@ -116,7 +119,7 @@
                       'cursor: pointer; color:' +
                         getParcoursColor(progression.idParcours)
                     "
-                  v-for="progression in user.progressions"
+                  v-for="progression in filterProgressions(user.progressions)"
                 >
                   <td>
                     <svg
@@ -192,16 +195,14 @@
     data() {
       return {
         loading: true,
-        idParcours: 4, // deprecated
-        currentParcoursName: "Filtrer par parcours",
-        currentParcours: [0, 1, 2, 3, 4],
-        currentState: "Filter par état d'avancement",
         validStates: VALID_STATES,
+        currentParcoursName: "Filtrer par parcours",
+        currentParcours: ["0", "1", "2", "3", "4"],
+        currentStatesName: "Filter par état d'avancement",
+        currentStates: VALID_STATES,
+        currentRolesName: "Mes jeunes",
         currentRoles: ["jeune"],
         currentProgression: {},
-        progressions: [], // deprecated
-        displayProgressions: [], // deprecated
-        text: "blabla", // deprecated
         group: {"code_structure": "[chargement...]"},
         counter: {
           NOTSTARTED: 0,
@@ -217,16 +218,14 @@
     computed: {
       filteredUsers() {
         if (!this.group.users) {
-          console.log("HERRE")
           return []
         }
-        console.log("THEERE")
         return this.group.users.filter(
           (user) => {
             return this.currentRoles.includes(user.role) && this.currentParcours.includes(user.idParcours)
           }
         );
-      }
+      },
     },
     async mounted() {
       await this.loadProgressions();
@@ -280,13 +279,13 @@
                 code_adherent:
                   "Une erreur de chargement est survenue. Merci de recharger la page.",
                 globalProgression: 20,
-                idParcours: 0,
+                idParcours: "0",
               },
               {
                 code_adherent: "1000000012",
                 role: "jeune",
                 globalProgression: 50,
-                idParcours: 3,
+                idParcours: "3",
                 progressions: [
                   {
                     id: "00501cdc-a12d-416d-8644-5228d1713",
@@ -344,35 +343,19 @@
                 role: "jeune",
                 progressions: [],
                 globalProgression: 100,
-                idParcours: 0,
+                idParcours: "0",
               },
             ],
           };
         }
-        this.countProgressionStates();
-        this.displayProgressions = this.progressions;
         this.loading = false;
       },
-
       getActivity: ProgressionHelpers.getActivityFromLocalStorage,
-      getActivityName(idParcours, idActivite) {
-        const activity = this.getActivity(idParcours, idActivite);
-        if (!activity) {
-          return "Activité invalide";
-        }
-        return activity.nom || "Activité au nom inconnu";
-      },
+      getActivityName: ProgressionHelpers.getActivityName,
       getStateName: ProgressionHelpers.getStateName,
       getTimeDiff: ProgressionHelpers.getTimeDiff,
       sendInfo(progression) {
         this.currentProgression = progression;
-      },
-      countProgressionStates() {
-        this.progressions.forEach((progression) => {
-          if (VALID_STATES.includes(progression.state)) {
-            this.counter[progression.state]++;
-          }
-        });
       },
       getParcoursName(idParcours) {
         return itineraryHelpers.getParcoursName(idParcours);
@@ -381,25 +364,40 @@
         return itineraryHelpers.getItineraryColor(idParcours);
       },
       getDate: ProgressionHelpers.timestampToPrettyDate,
+
+      // Filters
       filterParcours(idParcours) {
         if (idParcours == 4) {
-          this.displayProgressions = this.progressions;
           this.currentParcoursName = "Tous les parcours";
-          this.currentParcours = [0, 1, 2, 3, 4]
+          this.currentParcours = ["0", "1", "2", "3", "4"]
         } else {
           this.currentParcoursName = this.getParcoursName(idParcours);
-          this.displayProgressions = this.progressions.filter((progression) => {
-            return progression.idParcours == idParcours;
-          });
-          this.currentParcours = [idParcours]
+          this.currentParcours = [idParcours.toString()]
         }
       },
       filterState(state) {
-        console.log(state)
+        if (state === 'ALL') {
+          this.currentStatesName = "Toutes les progressions"
+          this.currentStates = this.validStates
+        } else {
+          this.currentStatesName = this.getStateName(state)
+          this.currentStates = [state]
+        }
       },
       filterRole(roles) {
-        console.log(roles)
-        // todo
+        this.currentRoles = roles
+        this.currentRolesName = "Filtre par: " + roles
+      },
+      filterProgressions(progressions) {
+        if (!progressions) {
+          return []
+        }
+        console.log(progressions)
+        return progressions.filter(
+          (progression) => {
+            return this.currentStates.includes(progression.state)
+          }
+        );
       },
     },
   };

@@ -71,6 +71,17 @@ export default class ProgressionHelpers {
       nom: "Activité inconnue",
     };
   }
+
+  static getActivityName(progression) {
+    if (progression.nom) {
+      return progression.nom
+    }
+    const activity = this.getActivityFromLocalStorage(progression.idParcours, progression.idActivite);
+    if (!activity) {
+      return "Activité invalide";
+    }
+    return activity.nom || "Activité au nom inconnu";
+  }
 }
 
 export const VALID_STATES = [
