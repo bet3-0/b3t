@@ -1,0 +1,22 @@
+{
+  "idActivite": "25",
+  "idParcours": "1",
+  "state": "INPROGRESS",
+  "duration": 15,
+  "startedAt": 0,
+  "finishedAt": 0,
+  "reviewAt": 0,
+  "entries": [
+       {
+           "position": 0,
+           "question":
+               "Envoie ta vidéo ou ton enregistrement",
+           "documents": [],
+           "typeRendu": "file",
+           "rendu": "",
+           "state": "NOTSTARTED",
+           "tracked": true,
+           "page": 1
+       }
+  ]
+}
