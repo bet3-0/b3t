@@ -239,81 +239,9 @@
           });
           this.group = group;
         } else {
-          // alert("Impossible de charger la page ! Merci de la recharger pour réessayer.")
+          alert("Impossible de charger la page ! Merci de la recharger pour réessayer.")
           this.group = {
             code_structure: "Inconnu",
-            users: [
-              {
-                code_adherent:
-                  "Une erreur de chargement est survenue. Merci de recharger la page.",
-                globalProgression: 20,
-                idParcours: "0",
-              },
-              {
-                code_adherent: "1000000012",
-                role: "jeune",
-                globalProgression: 50,
-                idParcours: "3",
-                progressions: [
-                  {
-                    id: "00501cdc-a12d-416d-8644-5228d1713",
-                    idActivite: "5",
-                    idParcours: "3",
-                    nom: "",
-                    state: "VALIDATED",
-                    startedAt: 1587254316,
-                  },
-                  {
-                    id: "00501cdc-a12d-416d44-5228d1111713",
-                    idActivite: "6",
-                    idParcours: "3",
-                    nom: "",
-                    state: "FINISHED",
-                    startedAt: 1587254316,
-                  },
-                  {
-                    id: "00501cdc-d-416d-8644-5228d1111713",
-                    idActivite: "4",
-                    idParcours: "3",
-                    nom: "",
-                    state: "REVIEWING",
-                    startedAt: 1587254316,
-                  },
-                  {
-                    id: "0050c-a12d-416d-8644-5228d1111713",
-                    idActivite: "2",
-                    idParcours: "3",
-                    nom: "",
-                    state: "INPROGRESS",
-                    startedAt: 1587254316,
-                  },
-                  {
-                    id: "01cdc-a12d-416d-8644-5228d1111713",
-                    idActivite: "9",
-                    idParcours: "3",
-                    nom: "",
-                    state: "NOTSTARTED",
-                    startedAt: 1587254316,
-                  },
-                  {
-                    id: "00501cdc-a12d-416d-8613",
-                    idActivite: "10",
-                    idParcours: "3",
-                    nom: "Blabla",
-                    state: "REFUSED",
-                    startedAt: 1587254516,
-                    finishedAt: 1587281246,
-                  },
-                ],
-              },
-              {
-                code_adherent: "1000000013",
-                role: "jeune",
-                progressions: [],
-                globalProgression: 100,
-                idParcours: "0",
-              },
-            ],
           };
         }
         this.loading = false;
@@ -342,6 +270,7 @@
       },
       getStateName: ProgressionHelpers.getStateName,
       getTimeDiff: ProgressionHelpers.getTimeDiff,
+      getDate: ProgressionHelpers.timestampToPrettyDate,
       sendInfo(progression) {
         this.currentProgression = progression;
       },
@@ -351,7 +280,6 @@
       getParcoursColor(idParcours) {
         return itineraryHelpers.getItineraryColor(idParcours);
       },
-      getDate: ProgressionHelpers.timestampToPrettyDate,
 
       // Filters
       filterParcours(idParcours) {

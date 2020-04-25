@@ -4,6 +4,7 @@
       Activités à valider
     </h1>
     <div>
+      <button @click="pollData()" class="btn btn-primary">Mettre à jour</button>
       <b-dropdown
         id="dropdown-parcours"
         :text="currentParcours"
@@ -17,7 +18,6 @@
         <b-dropdown-item @click="filter(2)">Cés'Arts</b-dropdown-item>
         <b-dropdown-item @click="filter(3)">Robinson</b-dropdown-item>
       </b-dropdown>
-      <button class="btn btn-primary" @click="pollData()">Mettre à jour</button>
     </div>
     <Spinner :activated="loading"/>
 
@@ -122,21 +122,6 @@
       await this.loadProgressions();
     },
 
-    // not working...
-    ready() {
-      this.pollData().then(console.log("updated!"));
-      // reload data every 30 seconds
-      this.interval = setInterval(
-        function () {
-          this.pollData().then(console.log("updated!"));
-        }.bind(this),
-        30000
-      );
-    },
-    beforeDestroy: function () {
-      clearInterval(this.interval);
-    },
-
     methods: {
       async pollData() {
         await this.loadProgressions();
@@ -147,10 +132,11 @@
         if (progressions) {
           this.progressions = progressions;
         } else {
+          alert("Impossible de charger la page ! Merci de la recharger pour réessayer.")
           this.progressions = [
             {
               id: "Erreur de chargement",
-              state: "UNKNOWN", // error
+              state: "NOTSTARTED", // error
               commentaire:
                 "Une erreur inconnue est survenue ! Recharge la page !",
             },
