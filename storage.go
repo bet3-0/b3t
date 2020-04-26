@@ -74,6 +74,19 @@ func getUrl(c *gin.Context) {
 	codeAdherent := c.Param("code_adherent")
 	name := c.Param("name")
 
+	user := c.Request.Context().Value("user").(User)
+
+	// In case a chef wants to get a file, forces codeStructureGroupe value to its group
+	if user.Role == role("chef") {
+		codeStructureGroupe = user.CodeStructureGroupe
+	}
+
+	// In case a chef wants to get a file, forces codeStructureGroupe value to its group
+	if user.Role == role("ap") {
+		c.AbortWithError(401, fmt.Errorf("unauthorized"))
+		return
+	}
+
 	svc := s3.New(sess)
 
 	req, _ := svc.GetObjectRequest(&s3.GetObjectInput{
