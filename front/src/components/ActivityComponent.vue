@@ -3,11 +3,11 @@ Base Component for an activity page -->
 
 <template>
   <div class="container" role="main">
-    <Alert :show="showDismissibleAlert" :text="textAlert" />
-    <ActivityProgressBar :progress="progress" />
+    <Alert :show="showDismissibleAlert" :text="textAlert"/>
+    <ActivityProgressBar :progress="progress"/>
     <div class="row">
       <div id="main-container" class="activity-container col-12">
-        <Spinner :activated="!activity.nom && loading" />
+        <Spinner :activated="!activity.nom && loading"/>
         <h1 class="activity-title" :style="'color:' + getParcoursColor()">
           {{ activity.nom }}
         </h1>
@@ -16,7 +16,7 @@ Base Component for an activity page -->
             <div class="card card-body">
               <ul>
                 <li>
-                  Description:<br />
+                  Description:<br/>
                   <i>{{ activity.description }}</i>
                 </li>
                 <li
@@ -39,9 +39,9 @@ Base Component for an activity page -->
             </div>
           </div>
         </div>
-        <ActivityContent :idActivite="idActivite" :idParcours="idParcours" />
+        <ActivityContent :idActivite="idActivite" :idParcours="idParcours"/>
         <div class="end-container">
-          <Spinner :activated="!progression.id && loading" />
+          <Spinner :activated="!progression.id && loading"/>
           <div class="submit-container">
             <!-- Choisir parmi ces deux rendus en fonction de l'activité -->
             <div
@@ -90,8 +90,8 @@ Base Component for an activity page -->
               </button>
               <button
                 class="btn btn-success"
-                v-if="!hasNext() && progression.entries && progression.entries.length"
-                @click="validate()"
+                v-if="!hasNext() && progression.entries && progression.entries.length && role === 'jeune'"
+                @click="validatePage()"
               >
                 <span v-show="loading" class="spinner-border spinner-border-sm"></span>
                 Valider
@@ -115,6 +115,27 @@ Base Component for an activity page -->
         </div>
       </div>
     </div>
+    <b-modal
+      class="modal-backdrop"
+      id="checkModal"
+      title="Certains éléments ne sont pas complets..."
+    >
+      <div class="modal-body">
+        {{checkText}} <br><br>
+        Souhaites-tu continuer ou revenir à la page pour vérifier son contenu ?
+      </div>
+      <template v-slot:modal-footer="{ok, cancel}">
+        <b-button variant="secondary" @click="cancel()">
+          Revenir à la page
+        </b-button>
+        <b-button
+          variant="success"
+          @click.prevent.capture="checkCallback()"
+        >
+          Confirmer
+        </b-button>
+      </template>
+    </b-modal>
     <ErrorModal
       :title="titleError"
       :message="messageError"
@@ -166,11 +187,20 @@ Base Component for an activity page -->
       progress: 0,
       activity: {},
       progression: {},
+      // Error modal
       titleError: "Activité impossible à charger !",
       messageError: "L'activité est imposible à charger ou inexistante !",
       linkError: "",
       linkMessage: "",
+      // Check entries modal
+      checkText: "",
+      checkCallback: ()=>{},
     };
+  },
+  computed:{
+    role(){
+      return this.$store.state.auth.user ? this.$store.state.auth.user.role : undefined
+    }
   },
   async created() {
     this.idActivite = this.$route.params.idActivite;
@@ -195,6 +225,8 @@ Base Component for an activity page -->
       for (let i = 0; i < this.activity.page; i++) {
         if (i + 1 !== this.pageNumber) {
           $(`#page${i + 1}`).hide();
+        } else {
+          $(`#page${i + 1}`).show();
         }
       }
       $(".content-container").removeAttr("hidden");
@@ -202,7 +234,6 @@ Base Component for an activity page -->
     stopVideo(element) {
       var iframe = element.querySelector("iframe");
       var video = element.querySelector("video");
-      // TODO
       if (iframe !== null) {
         var iframeSrc = iframe.src;
         // Remove autoplay option if it exists
@@ -235,7 +266,7 @@ Base Component for an activity page -->
           "L'activité est imposible à charger ou inexistante !";
         this.linkError = "";
         this.$bvModal.show("errorModal");
-        this.activity = { nom: "Activité inconnue !" };
+        this.activity = {nom: "Activité inconnue !"};
         this.loading = false;
         return;
       }
@@ -331,7 +362,7 @@ Base Component for an activity page -->
               "Tu as déjà fait cette activité ! Elle est en train d'être relue, tu peux le voir sur la page Mes activités !";
             this.linkError = "/progression";
             this.linkMessage = "Voir mes activités";
-              this.$bvModal.show("errorModal");
+            this.$bvModal.show("errorModal");
             this.textAlert =
               "Tu as déjà fait cette activité ! Elle est sûrement en train d'être relue, tu peux le voir sur la page Mes activités !";
             this.showDismissibleAlert = true;
@@ -399,94 +430,7 @@ Base Component for an activity page -->
     },
 
     // PAGE MANAGEMENT METHODS
-    hasNext() {
-      return this.pageNumber < this.activity.page;
-    },
-    async updateAndCheckPage(newPage) {
-      let isUpdated = await this.updatePage(newPage);
-      if (!isUpdated) {
-        this.titleError = "Impossible d'envoyer tes réponses !";
-        this.messageError =
-          "Tes réponses sont bloquées ici ! Réessaie pour voir ?";
-        this.$bvModal.show("errorModal-VAL");
-        return false;
-      }
-      return true;
-    },
-    async previousPage() {
-      return await this.updateAndCheckPage(this.pageNumber - 1);
-    },
-    async nextPage() {
-      this.loading = true;
-      await this.updateAndCheckPage(this.pageNumber + 1);
-      this.loading = false;
-    },
-    // Go to previous/next page or validate
-    async validate() {
-      this.loading = true;
-      let isUpdated = await this.updateAndCheckPage(this.pageNumber);
-      this.loading = false;
-      if (!isUpdated) {
-        return false;
-      }
-
-      // Try to send the updated progression
-
-      // CASE 1: an adult is on the page
-      if (this.$store.state.auth.user.role != "jeune") {
-        // Validation for reviewer, only if the state is REVIEWING
-        if (this.progression.state == "REVIEWING") {
-          this.$bvModal.show("activityToValidateModal");
-        }
-        // Otherwise, nothing happens.
-      }
-      // CASE 2: a 'jeune' is on the page and this is not its main parcours
-      else if (this.progression.idParcours != 4
-        && this.progression.idParcours != this.$store.state.parcours.parcours) {
-        // progression was never initialized with server
-        this.titleError = "Activité hors parcours terminée !";
-        this.messageError =
-          "Cette activité ne correspond pas à ton parcours et ne peut donc pas être sauvegardée !" +
-          " Nous n'enverrons pas tes réponses et l'activité ne s'affichera pas dans la page \"Mes activités\".";
-        this.linkMessage = "Retour au choix d'activités";
-        this.linkError = "/activitees";
-        this.$bvModal.show("errorModal-VAL");
-        return false;
-      }
-        // CASE 3: a 'jeune' is on the page and this is its main parcours
-      // FIRST OPTION: an error occurred previously and the progression has no id
-      else if (!this.progression.id) {
-        // progression was never initialized with server
-        this.titleError = "Impossible d'envoyer tes réponses !";
-        this.messageError =
-          "Tes réponses ne peuvent pas être enregistrées ! Tu dois rafraîchir la page et réessayer !";
-        this.linkMessage = "";
-        this.linkError = "";
-        this.$bvModal.show("errorModal-VAL");
-        return false;
-      }
-      // SECOND OPTION: the activity is finished, reviewing or validated
-      else if (["FINISHED", "REVIEWING", "VALIDATED"].includes(this.progression.state)) {
-        // Cannot send this type of progression !
-        this.titleError = "Impossible d'envoyer tes réponses !";
-        this.messageError =
-          "Tu as déjà envoyé cette activité ! Elle se trouve maintenant dans Mes activités où tu peux suivre la progression de sa validation !";
-        this.linkMessage = "Voir Mes activités";
-        this.linkError = "/progression";
-        this.$bvModal.show("errorModal-VAL");
-        return false;
-      }
-      // THIRD OPTION: the activity has a correct state: it can be sent!
-      else {
-        this.message = this.checkEntries(this.progression.entries);
-        if (this.message) {
-          console.warn("Entries not complete");
-        }
-        this.$bvModal.show("validateActivityModal");
-      }
-    },
-
-    // UPDATE METHODS
+    // UPDATE ENTRIES/PAGES/PROGRESSION METHODS
     pageEntries() {
       if (!this.progression.entries) {
         return [];
@@ -494,79 +438,6 @@ Base Component for an activity page -->
       return this.progression.entries
         .filter((entry) => entry.page === this.pageNumber)
         .sort((a, b) => a.position - b.position);
-    },
-    /**If INPROGRESS/NOT STARTED, send the entry and save the entry in local progression, else do nothing */
-    async updateEntry(entry) {
-      if (
-        // CASE 1
-        ["REVIEWING", "VALIDATED"].includes(entry.state) ||
-        this.$store.state.auth.user.role !== "jeune"
-        // CASE 2
-        // (this.idParcours != 4 && this.$store.state.progression.hasEnded)
-      ) {
-        // Security (normally this case does not happen)
-        // Impossible to edit entry in this state
-        console.warn("Entry not updatable: " + entry.state);
-        return true;
-      }
-      entry.state = "FINISHED";
-      console.log("update:");
-      console.log(entry.rendu);
-      console.log(entry.parsedRendu);
-
-      // TODO: handle send file ? --> NO
-
-      if (entry.parsedRendu) {
-        entry.rendu = JSON.stringify(entry.parsedRendu);
-      }
-      let isUpdated = await ProgressionService.updateProgression(
-        entry,
-        "entry"
-      );
-      if (!isUpdated) {
-        console.warn("Error while sending text entry: " + entry.rendu);
-        entry.state = "INPROGRESS";
-        return false;
-      }
-      console.log("Answer sent: " + entry.rendu);
-      this.updateEntryInProgression(entry); // update the primary progression object
-      return true;
-    },
-    /**Save the entry in local progression + update progression bar */
-    updateEntryInProgression(newEntry) {
-      if (!this.progression.entries) {
-        this.progression.entries = [];
-      }
-      for (var i in this.progression.entries) {
-        if (this.progression.entries[i].id == newEntry.id) {
-          this.progression.entries[i] = newEntry;
-          break;
-        }
-      }
-      this.getProgress();
-    },
-    async validatePageEntries() {
-      if (!this.progression.entries) {
-        return true;
-      }
-      let isUpdated = true;
-      const entriesToValidate = this.progression.entries.filter(entry => {
-        return entry.page === this.pageNumber
-      });
-      console.log("entries to validate: ", entriesToValidate)
-      entriesToValidate.forEach(async (entry) => {
-          if (!(await this.updateEntry(entry))) {
-            isUpdated = false;
-            console.log("Valiidation of entry failed:");
-            console.log(entry);
-          }
-      });
-      const checkMessage = this.checkEntries(entriesToValidate);
-      if (checkMessage){
-        // TODO
-        alert(checkMessage)
-      }
-      return isUpdated;
     },
     checkEntries(entries) {
       // Check entries are filled
@@ -590,28 +461,77 @@ Base Component for an activity page -->
         if (filesNotSent.length > 0) {
           console.log("Some files where not sent: " + JSON.stringify(filesNotSent));
           if (filesNotSent.length === 1) {
-            message += `Notamment, 1 fichier n'a pas été envoyé.`
+            message += ` Notamment, 1 fichier n'a pas été envoyé.`
           } else {
-            message += `Notamment, ${filesNotSent.length} fichiers n'ont pas été envoyés.`
+            message += ` Notamment, ${filesNotSent.length} fichiers n'ont pas été envoyés.`
           }
         }
         return message;
       }
     },
-
-    async updatePage(pageNumber) {
-      // go to pageNumber
-      if (pageNumber >= this.pageNumber) {
-        // if Page suivante or Valider: send all entries in the current page
-        if (!(await this.validatePageEntries())) {
-          // impossible to send at least one entry
-          //this.titleError = "Impossible d'envoyer ta réponse !";
-          //this.messageError =            "Une des réponses de ta page n'arrive pas à partir ! Réessaie à nouveau ?";
-          //this.$bvModal.show("errorModal");
-          console.log("Validation of entries failed");
-          return false; // error trigger in ValidateActivityPage
+    /**Save the entry in local progression + update progression bar */
+    updateEntryInProgression(newEntry) {
+      if (!this.progression.entries) {
+        this.progression.entries = [];
+      }
+      for (let i in this.progression.entries) {
+        if (this.progression.entries[i].id === newEntry.id) {
+          this.progression.entries[i] = newEntry;
+          break;
         }
       }
+      this.getProgress();
+    },
+    /**If INPROGRESS/NOT STARTED, send the entry and save the entry in local progression, else do nothing */
+    async updateEntry(entry) {
+      if (
+        // CASE 1
+        ["REVIEWING", "VALIDATED"].includes(entry.state) ||
+        this.role !== "jeune" ||
+        // CASE 2
+        (this.idParcours != 4
+          && this.idParcours != this.$store.state.parcours.parcours)
+      ) {
+       // Impossible to edit entry in this state
+        console.debug("Entry not updatable: " + entry.state);
+        return true;
+      }
+      entry.state = "FINISHED";
+
+      if (entry.parsedRendu) {
+        entry.rendu = JSON.stringify(entry.parsedRendu);
+      }
+      let isUpdated = await ProgressionService.updateProgression(
+        entry,
+        "entry"
+      );
+      if (!isUpdated) {
+        console.warn("Error while sending text entry: " + entry.rendu);
+        entry.state = "INPROGRESS";
+        return false;
+      }
+      console.log("Answer sent: " + entry.rendu);
+      this.updateEntryInProgression(entry); // update the primary progression object
+      return true;
+    },
+    async validatePageEntries() {
+      if (!this.progression.entries) {
+        return true;
+      }
+      let isUpdated = true;
+      const entriesToValidate = this.progression.entries.filter(entry => {
+        return entry.page === this.pageNumber
+      });
+      console.log("entries to validate: ", entriesToValidate)
+      for (const entry of entriesToValidate) {
+        if (!(await this.updateEntry(entry))) {
+          isUpdated = false;
+          console.log("Validation of entry failed:", entry);
+        }
+      }
+      return isUpdated;
+    },
+    updatePage(pageNumber) {
       const pastPage = this.pageNumber;
       if (pageNumber != this.pageNumber) {
         $(`#page${this.pageNumber}`).hide();
@@ -627,10 +547,122 @@ Base Component for an activity page -->
           this.stopVideo(element);
         });
       } catch (error) {
-        console.warn("Impossible to stop video automatically");
-        console.warn(error);
+        // console.warn("Impossible to stop video automatically");
+        // console.warn(error);
       }
       return true;
+    },
+    async updateEntries() {
+      if (!this.progression.entries) {
+        return true;
+      }
+      let isUpdated = true;
+      const entriesToValidate = this.progression.entries.filter(entry => {
+        return entry.page === this.pageNumber
+      });
+      for (const entry of entriesToValidate) {
+        if (!(await this.updateEntry(entry))) {
+          isUpdated = false;
+          console.log("Validation of entry failed:", entry);
+        }
+      }
+      if (!isUpdated) {
+        this.titleError = "Impossible d'envoyer tes réponses !";
+        this.messageError =
+          "Tes réponses sont bloquées ici ! Réessaie pour voir ?";
+        this.$bvModal.show("errorModal-VAL");
+        return false;
+      }
+      return true;
+    },
+
+    // PAGE CHANGES
+    hasNext() {
+      return this.pageNumber < this.activity.page;
+    },
+    async previousPage() {
+      await this.updateEntries();
+      return this.updatePage(this.pageNumber - 1)
+    },
+    async nextPage() {
+      this.loading = true;
+      if (!(await this.updateEntries())){
+        this.loading = false;
+        return
+      }
+      const checkMessage = this.checkEntries(this.pageEntries())
+      if (checkMessage) {
+        this.checkText = checkMessage
+        this.checkCallback = () => {
+          this.$bvModal.hide("checkModal");
+          this.updatePage(this.pageNumber + 1);
+        }
+        this.$bvModal.show("checkModal");
+      } else {
+        await this.updatePage(this.pageNumber + 1);
+      }
+      this.loading = false;
+    },
+    // Go to previous/next page or validate
+    async validatePage() {
+      this.loading = true;
+      const isUpdated = await this.updateEntries(this.pageNumber);
+      this.loading = false;
+      if (!isUpdated) {
+        return false;
+      }
+      // Try to send the updated progression
+
+      // CASE 1: an adult is on the page
+      if (this.role !== "jeune") {
+        // Nothing happens.
+      }
+      // CASE 2: a 'jeune' is on the page and this is not its main parcours
+        /*
+      else if (this.progression.idParcours != 4
+        && this.progression.idParcours != this.$store.state.parcours.parcours) {
+        // progression was never initialized with server
+        this.titleError = "Activité hors parcours terminée !";
+        this.messageError =
+          "Cette activité ne correspond pas à ton parcours et ne peut donc pas être sauvegardée !" +
+          " Nous n'enverrons pas tes réponses et l'activité ne s'affichera pas dans la page \"Mes activités\".";
+        this.linkMessage = "Retour au choix d'activités";
+        this.linkError = "/activitees";
+        this.$bvModal.show("errorModal-VAL");
+        return false;
+      }*/
+        // CASE 3: a 'jeune' is on the page and this is its main parcours
+      // FIRST OPTION: an error occurred previously and the progression has no id
+      else if (!this.progression.id) {
+        // progression was never initialized with server
+        this.titleError = "Impossible d'envoyer tes réponses !";
+        this.messageError =
+          "Tes réponses ne peuvent pas être enregistrées ! Tu dois rafraîchir la page et réessayer !";
+        this.linkMessage = "";
+        this.linkError = "";
+        this.$bvModal.show("errorModal-VAL");
+        return false;
+      }
+      // SECOND OPTION: the activity is finished, reviewing or validated
+      else if (["FINISHED", "EXTRA", "REVIEWING", "VALIDATED"].includes(this.progression.state)) {
+        // Cannot send this type of progression !
+        this.titleError = "Impossible d'envoyer tes réponses !";
+        this.messageError =
+          "Tu as déjà envoyé cette activité ! Elle se trouve maintenant dans Mes activités où tu peux suivre la progression de sa validation !";
+        this.linkMessage = "Voir Mes activités";
+        this.linkError = "/progression";
+        this.$bvModal.show("errorModal-VAL");
+        return false;
+      }
+      // THIRD OPTION: the activity has a correct state: it can be sent!
+      else {
+        this.message = this.checkEntries(this.progression.entries);
+        if (this.message) {
+          console.warn("Entries not complete");
+        }
+        // This modal integrates the logic to send the completed progression
+        this.$bvModal.show("validateActivityModal");
+      }
     },
   },
 };
@@ -649,6 +681,7 @@ Base Component for an activity page -->
   background-color: #fafafa;
   border-radius: 0.3rem;
 }
+
 .details-container {
   margin: 0.5rem;
   padding: 0.5rem;
@@ -664,13 +697,16 @@ Base Component for an activity page -->
   flex-direction: column;
   align-items: center;
 }
+
 .submit-container {
   display: flex;
   flex-wrap: wrap;
 }
+
 h1.activity-title {
   color: var(--default);
 }
+
 .container-buttons {
   margin: 1rem;
   display: flex;
