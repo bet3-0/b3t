@@ -3,6 +3,12 @@
     <h1 :style="'color:' + changeParcoursColor()">
       Ma progression personnelle<br/>{{ getParcoursName() }}
     </h1>
+    <button
+      @click="$bvModal.show('endModal')" class="btn btn-success"
+      style="margin: 1rem"
+      v-if="hasEnded"
+    >Bravo ! Ton BET est validé !
+    </button>
     <div>
       <ul class="list-group">
         <li
@@ -111,34 +117,7 @@
       :progression="currentProgression"
       :activity="getCurrentActivity()"
     />
-    <b-modal
-      class="modal-backdrop"
-      hide-backdrop
-      id="endModal"
-      title="Bravo !"
-    >
-      <div class="modal-body">
-        <span>
-        Félicitations ! Tes activités ont été validées et tu viens
-        donc de terminer le parcours <b>{{ getParcoursName(idParcours) }}</b> !
-        </span>
-        <img :src="`@/assets/img/${getParcoursImageName(idParcours)}`" style="margin: auto"/>
-        <span>
-        Si tu le souhaites, tu peux continuer à faire des activités de ce parcours ou des autres parcours.
-        Ces activités ne seront toutefois pas relues et tu ne les verras pas s'afficher sur cette page.
-        </span>
-      </div>
-      <template v-slot:modal-footer="{ok, cancel}">
-        <b-button @click="cancel()" variant="secondary">
-          Revenir à la page Mes activités
-        </b-button>
-        <b-button
-          @click.prevent.capture="$router.push('/activitees')"
-          variant="success">
-          Voir toutes les activitées
-        </b-button>
-      </template>
-    </b-modal>
+    <CongratsModal :idParcours="idParcours"/>
   </div>
 </template>
 
@@ -153,13 +132,14 @@
   import ProgressionService from "./../service/progression.service";
   import Spinner from "./includes/Spinner";
   import activityService from "../service/activity";
+  import CongratsModal from "./includes/CongratsModal";
 
   Vue.use(BootstrapVue);
   Vue.use(VueRouter);
 
   export default {
     name: "PersonalProgression",
-    components: {ProgressionModal, Spinner},
+    components: {CongratsModal, ProgressionModal, Spinner},
     data() {
       return {
         loading: true,
@@ -180,7 +160,7 @@
     },
     created() {
       // Check if parcours is defined. If not, redirect to /parcours
-      if (isNaN(this.idParcours) | (this.idParcours > 3)) {
+      if (isNaN(this.idParcours) || (this.idParcours > 3)) {
         return this.$router.push("/parcours");
       }
     },
@@ -224,9 +204,14 @@
         // Progressions must be up to date
         this.progressions.forEach((prog) => {
           if (prog.state === 'NOTSTARTED' && prog.idActivite == "-2") {
-            return // End message has already been displayed
+            this.hasEnded = true
           }
         })
+        if (this.hasEnded) {
+          // End message has already been displayed
+          return
+        }
+        console.log("Progressions:", this.progressions)
         // state "NOTSTARTED" + idActivite == -1 --> choix de parcours
         // state "NOTSTARTED" + idActivite == -2 --> fin de parcours
         let parcoursFirstProgression = {
