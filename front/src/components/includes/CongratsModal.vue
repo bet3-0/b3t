@@ -10,7 +10,7 @@
         Félicitations ! Tes activités ont été validées et tu viens
         donc de terminer le parcours <b>{{ getParcoursName(idParcours) }}</b> !
         <br><br>Tu es maintenant un éclaireur ou une éclaireuse de Tribu aguerri(e) :
-        à toi maintenant d'utiliser et transmettre tout ce que tu as appris dans ta tribu !<br><br>
+        à toi d'utiliser et transmettre tout ce que tu as appris dans ta tribu !<br><br>
         Enfin, n'oublie pas de participer à <a href="/halte">la Halte</a> si tu ne l'as pas encore fait !
       </div>
       <img :src="require(`@/assets/img/${getParcoursImageName(idParcours)}`)"

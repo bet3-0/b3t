@@ -9,7 +9,7 @@
           Recharger la page
         </b-button>
         <b-button variant="secondary" @click="cancel()">
-          Retourner sur la page pour réessayer
+          Retourner sur la page
         </b-button>
         <b-button v-if="link && linkMessage" variant="success" @click="go()">
           {{ linkMessage }}
