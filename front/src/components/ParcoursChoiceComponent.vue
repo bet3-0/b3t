@@ -120,6 +120,8 @@ export default {
       this.selected = null;
     },
     async validateChoice(selected) {
+      // state "NOTSTARTED" + idActivite == -1 --> choix de parcours
+      // state "NOTSTARTED" + idActivite == -2 --> fin de parcours
       let parcoursFirstProgression = {
         state: "NOTSTARTED",
         idActivite: "-1",
