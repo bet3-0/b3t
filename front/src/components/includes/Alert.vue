@@ -19,7 +19,7 @@ export default {
       return this.show || false;
     },
     variantName: function() {
-      return this.variant || "danger";
+      return this.variant || "warning";
     },
     textValue: function() {
       return this.text || "Erreur inconnue";

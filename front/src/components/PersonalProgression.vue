@@ -181,7 +181,7 @@
         // Update the global progression
         const globalProgression = activityService.getGlobalProgressionFromProgressions(progressions)
         this.$store.dispatch("progression/setProgression", globalProgression);
-        if (globalProgression >= 100) {
+        if (this.$store.state.progression.hasEnded) {
           await this.endParcours()
         }
       } else {

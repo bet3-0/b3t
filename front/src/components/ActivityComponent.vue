@@ -93,23 +93,23 @@ Base Component for an activity page -->
 </template>
 
 <script>
-import Alert from "./includes/Alert";
-import ActivityContent from "./includes/activityComponents/ActivityContent";
-import ActivityProgressBar from "./includes/activityComponents/ActivityProgressBar";
-import UploadFile from "./includes/activityComponents/UploadFile";
-import UploadText from "./includes/activityComponents/UploadText";
-import OrderList from "./includes/activityComponents/OrderList";
-import Qcm from "./includes/activityComponents/Qcm";
-import activityService from "./../service/activity";
-import itineraryHelpers from "./../service/itineraryHelpers";
-import Spinner from "./includes/Spinner";
-import ErrorModal from "./includes/ErrorModal";
+  import Alert from "./includes/Alert";
+  import ActivityContent from "./includes/activityComponents/ActivityContent";
+  import ActivityProgressBar from "./includes/activityComponents/ActivityProgressBar";
+  import UploadFile from "./includes/activityComponents/UploadFile";
+  import UploadText from "./includes/activityComponents/UploadText";
+  import OrderList from "./includes/activityComponents/OrderList";
+  import Qcm from "./includes/activityComponents/Qcm";
+  import activityService from "./../service/activity";
+  import itineraryHelpers from "./../service/itineraryHelpers";
+  import Spinner from "./includes/Spinner";
+  import ErrorModal from "./includes/ErrorModal";
 
-import ValidateActivityPage from "./includes/activityComponents/ValidateActivityPage";
-import $ from "jquery";
-import ProgressionService from "../service/progression.service";
+  import ValidateActivityPage from "./includes/activityComponents/ValidateActivityPage";
+  import $ from "jquery";
+  import ProgressionService from "../service/progression.service";
 
-export default {
+  export default {
   name: "ActivityComponent",
   components: {
     Spinner,
@@ -159,6 +159,7 @@ export default {
     async loadActivity() {
       this.loading = true;
 
+      // Retrieve the activity from DB (content of activity.json)
       let activity = await activityService.getActivity(
         this.idParcours,
         this.idActivite
@@ -175,6 +176,8 @@ export default {
       }
       this.loading = false;
       this.activity = activity;
+
+      // Retrieve the progression linked to this activity, for the current user
       await this.retrieveProgression(this.idParcours, this.idActivite);
       this.loading = false;
     },
@@ -210,27 +213,43 @@ export default {
       // CASE 1: ROLE IS NOT 'jeune'
       if (
         !this.$store.state.auth.user ||
-        this.$store.state.auth.user.role != "jeune"
+        this.$store.state.auth.user.role !== "jeune"
       ) {
-        let progression = activityService.getProgression(
+        // Get a new progression without id (so it cannot override an existing progression in back)
+        this.progression = activityService.getProgression(
           idParcours,
           idActivity
         );
-        this.progression = progression;
         this.textAlert =
           "Ceci correspond à l'activité vue par les jeunes. Ton rôle ne permet pas d'envoyer de réponse.";
         this.showDismissibleAlert = true;
         return;
       }
 
-      // CASE 2: ROLE IS 'jeune
-      // FIRST OPTION: progression comes from PersonalProgression page: up to date
+      // CASE 2: ROLE IS 'jeune' AND PARCOURS IS NOT THE MAIN PARCOURS (except for special parcours 4)
+      if (idParcours != 4  && idParcours != this.$store.state.parcours.parcours) {
+        // Get a new progression without id (so it won't be sent to the back on validate.)
+        this.progression = activityService.getProgression(
+          idParcours,
+          idActivity
+        );
+        this.textAlert =
+          "Cette activité ne correspond pas à ton parcours initial : tu peux la parcourir, " +
+          "mais elle ne sera pas sauvegardée ni envoyée à des relecteurs.";
+        this.showDismissibleAlert = true;
+        return;
+      }
+
+      // CASE 3: ROLE IS 'jeune and the parcours is the main parcours
+      // FIRST OPTION: progression comes from PersonalProgression page: up to date in the store
       if (this.$store.state.activity.progression) {
         // loaded from PersonalProgression vue
         this.progression = this.$store.state.activity.progression;
         this.$store.state.activity.progression = undefined;
         return;
       }
+
+      // SECOND OPTION: a progression previously started. Its id is stored in localStorage.
       let activities;
       try {
         activities = JSON.parse(localStorage.getItem("activities")) || {};
@@ -253,7 +272,7 @@ export default {
             this.messageError =
               "Tu as déjà fait cette activité ! Elle est en train d'être relue, tu peux le voir sur la page Mes activités !";
             this.linkError = "/progression";
-            (this.linkMessage = "Voir mes activités"),
+            this.linkMessage = "Voir mes activités";
               this.$bvModal.show("errorModal");
             this.textAlert =
               "Tu as déjà fait cette activité ! Elle est sûrement en train d'être relue, tu peux le voir sur la page Mes activités !";
@@ -323,8 +342,11 @@ export default {
     /**If INPROGRESS/NOT STARTED, send the entry and save the entry in local progression, else do nothing */
     async updateEntry(entry) {
       if (
+        // CASE 1
         ["REVIEWING", "VALIDATED"].includes(entry.state) ||
-        this.$store.state.auth.user.role != "jeune"
+        this.$store.state.auth.user.role != "jeune" ||
+        // CASE 2
+        (this.idParcours != 4  && this.idParcours != this.$store.state.parcours.parcours)
       ) {
         // Security (normally this case does not happen)
         // Impossible to edit entry in this state
