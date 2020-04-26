@@ -216,6 +216,7 @@
         // state "NOTSTARTED" + idActivite == -2 --> fin de parcours
         let parcoursFirstProgression = {
           state: "NOTSTARTED",
+          nom: "Parcours terminé",
           idActivite: "-2",
           idParcours: JSON.stringify(parseInt(this.idParcours)),
           entries: [],
