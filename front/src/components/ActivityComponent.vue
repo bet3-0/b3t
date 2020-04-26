@@ -115,27 +115,7 @@ Base Component for an activity page -->
         </div>
       </div>
     </div>
-    <b-modal
-      class="modal-backdrop"
-      id="checkModal"
-      title="Certains éléments ne sont pas complets..."
-    >
-      <div class="modal-body">
-        {{checkText}} <br><br>
-        Souhaites-tu continuer ou revenir à la page pour vérifier son contenu ?
-      </div>
-      <template v-slot:modal-footer="{ok, cancel}">
-        <b-button variant="secondary" @click="cancel()">
-          Revenir à la page
-        </b-button>
-        <b-button
-          variant="success"
-          @click.prevent.capture="checkCallback()"
-        >
-          Confirmer
-        </b-button>
-      </template>
-    </b-modal>
+    <CheckPageModal modal-id="checkModal" :check-text="checkText" :check-callback="checkCallback"/>
     <ErrorModal
       :title="titleError"
       :message="messageError"
@@ -160,10 +140,12 @@ Base Component for an activity page -->
   import $ from "jquery";
   import ProgressionService from "../service/progression.service";
   import ValidateActivityModal from "./includes/activityComponents/ValidateActivityModal";
+  import CheckPageModal from "./includes/activityComponents/CheckPageModal";
 
   export default {
   name: "ActivityComponent",
   components: {
+    CheckPageModal,
     Spinner,
     ErrorModal,
     UploadFile,
@@ -192,7 +174,7 @@ Base Component for an activity page -->
       messageError: "L'activité est imposible à charger ou inexistante !",
       linkError: "",
       linkMessage: "",
-      // Check entries modal
+      // Check page entries modal
       checkText: "",
       checkCallback: ()=>{},
     };
