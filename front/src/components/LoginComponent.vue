@@ -47,6 +47,7 @@
       </div>
     </div>
     <ErrorModal :title="titleError" :message="messageError" />
+    <CongratsModal :idParcours="idParcours"/>
   </div>
 </template>
 
@@ -54,10 +55,11 @@
 import User from "../models/user";
 import activityService from "../service/activity";
 import ErrorModal from "./includes/ErrorModal";
+import CongratsModal from "./includes/CongratsModal";
 
 export default {
   name: "LoginComponent",
-  components: { ErrorModal },
+  components: {CongratsModal, ErrorModal},
   data() {
     return {
       user: new User(""),
@@ -71,6 +73,9 @@ export default {
     loggedIn() {
       return this.$store.state.auth.status.loggedIn;
     },
+    idParcours() {
+      return this.$store.state.parcours.parcours;
+    }
   },
   created() {
     if (this.loggedIn) {
@@ -80,6 +85,13 @@ export default {
         this.$router.push("/parcours");
       }
     }
+  },
+  mounted() {
+    this.$root.$on('bv::modal::hide', (bvEvent, modalId) => {
+      if (modalId === "endModal" && this.$route.path === '/login') {
+        this.redirect();
+      }
+    })
   },
   methods: {
     async onLoggin() {
@@ -92,6 +104,13 @@ export default {
         this.$bvModal.show("errorModal");
         return;
       }
+      if (this.$store.state.progression.globalProgression >= 100) {
+        this.$bvModal.show("endModal")
+        return
+      }
+      this.redirect()
+    },
+    redirect() {
       // redirect
       if (this.$route.params.nextUrl != null) {
         this.$router.push(this.$route.params.nextUrl);
