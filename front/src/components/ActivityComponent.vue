@@ -43,7 +43,7 @@ Base Component for an activity page -->
         <div class="end-container">
           <Spinner :activated="!progression.id && loading"/>
           <div class="submit-container">
-            <!-- Choisir parmi ces deux rendus en fonction de l'activité -->
+            <!-- Choisir parmi ces rendus en fonction de l'activité -->
             <div
               v-for="entry in pageEntries()"
               :key="entry.position"
@@ -100,7 +100,7 @@ Base Component for an activity page -->
             <!-- Modal -->
             <ValidateActivityModal
               title="Valider l'activité"
-              :message="message"
+              :message="validationMessage"
               :progression="progression"
             />
             <ErrorModal
@@ -177,6 +177,8 @@ Base Component for an activity page -->
       // Check page entries modal
       checkText: "",
       checkCallback: ()=>{},
+      // Validation modal
+      validationMessage :"",
     };
   },
   computed:{
@@ -234,6 +236,7 @@ Base Component for an activity page -->
     },
 
     // ACTIVITY/PROGRESSION METHODS
+    // Calls:  loadActivity --> retrieveProgression --> findProgression
     async loadActivity() {
       this.loading = true;
 
@@ -272,9 +275,9 @@ Base Component for an activity page -->
         console.log("Existing progression id is incorrect!");
         return "TOCREATE"; // do create a new progression
       }
-      if (["FINISHED", "EXTRA", "REVIEWING"].includes(existingProgression.state)) {
+      if (["FINISHED", "EXTRA", "REVIEWING", "VALIDATED"].includes(existingProgression.state)) {
         console.log("Existing progression is in a non editable state");
-        return "REVIEWING"; // do not create a new progression and raises an error
+        return "INREVIEW"; // do not create a new progression and raises an error
       }
       return existingProgression;
     },
@@ -295,23 +298,7 @@ Base Component for an activity page -->
         return;
       }
 
-      // CASE 2: ROLE IS 'jeune' AND PARCOURS IS NOT THE MAIN PARCOURS (except for special parcours 4)
-      /*
-      if (idParcours != 4  && this.$store.state.progression.hasEnded) {
-        // Get a new progression without id (so it won't be sent to the back on validate.)
-        this.progression = activityService.getProgression(
-          idParcours,
-          idActivity
-        );
-        this.textAlert =
-          "Cette activité ne correspond pas à ton parcours initial : tu peux la parcourir, " +
-          "mais elle ne sera pas sauvegardée ni envoyée à des relecteurs.";
-        this.showDismissibleAlert = true;
-        return;
-      }
-       */
-
-      // CASE 3: ROLE IS 'jeune and the parcours is the main parcours
+      // CASE 2: ROLE IS 'jeune'
       // FIRST OPTION: progression comes from PersonalProgression page: up to date in the store
       if (this.$store.state.activity.progression) {
         // loaded from PersonalProgression vue
@@ -338,10 +325,10 @@ Base Component for an activity page -->
           let progression = await this.findProgression(savedProgression.id);
           if (progression === "TOCREATE") {
             console.log("Creating a new progression");
-          } else if (progression === "REVIEWING") {
+          } else if (progression === "INREVIEW") {
             this.titleError = "Activité en cours de validation";
             this.messageError =
-              "Tu as déjà fait cette activité ! Elle est en train d'être relue, tu peux le voir sur la page Mes activités !";
+              "Tu as déjà fait cette activité ! Elle est en train d'être relue, tu peux la voir sur la page Mes activités !";
             this.linkError = "/progression";
             this.linkMessage = "Voir mes activités";
             this.$bvModal.show("errorModal");
@@ -382,11 +369,11 @@ Base Component for an activity page -->
         this.$bvModal.show("errorModal");
         this.textAlert = "Impossible de charger les réponses !";
         this.showDismissibleAlert = true;
-        this.progression = progression; // Progression without id: send will fail.
+        this.progression = progression; // Progression without id: answers validation will fail.
         return;
       }
       this.progression = progressionUpdated;
-      this.activity.progression = this.progression; // store the progression for future reconnexion
+      this.activity.progression = this.progression; // store the progression for future reconnection
       activities[idParcours][idActivity] = this.activity;
       console.log("Progression created!");
 
@@ -421,6 +408,10 @@ Base Component for an activity page -->
         .filter((entry) => entry.page === this.pageNumber)
         .sort((a, b) => a.position - b.position);
     },
+    /**
+     * Checks whether the entries are empty or not (not working for QCM/OrderList).
+     * @return {String} a non-empty string message on error, else an empty string.
+     */
     checkEntries(entries) {
       // Check entries are filled
       if (!entries) {
@@ -428,9 +419,9 @@ Base Component for an activity page -->
       }
       const incompleteEntries = entries.filter(
         (entry) =>
-          entry.state != "FINISHED" ||
-          (entry.typeRendu != "file" && !entry.rendu) ||
-          (entry.typeRendu == "file" && !entry.documents.length)
+          entry.state !== "FINISHED" ||
+          (entry.typeRendu !== "file" && !entry.rendu) ||
+          (entry.typeRendu === "file" && !entry.documents.length)
       );
       let message = "";
       if (incompleteEntries.length > 0) {
@@ -462,17 +453,14 @@ Base Component for an activity page -->
           break;
         }
       }
-      this.getProgress();
+      this.getProgress();  // update activity progress bar
     },
     /**If INPROGRESS/NOT STARTED, send the entry and save the entry in local progression, else do nothing */
     async updateEntry(entry) {
       if (
         // CASE 1
         ["REVIEWING", "VALIDATED"].includes(entry.state) ||
-        this.role !== "jeune" ||
-        // CASE 2
-        (this.idParcours != 4
-          && this.idParcours != this.$store.state.parcours.parcours)
+        this.role !== "jeune"
       ) {
        // Impossible to edit entry in this state
         console.debug("Entry not updatable: " + entry.state);
@@ -496,23 +484,10 @@ Base Component for an activity page -->
       this.updateEntryInProgression(entry); // update the primary progression object
       return true;
     },
-    async validatePageEntries() {
-      if (!this.progression.entries) {
-        return true;
-      }
-      let isUpdated = true;
-      const entriesToValidate = this.progression.entries.filter(entry => {
-        return entry.page === this.pageNumber
-      });
-      console.log("entries to validate: ", entriesToValidate)
-      for (const entry of entriesToValidate) {
-        if (!(await this.updateEntry(entry))) {
-          isUpdated = false;
-          console.log("Validation of entry failed:", entry);
-        }
-      }
-      return isUpdated;
-    },
+    /**
+     * Displays the page pageNumber and stops a potentially playing YouTube video
+     * @param pageNumber
+     */
     updatePage(pageNumber) {
       const pastPage = this.pageNumber;
       if (pageNumber != this.pageNumber) {
@@ -532,8 +507,11 @@ Base Component for an activity page -->
         // console.warn("Impossible to stop video automatically");
         // console.warn(error);
       }
-      return true;
     },
+    /**
+     * Sends entries to ensure intermediate backups.
+     * @returns {Promise<boolean>} whether entries update succeeded or not.
+     */
     async updateEntries() {
       if (!this.progression.entries) {
         return true;
@@ -564,7 +542,7 @@ Base Component for an activity page -->
     },
     async previousPage() {
       await this.updateEntries();
-      return this.updatePage(this.pageNumber - 1)
+      this.updatePage(this.pageNumber - 1)
     },
     async nextPage() {
       this.loading = true;
@@ -588,32 +566,19 @@ Base Component for an activity page -->
     // Go to previous/next page or validate
     async validatePage() {
       this.loading = true;
-      const isUpdated = await this.updateEntries(this.pageNumber);
+      const isUpdated = await this.updateEntries();
       this.loading = false;
       if (!isUpdated) {
         return false;
       }
       // Try to send the updated progression
 
-      // CASE 1: an adult is on the page
+      // CASE 1: an adult is on the page (rare case)
       if (this.role !== "jeune") {
         // Nothing happens.
       }
-      // CASE 2: a 'jeune' is on the page and this is not its main parcours
-        /*
-      else if (this.progression.idParcours != 4
-        && this.progression.idParcours != this.$store.state.parcours.parcours) {
-        // progression was never initialized with server
-        this.titleError = "Activité hors parcours terminée !";
-        this.messageError =
-          "Cette activité ne correspond pas à ton parcours et ne peut donc pas être sauvegardée !" +
-          " Nous n'enverrons pas tes réponses et l'activité ne s'affichera pas dans la page \"Mes activités\".";
-        this.linkMessage = "Retour au choix d'activités";
-        this.linkError = "/activitees";
-        this.$bvModal.show("errorModal-VAL");
-        return false;
-      }*/
-        // CASE 3: a 'jeune' is on the page and this is its main parcours
+
+      // CASE 2: a 'jeune' is on the page
       // FIRST OPTION: an error occurred previously and the progression has no id
       else if (!this.progression.id) {
         // progression was never initialized with server
@@ -638,8 +603,8 @@ Base Component for an activity page -->
       }
       // THIRD OPTION: the activity has a correct state: it can be sent!
       else {
-        this.message = this.checkEntries(this.progression.entries);
-        if (this.message) {
+        this.validationMessage = this.checkEntries(this.progression.entries);
+        if (this.validationMessage) {
           console.warn("Entries not complete");
         }
         // This modal integrates the logic to send the completed progression
