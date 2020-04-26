@@ -54,7 +54,7 @@ Base Component for an activity page -->
               </h3>
               <DownloadFile
                 v-if="entry.typeRendu === 'file'"
-                :idFile="entry.documents && entry.documents.length ? entry.documents[0] : undefined"
+                :fileIds="entry.documents ? entry.documents : undefined"
               />
               <UploadText
                 v-if="entry.typeRendu === 'text'"
