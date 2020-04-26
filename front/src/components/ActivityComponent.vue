@@ -161,6 +161,7 @@ Base Component for an activity page -->
   data() {
     return {
       loading: true,
+      isFrozen: true, // if True, progression cannot be updated.
       showDismissibleAlert: false, // for Alert
       textAlert: false, // for Alert
       idActivite: NaN,
@@ -275,11 +276,39 @@ Base Component for an activity page -->
         console.log("Existing progression id is incorrect!");
         return "TOCREATE"; // do create a new progression
       }
-      if (["FINISHED", "EXTRA", "REVIEWING", "VALIDATED"].includes(existingProgression.state)) {
-        console.log("Existing progression is in a non editable state");
-        return "INREVIEW"; // do not create a new progression and raises an error
-      }
       return existingProgression;
+    },
+    freezeActivityIfNecessary(progression, lightWarning=false){
+      if (["FINISHED", "EXTRA", "REVIEWING", "VALIDATED"].includes(progression.state)) {
+        console.log("Existing progression is in a non-editable state");
+        // Freezes entries
+        this.isFrozen = true;
+        progression.entries.forEach(
+          (_entry) => (_entry.state = "REVIEWING")
+        );
+        // Show a warning
+        if (progression.state === "VALIDATED") {
+          this.titleError = "Activité déjà validée !";
+          this.messageError =
+            "Tu as déjà fait cette activité ! Elle est maintenant validée, tu peux la voir sur la page Mes activités !";
+          this.textAlert =
+            "Tu as déjà fait cette activité ! Elle est maintenant validée, tu peux la voir sur la page Mes activités !";
+        } else {
+          this.titleError = "Activité en cours de validation";
+          this.messageError =
+            "Tu as déjà fait cette activité ! Elle est en train d'être relue, tu peux la voir sur la page Mes activités !";
+          this.textAlert =
+            "Tu as déjà fait cette activité ! Elle est sûrement en train d'être relue, tu peux la voir sur la page Mes activités !";
+        }
+        this.linkError = "/progression";
+        this.linkMessage = "Voir mes activités";
+        if (!lightWarning){
+          this.$bvModal.show("errorModal");
+        }
+        this.showDismissibleAlert = true;
+      } else {
+        this.isFrozen = false
+      }
     },
     async retrieveProgression(idParcours, idActivity) {
       // CASE 1: ROLE IS NOT 'jeune'
@@ -304,6 +333,7 @@ Base Component for an activity page -->
         // loaded from PersonalProgression vue
         this.progression = this.$store.state.activity.progression;
         this.$store.state.activity.progression = undefined;
+        this.freezeActivityIfNecessary(this.progression, true)
         return;
       }
 
@@ -325,18 +355,8 @@ Base Component for an activity page -->
           let progression = await this.findProgression(savedProgression.id);
           if (progression === "TOCREATE") {
             console.log("Creating a new progression");
-          } else if (progression === "INREVIEW") {
-            this.titleError = "Activité en cours de validation";
-            this.messageError =
-              "Tu as déjà fait cette activité ! Elle est en train d'être relue, tu peux la voir sur la page Mes activités !";
-            this.linkError = "/progression";
-            this.linkMessage = "Voir mes activités";
-            this.$bvModal.show("errorModal");
-            this.textAlert =
-              "Tu as déjà fait cette activité ! Elle est sûrement en train d'être relue, tu peux le voir sur la page Mes activités !";
-            this.showDismissibleAlert = true;
-            return;
           } else if (progression) {
+            this.freezeActivityIfNecessary(progression);
             this.progression = progression;
             return;
           } else {
@@ -353,6 +373,7 @@ Base Component for an activity page -->
 
       // THIRD OPTION: No progression exists: retrieve a new one and post it to backend
       // Retrieve the default progression linked to the activity
+      this.isFrozen = false;
       let progression = activityService.getProgression(idParcours, idActivity);
 
       // Post the new progression
@@ -466,6 +487,10 @@ Base Component for an activity page -->
         console.debug("Entry not updatable: " + entry.state);
         return true;
       }
+      if (this.isFrozen){
+        // Not updatable-state
+        return true;
+      }
       entry.state = "FINISHED";
 
       if (entry.parsedRendu) {
@@ -516,6 +541,10 @@ Base Component for an activity page -->
       if (!this.progression.entries) {
         return true;
       }
+      if (this.isFrozen){
+        // Not updatable-state
+        return true;
+      }
       let isUpdated = true;
       const entriesToValidate = this.progression.entries.filter(entry => {
         return entry.page === this.pageNumber
@@ -549,6 +578,12 @@ Base Component for an activity page -->
       if (!(await this.updateEntries())){
         this.loading = false;
         return
+      }
+      if (this.isFrozen){
+        // Not updatable-state
+        await this.updatePage(this.pageNumber + 1);
+        this.loading = false;
+        return;
       }
       const checkMessage = this.checkEntries(this.pageEntries())
       if (checkMessage) {
@@ -591,7 +626,7 @@ Base Component for an activity page -->
         return false;
       }
       // SECOND OPTION: the activity is finished, reviewing or validated
-      else if (["FINISHED", "EXTRA", "REVIEWING", "VALIDATED"].includes(this.progression.state)) {
+      else if (this.isFrozen) {
         // Cannot send this type of progression !
         this.titleError = "Impossible d'envoyer tes réponses !";
         this.messageError =

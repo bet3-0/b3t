@@ -96,7 +96,7 @@
           </td>
           <td>
             {{
-            getActivityName(progression.idParcours, progression.idActivite)
+            getActivityName(progression)
             }}
           </td>
           <td>
@@ -168,15 +168,16 @@
     async mounted() {
       this.loading = true;
       let progressions = await ProgressionService.getProgressions();
+      console.log(progressions)
       if (progressions) {
         // Show only progressions of the Parcours.
         this.progressions = progressions;
         this.displayProgressions = progressions.filter(
-          (prog) =>
-            prog.state != "NOTSTARTED"
-        );
+          (prog) => prog.state !== "NOTSTARTED"
+        ).sort((a, b) => ((b.finishedAt || b.startedAt) - (a.finishedAt || a.startedAt)));
         // NOTSTARTED est utilisée pour la toute première et la toute dernière progression
         // qui permet de définir le parcours ou terminer le parcours
+        // The last activities started or completed are the first in the list.
 
         // Update the global progression
         const globalProgression = activityService.getGlobalProgressionFromProgressions(progressions)
@@ -233,8 +234,11 @@
 
       getStateName: ProgressionHelpers.getStateName,
       getActivity: ProgressionHelpers.getActivityFromLocalStorage,
-      getActivityName(idParcours, idActivite) {
-        const activity = this.getActivity(idParcours, idActivite);
+      getActivityName(progression) {
+        if (progression.nom) {
+          return progression.nom
+        }
+        const activity = this.getActivity(progression.idParcours, progression.idActivite);
         if (!activity) {
           return "Activité invalide"
         }

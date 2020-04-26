@@ -18,7 +18,7 @@
         <button
           :id="`submitFileButton-${idEntry}`"
           class="input-group-text btn-primary text-white"
-          v-on:click="submitFile()"
+          @click="submitFile()"
           :disabled="entry.state === 'REVIEWING' || role !=='jeune'"
         >
           <span
