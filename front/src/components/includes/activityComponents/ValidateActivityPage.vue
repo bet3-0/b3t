@@ -66,7 +66,9 @@ export default {
   },
   computed: {
     validationString() {
-      if (this.progression.state == "REVIEWING") {
+      if (this.progression.state === "REVIEWING"
+        && this.$store.state.auth.user
+        && this.$store.state.auth.user.role === "relecteur") {
         return "Réviser l'activité";
       }
       return "Valider";
@@ -103,33 +105,55 @@ export default {
       if (!isUpdated) {
         return false;
       }
-      if (!this.progression.id) {
+
+      // Try to send the updated progression
+
+      // CASE 1: an adult is on the page
+      if (this.$store.state.auth.user.role != "jeune") {
+        // Validation for reviewer, only if the state is REVIEWING
+        if (this.progression.state == "REVIEWING") {
+          this.$bvModal.show("activityToValidateModal");
+        }
+        // Otherwise, nothing happens.
+      }
+      // CASE 2: a 'jeune' is on the page and this is not its main parcours
+      else if (this.progression.idParcours != 4
+        && this.progression.idParcours != this.$store.state.parcours.parcours) {
+        // progression was never initialized with server
+        this.titleError = "Activité hors parcours terminée !";
+        this.messageError =
+          "Cette activité ne correspond pas à ton parcours et ne peut donc pas être sauvegardée !" +
+          " Nous n'enverrons pas tes réponses et l'activité ne s'affichera pas dans la page \"Mes activités\".";
+        this.linkMessage = "Retour au choix d'activités";
+        this.linkError = "/activitees";
+        this.$bvModal.show("errorModal-VAL");
+        return false;
+      }
+      // CASE 3: a 'jeune' is on the page and this is its main parcours
+      // FIRST OPTION: an error occurred previously and the progression has no id
+      else if (!this.progression.id) {
         // progression was never initialized with server
         this.titleError = "Impossible d'envoyer tes réponses !";
         this.messageError =
-          "Tes réponses ne peuvent pas être enregistrées ! Tu dois rafraîchir la page !";
+          "Tes réponses ne peuvent pas être enregistrées ! Tu dois rafraîchir la page et réessayer !";
         this.linkMessage = "";
         this.linkError = "";
         this.$bvModal.show("errorModal-VAL");
         return false;
       }
-      if (this.$store.state.auth.user.role != "jeune") {
-        // Validation for reviewer
-        if (this.progression.state == "REVIEWING") {
-          this.$bvModal.show("activityToValidateModal");
-        }
-      } else {
-        // Validation for jeune
-        if (["FINISHED", "REVIEWING"].includes(this.progression.state)) {
-          // Cannot send this type of progression !
-          this.titleError = "Impossible d'envoyer tes réponses !";
-          this.messageError =
-            "Tu as déjà envoyé cette activité ! Elle se trouve maintenant dans Mes activités où tu peux suivre la progression de sa validation !";
-          this.linkMessage = "Voir Mes activités";
-          this.linkError = "/progression";
-          this.$bvModal.show("errorModal-VAL");
-          return;
-        }
+      // SECOND OPTION: the activity is finished, reviewing or validated
+      else if (["FINISHED", "REVIEWING", "VALIDATED"].includes(this.progression.state)) {
+        // Cannot send this type of progression !
+        this.titleError = "Impossible d'envoyer tes réponses !";
+        this.messageError =
+          "Tu as déjà envoyé cette activité ! Elle se trouve maintenant dans Mes activités où tu peux suivre la progression de sa validation !";
+        this.linkMessage = "Voir Mes activités";
+        this.linkError = "/progression";
+        this.$bvModal.show("errorModal-VAL");
+        return false;
+      }
+      // THIRD OPTION: the activity has a correct state: it can be sent!
+      else {
         this.message = this.checkEntries();
         if (this.message) {
           console.warn("Entries not complete");
@@ -142,19 +166,30 @@ export default {
       if (!this.progression.entries) {
         this.progression.entries = [];
       }
-      let incompleteEntries = this.progression.entries.filter(
+      const incompleteEntries = this.progression.entries.filter(
         (entry) =>
           entry.state != "FINISHED" ||
           (entry.typeRendu != "file" && !entry.rendu) ||
           (entry.typeRendu == "file" && !entry.documents.length)
       );
+      let message = "";
       if (incompleteEntries.length > 0) {
-        console.log(
-          "Some entries where not sent: " + JSON.stringify(incompleteEntries)
+        console.log("Some entries where not sent: " + JSON.stringify(incompleteEntries));
+        message = `Attention ! Certains rendus (au nombre de ${incompleteEntries.length}) n'ont pas été remplis ou envoyés !`
+        const filesNotSent = this.progression.entries.filter(
+          (entry) =>
+            (entry.typeRendu === "file" && !entry.documents.length)
         );
-        return `Attention ! Certains rendus (au nombre de ${incompleteEntries.length}) n'ont pas été remplis ou envoyés !`;
+        if (filesNotSent.length > 0) {
+          console.log("Some files where not sent: " + JSON.stringify(filesNotSent));
+          if (filesNotSent.length === 1) {
+            message += `Notamment, 1 fichier n'a pas été envoyé.`
+          } else {
+            message += `Notamment, ${filesNotSent.length} fichiers n'ont pas été envoyés.`
+          }
+        }
       }
-      return "";
+      return message;
     },
   },
 };

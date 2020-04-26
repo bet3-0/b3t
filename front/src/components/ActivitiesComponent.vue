@@ -7,8 +7,7 @@
       <div class="col-4" style="text-align: center">
         <button
           class="choice"
-          @click.prevent.stop.capture="change('parcours')"
-          :class="parcours"
+          @click.prevent.stop.capture="sortBy('alphabetical')"
         >
           Ordre alphabétique
         </button>
@@ -16,8 +15,7 @@
       <div class="col-4" style="text-align: center">
         <button
           class="choice"
-          @click.prevent.stop.capture="change('duration')"
-          :class="duration"
+          @click.prevent.stop.capture="sortBy('duration')"
         >
           Classer par durée
         </button>
@@ -25,8 +23,7 @@
       <div class="col-4" style="text-align: center">
         <button
           class="choice"
-          @click.prevent.stop.capture="change('difficulte')"
-          :class="difficulte"
+          @click.prevent.stop.capture="sortBy('difficulte')"
         >
           Classer par difficulté
         </button>
@@ -34,6 +31,26 @@
     </div>
 
     <Spinner :activated="loading" />
+    <div>
+      <b-dropdown
+        :text="currentParcoursName"
+        class="m-md-2"
+        id="dropdown-parcours"
+        v-if="hasEnded"
+        variant="primary"
+      >
+        <b-dropdown-item @click="filterParcours(4)">Tous les parcours</b-dropdown-item>
+        <b-dropdown-divider></b-dropdown-divider>
+        <b-dropdown-item @click="filterParcours(0)">Bosses et Bobos</b-dropdown-item>
+        <b-dropdown-item @click="filterParcours(1)">Trois étoiles</b-dropdown-item>
+        <b-dropdown-item @click="filterParcours(2)">Cés'Arts</b-dropdown-item>
+        <b-dropdown-item @click="filterParcours(3)">Robinson</b-dropdown-item>
+      </b-dropdown>
+      <span v-if="startedIds && startedIds.length">
+          Les activités que tu as commencées se trouvent sur la page
+          <a href="/progression">Mes activités</a>.
+        </span>
+    </div>
     <!-- /#wrapper -->
     <div class="container">
       <table class="table">
@@ -51,7 +68,7 @@
             v-bind:key="activity.id + activity.idParcours"
             v-b-modal="'activityModal'"
             @click="sendInfo(activity)"
-            style="cursor: pointer"
+            :style="`cursor: pointer; color: ${getParcoursColor(activity.idParcours)}`"
           >
             <td>
               <svg
@@ -85,16 +102,16 @@
 </template>
 
 <script>
-import ActivityModal from "./includes/ActivityModal";
-import activityService from "./../service/activity";
-import itineraryHelpers from "./../service/itineraryHelpers";
-import Vue from "vue";
-import BootstrapVue from "bootstrap-vue";
-import VueRouter from "vue-router";
-import Spinner from "./includes/Spinner";
-import ErrorModal from "./includes/ErrorModal";
+  import ActivityModal from "./includes/ActivityModal";
+  import activityService from "./../service/activity";
+  import itineraryHelpers from "./../service/itineraryHelpers";
+  import Vue from "vue";
+  import BootstrapVue from "bootstrap-vue";
+  import VueRouter from "vue-router";
+  import Spinner from "./includes/Spinner";
+  import ErrorModal from "./includes/ErrorModal";
 
-Vue.use(BootstrapVue);
+  Vue.use(BootstrapVue);
 Vue.use(VueRouter);
 
 export default {
@@ -103,16 +120,29 @@ export default {
   data() {
     return {
       idParcours: this.$store.state.parcours.parcours,
+      currentParcoursName: "Filtrer par parcours",
+      currentParcours : [this.$store.state.parcours.parcours.toString()],
       loading: true,
-      parcours: "",
-      duration: "",
-      difficulte: "",
+      startedIds: [],  // Ids of activities already started.
+      sortKey: "",  // Sort options among: ["", "alphabetical", "duration", "difficulte"]
       currentActivity: {},
       activities: {}, // object {idActivite: {activity object}}
-      displayActivities: [], // list of activities
       titleError: "Erreur de chargement des activités",
       messageError: "",
     };
+  },
+  computed: {
+    hasEnded(){
+      return this.$store.state.progression.hasEnded;
+    },
+    displayActivities() { // list of displayed activities
+      return this.sortActivities(
+        Object.values(this.activities).filter(
+          (activity) =>
+            this.currentParcours.includes(activity.idParcours) &&
+            !this.startedIds.includes(activity.id)
+        ))
+    }
   },
   created() {
     if (![0, 1, 2, 3].includes(this.$store.state.parcours.parcours)) {
@@ -129,7 +159,7 @@ export default {
     },
     async loadActivities() {
       this.loading = true;
-      let activities = await activityService.getAllActivities(this.idParcours);
+      let activities = await activityService.getAllActivities();
       if (activities === undefined) {
         this.titleError = "Impossible de charger le contenu !";
         this.messageError =
@@ -160,73 +190,51 @@ export default {
             startedActivities[this.idParcours][idActivite].progression
         );
       }
-      // TODO: afficher plus si les jeunes ont fini ! Et colorer les activités par parcours/permettre de filter
-      this.displayActivities = Object.values(this.activities).filter(
-        (activity) =>
-          activity.idParcours == this.idParcours &&
-          !startedIds.includes(activity.id)
-      );
+      this.startedIds = startedIds
+      // // TODO: afficher plus si les jeunes ont fini ! Et colorer les activités par parcours/permettre de filter
+      // this.displayActivities = Object.values(this.activities).filter(
+      //   (activity) =>
+      //     activity.idParcours == this.idParcours &&
+      //     !startedIds.includes(activity.id)
+      // );
       this.loading = false;
     },
-
-    change(data) {
-      if (data === "parcours") {
-        this.displayActivities.sort(function(item, other) {
-          if (item.nom < other.nom) {
-            return -1;
-          }
-          if (item.nom > other.nom) {
-            return 1;
-          }
-        });
+    // Filters
+    filterParcours(idParcours) {
+      if (!this.$store.state.progression.hasEnded) {
+        // Additional security (in theory useless)
+        return
       }
-
-      if (data === "difficulte") {
-        this.displayActivities.sort(function(item, other) {
-          if (
-            item.difficulte === "facile" &&
-            (other.difficulte === "moyen" || other.difficulte === "difficile")
-          ) {
-            return -1;
-          } else if (
-            item.difficulte === "moyen" &&
-            other.difficulte === "difficile"
-          ) {
-            return -1;
-          } else if (
-            item.difficulte === "moyen" &&
-            other.difficulte === "facile"
-          ) {
-            return 1;
-          } else if (
-            item.difficulte === "difficile" &&
-            (other.difficulte === "facile" || other.difficulte === "moyen")
-          ) {
-            return 1;
-          } else return 0;
-        });
+      if (idParcours == 4) {
+        this.currentParcoursName = "Tous les parcours";
+        this.currentParcours = ["0", "1", "2", "3"]
+      } else {
+        this.currentParcoursName = this.getParcoursName(idParcours);
+        this.currentParcours = [idParcours.toString()]
       }
-
-      if (data === "duration") {
-        this.displayActivities.sort(function(item, other) {
-          if (item.duree < other.duree) {
-            return -1;
-          }
-          return 1;
-        });
-      }
-
-      data === "parcours"
-        ? (this[data] = this[data] === "" ? "active" : "")
-        : (this.parcours = "");
-      data === "duration"
-        ? (this[data] = this[data] === "" ? "active" : "")
-        : (this.duration = "");
-      data === "difficulte"
-        ? (this[data] = this[data] === "" ? "active" : "")
-        : (this.difficulte = "");
     },
-
+    sortBy(key) {
+      this.sortKey = key;
+    },
+    sortActivities(activities) {
+      const sortedDifficulties = {"facile": 0, "moyen": 1, "difficile": 2};
+      switch (this.sortKey) {
+        case "alphabetical":
+          return activities.sort((item, other) => {
+            return item.nom.localeCompare(other.nom)
+          });
+        case "difficulte":
+          return activities.sort((item, other) => {
+            return sortedDifficulties[item.difficulte] - sortedDifficulties[other.difficulte]
+          });
+        case "duration":
+          return activities.sort((item, other) => {
+            return item.duree - other.duree
+          });
+        default:
+          return activities
+      }
+    },
     getParcoursName: itineraryHelpers.getParcoursName,
     getParcoursColor: itineraryHelpers.getItineraryColor,
   },

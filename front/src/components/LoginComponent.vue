@@ -104,7 +104,7 @@ export default {
         this.$bvModal.show("errorModal");
         return;
       }
-      if (this.$store.state.progression.globalProgression >= 100) {
+      if (this.$store.state.progression.hasEnded) {
         this.$bvModal.show("endModal")
         return
       }
