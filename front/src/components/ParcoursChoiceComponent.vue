@@ -2,7 +2,7 @@
   <div class="container">
     <div
       class="embed-responsive embed-responsive-16by9"
-      style="margin-top: 10%; width: 560px; margin-left: auto; margin-right: auto;"
+      style="margin-top: 10%; max-width: 560px; margin-left: auto; margin-right: auto;"
     >
       <iframe
         width="560"
