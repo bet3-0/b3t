@@ -28,7 +28,7 @@ export default {
   methods: {
     // Use local storage for more reactivity (avoid call to API).
     getProgression() {
-      return this.$store.state.progression.progression;
+      return this.$store.state.progression.globalProgression;
     },
     getItinerary() {
       return this.$store.state.parcours.parcours;
