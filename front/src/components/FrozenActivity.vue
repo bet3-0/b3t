@@ -230,9 +230,6 @@ Activity page loaded from YouthActivities component.
         if (!this.progression.entries) {
           return [];
         }
-        this.progression.entries.forEach((entry) => {
-          entry.state = "REVIEWING";
-        });
         return this.progression.entries
           .filter((entry) => entry.page === this.pageNumber)
           .sort((a, b) => a.position - b.position);
