@@ -117,8 +117,9 @@ export default {
         // Otherwise, nothing happens.
       }
       // CASE 2: a 'jeune' is on the page and this is not its main parcours
+        /*
       else if (this.progression.idParcours != 4
-        && this.progression.idParcours != this.$store.state.parcours.parcours) {
+        && this.$store.state.progression.hasEnded) {
         // progression was never initialized with server
         this.titleError = "Activité hors parcours terminée !";
         this.messageError =
@@ -129,6 +130,8 @@ export default {
         this.$bvModal.show("errorModal-VAL");
         return false;
       }
+         */
+
       // CASE 3: a 'jeune' is on the page and this is its main parcours
       // FIRST OPTION: an error occurred previously and the progression has no id
       else if (!this.progression.id) {
@@ -142,7 +145,7 @@ export default {
         return false;
       }
       // SECOND OPTION: the activity is finished, reviewing or validated
-      else if (["FINISHED", "REVIEWING", "VALIDATED"].includes(this.progression.state)) {
+      else if (["FINISHED", "EXTRA", "REVIEWING", "VALIDATED"].includes(this.progression.state)) {
         // Cannot send this type of progression !
         this.titleError = "Impossible d'envoyer tes réponses !";
         this.messageError =

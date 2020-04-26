@@ -55,7 +55,11 @@ export default {
       console.log("Validating progression...");
       //Change state
       this.loading = true;
-      this.progression.state = "FINISHED";
+      if (this.$store.state.progression.hasEnded){
+        this.progression.state = "EXTRA";
+      } else {
+        this.progression.state = "FINISHED";
+      }
 
       // Update progression
       try {

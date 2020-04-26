@@ -197,13 +197,13 @@ Base Component for an activity page -->
         return false; // do not create a new progression and raises an error
       }
       let existingProgression = progressions.find(
-        (prog) => prog.id == progressionId
+        (prog) => prog.id === progressionId
       );
       if (!existingProgression) {
         console.log("Existing progression id is incorrect!");
         return "TOCREATE"; // do create a new progression
       }
-      if (["FINISHED", "REVIEWING"].includes(existingProgression.state)) {
+      if (["FINISHED", "EXTRA", "REVIEWING"].includes(existingProgression.state)) {
         console.log("Existing progression is in a non editable state");
         return "REVIEWING"; // do not create a new progression and raises an error
       }
@@ -227,7 +227,8 @@ Base Component for an activity page -->
       }
 
       // CASE 2: ROLE IS 'jeune' AND PARCOURS IS NOT THE MAIN PARCOURS (except for special parcours 4)
-      if (idParcours != 4  && idParcours != this.$store.state.parcours.parcours) {
+      /*
+      if (idParcours != 4  && this.$store.state.progression.hasEnded) {
         // Get a new progression without id (so it won't be sent to the back on validate.)
         this.progression = activityService.getProgression(
           idParcours,
@@ -239,6 +240,7 @@ Base Component for an activity page -->
         this.showDismissibleAlert = true;
         return;
       }
+       */
 
       // CASE 3: ROLE IS 'jeune and the parcours is the main parcours
       // FIRST OPTION: progression comes from PersonalProgression page: up to date in the store
@@ -265,9 +267,9 @@ Base Component for an activity page -->
         // SECOND OPTION: a progression previously started. Its id is stored in localStorage.
         if (savedProgression) {
           let progression = await this.findProgression(savedProgression.id);
-          if (progression == "TOCREATE") {
+          if (progression === "TOCREATE") {
             console.log("Creating a new progression");
-          } else if (progression == "REVIEWING") {
+          } else if (progression === "REVIEWING") {
             this.titleError = "Activité en cours de validation";
             this.messageError =
               "Tu as déjà fait cette activité ! Elle est en train d'être relue, tu peux le voir sur la page Mes activités !";
@@ -344,9 +346,9 @@ Base Component for an activity page -->
       if (
         // CASE 1
         ["REVIEWING", "VALIDATED"].includes(entry.state) ||
-        this.$store.state.auth.user.role != "jeune" ||
+        this.$store.state.auth.user.role !== "jeune"
         // CASE 2
-        (this.idParcours != 4  && this.idParcours != this.$store.state.parcours.parcours)
+        // (this.idParcours != 4 && this.$store.state.progression.hasEnded)
       ) {
         // Security (normally this case does not happen)
         // Impossible to edit entry in this state

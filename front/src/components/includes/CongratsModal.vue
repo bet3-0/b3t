@@ -17,7 +17,7 @@
            style="margin-left: auto; margin-right: auto; display: block; width: 70%;"/>
       <div>
         Si tu le souhaites, tu peux continuer à faire des activités de ce parcours ou des autres parcours.
-        Ces activités ne seront toutefois pas relues et tu ne les verras pas s'afficher sur cette page.
+        Ces activités bonus seront relues, mais ne seront pas prioritaires.
       </div>
     </div>
     <template v-slot:modal-footer="{ok, cancel}">

@@ -11,7 +11,7 @@
         variant="primary"
         class="m-md-2"
       >
-        <b-dropdown-item @click="filter(4)">Tous les parcours</b-dropdown-item>
+        <b-dropdown-item @click="filter(-1)">Tous les parcours</b-dropdown-item>
         <b-dropdown-divider></b-dropdown-divider>
         <b-dropdown-item @click="filter(0)">Bosses et Bobos</b-dropdown-item>
         <b-dropdown-item @click="filter(1)">Trois étoiles</b-dropdown-item>
@@ -111,6 +111,7 @@
           NOTSTARTED: 0,
           INPROGRESS: 0,
           FINISHED: 0,
+          EXTRA: 0,
           REVIEWING: 0,
           VALIDATED: 0,
           REFUSED: 0,
@@ -143,9 +144,7 @@
           ];
         }
         this.countProgressionStates();
-        this.displayProgressions = this.progressions.sort((a, b) => {
-          return a.finishedAt - b.finishedAt
-        });
+        this.displayProgressions = this.sortProgressions(this.progressions);
         this.loading = false;
       },
       getActivity: ProgressionHelpers.getActivityFromLocalStorage,
@@ -179,15 +178,25 @@
         return itineraryHelpers.getItineraryColor(idParcours);
       },
       filter(idParcours) {
-        if (idParcours == 4) {
-          this.displayProgressions = this.progressions;
+        if (idParcours == -1) {
+          this.displayProgressions = this.sortProgressions(this.progressions);
           this.currentParcours = "Tous les parcours";
         } else {
           this.currentParcours = this.getParcoursName(idParcours);
-          this.displayProgressions = this.progressions.filter((progression) => {
+          this.displayProgressions = this.sortProgressions(this.progressions.filter((progression) => {
             return progression.idParcours == idParcours;
-          });
+          }));
         }
+      },
+      sortProgressions(progressions) {
+        const stateValues = {"REVIEWING": 0, "FINISHED": 1, "EXTRA": 2}
+        return progressions
+          .sort((a, b) => {
+            return a.finishedAt - b.finishedAt
+          })
+          .sort((a, b) => {
+          return stateValues[a.state] - stateValues[b.state]
+        })
       },
     },
   };
