@@ -3,18 +3,18 @@ const progressionSaved = parseInt(localStorage.getItem("progression")) || 0;
 export const progression = {
   namespaced: true,
   state: {
-    progression: progressionSaved, // initial state
+    globalProgression: progressionSaved, // initial state
   },
   actions: {
     setProgression({ commit }, prog) {
       commit("set", parseInt(prog));
-      localStorage.setItem("progression", this.state.progression.progression);
-      console.log("Global progression: " + this.state.progression.progression + ' %');
+      localStorage.setItem("progression", this.state.progression.globalProgression);
+      console.log("Global progression: " + this.state.progression.globalProgression + ' %');
     },
   },
   mutations: {
     set(state, prog) {
-      state.progression = Math.min(prog, 100);
+      state.globalProgression = Math.min(prog, 100);
     },
   },
 };

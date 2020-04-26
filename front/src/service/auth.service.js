@@ -35,7 +35,7 @@ class AuthService {
     localStorage.removeItem("parcours");
     localStorage.removeItem("progression");
     store.state.parcours.parcours = undefined;
-    store.state.progression.progression = 0;
+    store.state.progression.globalProgression = 0;
 
   }
 
