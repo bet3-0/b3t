@@ -1,7 +1,7 @@
 <template>
   <div class="container mt-4">
     <h1>
-      {{role ==='ap' ? 'Activitées des jeunes de mon territoire' : 'Activitées de mes jeunes'}} <br/>
+      {{role ==='ap' ? 'Activités des jeunes de mon territoire' : 'Activités de mes jeunes'}} <br/>
       {{role ==='ap' ? 'Territoire' : 'Groupe'}} {{ structure.code_structure }}
     </h1>
     <div>
