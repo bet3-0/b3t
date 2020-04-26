@@ -8,7 +8,7 @@ Base Component for an activity page -->
     <div class="row">
       <div id="main-container" class="activity-container col-12">
         <Spinner :activated="!activity.nom && loading" />
-        <h1 class="activity-title" :style="'color:' + changeParcoursColor()">
+        <h1 class="activity-title" :style="'color:' + getParcoursColor()">
           {{ activity.nom }}
         </h1>
         <div v-if="pageNumber == 1 && activity.nom" class="details-container">
@@ -74,12 +74,44 @@ Base Component for an activity page -->
               />
             </div>
           </div>
-          <ValidateActivityPage
-            :activity="activity"
-            :pageNumber="pageNumber"
-            :updatePage="updatePage"
-            :progression="progression"
-          />
+
+          <div class="container">
+            <div class="container-buttons">
+              <button
+                v-if="pageNumber > 1"
+                class="btn btn-success"
+                @click="previousPage()"
+              >
+                Page précédente
+              </button>
+              <button class="btn btn-success" v-if="hasNext()" @click="nextPage()">
+                <span v-show="loading" class="spinner-border spinner-border-sm"></span>
+                Page suivante
+              </button>
+              <button
+                class="btn btn-success"
+                v-if="!hasNext() && progression.entries && progression.entries.length"
+                @click="validate()"
+              >
+                <span v-show="loading" class="spinner-border spinner-border-sm"></span>
+                Valider
+              </button>
+            </div>
+            <!-- Modal -->
+            <ValidateActivityModal
+              title="Valider l'activité"
+              :message="message"
+              :progression="progression"
+            />
+            <ErrorModal
+              idError="-VAL"
+              :title="titleError"
+              :message="messageError"
+              :link="linkError"
+              :linkMessage="linkMessage"
+            />
+          </div>
+
         </div>
       </div>
     </div>
@@ -104,10 +136,9 @@ Base Component for an activity page -->
   import itineraryHelpers from "./../service/itineraryHelpers";
   import Spinner from "./includes/Spinner";
   import ErrorModal from "./includes/ErrorModal";
-
-  import ValidateActivityPage from "./includes/activityComponents/ValidateActivityPage";
   import $ from "jquery";
   import ProgressionService from "../service/progression.service";
+  import ValidateActivityModal from "./includes/activityComponents/ValidateActivityModal";
 
   export default {
   name: "ActivityComponent",
@@ -117,7 +148,7 @@ Base Component for an activity page -->
     UploadFile,
     UploadText,
     Qcm,
-    ValidateActivityPage,
+    ValidateActivityModal,
     ActivityContent,
     ActivityProgressBar,
     OrderList,
@@ -156,6 +187,40 @@ Base Component for an activity page -->
     this.showCurrentPages();
   },
   methods: {
+    // DISPLAY METHODS
+    getParcoursColor() {
+      return itineraryHelpers.getItineraryColor(this.activity.idParcours);
+    },
+    showCurrentPages() {
+      for (let i = 0; i < this.activity.page; i++) {
+        if (i + 1 !== this.pageNumber) {
+          $(`#page${i + 1}`).hide();
+        }
+      }
+      $(".content-container").removeAttr("hidden");
+    },
+    stopVideo(element) {
+      var iframe = element.querySelector("iframe");
+      var video = element.querySelector("video");
+      // TODO
+      if (iframe !== null) {
+        var iframeSrc = iframe.src;
+        // Remove autoplay option if it exists
+        iframeSrc = iframeSrc
+          .replace(/&autoplay=.+&/, "&")
+          .replace(/\?autoplay=.+&/, "?")
+          .replace(/[&?]autoplay=.+$/, "");
+        console.log("New Youtube video src: " + iframeSrc);
+        iframe.src = iframeSrc;
+      }
+      if (video !== null) {
+        video.pause();
+        video.autoplay = false;
+        console.log(video.autoplay);
+      }
+    },
+
+    // ACTIVITY/PROGRESSION METHODS
     async loadActivity() {
       this.loading = true;
 
@@ -181,15 +246,6 @@ Base Component for an activity page -->
       await this.retrieveProgression(this.idParcours, this.idActivite);
       this.loading = false;
     },
-    async showCurrentPages() {
-      for (let i = 0; i < this.activity.page; i++) {
-        if (i + 1 !== this.pageNumber) {
-          $(`#page${i + 1}`).hide();
-        }
-      }
-      $(".content-container").removeAttr("hidden");
-    },
-
     async findProgression(progressionId) {
       let progressions = await ProgressionService.getProgressions();
       if (progressions === undefined) {
@@ -341,6 +397,104 @@ Base Component for an activity page -->
       }
       this.progress = (100 * counter) / total;
     },
+
+    // PAGE MANAGEMENT METHODS
+    hasNext() {
+      return this.pageNumber < this.activity.page;
+    },
+    async updateAndCheckPage(newPage) {
+      let isUpdated = await this.updatePage(newPage);
+      if (!isUpdated) {
+        this.titleError = "Impossible d'envoyer tes réponses !";
+        this.messageError =
+          "Tes réponses sont bloquées ici ! Réessaie pour voir ?";
+        this.$bvModal.show("errorModal-VAL");
+        return false;
+      }
+      return true;
+    },
+    async previousPage() {
+      return await this.updateAndCheckPage(this.pageNumber - 1);
+    },
+    async nextPage() {
+      this.loading = true;
+      await this.updateAndCheckPage(this.pageNumber + 1);
+      this.loading = false;
+    },
+    // Go to previous/next page or validate
+    async validate() {
+      this.loading = true;
+      let isUpdated = await this.updateAndCheckPage(this.pageNumber);
+      this.loading = false;
+      if (!isUpdated) {
+        return false;
+      }
+
+      // Try to send the updated progression
+
+      // CASE 1: an adult is on the page
+      if (this.$store.state.auth.user.role != "jeune") {
+        // Validation for reviewer, only if the state is REVIEWING
+        if (this.progression.state == "REVIEWING") {
+          this.$bvModal.show("activityToValidateModal");
+        }
+        // Otherwise, nothing happens.
+      }
+      // CASE 2: a 'jeune' is on the page and this is not its main parcours
+      else if (this.progression.idParcours != 4
+        && this.progression.idParcours != this.$store.state.parcours.parcours) {
+        // progression was never initialized with server
+        this.titleError = "Activité hors parcours terminée !";
+        this.messageError =
+          "Cette activité ne correspond pas à ton parcours et ne peut donc pas être sauvegardée !" +
+          " Nous n'enverrons pas tes réponses et l'activité ne s'affichera pas dans la page \"Mes activités\".";
+        this.linkMessage = "Retour au choix d'activités";
+        this.linkError = "/activitees";
+        this.$bvModal.show("errorModal-VAL");
+        return false;
+      }
+        // CASE 3: a 'jeune' is on the page and this is its main parcours
+      // FIRST OPTION: an error occurred previously and the progression has no id
+      else if (!this.progression.id) {
+        // progression was never initialized with server
+        this.titleError = "Impossible d'envoyer tes réponses !";
+        this.messageError =
+          "Tes réponses ne peuvent pas être enregistrées ! Tu dois rafraîchir la page et réessayer !";
+        this.linkMessage = "";
+        this.linkError = "";
+        this.$bvModal.show("errorModal-VAL");
+        return false;
+      }
+      // SECOND OPTION: the activity is finished, reviewing or validated
+      else if (["FINISHED", "REVIEWING", "VALIDATED"].includes(this.progression.state)) {
+        // Cannot send this type of progression !
+        this.titleError = "Impossible d'envoyer tes réponses !";
+        this.messageError =
+          "Tu as déjà envoyé cette activité ! Elle se trouve maintenant dans Mes activités où tu peux suivre la progression de sa validation !";
+        this.linkMessage = "Voir Mes activités";
+        this.linkError = "/progression";
+        this.$bvModal.show("errorModal-VAL");
+        return false;
+      }
+      // THIRD OPTION: the activity has a correct state: it can be sent!
+      else {
+        this.message = this.checkEntries(this.progression.entries);
+        if (this.message) {
+          console.warn("Entries not complete");
+        }
+        this.$bvModal.show("validateActivityModal");
+      }
+    },
+
+    // UPDATE METHODS
+    pageEntries() {
+      if (!this.progression.entries) {
+        return [];
+      }
+      return this.progression.entries
+        .filter((entry) => entry.page === this.pageNumber)
+        .sort((a, b) => a.position - b.position);
+    },
     /**If INPROGRESS/NOT STARTED, send the entry and save the entry in local progression, else do nothing */
     async updateEntry(entry) {
       if (
@@ -391,53 +545,60 @@ Base Component for an activity page -->
       }
       this.getProgress();
     },
-    changeParcoursColor() {
-      return itineraryHelpers.getItineraryColor(this.activity.idParcours);
-    },
     async validatePageEntries() {
       if (!this.progression.entries) {
         return true;
       }
       let isUpdated = true;
-      this.progression.entries.forEach(async (entry) => {
-        if (entry.page == this.pageNumber) {
+      const entriesToValidate = this.progression.entries.filter(entry => {
+        return entry.page === this.pageNumber
+      });
+      console.log("entries to validate: ", entriesToValidate)
+      entriesToValidate.forEach(async (entry) => {
           if (!(await this.updateEntry(entry))) {
             isUpdated = false;
             console.log("Valiidation of entry failed:");
             console.log(entry);
           }
-        }
       });
+      const checkMessage = this.checkEntries(entriesToValidate);
+      if (checkMessage){
+        // TODO
+        alert(checkMessage)
+      }
       return isUpdated;
     },
-    pageEntries() {
-      if (!this.progression.entries) {
-        return [];
+    checkEntries(entries) {
+      // Check entries are filled
+      if (!entries) {
+        return "";
       }
-      return this.progression.entries
-        .filter((entry) => entry.page === this.pageNumber)
-        .sort((a, b) => a.position - b.position);
+      const incompleteEntries = entries.filter(
+        (entry) =>
+          entry.state != "FINISHED" ||
+          (entry.typeRendu != "file" && !entry.rendu) ||
+          (entry.typeRendu == "file" && !entry.documents.length)
+      );
+      let message = "";
+      if (incompleteEntries.length > 0) {
+        console.log("Some entries where not sent: " + JSON.stringify(incompleteEntries));
+        message = `Attention ! Certains rendus (au nombre de ${incompleteEntries.length}) n'ont pas été remplis ou envoyés !`
+        const filesNotSent = this.progression.entries.filter(
+          (entry) =>
+            (entry.typeRendu === "file" && !entry.documents.length)
+        );
+        if (filesNotSent.length > 0) {
+          console.log("Some files where not sent: " + JSON.stringify(filesNotSent));
+          if (filesNotSent.length === 1) {
+            message += `Notamment, 1 fichier n'a pas été envoyé.`
+          } else {
+            message += `Notamment, ${filesNotSent.length} fichiers n'ont pas été envoyés.`
+          }
+        }
+        return message;
+      }
     },
-    stopVideo(element) {
-      var iframe = element.querySelector("iframe");
-      var video = element.querySelector("video");
-      // TODO
-      if (iframe !== null) {
-        var iframeSrc = iframe.src;
-        // Remove autoplay option if it exists
-        iframeSrc = iframeSrc
-          .replace(/&autoplay=.+&/, "&")
-          .replace(/\?autoplay=.+&/, "?")
-          .replace(/[&?]autoplay=.+$/, "");
-        console.log("New Youtube video src: " + iframeSrc);
-        iframe.src = iframeSrc;
-      }
-      if (video !== null) {
-        video.pause();
-        video.autoplay = false;
-        console.log(video.autoplay);
-      }
-    },
+
     async updatePage(pageNumber) {
       // go to pageNumber
       if (pageNumber >= this.pageNumber) {
@@ -509,5 +670,10 @@ Base Component for an activity page -->
 }
 h1.activity-title {
   color: var(--default);
+}
+.container-buttons {
+  margin: 1rem;
+  display: flex;
+  justify-content: space-evenly;
 }
 </style>
