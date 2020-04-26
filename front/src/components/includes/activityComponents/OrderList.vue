@@ -6,7 +6,7 @@
           :list="propositions"
           class="mb-1"
           ghost-class="ghost"
-          :sort="entry.state != 'REVIEWING'"
+          :sort="entry.state !== 'REVIEWING' && role ==='jeune'"
         >
           <transition-group>
             <div
@@ -34,63 +34,64 @@
 </template>
 
 <script>
-import draggable from "vuedraggable";
+  import draggable from "vuedraggable";
 
-export default {
-  name: "OrderList",
-  components: {
-    draggable,
-  },
-  data() {
-    return {
-      propositions: [],
-    };
-  },
-  props: {
-    updateEntry: {
-      type: Function,
+  export default {
+    name: "OrderList",
+    components: {
+      draggable,
     },
-    entry: {
-      type: Object,
+    data() {
+      return {
+        propositions: [],
+        role: this.$store.state.auth.user ? this.$store.state.auth.user.role : undefined
+      };
     },
-  },
-  created() {
-    const regex = /'/gm;
-    var initQuestions = [];
-    try {
-      initQuestions = JSON.parse(this.entry.rendu);
-    } catch (error) {
-      initQuestions = JSON.parse(this.entry.rendu.replace(regex, '"'));
-    }
-    this.propositions = initQuestions;
-    this.entry.parsedRendu = this.propositions;
-  },
-  updated(){
+    props: {
+      updateEntry: {
+        type: Function,
+      },
+      entry: {
+        type: Object,
+      },
+    },
+    created() {
+      const regex = /'/gm;
+      var initQuestions = [];
+      try {
+        initQuestions = JSON.parse(this.entry.rendu);
+      } catch (error) {
+        initQuestions = JSON.parse(this.entry.rendu.replace(regex, '"'));
+      }
+      this.propositions = initQuestions;
       this.entry.parsedRendu = this.propositions;
-  },
-  methods: {
-    // DEPRECATED
-    async submitText() {
-      this.entry.parsedRendu = this.propositions;
-      this.entry.rendu = JSON.stringify(this.entry.parsedRendu);
-      await this.updateEntry(this.entry); // update the primary progression object
     },
-  },
-};
+    updated() {
+      this.entry.parsedRendu = this.propositions;
+    },
+    methods: {
+      // DEPRECATED
+      async submitText() {
+        this.entry.parsedRendu = this.propositions;
+        this.entry.rendu = JSON.stringify(this.entry.parsedRendu);
+        await this.updateEntry(this.entry); // update the primary progression object
+      },
+    },
+  };
 </script>
 
 <style scoped>
-.draggable {
-  border: solid;
-}
+  .draggable {
+    border: solid;
+  }
 
-.cursor {
-  cursor: grab;
-  border-bottom: solid 1px lightgray;
-}
+  .cursor {
+    cursor: grab;
+    border-bottom: solid 1px lightgray;
+  }
 
-.ghost {
-  color: #0077b3;
-  cursor: grabbing;
-}
+  .ghost {
+    color: #0077b3;
+    cursor: grabbing;
+  }
 </style>

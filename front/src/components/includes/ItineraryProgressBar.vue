@@ -7,7 +7,7 @@
         width: progress + '%',
         background: getItineraryColor(),
       }"
-      aria-valuenow="25"
+      :aria-valuenow="progress"
       aria-valuemin="0"
       aria-valuemax="100"
     >

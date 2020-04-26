@@ -1,262 +1,393 @@
 <template>
   <div class="container mt-4">
     <h1>
-      Activitées de mes jeunes
+      {{role ==='ap' ? 'Activitées des jeunes de mon territoire' : 'Activitées de mes jeunes'}} <br/>
+      {{role ==='ap' ? 'Territoire' : 'Groupe'}} {{ structure.code_structure }}
     </h1>
     <div>
+      <button class="btn btn-primary" @click="pollData()">Mettre à jour</button>
       <b-dropdown
         id="dropdown-parcours"
-        :text="currentParcours"
+        :text="currentParcoursName"
         variant="primary"
         class="m-md-2"
       >
-        <b-dropdown-item @click="filter(4)">Tous les parcours</b-dropdown-item>
+        <b-dropdown-item @click="filterParcours(4)"
+        >Tous les parcours
+        </b-dropdown-item>
         <b-dropdown-divider></b-dropdown-divider>
-        <b-dropdown-item @click="filter(0)">Bosses et Bobos</b-dropdown-item>
-        <b-dropdown-item @click="filter(1)">Trois étoiles</b-dropdown-item>
-        <b-dropdown-item @click="filter(2)">Cés'Arts</b-dropdown-item>
-        <b-dropdown-item @click="filter(3)">Robinson</b-dropdown-item>
+        <b-dropdown-item @click="filterParcours(0)"
+        >Bosses et Bobos
+        </b-dropdown-item
+        >
+        <b-dropdown-item @click="filterParcours(1)"
+        >Trois étoiles
+        </b-dropdown-item
+        >
+        <b-dropdown-item @click="filterParcours(2)">Cés'Arts</b-dropdown-item>
+        <b-dropdown-item @click="filterParcours(3)">Robinson</b-dropdown-item>
       </b-dropdown>
-      <button class="btn btn-primary" @click="pollData()">Mettre à jour</button>
+      <b-dropdown
+        id="dropdown-parcours"
+        :text="currentStatesName"
+        variant="primary"
+        class="m-md-2"
+      >
+        <b-dropdown-item @click="filterState('ALL')">Toutes les progressions</b-dropdown-item>
+        <b-dropdown-divider></b-dropdown-divider>
+        <b-dropdown-item @click="filterState(_state)" v-bind:key="_state" v-for="_state in validStates"
+        >{{getStateName(_state)}}
+        </b-dropdown-item>
+      </b-dropdown>
+      <b-dropdown
+        :text="currentRolesName"
+        class="m-md-2"
+        id="dropdown-parcours"
+        variant="primary"
+      >
+        <b-dropdown-item @click="filterRole(['jeune', 'chef', 'ap'])"
+        >Voir tout le {{role==='ap' ? 'territoire': 'groupe'}}
+        </b-dropdown-item
+        >
+        <b-dropdown-item @click="filterRole(['jeune'])"
+        >Voir les jeunes
+        </b-dropdown-item>
+        <b-dropdown-item @click="filterRole(['chef', 'ap'])"
+        >Voir les autres adultes
+        </b-dropdown-item
+        >
+      </b-dropdown>
     </div>
-    <Spinner :activated="loading" />
+    <Spinner :activated="loading"/>
 
     <!-- /#wrapper -->
     <div class="container">
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col"></th>
-            <th scope="col">Activité</th>
-            <th scope="col">Jeune</th>
-            <th scope="col">État</th>
-            <th scope="col">Durée prise par le jeune</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr
-            v-for="progression in displayProgressions"
-            :key="progression.id"
-            v-b-modal="'validationModal'"
-            @click="sendInfo(progression)"
-            :style="
-              'cursor: pointer; color:' +
-                changeParcoursColor(progression.idParcours)
-            "
+      <div
+        role="tablist"
+        v-for="user in filteredUsers"
+        v-bind:key="user.code_adherent"
+      >
+        <b-card no-body class="mb-1">
+          <b-card-header class="p-2" header-tag="header" role="tab">
+            <b-button
+              block
+              href="#"
+              v-b-toggle="`accordion-${user.code_adherent}`"
+              style="background-color: #fafafa"
+            >
+              <div class="user-accordion-button">
+                <span style="text-align: left; flex-grow: 1">{{ user.role }} {{ user.code_adherent }} {{ role==='ap' ? `(Groupe: ${user.code_structure_groupe})`: '' }}</span>
+                <div class="progress" style="height: inherit; flex-grow: 4">
+                  <div :aria-valuenow="user.globalProgression || 0"
+                       :style="`width: ${user.globalProgression || 0}%; background: ${getParcoursColor(user.idParcours)};`"
+                       aria-valuemax="100"
+                       aria-valuemin="0" class="progress-bar" role="progressbar">
+                    {{ user.globalProgression ? user.globalProgression.toFixed(0) : 0 }}%
+                  </div>
+                </div>
+                <span style="text-align: right; flex-grow: 1">Parcours {{getParcoursName(user.idParcours)}}</span>
+              </div>
+            </b-button
+            >
+          </b-card-header>
+          <b-collapse
+            :id="`accordion-${user.code_adherent}`"
+            accordion="my-accordion"
+            role="tabpanel"
           >
-            <td>
-              <svg
-                class="bi bi-play-fill"
-                width="1em"
-                height="1em"
-                viewBox="0 0 16 16"
-                fill="currentColor"
-                style="display: inline"
+            <b-card-body>
+              <span v-if="!user.progressions || !user.progressions.length"
+              >Le jeune n'a pas encore démarré son BET.</span
               >
-                <path
-                  d="M11.596 8.697l-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 010 1.393z"
-                />
-              </svg>
-            </td>
-            <td>
-              {{
-                getActivityName(progression.idParcours, progression.idActivite)
-              }}
-            </td>
-            <td>{{ progression.CodeAdherent }}</td>
-            <td>
-              <img
-                :src="`/img/icons/${progression.state}.png`"
-                alt=""
-                class="icon"
-              />
-              {{ getStateName(progression.state) }}
-            </td>
-            <td>
-              {{ getTimeDiff(progression.finishedAt, progression.startedAt) }}
-            </td>
-          </tr>
-        </tbody>
-      </table>
+              <table
+                class="table"
+                v-if="user.progressions && user.progressions.length"
+              >
+                <thead>
+                <tr>
+                  <th scope="col"></th>
+                  <th scope="col">Activité</th>
+                  <th scope="col">État</th>
+                  <th scope="col">Date de réalisation</th>
+                  <th scope="col">...</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr
+                  :key="progression.id"
+                  :style="
+                      'cursor: pointer; color:' +
+                        getParcoursColor(progression.idParcours)
+                    "
+                  v-for="progression in filterProgressions(user.progressions)"
+                >
+                  <td>
+                    <svg
+                      class="bi bi-play-fill"
+                      fill="currentColor"
+                      height="1em"
+                      style="display: inline"
+                      viewBox="0 0 16 16"
+                      width="1em"
+                    >
+                      <path
+                        d="M11.596 8.697l-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 010 1.393z"
+                      />
+                    </svg>
+                  </td>
+                  <td> {{ getActivityName( progression) }}</td>
+                  <td
+                    @click="sendInfo(progression)"
+                    v-b-modal="'validationModal'">
+                    <img
+                      :src="`/img/icons/${progression.state}.png`"
+                      alt=""
+                      class="icon"
+                    />
+                    {{ getStateName(progression.state) }}
+                  </td>
+                  <td> {{ getDate( progression.finishedAt || progression.startedAt ) }}</td>
+                  <td @click="gotToReview(progression)"
+                      v-if="['FINISHED', 'REVIEWING', 'VALIDATED', 'REFUSED'].includes(progression.state)"><b>Voir
+                    l'activité</b></td>
+                </tr>
+                </tbody>
+              </table>
+            </b-card-body>
+          </b-collapse>
+        </b-card>
+      </div>
     </div>
-    <p v-if="!loading && !displayProgressions.length">
-      Aucun jeune n'a commencé d'activité.
+    <p v-if="!loading && !filteredUsers.length">
+      Aucun jeune trouvé dans le groupe avec ces critères.
     </p>
-    <!-- Modal -->
-    <ValidationModal :progression="currentProgression" />
+    <!-- Modal with detailed information on the activity -->
+    <ValidationModal :progression="currentProgression"/>
   </div>
 </template>
 
 <script>
-import ValidationModal from "./includes/ValidationModal";
-import Spinner from "./includes/Spinner";
-import itineraryHelpers from "./../service/itineraryHelpers";
-import ProgressionHelpers from "./../service/progressionHelpers";
-import { VALID_STATES } from "./../service/progressionHelpers";
+  import ValidationModal from "./includes/ValidationModal";
+  import Spinner from "./includes/Spinner";
+  import itineraryHelpers from "./../service/itineraryHelpers";
+  import ProgressionHelpers from "./../service/progressionHelpers";
+  import activityService from "./../service/activity";
+  import {VALID_STATES} from "../service/progressionHelpers";
 
-import Vue from "vue";
-import BootstrapVue from "bootstrap-vue";
-import VueRouter from "vue-router";
-import ProgressionService from "../service/progression.service";
+  import Vue from "vue";
+  import BootstrapVue from "bootstrap-vue";
+  import VueRouter from "vue-router";
+  import ProgressionService from "../service/progression.service";
 
-Vue.use(BootstrapVue);
-Vue.use(VueRouter);
+  Vue.use(BootstrapVue);
+  Vue.use(VueRouter);
 
-export default {
-  name: "YouthActivities",
-  components: { ValidationModal, Spinner },
-  data() {
-    return {
-      loading: true,
-      idParcours: 4,
-      currentParcours: "Filtrer par parcours",
-      currentProgression: {},
-      progressions: [],
-      displayProgressions: [],
-      counter: {
-        NOTSTARTED: 0,
-        INPROGRESS: 0,
-        FINISHED: 0,
-        REVIEWING: 0,
-        VALIDATED: 0,
-        REFUSED: 0,
+  export default {
+    name: "YouthActivities",
+    components: {ValidationModal, Spinner},
+    data() {
+      return {
+        loading: true,
+        role: this.$store.state.auth.user ? this.$store.state.auth.user.role : undefined,
+        validStates: VALID_STATES,
+        currentParcoursName: "Filtrer par parcours",
+        currentParcours: ["0", "1", "2", "3", undefined],
+        currentStatesName: "Filter par état d'avancement",
+        currentStates: VALID_STATES,
+        currentRolesName: "Mes jeunes",
+        currentRoles: ["jeune"],
+        currentProgression: {},
+        structure: {"code_structure": "[chargement...]"},
+        counter: {
+          NOTSTARTED: 0,
+          INPROGRESS: 0,
+          FINISHED: 0,
+          REVIEWING: 0,
+          VALIDATED: 0,
+          REFUSED: 0,
+        },
+        interval: null,
+      };
+    },
+    computed: {
+      filteredUsers() {
+        if (!this.structure.users) {
+          return []
+        }
+        return this.structure.users.filter(
+          (user) => {
+            return this.currentRoles.includes(user.role) && this.currentParcours.includes(user.idParcours)
+          }
+        );
       },
-      interval: null,
-    };
-  },
-  async mounted() {
-    await this.loadProgressions();
-  },
-
-  // not working...
-  ready() {
-    this.pollData().then(console.log("updated!"));
-    // reload data every 30 seconds
-    this.interval = setInterval(
-      function() {
-        this.pollData().then(console.log("updated!"));
-      }.bind(this),
-      30000
-    );
-  },
-  beforeDestroy: function() {
-    clearInterval(this.interval);
-  },
-
-  methods: {
-    async pollData() {
+    },
+    async mounted() {
       await this.loadProgressions();
     },
-    async loadProgressions() {
-      this.loading = true;
-      let progressions = await ProgressionService.getGroupeProgressions();
-      if (progressions) {
-        this.progressions = progressions;
-      } else {
-        this.progressions = [
-          {
-            id: "Erreur de chargement",
-            state: "UNKNOWN", // error
-            commentaire:
-              "Une erreur inconnue est survenue ! Recharge la page !",
-          },
-        ];
-      }
-      this.countProgressionStates();
-      this.displayProgressions = this.progressions;
-      this.loading = false;
-    },
 
-    getActivity: ProgressionHelpers.getActivityFromLocalStorage,
-    getActivityName(idParcours, idActivite) {
-      const activity = this.getActivity(idParcours, idActivite);
-      if (!activity){
-        return "Activité invalide" 
-      }
-      return activity.nom || "Activité au nom inconnu";
-    },
-    getStateName: ProgressionHelpers.getStateName,
-    getTimeDiff: ProgressionHelpers.getTimeDiff,
-    sendInfo(progression) {
-      this.currentProgression = progression;
-    },
-    countProgressionStates() {
-      this.progressions.forEach((progression) => {
-        if (VALID_STATES.includes(progression.state)) {
-          this.counter[progression.state]++;
+    methods: {
+      // Fetch functions
+      async pollData() {
+        await this.loadProgressions();
+      },
+      async loadProgressions() {
+        this.loading = true;
+        let structure = {}
+        switch (this.role) {
+          case 'chef':
+            structure = await ProgressionService.getGroup();
+            break
+          case 'ap':
+            structure = await ProgressionService.getTerritoire();
+            break;
+          default:
+            alert("Tu n'as pas les droits pour accéder à cette page !")
+            return this.$router.push('/')
         }
-      });
+        if (structure && structure.users && structure.code_structure) {
+          structure.users.forEach((user) => {
+            user.globalProgression = activityService.getGlobalProgressionFromProgressions(user.progressions);
+            user.idParcours = activityService.getParcoursFromProgressions(user.progressions);
+          });
+          this.structure = structure;
+        } else {
+          alert("Impossible de charger la page ! Merci de la recharger pour réessayer.")
+          this.structure = {
+            code_structure: "Inconnu",
+          };
+        }
+        this.loading = false;
+      },
+      gotToReview(progression) {
+        this.$store.state.activity.progression = progression;
+        this.$router.push(
+          "/apercu/" +
+          progression.id +
+          "/" +
+          progression.idParcours +
+          "/" +
+          progression.idActivite
+        );
+      },
+      getActivity: ProgressionHelpers.getActivityFromLocalStorage,
+      getActivityName(progression) {
+        if (progression.nom) {
+          return progression.nom
+        }
+        const activity = this.getActivity(progression.idParcours, progression.idActivite);
+        if (!activity) {
+          return "Activité invalide";
+        }
+        return activity.nom || "Activité au nom inconnu";
+      },
+      getStateName: ProgressionHelpers.getStateName,
+      getTimeDiff: ProgressionHelpers.getTimeDiff,
+      getDate: ProgressionHelpers.timestampToPrettyDate,
+      sendInfo(progression) {
+        this.currentProgression = progression;
+      },
+      getParcoursName(idParcours) {
+        return itineraryHelpers.getParcoursName(idParcours);
+      },
+      getParcoursColor(idParcours) {
+        return itineraryHelpers.getItineraryColor(idParcours);
+      },
+
+      // Filters
+      filterParcours(idParcours) {
+        if (idParcours == 4) {
+          this.currentParcoursName = "Tous les parcours";
+          this.currentParcours = ["0", "1", "2", "3", undefined]
+        } else {
+          this.currentParcoursName = this.getParcoursName(idParcours);
+          this.currentParcours = [idParcours.toString()]
+        }
+      },
+      filterState(state) {
+        if (state === 'ALL') {
+          this.currentStatesName = "Toutes les progressions"
+          this.currentStates = this.validStates
+        } else {
+          this.currentStatesName = this.getStateName(state)
+          this.currentStates = [state]
+        }
+      },
+      filterRole(roles) {
+        this.currentRoles = roles
+        this.currentRolesName = "Filtre par: " + roles
+      },
+      filterProgressions(progressions) {
+        if (!progressions) {
+          return []
+        }
+        console.log(progressions)
+        return progressions.filter(
+          (progression) => {
+            return this.currentStates.includes(progression.state)
+          }
+        );
+      },
     },
-    getParcoursName(idParcours) {
-      return itineraryHelpers.getParcoursName(idParcours);
-    },
-    changeParcoursColor(idParcours) {
-      return itineraryHelpers.getItineraryColor(idParcours);
-    },
-    filter(idParcours) {
-      if (idParcours == 4) {
-        this.displayProgressions = this.progressions;
-        this.currentParcours = "Tous les parcours";
-      } else {
-        this.currentParcours = this.getParcoursName(idParcours);
-        this.displayProgressions = this.progressions.filter((progression) => {
-          return progression.idParcours == idParcours;
-        });
-      }
-    },
-  },
-};
+  };
 </script>
 
 <style scoped>
-.icon {
-  width: 30px;
-}
+  .user-accordion-button {
+    width: 100%;
+    color: var(--default);
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch
+  }
 
-.choices-container {
-  margin-top: 3em;
-}
+  .icon {
+    width: 30px;
+  }
 
-.choices {
-  display: flex;
-  justify-content: space-evenly;
-}
+  .choices-container {
+    margin-top: 3em;
+  }
 
-#activities p {
-  margin: 0;
-}
+  .choices {
+    display: flex;
+    justify-content: space-evenly;
+  }
 
-#activities p {
-  width: 20%;
-}
+  #activities p {
+    margin: 0;
+  }
 
-#activities p:first-of-type {
-  width: 45%;
-}
+  #activities p {
+    width: 20%;
+  }
 
-#activities p:last-of-type {
-  text-align: right;
-}
+  #activities p:first-of-type {
+    width: 45%;
+  }
 
-.choices li {
-  list-style-type: none;
-}
+  #activities p:last-of-type {
+    text-align: right;
+  }
 
-.choice {
-  border: solid;
-  cursor: pointer;
-  padding: 1em;
-  border-radius: 10px;
-  transition: background-color 0.3s, color 0.3s, border 0.3s;
-}
+  .choices li {
+    list-style-type: none;
+  }
 
-.choice:hover {
-  transform: translate(0, -10px);
-}
+  .choice {
+    border: solid;
+    cursor: pointer;
+    padding: 1em;
+    border-radius: 10px;
+    transition: background-color 0.3s, color 0.3s, border 0.3s;
+  }
 
-.active {
-  background-color: #0077b3;
-  border: solid #0077b3;
-  color: white;
-}
+  .choice:hover {
+    transform: translate(0, -10px);
+  }
+
+  .active {
+    background-color: #0077b3;
+    border: solid #0077b3;
+    color: white;
+  }
 </style>

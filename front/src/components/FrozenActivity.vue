@@ -1,17 +1,19 @@
-<!-- ActivityComponent
-Base Component for an activity page -->
+<!-- FrozenActivity
+Activity page loaded from YouthActivities component.
+ Progressions are not edited in this version.
+ -->
 
 <template>
   <div class="container" role="main">
     <Alert :show="showDismissibleAlert" :text="textAlert"/>
     <ActivityProgressBar :progress="progress"/>
     <div class="row">
-      <div id="main-container" class="activity-container col-12">
+      <div class="activity-container col-12" id="main-container">
         <Spinner v-if="!activity.nom"/>
-        <h1 class="activity-title" :style="'color:' + changeParcoursColor()">
+        <h1 :style="'color:' + getParcoursColor()" class="activity-title">
           {{ activity.nom }}
         </h1>
-        <div v-if="pageNumber == 1 && activity.nom" class="details-container">
+        <div class="details-container" v-if="pageNumber === 1 && activity.nom">
           <div id="details">
             <div class="card card-body">
               <ul>
@@ -28,7 +30,7 @@ Base Component for an activity page -->
                 >
                   Matériel:
                   <ul>
-                    <li v-for="item in activity.materiel" :key="item">
+                    <li :key="item" v-for="item in activity.materiel">
                       {{ item }}
                     </li>
                   </ul>
@@ -43,42 +45,57 @@ Base Component for an activity page -->
         <div class="end-container">
           <Spinner v-if="!progression.id"/>
           <div class="submit-container">
-            <!-- Choisir parmi ces deux rendus en fonction de l'activité -->
+            <!-- Choisir parmi ces rendus en fonction de l'activité -->
             <div
-              v-for="entry in pageEntries()"
               :key="entry.position"
               style="text-align: center; width: 100%"
+              v-for="entry in pageEntries()"
             >
               <h3 style="text-align: left">
                 {{ entry.question }}
               </h3>
               <DownloadFile
-                v-if="entry.typeRendu === 'file'"
                 :idFile="entry.documents && entry.documents.length ? entry.documents[0] : undefined"
+                v-if="entry.typeRendu === 'file'"
               />
               <UploadText
-                v-if="entry.typeRendu === 'text'"
                 :entry="entry"
                 :updateEntry="updateEntry"
+                v-if="entry.typeRendu === 'text'"
               />
               <OrderList
-                v-if="entry.typeRendu === 'orderList'"
                 :entry="entry"
                 :updateEntry="updateEntry"
+                v-if="entry.typeRendu === 'orderList'"
               />
               <Qcm
-                v-if="entry.typeRendu === 'qcm'"
                 :entry="entry"
                 :updateEntry="updateEntry"
+                v-if="entry.typeRendu === 'qcm'"
               />
             </div>
           </div>
-          <ValidateActivityPage
-            :activity="activity"
-            :pageNumber="pageNumber"
-            :updatePage="updatePage"
-            :progression="progression"
-          />
+          <div class="container">
+            <div class="container-buttons">
+              <button
+                @click="previousPage()"
+                class="btn btn-success"
+                v-if="pageNumber > 1"
+              >
+                Page précédente
+              </button>
+              <button @click="nextPage()" class="btn btn-success" v-if="hasNext()">
+                Page suivante
+              </button>
+              <button
+                @click="goBack()"
+                class="btn btn-success"
+                v-if="!hasNext()"
+              >
+                Retourner à la page des progressions de mes jeunes
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -95,10 +112,7 @@ Base Component for an activity page -->
   import itineraryHelpers from "./../service/itineraryHelpers";
   import ActivityProgressBar from "./includes/activityComponents/ActivityProgressBar";
   import ActivityContent from "./includes/activityComponents/ActivityContent";
-
-  import ValidateActivityPage from "./includes/activityComponents/ValidateActivityPage";
   import $ from "jquery";
-  import ProgressionService from "../service/progression.service";
   import Spinner from "./includes/Spinner";
 
   export default {
@@ -108,7 +122,6 @@ Base Component for an activity page -->
       DownloadFile,
       UploadText,
       Qcm,
-      ValidateActivityPage,
       OrderList,
       Alert,
       ActivityProgressBar,
@@ -132,25 +145,13 @@ Base Component for an activity page -->
       this.idActivite = this.$route.params.idActivite;
       this.idParcours = this.$route.params.idParcours;
 
-      this.progression = await this.findProgression(this.idProgression);
+      this.progression = this.$store.state.activity.progression;
+      this.$store.state.activity.progression = undefined;
       if (!this.progression) {
-        alert("Impossible de se connecter ou alors tu n'as les droits pour voir cette page !")
-        return
+        alert("Impossible de charger la page ou alors tu n'as pas les droits pour voir cette page !")
+        return this.$router.push("/youth")
       }
 
-      this.progression.state = "REVIEWING";
-      this.progression.entries.forEach(
-        (_entry) => (_entry.state = this.progression.state)
-      );
-      let isUpdated = await ProgressionService.updateProgression(
-        this.progression,
-        "user/progression"
-      );
-      if (!isUpdated) {
-        alert("Progression invalide !")
-        this.$router.push("/validation")
-        return
-      }
       this.idActivite = this.progression.idActivite;
       this.idParcours = this.progression.idParcours;
 
@@ -158,7 +159,6 @@ Base Component for an activity page -->
         this.idParcours,
         this.idActivite
       );
-
       this.showCurrentPages();
     },
     updated() {
@@ -171,24 +171,13 @@ Base Component for an activity page -->
       this.showCurrentPages();
     },
     methods: {
-      async showCurrentPages() {
+      showCurrentPages() {
         for (let i = 0; i < this.activity.page; i++) {
           if (i + 1 !== this.pageNumber) {
             $(`#page${i + 1}`).hide();
           }
         }
         $(".content-container").removeAttr("hidden");
-      },
-
-      async findProgression(progressionId) {
-        let progression = await ProgressionService.getUserProgression(
-          progressionId
-        );
-        if (!progression) {
-          console.log("failed to retrieve progression");
-          return false; // do not create a new progression and raises an error
-        }
-        return progression;
       },
 
       // Activity progression
@@ -201,15 +190,41 @@ Base Component for an activity page -->
         }
         this.progress = (100 * counter) / total;
       },
+      getParcoursColor() {
+        return itineraryHelpers.getItineraryColor(this.activity.idParcours);
+      },
 
+      // legacy
       updateEntry(entry) {
         console.warn(
           "Should not appear in this view: updateEntry called for entry: "
         );
         console.log(entry);
       },
-      changeParcoursColor() {
-        return itineraryHelpers.getItineraryColor(this.activity.idParcours);
+
+      // Page management
+      hasNext() {
+        return this.pageNumber < this.activity.page;
+      },
+      updateAndCheckPage(pageNumber) {
+        if (pageNumber != this.pageNumber) {
+          $(`#page${this.pageNumber}`).hide();
+          this.pageNumber = pageNumber;
+          $(`#page${this.pageNumber}`).show();
+        }
+        this.getProgress();
+        console.log(`Current page number: ${this.pageNumber}`);
+        window.scrollTo(0, 0);
+        return true;
+      },
+      previousPage() {
+        return this.updateAndCheckPage(this.pageNumber - 1);
+      },
+      nextPage() {
+        this.updateAndCheckPage(this.pageNumber + 1);
+      },
+      async goBack() {
+        this.$router.push("/youth")
       },
       pageEntries() {
         if (!this.progression.entries) {
@@ -221,17 +236,6 @@ Base Component for an activity page -->
         return this.progression.entries
           .filter((entry) => entry.page === this.pageNumber)
           .sort((a, b) => a.position - b.position);
-      },
-      async updatePage(pageNumber) {
-        if (pageNumber != this.pageNumber) {
-          $(`#page${this.pageNumber}`).hide();
-          this.pageNumber = pageNumber;
-          $(`#page${this.pageNumber}`).show();
-        }
-        this.getProgress();
-        console.log(`Current page number: ${this.pageNumber}`);
-        window.scrollTo(0, 0);
-        return true;
       },
     },
   };
@@ -274,5 +278,11 @@ Base Component for an activity page -->
 
   h1.activity-title {
     color: var(--default);
+  }
+
+  .container-buttons {
+    margin: 1rem;
+    display: flex;
+    justify-content: space-evenly;
   }
 </style>

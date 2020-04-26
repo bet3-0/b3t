@@ -58,18 +58,18 @@ export default class ProgressionHelpers {
       };
     }
     try {
-      let activities = JSON.parse(localStorage.getItem("activities"));
-      return activities[idParcours][idActivite];
+      const activities = JSON.parse(localStorage.getItem("activities"));
+      return activities[idParcours.toString()][idActivite.toString()];
     } catch (error) {
       console.warn(
         `Activity ${idParcours}/${idActivite} not found in localStorage.`
       );
+      return {
+        id: idActivite,
+        idParcours: idParcours,
+        nom: "Activité inconnue",
+      }
     }
-    return {
-      id: idActivite,
-      idParcours: idParcours,
-      nom: "Activité inconnue",
-    };
   }
 }
 

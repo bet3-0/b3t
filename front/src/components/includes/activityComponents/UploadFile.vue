@@ -19,6 +19,7 @@
           :id="`submitFileButton-${idEntry}`"
           class="input-group-text btn-primary text-white"
           v-on:click="submitFile()"
+          :disabled="entry.state === 'REVIEWING' || role !=='jeune'"
         >
           <span
             v-show="loading"
@@ -47,6 +48,7 @@ export default {
   props: ["entry", "updateEntry"],
   data() {
     return {
+      role: this.$store.state.auth.user ? this.$store.state.auth.user.role : undefined,
       idEntry: this.entry.id,
       file: "",
       showDismissibleAlert: false, // for Alert

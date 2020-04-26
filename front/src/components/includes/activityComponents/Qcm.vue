@@ -23,7 +23,7 @@
               :id="'q' + indexQcmObj + 'r' + indexReponse"
               v-bind:value="qcmObject.reponses[reponse]"
               v-model="entry.parsedRendu[indexQcmObj].reponses[reponse]"
-              :disabled="entry.state == 'REVIEWING'"
+              :disabled="entry.state === 'REVIEWING' || role !=='jeune'"
             />
             <label
               style="margin-left:1rem"
@@ -47,6 +47,11 @@
 export default {
   name: "Qcm",
   props: ["entry", "updateEntry"],
+  data() {
+    return {
+      role: this.$store.state.auth.user ? this.$store.state.auth.user.role : undefined
+    }
+  },
   created() {
     // const regex = /'/gm;  // On peut avoir un apostrophe dans un texte, donc erreurs possibles avec remplacement de texte.
     const regex = /'/gm;

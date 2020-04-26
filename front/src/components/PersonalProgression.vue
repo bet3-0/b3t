@@ -124,6 +124,7 @@ import BootstrapVue from "bootstrap-vue";
 import VueRouter from "vue-router";
 import ProgressionService from "./../service/progression.service";
 import Spinner from "./includes/Spinner";
+import activityService from "../service/activity";
 
 Vue.use(BootstrapVue);
 Vue.use(VueRouter);
@@ -164,14 +165,8 @@ export default {
           prog.state != "NOTSTARTED" // NOTSTARTED est utilisée pour la toute première progression qui permet de définir le parcours
       );
       // Update the global progression
-      let gloabalProgression = 0;
-      progressions.forEach((prog) => {
-        // Update global progression if the activity is validated
-        if (prog.state == "VALIDATED") {
-          gloabalProgression += parseInt(prog.duration);
-        }
-      });
-      this.$store.dispatch("progression/setProgression", gloabalProgression);
+      const globalProgression = activityService.getGlobalProgressionFromProgressions(progressions)
+      this.$store.dispatch("progression/setProgression", globalProgression);
     } else {
       this.progressions = [
         {

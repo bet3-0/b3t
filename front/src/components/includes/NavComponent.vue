@@ -28,8 +28,9 @@
           >
         </li>
         <li class="nav-item" v-if="['chef'].includes(role)">
-          <router-link class="nav-link text-white" to="/youth"
-            >Progression de mes jeunes</router-link
+          <router-link class="nav-link text-white" to="/groupe"
+          >Progression de mes jeunes
+          </router-link
           >
         </li>
         <li class="nav-item" v-if="['ap'].includes(role)">

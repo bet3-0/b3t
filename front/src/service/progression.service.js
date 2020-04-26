@@ -1,6 +1,6 @@
 /* This is an example file */
 import authHeader from "./auth-header";
-import { API_URL } from "./config";
+import {API_URL} from "./config";
 import store from "../store";
 
 export default class ProgressionService {
@@ -126,6 +126,7 @@ export default class ProgressionService {
     }
   }
 
+  // DEPRECATED
   static async getGroupeProgressions() {
     console.log("Fetching progressions...");
     try {
@@ -140,6 +141,8 @@ export default class ProgressionService {
       return undefined;
     }
   }
+
+  // DEPRECATED
   static async getTerritoireProgressions() {
     console.log("Fetching progressions...");
     try {
@@ -149,6 +152,36 @@ export default class ProgressionService {
       });
       let data = await response.json();
       return data.Progressions;
+    } catch (error) {
+      console.error(error);
+      return undefined;
+    }
+  }
+
+  static async getGroup() {
+    console.log("Fetching group...");
+    try {
+      let response = await fetch(API_URL + "groupe", {
+        method: "GET",
+        headers: authHeader(),
+      });
+      let data = await response.json();
+      return data.groupe;
+    } catch (error) {
+      console.error(error);
+      return undefined;
+    }
+  }
+
+  static async getTerritoire() {
+    console.log("Fetching territoire...");
+    try {
+      let response = await fetch(API_URL + "territoire", {
+        method: "GET",
+        headers: authHeader(),
+      });
+      let data = await response.json();
+      return data.territoire;
     } catch (error) {
       console.error(error);
       return undefined;
