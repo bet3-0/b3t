@@ -43,4 +43,19 @@ export default class ItineraryHelpers {
         return "Parcours inconnu";
     }
   }
+
+  static getParcoursImageName(idParcours) {
+    switch (parseInt(idParcours)) {
+      case 0:
+        return "bosseEtBobo.png";
+      case 1:
+        return "troisEtoiles.png";
+      case 2:
+        return "cesArt.png";
+      case 3:
+        return "robinson.png";
+      default:
+        return "billy.png";
+    }
+  }
 }
