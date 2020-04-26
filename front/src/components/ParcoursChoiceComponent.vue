@@ -106,6 +106,13 @@ export default {
       return this.$router.push("/activitees");
     }
   },
+  mounted() {
+    this.$root.$on('bv::modal::hide', (bvEvent, modalId) => {
+      if (modalId === "choiceModal") {
+        this.selected = null;
+      }
+    })
+  },
   methods: {
     getParcoursName: ItineraryHelpers.getParcoursName,
     cancelChoice() {
