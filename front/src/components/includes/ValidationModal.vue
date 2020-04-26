@@ -55,10 +55,10 @@ export default {
       console.log("Validation of progression : " + progression.id);
       let updatedProgression = await ProgressionService.getUserProgression(progression.id)
       console.log(updatedProgression)
-      if (progression.state == "REVIEWING"){
+      if (progression.state === "REVIEWING"){
         // ok
         console.log("Already reviewing")
-      } else if (!updatedProgression || updatedProgression.state != "FINISHED"){
+      } else if (!updatedProgression || !["FINISHED", "EXTRA"].includes(updatedProgression.state)){
         alert("Cette progression n'est plus disponible ! Rafraîchis ta page ;)")
         return;
       }

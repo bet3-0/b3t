@@ -148,8 +148,8 @@
                   </td>
                   <td> {{ getDate( progression.finishedAt || progression.startedAt ) }}</td>
                   <td @click="gotToReview(progression)"
-                      v-if="['FINISHED', 'REVIEWING', 'VALIDATED', 'REFUSED'].includes(progression.state)"><b>Voir
-                    l'activité</b></td>
+                      v-if="['FINISHED', 'EXTRA', 'REVIEWING', 'VALIDATED', 'REFUSED'].includes(progression.state)">
+                    <b>Voir l'activité</b></td>
                 </tr>
                 </tbody>
               </table>
@@ -202,6 +202,7 @@
           NOTSTARTED: 0,
           INPROGRESS: 0,
           FINISHED: 0,
+          EXTRA: 0,
           REVIEWING: 0,
           VALIDATED: 0,
           REFUSED: 0,

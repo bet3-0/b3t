@@ -30,7 +30,7 @@
             terminée, en cours de validation.
           </div>
           <span class="badge badge-primary badge-pill">{{
-            counter.FINISHED + counter.REVIEWING
+            counter.FINISHED + counter.REVIEWING + counter.EXTRA
           }}</span>
         </li>
 
@@ -152,6 +152,7 @@
           NOTSTARTED: 0,
           INPROGRESS: 0,
           FINISHED: 0,
+          EXTRA: 0,
           REVIEWING: 0,
           VALIDATED: 0,
           REFUSED: 0,
@@ -172,7 +173,6 @@
         this.progressions = progressions;
         this.displayProgressions = progressions.filter(
           (prog) =>
-            prog.idParcours == this.$store.state.parcours.parcours &&
             prog.state != "NOTSTARTED"
         );
         // NOTSTARTED est utilisée pour la toute première et la toute dernière progression

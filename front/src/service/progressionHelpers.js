@@ -7,6 +7,8 @@ export default class ProgressionHelpers {
         return "En cours";
       case "FINISHED":
         return "En attente de validation";
+      case "EXTRA":
+        return "Activité bonus"
       case "REVIEWING":
         return "En cours de validation";
       case "VALIDATED":
