@@ -653,10 +653,4 @@ Base Component for an activity page -->
 h1.activity-title {
   color: var(--default);
 }
-
-.container-buttons {
-  margin: 1rem;
-  display: flex;
-  justify-content: space-evenly;
-}
 </style>
