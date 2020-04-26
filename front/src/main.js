@@ -135,7 +135,7 @@ const router = new VueRouter({
     },
   ],
 });
-/*
+
 router.beforeEach((to, from, next) => {
    if(!/^\/login/.test(to.fullPath) && !["/", "/policies"].includes(to.fullPath)) {
       if (!store.state.auth.status.loggedIn) {
@@ -150,7 +150,7 @@ router.beforeEach((to, from, next) => {
       next();
    }
 });
-*/
+
 new Vue({
   store,
   render: (h) => h(App),
