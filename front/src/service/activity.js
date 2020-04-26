@@ -126,7 +126,7 @@ export default class activityService {
 
   /**Get all activities linked to progressions */
   static async getAllParcoursWithProgressions() {
-    console.log("Updating all activities and progresssions...");
+    console.log("Updating all activities and progressions...");
     // Update activities
     let activities = await this.getAllParcours();
     if (activities === undefined) {
