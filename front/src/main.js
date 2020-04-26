@@ -14,7 +14,6 @@ import ActivitiesToValidate from "./components/ActivitiesToValidate";
 import HalteComponent from "./components/HalteComponent";
 import ActivityToValidate from "./components/ActivityToValidate";
 import YouthActivities from "./components/YouthActivities";
-import YouthActivitiesTerritoire from "./components/YouthActivitiesTerritoire";
 import PoliciesComponent from "./components/PoliciesComponent"
 import Error404 from "./components/Error404";
 import FrozenActivity from "./components/FrozenActivity";
@@ -24,7 +23,7 @@ Vue.use(VeeValidate); // todo: understand this line for login ?
 Vue.use(VueRouter);
 Vue.config.productionTip = false;
 
-Vue.filter("difficult", function(value) {
+Vue.filter("difficult", function (value) {
   switch (value) {
     case 0:
       return "Très facile";
@@ -69,7 +68,7 @@ const router = new VueRouter({
     {
       path: "/parcours",
       get component() {
-         return ParcoursChoiceComponent;
+        return ParcoursChoiceComponent;
       },
     },
     {
@@ -86,6 +85,22 @@ const router = new VueRouter({
     },
     {
       path: "/youth",
+      redirect() {
+        if (!store.state.auth.user) {
+          return '/';
+        }
+        switch (store.state.auth.user.role) {
+          case 'chef':
+            return '/groupe';
+          case 'ap':
+            return '/territoire';
+          default:
+            return '/';
+        }
+      }
+    },
+    {
+      path: "/groupe",
       get component() {
         return YouthActivities;
       },
@@ -93,7 +108,7 @@ const router = new VueRouter({
     {
       path: "/territoire",
       get component() {
-        return YouthActivitiesTerritoire;
+        return YouthActivities;
       },
     },
     {

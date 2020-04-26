@@ -1,8 +1,8 @@
 <template>
   <div class="container mt-4">
     <h1>
-      Activitées de mes jeunes <br/>
-      Groupe {{ group.code_structure }}
+      {{role ==='ap' ? 'Activitées des jeunes de mon territoire' : 'Activitées de mes jeunes'}} <br/>
+      {{role ==='ap' ? 'Territoire' : 'Groupe'}} {{ structure.code_structure }}
     </h1>
     <div>
       <button class="btn btn-primary" @click="pollData()">Mettre à jour</button>
@@ -45,14 +45,14 @@
         id="dropdown-parcours"
         variant="primary"
       >
-        <b-dropdown-item @click="filterRole(['jeune', 'chef', 'relecteur', 'ap'])"
-        >Voir tout le groupe
+        <b-dropdown-item @click="filterRole(['jeune', 'chef', 'ap'])"
+        >Voir tout le {{role==='ap' ? 'territoire': 'groupe'}}
         </b-dropdown-item
         >
         <b-dropdown-item @click="filterRole(['jeune'])"
-        >Voir mes jeunes
+        >Voir les jeunes
         </b-dropdown-item>
-        <b-dropdown-item @click="filterRole(['chef', 'ap', 'relecteur'])"
+        <b-dropdown-item @click="filterRole(['chef', 'ap'])"
         >Voir les autres adultes
         </b-dropdown-item
         >
@@ -76,7 +76,7 @@
               style="background-color: #fafafa"
             >
               <div class="user-accordion-button">
-                <span style="text-align: left; flex-grow: 1">{{ user.role }} {{ user.code_adherent }}</span>
+                <span style="text-align: left; flex-grow: 1">{{ user.role }} {{ user.code_adherent }} {{ role==='ap' ? `(Groupe: ${user.code_structure_groupe})`: '' }}</span>
                 <div class="progress" style="height: inherit; flex-grow: 4">
                   <div :aria-valuenow="user.globalProgression || 0"
                        :style="`width: ${user.globalProgression || 0}%; background: ${getParcoursColor(user.idParcours)};`"
@@ -188,15 +188,16 @@
     data() {
       return {
         loading: true,
+        role: this.$store.state.auth.user ? this.$store.state.auth.user.role : undefined,
         validStates: VALID_STATES,
         currentParcoursName: "Filtrer par parcours",
-        currentParcours: ["0", "1", "2", "3"],
+        currentParcours: ["0", "1", "2", "3", undefined],
         currentStatesName: "Filter par état d'avancement",
         currentStates: VALID_STATES,
         currentRolesName: "Mes jeunes",
         currentRoles: ["jeune"],
         currentProgression: {},
-        group: {"code_structure": "[chargement...]"},
+        structure: {"code_structure": "[chargement...]"},
         counter: {
           NOTSTARTED: 0,
           INPROGRESS: 0,
@@ -210,10 +211,10 @@
     },
     computed: {
       filteredUsers() {
-        if (!this.group.users) {
+        if (!this.structure.users) {
           return []
         }
-        return this.group.users.filter(
+        return this.structure.users.filter(
           (user) => {
             return this.currentRoles.includes(user.role) && this.currentParcours.includes(user.idParcours)
           }
@@ -231,16 +232,27 @@
       },
       async loadProgressions() {
         this.loading = true;
-        let group = await ProgressionService.getGroup();
-        if (group && group.users && group.code_structure) {
-          group.users.forEach((user) => {
+        let structure = {}
+        switch (this.role) {
+          case 'chef':
+            structure = await ProgressionService.getGroup();
+            break
+          case 'ap':
+            structure = await ProgressionService.getTerritoire();
+            break;
+          default:
+            alert("Tu n'as pas les droits pour accéder à cette page !")
+            return this.$router.push('/')
+        }
+        if (structure && structure.users && structure.code_structure) {
+          structure.users.forEach((user) => {
             user.globalProgression = activityService.getGlobalProgressionFromProgressions(user.progressions);
             user.idParcours = activityService.getParcoursFromProgressions(user.progressions);
           });
-          this.group = group;
+          this.structure = structure;
         } else {
           alert("Impossible de charger la page ! Merci de la recharger pour réessayer.")
-          this.group = {
+          this.structure = {
             code_structure: "Inconnu",
           };
         }
@@ -285,7 +297,7 @@
       filterParcours(idParcours) {
         if (idParcours == 4) {
           this.currentParcoursName = "Tous les parcours";
-          this.currentParcours = ["0", "1", "2", "3"]
+          this.currentParcours = ["0", "1", "2", "3", undefined]
         } else {
           this.currentParcoursName = this.getParcoursName(idParcours);
           this.currentParcours = [idParcours.toString()]
