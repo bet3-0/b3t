@@ -144,7 +144,7 @@ func ListFinishedProgressions(c *gin.Context) {
 
 	user := c.Request.Context().Value("user").(User)
 
-	err := db.Where("state = ? or ( state = ? and code_relecteur = ?)", "FINISHED", "REVIEWING", user.CodeAdherent).Find(&progressions).Error
+	err := db.Where("state = ? or state = ? or ( state = ? and code_relecteur = ?)", "FINISHED", "EXTRA", "REVIEWING", user.CodeAdherent).Find(&progressions).Error
 	if err != nil {
 		c.JSON(500, gin.H{"error": "internal_server_error"})
 		return
