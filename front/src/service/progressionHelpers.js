@@ -2,11 +2,13 @@ export default class ProgressionHelpers {
   static getStateName(state) {
     switch (state) {
       case "NOTSTARTED":
-        return "Choix de parcours";
+        return "Événement";
       case "INPROGRESS":
         return "En cours";
       case "FINISHED":
         return "En attente de validation";
+      case "EXTRA":
+        return "Activité bonus"
       case "REVIEWING":
         return "En cours de validation";
       case "VALIDATED":

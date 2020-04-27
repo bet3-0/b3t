@@ -30,6 +30,13 @@
         >
           Réessayer l'activité
         </b-button>
+        <b-button
+          v-if="['FINISHED', 'EXTRA', 'REVIEWING', 'VALIDATED'].includes(progression.state)"
+          variant="warning"
+          @click.prevent.capture="go(activity)"
+        >
+          Relire l'activité
+        </b-button>
       </template>
     </b-modal>
   </div>
@@ -50,13 +57,16 @@ export default {
     getCommentFromState(state) {
       switch (state) {
         case "NOTSTARTED":
-          return "Activité non commencée";
+          return "Activité non commencée.";
         case "INPROGRESS":
           return "Tu n'as pas encore validé cette activité. Tu peux y retourner pour la terminer.";
         case "FINISHED":
-          return "Ton activité est en cours de validation par un chef ou une cheftaine";
+          return "Ton activité est en cours de validation par un chef ou une cheftaine.";
+        case "EXTRA":
+          return "Ton activité est en cours de validation par un chef ou une cheftaine. " +
+            "Comme c'est une activité bonus, elle mettra peut-être plus de temps à être relue !";
         case "REVIEWING":
-          return "Ton activité est en cours de validation par un chef ou une cheftaine";
+          return "Ton activité est en cours de validation par un chef ou une cheftaine.";
         case "VALIDATED":
           return "Ton activité a été validée ! Bravo à toi !";
         case "REFUSED":

@@ -21,13 +21,27 @@ export default class activityService {
     }
   }
 
+  // DEPRECATED
   /** Get all activities associated tout a Parcours */
-  static async getAllActivities(idParcours) {
+  static async getAllActivitiesOfParcours(idParcours) {
     let allParcours = await this.getAllParcours();
     if (allParcours === undefined) {
       return undefined;
     }
     return allParcours[idParcours];
+  }
+
+  /** Get all activities */
+  static async getAllActivities() {
+
+    try {
+      const response = await fetch(API_URL + "activites", {method: "GET"});
+      const data = await response.json();
+      return data.activites;
+    } catch (error) {
+      console.error(error);
+      return undefined;
+    }
   }
 
   static async getActivity(idParcours, idActivite) {
@@ -126,7 +140,7 @@ export default class activityService {
 
   /**Get all activities linked to progressions */
   static async getAllParcoursWithProgressions() {
-    console.log("Updating all activities and progresssions...");
+    console.log("Updating all activities and progressions...");
     // Update activities
     let activities = await this.getAllParcours();
     if (activities === undefined) {

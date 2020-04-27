@@ -15,10 +15,6 @@
             rendu et le soumettre à nouveau, s'il le souhaite
           </li>
         </ul>
-        <br />
-        <br />
-
-        {{ message }}
       </div>
       <b-form-textarea
         class="form-control"
@@ -60,7 +56,7 @@ import ProgressionService from "./../../../service/progression.service";
 Vue.use(VueRouter);
 export default {
   name: "ActivityToValidateModal",
-  props: ["title", "message", "progression"],
+  props: ["title", "progression"],
   data() {
     return { loadingRefuse: false, loadingAccept: false };
   },

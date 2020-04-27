@@ -90,7 +90,6 @@ export default {
       return this.$store.state.auth.user;
     },
     role() {
-      console.log(this.$store.state.auth.user);
       if (this.$store.state.auth.user) {
         return this.$store.state.auth.user.role || "jeune";
       }

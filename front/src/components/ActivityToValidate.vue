@@ -73,12 +73,32 @@ Base Component for an activity page -->
               />
             </div>
           </div>
-          <ValidateActivityPage
-            :activity="activity"
-            :pageNumber="pageNumber"
-            :updatePage="updatePage"
-            :progression="progression"
-          />
+          <div class="container">
+            <div class="container-buttons">
+              <button
+                v-if="pageNumber > 1"
+                class="btn btn-success"
+                @click="previousPage()"
+              >
+                Page précédente
+              </button>
+              <button class="btn btn-success" v-if="hasNext()" @click="nextPage()">
+                Page suivante
+              </button>
+              <button
+                class="btn btn-success"
+                v-if="!hasNext() && progression.entries && progression.entries.length"
+                @click="validate()"
+              >
+                Réviser l'activité
+              </button>
+            </div>
+            <!-- Modals -->
+            <ActivityToValidateModal
+              title="Valider l'activité"
+              :progression="progression"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -96,10 +116,10 @@ Base Component for an activity page -->
   import ActivityProgressBar from "./includes/activityComponents/ActivityProgressBar";
   import ActivityContent from "./includes/activityComponents/ActivityContent";
 
-  import ValidateActivityPage from "./includes/activityComponents/ValidateActivityPage";
   import $ from "jquery";
   import ProgressionService from "../service/progression.service";
   import Spinner from "./includes/Spinner";
+  import ActivityToValidateModal from "./includes/activityComponents/ActivityToValidateModal";
 
   export default {
     name: "ActivityToValidate",
@@ -108,11 +128,11 @@ Base Component for an activity page -->
       DownloadFile,
       UploadText,
       Qcm,
-      ValidateActivityPage,
       OrderList,
       Alert,
       ActivityProgressBar,
       ActivityContent,
+      ActivityToValidateModal,
     },
     data() {
       return {
@@ -171,7 +191,7 @@ Base Component for an activity page -->
       this.showCurrentPages();
     },
     methods: {
-      async showCurrentPages() {
+      showCurrentPages() {
         for (let i = 0; i < this.activity.page; i++) {
           if (i + 1 !== this.pageNumber) {
             $(`#page${i + 1}`).hide();
@@ -222,8 +242,10 @@ Base Component for an activity page -->
           .filter((entry) => entry.page === this.pageNumber)
           .sort((a, b) => a.position - b.position);
       },
-      async updatePage(pageNumber) {
-        if (pageNumber != this.pageNumber) {
+
+      // PAGE CHANGES
+      updatePage(pageNumber) {
+        if (pageNumber !== this.pageNumber) {
           $(`#page${this.pageNumber}`).hide();
           this.pageNumber = pageNumber;
           $(`#page${this.pageNumber}`).show();
@@ -233,6 +255,30 @@ Base Component for an activity page -->
         window.scrollTo(0, 0);
         return true;
       },
+      hasNext() {
+        return this.pageNumber < this.activity.page;
+      },
+      // Go to previous/next page or validate
+      previousPage() {
+        this.updatePage(this.pageNumber - 1);
+      },
+      nextPage() {
+        this.updatePage(this.pageNumber + 1);
+      },
+      validate() {
+        this.updatePage(this.pageNumber);
+        // Try to send the updated progression
+        if (this.$store.state.auth.user.role === "relecteur") {
+          // Validation for reviewer, only if the state is REVIEWING
+          if (this.progression.state === "REVIEWING") {
+            this.$bvModal.show("activityToValidateModal");
+          } else {
+            // Otherwise, nothing happens.
+            alert("Tu ne peux pas mettre à jour cette activité " +
+              "car elle n'est pas en cours de relecture.")
+          }
+        }
+      }
     },
   };
 </script>

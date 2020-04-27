@@ -18,7 +18,7 @@
         <button
           :id="`submitFileButton-${idEntry}`"
           class="input-group-text btn-primary text-white"
-          v-on:click="submitFile()"
+          @click="submitFile()"
           :disabled="entry.state === 'REVIEWING' || role !=='jeune'"
         >
           <span
@@ -29,7 +29,7 @@
         </button>
       </div>
     </div>
-    <span>Une fois ton fichier sélectionné, clique sur Charger !</span>
+    <span>Une fois ton fichier sélectionné, clique sur <i>Envoyer mon fichier</i> !</span>
     <span v-if="entry.documents && entry.documents.length"
       >{{ entry.documents.length }} fichier(s) rendu(s)</span
     >

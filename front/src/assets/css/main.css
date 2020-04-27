@@ -105,3 +105,10 @@ h6 {
 .custom-file {
   flex-grow: 0;
 }
+
+/* Buttons Page suivante/précedente / Valider, etc.*/
+.container-buttons {
+  margin: 1rem;
+  display: flex;
+  justify-content: space-evenly;
+}
