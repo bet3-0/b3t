@@ -23,7 +23,7 @@ func connect() {
 	_ = db.Exec("CREATE EXTENSION pgcrypto;").Error
 	_ = db.Exec("CREATE TYPE role AS ENUM ('jeune','chef', 'ap', 'relecteur', 'admin');").Error
 	_ = db.Exec("CREATE TYPE difficulte AS ENUM ('facile', 'moyen', 'difficile');").Error
-	_ = db.Exec("CREATE TYPE state AS ENUM ('NOTSTARTED', 'INPROGRESS', 'FINISHED', 'REVIEWING', 'VALIDATED', 'REFUSED');").Error
+	_ = db.Exec("CREATE TYPE state AS ENUM ('NOTSTARTED', 'INPROGRESS', 'FINISHED', 'REVIEWING', 'VALIDATED', 'REFUSED'. 'EXTRA');").Error
 	_ = db.Exec("CREATE TYPE type_rendu AS ENUM ('text', 'file', 'orderList', 'qcm');").Error
 
 	err = db.AutoMigrate(&Territoire{}).Error

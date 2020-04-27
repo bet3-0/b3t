@@ -18,6 +18,7 @@ const (
 	Reviewing        = "REVIEWING"
 	Validated        = "VALIDATED"
 	Refused          = "REFUSED"
+	Extra            = "EXTRA"
 )
 
 type typeRendu string
@@ -195,6 +196,11 @@ func UpdateProgression(c *gin.Context) {
 			"error": "failed_to_map_progression",
 		})
 		return
+	}
+
+	//  Auto-validation pour la halte
+	if progression.ParcoursCode == "4" && progression.State == state("FINISHED") {
+		progression.State = state("VALIDATED")
 	}
 
 	user := c.Request.Context().Value("user").(User)
