@@ -17,6 +17,7 @@ import YouthActivities from "./components/YouthActivities";
 import PoliciesComponent from "./components/PoliciesComponent"
 import Error404 from "./components/Error404";
 import FrozenActivity from "./components/FrozenActivity";
+import AventureComponent from "./components/AventureComponent";
 
 
 Vue.use(VeeValidate); // todo: understand this line for login ?
@@ -127,6 +128,12 @@ const router = new VueRouter({
       path: "/apercu/:idProgression/:idParcours/:idActivite",
       get component() {
         return FrozenActivity;
+      },
+    },
+    {
+      path: "/aventure/:idActivite",
+      get component() {
+        return AventureComponent;
       },
     },
     {
