@@ -184,19 +184,15 @@ export default {
         return undefined;
       }
       let startedIds = [];
-      if (startedActivities[this.idParcours]) {
-        startedIds = Object.keys(startedActivities[this.idParcours]).filter(
-          (idActivite) =>
-            startedActivities[this.idParcours][idActivite].progression
-        );
+      if (startedActivities) {
+        for (let idParcours in startedActivities)
+          startedIds = startedIds.concat(
+            Object.keys(startedActivities[idParcours]).filter(
+              (idActivite) =>
+                startedActivities[idParcours][idActivite].progression
+            ));
       }
       this.startedIds = startedIds
-      // // TODO: afficher plus si les jeunes ont fini ! Et colorer les activités par parcours/permettre de filter
-      // this.displayActivities = Object.values(this.activities).filter(
-      //   (activity) =>
-      //     activity.idParcours == this.idParcours &&
-      //     !startedIds.includes(activity.id)
-      // );
       this.loading = false;
     },
     // Filters
