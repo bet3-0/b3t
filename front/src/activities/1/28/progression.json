@@ -6,219 +6,59 @@
   "startedAt": 0,
   "finishedAt": 0,
   "reviewAt": 0,
-  "entries": [
-    {
+  "entries": [{
       "position": 0,
       "question": "",
       "documents": [],
       "typeRendu": "qcm",
-      "rendu": "[{\"question\": \"Laquelle de ces pâtisseries existe vraiment?\", \"reponses\": {\"Abbé\": false, \"Alléluia\": false, \"Amen\": false, \"Aleph\": false}}]",
+      "rendu": "[{\"question\": \"Laquelle de ces pâtisseries existe vraiment?\", \"reponses\": {\"Abbé\": false, \"Alléluia\": false, \"Amen\": false, \"Aleph\": false}}, {\"question\": \"Laquelle de ces pâtisseries existe vraiment?\", \"reponses\": {\"Bavardage\": false, \"Entretien\": false, \"Conversation\": false, \"Discussion\": false}}, {\"question\": \"Laquelle de ces pâtisseries existe vraiment?\", \"reponses\": {\"Jésuite\": false, \"Trinitaires\": false, \"Mathurins\": false, \"Montfortains\": false}}, {\"question\": \"Laquelle de ces pâtisseries existe vraiment?\", \"reponses\": {\"Oeillet\": false, \"Oreille\": false, \"Oreiller\": false, \"Oreillettes\": false}}, {\"question\": \"Laquelle de ces pâtisseries existe vraiment?\", \"reponses\": {\"Marié\": false, \"Divorcé\": false, \"Pacsé\": false, \"Séparé\": false}}]",
       "state": "NOTSTARTED",
       "tracked": true,
       "page": 1
     },
+
     {
       "position": 1,
       "question": "",
       "documents": [],
       "typeRendu": "qcm",
-      "rendu": "[{\"question\": \"Laquelle de ces pâtisseries existe vraiment?\", \"reponses\": {\"Bavardage\": false, \"Entretien\": false, \"Conversation\": false, \"Discussion\": false}}]",
+      "rendu": "[{\"question\": \"Laquelle de ces pizzas existe vraiment?\", \"reponses\": {\"La pizza smarties\": false, \"La pizza twix\": false, \"La pizza mars\": false, \"La pizza au kit-kat\": false}}, {\"question\": \"Laquelle de ces pizzas existe vraiment?\", \"reponses\": {\"la pizza skateboard \": false, \"La pizza hand-spinner\": false, \"La pizza trottinette\": false, \"La pizza casque\": false}}]",
       "state": "NOTSTARTED",
       "tracked": true,
-      "page": 1
+      "page": 2
     },
     {
       "position": 2,
       "question": "",
       "documents": [],
       "typeRendu": "qcm",
-      "rendu": "[{\"question\": \"Laquelle de ces pâtisseries existe vraiment?\", \"reponses\": {\"Jésuite\": false, \"Trinitaires\": false, \"Mathurins\": false, \"Montfortains\": false}}]",
+      "rendu": "[{\"question\": \"Lequel de ces légumes existe vraiment?\", \"reponses\": {\"Le brocoli cavalier\": false, \"La courge cavalière\": false, \"Le chou cavalier\": false, \"L’endive cavalière\": false}}, {\"question\": \"Lequel de ces légumes existe vraiment?\", \"reponses\": {\"Le combo\": false, \"Le fonbo\": false, \"Le sonbo\": false, \"Le gombo\": false}}, {\"question\": \"Lequel de ces légumes existe vraiment?\", \"reponses\": {\"L’ail rocambole\": false, \"L’oignon rocambole\": false, \"L'échalote rocambole\": false, \"La ciboulette rocambole\": false}}, {\"question\": \"Lequel de ces légumes existe vraiment?\", \"reponses\": {\"Les têtes de flûtes\": false, \"Les têtes de guitares\": false, \"Les têtes de violons\": false, \"Les têtes de pianos\": false}}, {\"question\": \"Lequel de ces légumes existe vraiment?\", \"reponses\": {\"L’oeil de perdrix\": false, \"L’oeil d’alouette\": false, \"L’oeil de corbeau\": false, \"L’oeil de rossignol\": false}}]",
       "state": "NOTSTARTED",
       "tracked": true,
-      "page": 1
+      "page": 3
     },
     {
       "position": 3,
       "question": "",
       "documents": [],
       "typeRendu": "qcm",
-      "rendu": "[{\"question\": \"Laquelle de ces pâtisseries existe vraiment?\", \"reponses\": {\"Oeillet\": false, \"Oreille\": false, \"Oreiller\": false, \"Oreillettes\": false}}]",
+      "rendu": "[{\"question\": \"Laquelle de ces formes de pâtes existe vraiment?\", \"reponses\": {\"Les pâtes Schtroumpfs\": false, \"Les pâtes Astérix et Obélix\": false, \"Les pâtes les cités d’or\": false, \"Les pâtes Mickey & Co\": false}}, {\"question\": \"Laquelle de ces formes de pâtes existe vraiment?\", \"reponses\": {\"Les pâtes viaduc de Millau\": false, \"Les pâtes tour Eiffel\": false, \"Les pâtes arc de triomphe\": false, \"Les pâtes menhirs\": false}}, {\"question\": \"Laquelle de ces formes de pâtes existe vraiment?\", \"reponses\": {\"Les pâtes cow-boys\": false, \"Les pâtes chevaliers\": false, \"Les pâtes princesses\": false, \"Les pâtes pirates\": false}}, {\"question\": \"Laquelle de ces formes de pâtes existe vraiment?\", \"reponses\": {\"Les pâtes coeurs\": false, \"Les pâtes triangles\": false, \"Les pâtes rondes\": false, \"Les pâtes carrées\": false}}]",
       "state": "NOTSTARTED",
       "tracked": true,
-      "page": 1
+      "page": 4
     },
     {
       "position": 4,
       "question": "",
       "documents": [],
       "typeRendu": "qcm",
-      "rendu": "[{\"question\": \"Laquelle de ces pâtisseries existe vraiment?\", \"reponses\": {\"Marié\": false, \"Divorcé\": false, \"Pacsé\": false, \"Séparé\": false}}]",
+      "rendu": "[{\"question\": \"Lequel de ces fruits existe vraiment?\", \"reponses\": {\"La mangouste\": false, \"Le moloch\": false, \"La langouste\": false, \"Le mangoustan\": false}}, {\"question\": \"Lequel de ces fruits existe vraiment?\", \"reponses\": {\"Le wapiti\": false, \"La p’tite Aya\": false, \"Le pitaya\": false, \"Le wasabi \": false}}, {\"question\": \"Lequel de ces fruits existe vraiment?\", \"reponses\": {\"Le kiwano\": false, \"Le bowiro\": false, \"Le pawito\": false, \"Le vawiro\": false}}, {\"question\": \"Lequel de ces fruits existe vraiment?\", \"reponses\": {\"La main de Bouddha\": false, \"La main de fatima\": false, \"La main de Dieu\": false, \"La main de Shiva\": false}}, {\"question\": \"Lequel de ces fruits existe vraiment?\", \"reponses\": {\"Le rigidiant\": false, \"Le durian\": false, \"Le soupliant\": false, \"Le mourian\": false}}]",
       "state": "NOTSTARTED",
       "tracked": true,
-      "page": 1
+      "page": 5
     },
     {
       "position": 5,
-      "question": "",
-      "documents": [],
-      "typeRendu": "qcm",
-      "rendu": "[{\"question\": \"Laquelle de ces pizzas existe vraiment?\", \"reponses\": {\"La pizza smarties\": false, \"La pizza twix\": false, \"La pizza mars\": false, \"La pizza au kit-kat\": false}}]",
-      "state": "NOTSTARTED",
-      "tracked": true,
-      "page": 2
-    },
-    {
-      "position": 6,
-      "question": "",
-      "documents": [],
-      "typeRendu": "qcm",
-      "rendu": "[{\"question\": \"Laquelle de ces pizzas existe vraiment?\", \"reponses\": {\"la pizza skateboard \": false, \"La pizza hand-spinner\": false, \"La pizza trottinette\": false, \"La pizza casque\": false}}]",
-      "state": "NOTSTARTED",
-      "tracked": true,
-      "page": 2
-    },
-    {
-      "position": 7,
-      "question": "",
-      "documents": [],
-      "typeRendu": "qcm",
-      "rendu": "[{\"question\": \"Lequel de ces légumes existe vraiment?\", \"reponses\": {\"Le brocoli cavalier\": false, \"La courge cavalière\": false, \"Le chou cavalier\": false, \"L’endive cavalière\": false}}]",
-      "state": "NOTSTARTED",
-      "tracked": true,
-      "page": 3
-    },
-    {
-      "position": 8,
-      "question": "",
-      "documents": [],
-      "typeRendu": "qcm",
-      "rendu": "[{\"question\": \"Lequel de ces légumes existe vraiment?\", \"reponses\": {\"Le combo\": false, \"Le fonbo\": false, \"Le sonbo\": false, \"Le gombo\": false}}]",
-      "state": "NOTSTARTED",
-      "tracked": true,
-      "page": 3
-    },
-    {
-      "position": 9,
-      "question": "",
-      "documents": [],
-      "typeRendu": "qcm",
-      "rendu": "[{\"question\": \"Lequel de ces légumes existe vraiment?\", \"reponses\": {\"L’ail rocambole\": false, \"L’oignon rocambole\": false, \"L'échalote rocambole\": false, \"La ciboulette rocambole\": false}}]",
-      "state": "NOTSTARTED",
-      "tracked": true,
-      "page": 3
-    },
-    {
-      "position": 10,
-      "question": "",
-      "documents": [],
-      "typeRendu": "qcm",
-      "rendu": "[{\"question\": \"Lequel de ces légumes existe vraiment?\", \"reponses\": {\"Les têtes de flûtes\": false, \"Les têtes de guitares\": false, \"Les têtes de violons\": false, \"Les têtes de pianos\": false}}]",
-      "state": "NOTSTARTED",
-      "tracked": true,
-      "page": 3
-    },
-    {
-      "position": 11,
-      "question": "",
-      "documents": [],
-      "typeRendu": "qcm",
-      "rendu": "[{\"question\": \"Lequel de ces légumes existe vraiment?\", \"reponses\": {\"L’oeil de perdrix\": false, \"L’oeil d’alouette\": false, \"L’oeil de corbeau\": false, \"L’oeil de rossignol\": false}}]",
-      "state": "NOTSTARTED",
-      "tracked": true,
-      "page": 3
-    },
-    {
-      "position": 12,
-      "question": "",
-      "documents": [],
-      "typeRendu": "qcm",
-      "rendu": "[{\"question\": \"Laquelle de ces formes de pâtes existe vraiment?\", \"reponses\": {\"Les pâtes Schtroumpfs\": false, \"Les pâtes Astérix et Obélix\": false, \"Les pâtes les cités d’or\": false, \"Les pâtes Mickey & Co\": false}}]",
-      "state": "NOTSTARTED",
-      "tracked": true,
-      "page": 4
-    },
-    {
-      "position": 13,
-      "question": "",
-      "documents": [],
-      "typeRendu": "qcm",
-      "rendu": "[{\"question\": \"Laquelle de ces formes de pâtes existe vraiment?\", \"reponses\": {\"Les pâtes viaduc de Millau\": false, \"Les pâtes tour Eiffel\": false, \"Les pâtes arc de triomphe\": false, \"Les pâtes menhirs\": false}}]",
-      "state": "NOTSTARTED",
-      "tracked": true,
-      "page": 4
-    },
-    {
-      "position": 14,
-      "question": "",
-      "documents": [],
-      "typeRendu": "qcm",
-      "rendu": "[{\"question\": \"Laquelle de ces formes de pâtes existe vraiment?\", \"reponses\": {\"Les pâtes cow-boys\": false, \"Les pâtes chevaliers\": false, \"Les pâtes princesses\": false, \"Les pâtes pirates\": false}}]",
-      "state": "NOTSTARTED",
-      "tracked": true,
-      "page": 4
-    },
-    {
-      "position": 15,
-      "question": "",
-      "documents": [],
-      "typeRendu": "qcm",
-      "rendu": "[{\"question\": \"Laquelle de ces formes de pâtes existe vraiment?\", \"reponses\": {\"Les pâtes coeurs\": false, \"Les pâtes triangles\": false, \"Les pâtes rondes\": false, \"Les pâtes carrées\": false}}]",
-      "state": "NOTSTARTED",
-      "tracked": true,
-      "page": 4
-    },
-    {
-      "position": 16,
-      "question": "",
-      "documents": [],
-      "typeRendu": "qcm",
-      "rendu": "[{\"question\": \"Lequel de ces fruits existe vraiment?\", \"reponses\": {\"La mangouste\": false, \"Le moloch\": false, \"La langouste\": false, \"Le mangoustan\": false}}]",
-      "state": "NOTSTARTED",
-      "tracked": true,
-      "page": 5
-    },
-    {
-      "position": 17,
-      "question": "",
-      "documents": [],
-      "typeRendu": "qcm",
-      "rendu": "[{\"question\": \"Lequel de ces fruits existe vraiment?\", \"reponses\": {\"Le wapiti\": false, \"La p’tite Aya\": false, \"Le pitaya\": false, \"Le wasabi \": false}}]",
-      "state": "NOTSTARTED",
-      "tracked": true,
-      "page": 5
-    },
-    {
-      "position": 18,
-      "question": "",
-      "documents": [],
-      "typeRendu": "qcm",
-      "rendu": "[{\"question\": \"Lequel de ces fruits existe vraiment?\", \"reponses\": {\"Le kiwano\": false, \"Le bowiro\": false, \"Le pawito\": false, \"Le vawiro\": false}}]",
-      "state": "NOTSTARTED",
-      "tracked": true,
-      "page": 5
-    },
-    {
-      "position": 19,
-      "question": "",
-      "documents": [],
-      "typeRendu": "qcm",
-      "rendu": "[{\"question\": \"Lequel de ces fruits existe vraiment?\", \"reponses\": {\"La main de Bouddha\": false, \"La main de fatima\": false, \"La main de Dieu\": false, \"La main de Shiva\": false}}]",
-      "state": "NOTSTARTED",
-      "tracked": true,
-      "page": 5
-    },
-    {
-      "position": 20,
-      "question": "",
-      "documents": [],
-      "typeRendu": "qcm",
-      "rendu": "[{\"question\": \"Lequel de ces fruits existe vraiment?\", \"reponses\": {\"Le rigidiant\": false, \"Le durian\": false, \"Le soupliant\": false, \"Le mourian\": false}}]",
-      "state": "NOTSTARTED",
-      "tracked": true,
-      "page": 5
-    },
-    {
-      "position": 21,
       "question": "",
       "documents": [],
       "typeRendu": "qcm",
@@ -228,71 +68,21 @@
       "page": 6
     },
     {
-      "position": 22,
+      "position": 6,
       "question": "",
       "documents": [],
       "typeRendu": "qcm",
-      "rendu": "[{\"question\": \"Laquelle de ces épices existe vraiment?\", \"reponses\": {\"Feuille de bible\": false, \"Feuille de coran\": false, \"Feuille de Tanakh\": false, \"Feuille de Tripitaka\": false}}]",
+      "rendu": "[{\"question\": \"Laquelle de ces épices existe vraiment?\", \"reponses\": {\"Feuille de bible\": false, \"Feuille de coran\": false, \"Feuille de Tanakh\": false, \"Feuille de Tripitaka\": false}}, {\"question\": \"Laquelle de ces épices existe vraiment?\", \"reponses\": {\"Bonhepi\": false, \"Mahlepi\": false, \"Mouhepi\": false, \"Durhepi\": false}}, {\"question\": \"Laquelle de ces épices existe vraiment?\", \"reponses\": {\"Petit lys\": false, \"Petite marguerite\": false, \"Petit jasmin\": false, \"Petit muguet\": false}}]",
       "state": "NOTSTARTED",
       "tracked": true,
       "page": 7
     },
     {
-      "position": 23,
+      "position": 7,
       "question": "",
       "documents": [],
       "typeRendu": "qcm",
-      "rendu": "[{\"question\": \"Laquelle de ces épices existe vraiment?\", \"reponses\": {\"Bonhepi\": false, \"Mahlepi\": false, \"Mouhepi\": false, \"Durhepi\": false}}]",
-      "state": "NOTSTARTED",
-      "tracked": true,
-      "page": 7
-    },
-    {
-      "position": 24,
-      "question": "",
-      "documents": [],
-      "typeRendu": "qcm",
-      "rendu": "[{\"question\": \"Laquelle de ces épices existe vraiment?\", \"reponses\": {\"Petit lys\": false, \"Petite marguerite\": false, \"Petit jasmin\": false, \"Petit muguet\": false}}]",
-      "state": "NOTSTARTED",
-      "tracked": true,
-      "page": 7
-    },
-    {
-      "position": 25,
-      "question": "",
-      "documents": [],
-      "typeRendu": "qcm",
-      "rendu": "[{\"question\": \"Lequel de ces bonbons existe vraiment?\", \"reponses\": {\"Les bonbons aux poissons\": false, \"Les bonbons aux fruits\": false, \"Les bonbons aux légumes\": false}}]",
-      "state": "NOTSTARTED",
-      "tracked": true,
-      "page": 8
-    },
-    {
-      "position": 26,
-      "question": "",
-      "documents": [],
-      "typeRendu": "qcm",
-      "rendu": "[{\"question\": \"Lequel de ces bonbons existe vraiment?\", \"reponses\": {\"Les bonbons insectes multicolore\": false, \"Les bonbons voiture fluorescente\": false, \"Les bonbons insectes fluorescent\": false, \"Les bonbons voiture multicolore\": false}}]",
-      "state": "NOTSTARTED",
-      "tracked": true,
-      "page": 8
-    },
-    {
-      "position": 27,
-      "question": "",
-      "documents": [],
-      "typeRendu": "qcm",
-      "rendu": "[{\"question\": \"Lequel de ces bonbons existe vraiment?\", \"reponses\": {\"Les Rockgueti\": false, \"Les Salsagueti\": false, \"Les Tangogueti\": false, \"Les Valsgueti\": false}}]",
-      "state": "NOTSTARTED",
-      "tracked": true,
-      "page": 8
-    },
-    {
-      "position": 28,
-      "question": "",
-      "documents": [],
-      "typeRendu": "qcm",
-      "rendu": "[{\"question\": \"Lequel de ces bonbons existe vraiment?\", \"reponses\": {\"La réglisse salé\": false, \"Les crocodiles salé\": false, \"Les sucettes salés\": false, \"Les schtroumpfs salés\": false}}]",
+      "rendu": "[{\"question\": \"Lequel de ces bonbons existe vraiment?\", \"reponses\": {\"Les bonbons aux poissons\": false, \"Les bonbons aux fruits\": false, \"Les bonbons aux légumes\": false}}, {\"question\": \"Lequel de ces bonbons existe vraiment?\", \"reponses\": {\"Les bonbons insectes multicolore\": false, \"Les bonbons voiture fluorescente\": false, \"Les bonbons insectes fluorescent\": false, \"Les bonbons voiture multicolore\": false}}, {\"question\": \"Lequel de ces bonbons existe vraiment?\", \"reponses\": {\"Les Rockgueti\": false, \"Les Salsagueti\": false, \"Les Tangogueti\": false, \"Les Valsgueti\": false}}, {\"question\": \"Lequel de ces bonbons existe vraiment?\", \"reponses\": {\"La réglisse salé\": false, \"Les crocodiles salé\": false, \"Les sucettes salés\": false, \"Les schtroumpfs salés\": false}}]",
       "state": "NOTSTARTED",
       "tracked": true,
       "page": 8
