@@ -75,6 +75,7 @@ def check_progression(file, dico):
         if not isinstance(dico["entries"], list):
             print(f"Invalid entries type for file '{file}'")
             return
+        positions =set()
         to_pop = []
         to_update = []
         for entry in dico["entries"]:
@@ -112,6 +113,9 @@ def check_progression(file, dico):
                     print(f"Found invalid key {key} with value {value} in entry of '{file}'")
             entry["state"] = "NOTSTARTED"
             entry["position"] = int(entry["position"])
+            if entry["position"] in positions:
+                print(f"Position field must be unique in progression {file}")
+            positions.add(entry["position"])
             if not entry["typeRendu"] in type_rendus:
                 print(f"typeRendu {entry['typeRendu']} incorrect for file '{file}'!")
             for key in to_pop:
