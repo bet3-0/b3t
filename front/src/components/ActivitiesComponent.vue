@@ -46,7 +46,7 @@
         <b-dropdown-item @click="filterParcours(2)">Cés'Arts</b-dropdown-item>
         <b-dropdown-item @click="filterParcours(3)">Robinson</b-dropdown-item>
       </b-dropdown>
-      <span v-if="startedIds && startedIds.length">
+      <span v-if="startedIds && Object.keys(startedIds).length">
           Les activités que tu as commencées se trouvent sur la page
           <a href="/progression">Mes activités</a>.
         </span>
@@ -123,7 +123,7 @@ export default {
       currentParcoursName: "Filtrer par parcours",
       currentParcours : [this.$store.state.parcours.parcours.toString()],
       loading: true,
-      startedIds: [],  // Ids of activities already started.
+      startedIds: {},  // Ids of activities already started.
       sortKey: "",  // Sort options among: ["", "alphabetical", "duration", "difficulte"]
       currentActivity: {},
       activities: {}, // object {idActivite: {activity object}}
@@ -140,7 +140,8 @@ export default {
         Object.values(this.activities).filter(
           (activity) =>
             this.currentParcours.includes(activity.idParcours) &&
-            !this.startedIds.includes(activity.id)
+            (!this.startedIds[activity.idParcours] ||
+            !this.startedIds[activity.idParcours].includes(activity.id))
         ))
     }
   },
@@ -183,14 +184,14 @@ export default {
         this.loading = false;
         return undefined;
       }
-      let startedIds = [];
+      let startedIds = {};
       if (startedActivities) {
         for (let idParcours in startedActivities)
-          startedIds = startedIds.concat(
+          startedIds[idParcours] =
             Object.keys(startedActivities[idParcours]).filter(
               (idActivite) =>
                 startedActivities[idParcours][idActivite].progression
-            ));
+            );
       }
       this.startedIds = startedIds
       this.loading = false;
