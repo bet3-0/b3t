@@ -53,13 +53,9 @@ Base Component for an activity page -->
                 {{ entry.question }}
               </h3>
               <UploadFile
-                v-if="entry.typeRendu === 'file' && !isFrozen"
+                v-if="entry.typeRendu === 'file'"
                 :entry="entry"
                 :updateEntry="updateEntry"
-              />
-              <DownloadFile
-                v-if="entry.typeRendu === 'file' && isFrozen"
-                :file-ids="entry.documents"
               />
               <UploadText
                 v-if="entry.typeRendu === 'text'"
@@ -145,12 +141,10 @@ Base Component for an activity page -->
   import ProgressionService from "../service/progression.service";
   import ValidateActivityModal from "./includes/activityComponents/ValidateActivityModal";
   import CheckPageModal from "./includes/activityComponents/CheckPageModal";
-  import DownloadFile from "./includes/activityComponents/DownloadFile";
 
   export default {
   name: "ActivityComponent",
   components: {
-    DownloadFile,
     CheckPageModal,
     Spinner,
     ErrorModal,
