@@ -40,7 +40,7 @@ export default class ItineraryHelpers {
       case 4:
         return "La Halte";
       default:
-        return "Parcours inconnu";
+        return "inconnu";
     }
   }
 
