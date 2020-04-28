@@ -31,7 +31,7 @@
     </div>
     <span>Une fois ton fichier sélectionné, clique sur <i>Envoyer mon fichier</i> !</span>
     <span v-if="entry.documents && entry.documents.length"
-      >{{ entry.documents.length }} fichier(s) rendu(s)</span
+      >{{ entry.documents.length }} fichier(s) rendu(s){{filenames && ' : '}}{{ filenames }}</span
     >
     <Alert ref="alert" :show="showDismissibleAlert" :text="textAlert" />
   </div>
@@ -51,6 +51,7 @@ export default {
       role: this.$store.state.auth.user ? this.$store.state.auth.user.role : undefined,
       idEntry: this.entry.id,
       file: "",
+      filenames: "",
       showDismissibleAlert: false, // for Alert
       textAlert: false, // for Alert
       loading: false,
@@ -86,6 +87,7 @@ export default {
         let isSent = await this.updateEntry(this.entry);
         if (isSent) {
           alert("Nous avons bien reçu ton fichier !");
+          this.filenames = this.filenames + this.file.name + " ";
         } else {
           this.entry.state = "INPROGRESS";
           alert(
