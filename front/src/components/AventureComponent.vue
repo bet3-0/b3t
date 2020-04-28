@@ -1,6 +1,7 @@
 <template>
   <div class="container" role="main">
     <AventureContent :idActivite="idActivite"/>
+  </div>
 </template>
 
 <script>
