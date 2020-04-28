@@ -283,6 +283,8 @@ Base Component for an activity page -->
         console.log("Existing progression is in a non-editable state");
         // Freezes entries
         this.isFrozen = true;
+        progression.id = undefined;  // ensure the progression cannot be sent!
+        // Freezes entries (answers fields)
         progression.entries.forEach(
           (_entry) => (_entry.state = "REVIEWING")
         );
@@ -614,18 +616,7 @@ Base Component for an activity page -->
       }
 
       // CASE 2: a 'jeune' is on the page
-      // FIRST OPTION: an error occurred previously and the progression has no id
-      else if (!this.progression.id) {
-        // progression was never initialized with server
-        this.titleError = "Impossible d'envoyer tes réponses !";
-        this.messageError =
-          "Tes réponses ne peuvent pas être enregistrées ! Tu dois rafraîchir la page et réessayer !";
-        this.linkMessage = "";
-        this.linkError = "";
-        this.$bvModal.show("errorModal-VAL");
-        return false;
-      }
-      // SECOND OPTION: the activity is finished, reviewing or validated
+      // FIRST OPTION: the activity is finished, reviewing or validated
       else if (this.isFrozen) {
         // Cannot send this type of progression !
         this.titleError = "Impossible d'envoyer tes réponses !";
@@ -633,6 +624,17 @@ Base Component for an activity page -->
           "Tu as déjà envoyé cette activité ! Elle se trouve maintenant dans Mes activités où tu peux suivre la progression de sa validation !";
         this.linkMessage = "Voir Mes activités";
         this.linkError = "/progression";
+        this.$bvModal.show("errorModal-VAL");
+        return false;
+      }
+      // SECOND OPTION: an error occurred previously and the progression has no id
+      else if (!this.progression.id) {
+        // progression was never initialized with server
+        this.titleError = "Impossible d'envoyer tes réponses !";
+        this.messageError =
+          "Tes réponses ne peuvent pas être enregistrées ! Tu dois rafraîchir la page et réessayer !";
+        this.linkMessage = "";
+        this.linkError = "";
         this.$bvModal.show("errorModal-VAL");
         return false;
       }

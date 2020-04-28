@@ -11,7 +11,6 @@
         revenir en arrière !
         <br />
         <br />
-
         {{ message }}
       </div>
       <template v-slot:modal-footer="{ ok, cancel }">
@@ -53,9 +52,17 @@ export default {
     async validateProgression() {
       // It is assumed role is jeune and not REVIEWING/VALIDATED
       console.log("Validating progression...");
+      // check progression state
+      if (!["INPROGRESS", "REFUSED"].includes(this.progression.state)) {
+        alert(
+          "Impossible d'envoyer ta progression ! Tu l'as probablement déjà envoyée " +
+            "et elle devrait s'afficher sur la page Mes activités."
+        );
+        return;
+      }
       //Change state
       this.loading = true;
-      if (this.$store.state.progression.hasEnded){
+      if (this.$store.state.progression.hasEnded) {
         this.progression.state = "EXTRA";
       } else {
         this.progression.state = "FINISHED";
