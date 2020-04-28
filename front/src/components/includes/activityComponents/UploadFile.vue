@@ -64,6 +64,7 @@ export default {
     },
     /* Submits the file to the server */
     async submitFile() {
+      this.showDismissibleAlert = false;
       if (!this.file) {
         return; // No file to load (and no error, no need a priori)
       }
