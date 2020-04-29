@@ -48,11 +48,12 @@
             >Espace prévention</router-link
           >
         </li>
+        <!--
         <li class="nav-item">
           <router-link class="nav-link text-white" to="/aventure/1"
             >Aventure</router-link
           >
-        </li>
+        </li> -->
         <li class="nav-item">
           <router-link
             class="nav-link text-white"
