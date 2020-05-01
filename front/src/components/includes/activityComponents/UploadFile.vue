@@ -19,7 +19,7 @@
           :id="`submitFileButton-${idEntry}`"
           class="input-group-text btn-primary text-white"
           @click="submitFile()"
-          :disabled="entry.state === 'REVIEWING' || role !=='jeune'"
+          :disabled="buttonDisabled"
         >
           <span
             v-show="loading"
@@ -30,8 +30,9 @@
       </div>
     </div>
     <span>Une fois ton fichier sélectionné, clique sur <i>Envoyer mon fichier</i> !</span>
+    <br>
     <span v-if="entry.documents && entry.documents.length"
-      >{{ entry.documents.length }} fichier(s) rendu(s)</span
+      >{{ entry.documents.length }} fichier(s) rendu(s){{filenames && ', dont : '}}{{ filenames }}</span
     >
     <Alert ref="alert" :show="showDismissibleAlert" :text="textAlert" />
   </div>
@@ -40,7 +41,6 @@
 <script>
 import FileService from "./../../../service/file.service";
 import Alert from "./../../includes/Alert";
-import $ from "jquery";
 
 export default {
   name: "UploadFile",
@@ -51,25 +51,45 @@ export default {
       role: this.$store.state.auth.user ? this.$store.state.auth.user.role : undefined,
       idEntry: this.entry.id,
       file: "",
+      filenames: "",
       showDismissibleAlert: false, // for Alert
       textAlert: false, // for Alert
       loading: false,
+      submissionAlreadyDone: false,
     };
+  },
+  computed:{
+    buttonDisabled(){
+      // Non-updatable state
+      if (this.entry.state === 'REVIEWING' || this.role !=='jeune'){
+        return true;
+      }
+      // File already uploading
+      if (this.loading){
+        return true;
+      }
+      // File selected has not changed since the last submission
+      if (this.submissionAlreadyDone){
+        return true;
+      }
+      return false;
+    }
   },
   methods: {
     loadFilename() {
       this.file = this.$refs.file.files[0];
       document.getElementById("labelInput").innerText = this.file.name;
+      this.submissionAlreadyDone = false;
     },
     /* Submits the file to the server */
     async submitFile() {
+      this.showDismissibleAlert = false;
       if (!this.file) {
         return; // No file to load (and no error, no need a priori)
       }
-      $(`#submitFileButton-${this.idEntry}`).prop("disabled", true);
       this.loading = true;
       let idFile = await FileService.pushFile(this.file);
-      if (idFile == undefined) {
+      if (idFile === undefined) {
         this.entry.state = "INPROGRESS";
         alert(
           "Nous n'avons pas pu envoyer ton fichier... Réessaie pour voir ?"
@@ -77,7 +97,6 @@ export default {
         this.textAlert =
           "Nous n'avons pas pu envoyer ton fichier... Réessaie pour voir ?";
         this.showDismissibleAlert = true;
-        $(`#submitFileButton-${this.idEntry}`).removeAttr("disabled");
         this.loading = false;
         return;
       }
@@ -86,17 +105,19 @@ export default {
         let isSent = await this.updateEntry(this.entry);
         if (isSent) {
           alert("Nous avons bien reçu ton fichier !");
+          this.filenames = this.filenames ? this.filenames + " / " : ""
+          this.filenames = this.filenames + this.file.name;
+          this.submissionAlreadyDone = true;
         } else {
           this.entry.state = "INPROGRESS";
           alert(
-            "Nous n'avons pas pu envoyer ton fichier... Réessaie pour voir ?"
+            "Nous n'avons pas pu envoyer correctement ton fichier... Réessaie pour voir ?"
           );
           this.textAlert =
-            "Nous n'avons pas pu envoyer ton fichier... Réessaie pour voir ?";
+            "Nous n'avons pas pu envoyer correctement ton fichier... Réessaie pour voir ?";
           this.showDismissibleAlert = true;
         }
       } finally {
-        $(`#submitFileButton-${this.idEntry}`).removeAttr("disabled");
         this.loading = false;
       }
     },
