@@ -7,7 +7,6 @@
   "finishedAt": 0,
   "reviewAt": 0,
   "entries": [
-
     {
       "position": 0,
       "question": "Ecris ta réponse ici !",
@@ -57,7 +56,8 @@
       "state": "NOTSTARTED",
       "tracked": true,
       "page": 6
-    }, {
+    },
+    {
       "position": 5,
       "question": "Ecris ta réponse ici !",
       "documents": [],
@@ -186,7 +186,7 @@
       "state": "NOTSTARTED",
       "tracked": true,
       "page": 12
-    }, 
+    },
     {
       "position": 18,
       "question": "Cite trois ingrédients pour LE TIRAMISU :",
@@ -196,7 +196,7 @@
       "state": "NOTSTARTED",
       "tracked": true,
       "page": 12
-    }, 
+    },
     {
       "position": 19,
       "question": "Cite trois ingrédients pour LE PAIN PERDU :",
@@ -207,6 +207,5 @@
       "tracked": true,
       "page": 12
     }
-
   ]
 }

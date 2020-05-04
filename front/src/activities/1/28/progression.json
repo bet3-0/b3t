@@ -6,7 +6,8 @@
   "startedAt": 0,
   "finishedAt": 0,
   "reviewAt": 0,
-  "entries": [{
+  "entries": [
+    {
       "position": 0,
       "question": "",
       "documents": [],
@@ -16,7 +17,6 @@
       "tracked": true,
       "page": 1
     },
-
     {
       "position": 1,
       "question": "",
