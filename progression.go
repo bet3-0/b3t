@@ -207,7 +207,7 @@ func UpdateProgression(c *gin.Context) {
 
 	progression.CodeAdherent = user.CodeAdherent
 
-	if progression.State == state("FINISHED") {
+	if progression.State == state("FINISHED") || progression.State == state("EXTRA") {
 		progression.FinishedAt = time.Now().Unix()
 	}
 
